@@ -1,0 +1,52 @@
+body {
+	margin-top: 125px; /* adjust this if the height of the menu bar changes */
+	background-color: #eee;
+}
+
+.nav {
+	margin-top: 15px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items */
+}
+
+.navbar {
+	background-color: #27ae60;
+}
+
+.nav a {
+	color: #ffffff;
+}
+
+#quota-bar {
+	width: 100%;
+	text-align: center;
+	color: #ffffff;
+	background-color: #2ecc71;
+}
+
+.nav .open>a, .nav> .open>a:hover, .nav .open>a:focus {
+	background-color: #2ecc71;
+}
+
+.nav > li > a:hover {
+	background-color: #2ecc71;
+}
+
+.nav > li > a:focus {
+	background-color: inherit;
+}
+
+.dropdown-menu {
+	z-index: 1;
+}
+
+footer {
+	padding: 30px 0;
+}
+
+.logo-nav {
+	padding-top: 5px;
+}
+
+#icon {
+	width: 150px;
+	z-index: 1;
+}

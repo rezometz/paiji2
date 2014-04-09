@@ -1,0 +1,151 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portail étudiant de Supélec, Metz">
+    <meta name="author" content="siqi">
+
+    <title>Paiji2 | {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/images/favicon.png' %}" />
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}" />
+
+    <!-- Add custom CSS here -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}" />
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar navbar-fixed-top" role="navigation">
+        <div id="quota-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">IP: 192.168.1.1</div>
+                    <div class="col-md-4">Download: 1400Mo</div>
+                    <div class="col-md-4">Upload: 1400Mo</div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand logo-nav logo" href="index.php">
+                    <img id="icon" src="{% static 'home/images/paiji.png' %}">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
+                            <div class="form-group">
+                                <input type="text" name="query" class="form-control" placeholder="Search Porygon...">
+                            </div>
+                        </form>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Social <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://integrator.rez">Integrators</a></li>
+                            <li><a href="#">Assos</a></li>
+                            <li><a href="http://calendar.rez">Calendar</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Services <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Covoiturage</a></li>
+                            <li><a href="#">Annonce</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Polardator</a></li>
+                            <li><a href="#">Noodle</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Ressources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header pull-right">FTPs</li>
+                            <li class="divider"></li>
+                            <li><a href="#">Numerobis</a></li>
+                            <li><a href="#">Meties</a></li>
+                            <li class="dropdown-header pull-right">Médiathèque</li>
+                            <li class="divider"></li>
+                            <li><a href="http://azthek.rez">Azthek</a>
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search...">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Links <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">ENT</a></li>
+                            <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
+                            <li><a href="http://sogo.supelec.fr/">Webmail</a></li>
+                            <li><a href="http://supldap.rez/">SupLDAP</a></li>
+                            <li><a href="http://game.rez/">Hades</a></li>
+                            <li><a href="http://wiki.rez/">Wiki</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">Rézo</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            {% block left-sidebar %}
+            <!-- sidebar goes here, if different from default -->
+            <!-- otherwise omit this section -->
+            {% endblock %}
+
+            {% block content %} {% endblock %}
+
+            {% block right-sidebar %}
+            <!-- sidebar goes here, if different from default -->
+            <!-- otherwise omit this section -->
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="container">
+        <footer>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>Copyright &copy; Rézo, Supélec Metz, 2014</p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="pull-right">bugs ou suggestions: <a href="mailto:me@siqi.fr">me@siqi.fr</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{% static 'home/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/bootstrap.js' %}"></script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>
+
