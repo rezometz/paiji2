@@ -9,6 +9,11 @@
     font-style: normal;
 }
 
+.well h3{
+	word-wrap: break-word;
+	font-size: 22px;
+}
+
 .right-sidebar {
 	width: 30%;
 	display: block;
@@ -29,9 +34,10 @@
 	font-size: 20px;
 }
 
-.weather-description {
+.weather-description, .post-time {
 	font-size: 14px;
 	color: #999;
+	margin: 0px;
 }
 
 .status-label {
@@ -54,7 +60,9 @@
 
 .table {
 	margin-top: 20px;
-	overflow: auto;
+	/*overflow: auto;*/
+	word-wrap: break-word;
+	table-layout: fixed;
 }
 
 .anniver-item {
@@ -62,13 +70,21 @@
 	color: #27ae60;
 }
 
+.poster-info {
+	height: 40px;
+}
+
+h4.poster-name {
+	margin: 0px;
+}
+
 .poster-icon {
-	width: 80px;
+	height: 40px;
 }
 
 .weather-icon:before {
 	font-family: 'MeteoconsRegular';
 	content: attr(data-icon);
-	font-size: 60px;
+	font-size: 400%;
 	font-style: normal;
 }

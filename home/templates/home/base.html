@@ -25,9 +25,9 @@
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">IP: 192.168.1.1</div>
-                    <div class="col-md-4">Download: 1400Mo</div>
-                    <div class="col-md-4">Upload: 1400Mo</div>
+                    <div class="col-sm-4">IP: 192.168.1.1</div>
+                    <div class="col-sm-4 quota-field-normal">1400Mo <i class="glyphicon glyphicon-upload"></i></div>
+                    <div class="col-sm-4 quota-field-danger">Banissement du quota : -400Mo <i class="glyphicon glyphicon-download"></i></div>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand logo-nav logo" href="index.php">
+                <a class="navbar-brand logo-nav logo" href="{% url 'index' %}">
                     <img id="icon" src="{% static 'home/images/paiji.png' %}">
                 </a>
             </div>
@@ -83,9 +83,9 @@
                             <li class="dropdown-header pull-right">Médiathèque</li>
                             <li class="divider"></li>
                             <li><a href="http://azthek.rez">Azthek</a>
-                                <form class="navbar-form navbar-left" role="search">
+                                <form action="http://azthek.rez/search" class="navbar-form navbar-left" role="search" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <input name="query" type="text" class="form-control" placeholder="Search...">
                                     </div>
                                 </form>
                             </li>
@@ -111,7 +111,7 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container">
+    <div id="main" class="container clearfix">
         <div class="row">
             {% block left-sidebar %}
             <!-- sidebar goes here, if different from default -->

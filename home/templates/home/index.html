@@ -8,19 +8,28 @@
 {% block right-sidebar %}
 <div class="col-md-3">
     <div class="well">
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row weather">
+            <div class="col-sm-7">
                 <div class="city-name">Metz</div>
-                <p class="current-temp">10 C <span class="weather-description">Beau temps</span></p>
+                <p class="current-temp">10&deg;C <span class="weather-description">Beau temps</span></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-5">
             <i href="" class="weather-icon" data-icon="K"></i>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4"><i href="" class="weather-icon" data-icon="A"></i><p>Aurjourd'hui</br>14 - 3</p></div>
-            <div class="col-md-4"><i href="" class="weather-icon" data-icon="D"></i><p>Demain</br>14 - 3</p></div>
-            <div class="col-md-4"><i href="" class="weather-icon" data-icon="G"></i><p>Vendredi</br>14 - 3</p></div>
+            <div class="col-sm-4">
+                <p><i href="" class="weather-icon" data-icon="A"></i></br>
+                Mer.</br>14-3&deg;C</p>
+            </div>
+            <div class="col-sm-4">
+                <p><i href="" class="weather-icon" data-icon="D"></i></br>
+                Jeu.</br>14-3&deg;C</p>
+            </div>
+            <div class="col-sm-4">
+                <p><i href="" class="weather-icon" data-icon="K"></i></br>
+                Ven.</br>14-3&deg;C</p>
+            </div>
         </div>
     </div>
 
@@ -38,6 +47,12 @@
 
         <table class="table table-striped">
             <tbody>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
+                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
                 <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
                 <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
                 <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
@@ -69,12 +84,20 @@
 
     <div class="well">
         <h3>Covoiturage</h3>
-        <p class="text-center"><a href="http://calendar.rez">COV Service</a></p>
+        <div class="row text-center">
+            <div class="col-sm-6">
+                <a data-toggle="modal" data-target="#propose-cov" href="#">
+                  Proposer
+                </a>
+
+            </div>
+            <div class="col-sm-6"><a href="#">Détails</a></div>
+        </div>
         <table class="table table-striped">
             <tbody>
-                <tr><td class="begin-time">Celia</br><span class="label label-success">Offre</span></td><td>Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td class="begin-time">Thibaut</br><span class="label label-danger">Demande</span></td><td>Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td class="begin-time">Helene</br><span class="label label-success">Offre</td><td>Metz-Paris, 17h, 04/05/2014</td></tr>
+                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Celia</a> </span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
+                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thibaut</a></span><span class="label label-danger">Demande</span> Metz-Paris, 17h, 04/05/2014</td></tr>
+                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thomas</a></span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
             </tbody>
         </table>
     </div>
@@ -89,7 +112,7 @@
     </div>
 
     <div class="well">
-        <h3>Status</h3>
+        <h3>Server Status</h3>
         <table class="table table-striped">
             <tbody>
                 <tr><td>Web</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
@@ -103,6 +126,27 @@
 {% endblock %}
 
 {% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="propose-cov" tabindex="-1" role="dialog" aria-labelledby="propose-cov-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="propose-cov-label">Proposer un covoiturage</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="col-md-6">
     <div class="well info-rezo">
         <h3>Info</h3>
@@ -116,10 +160,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -129,10 +173,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -142,10 +186,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -155,10 +199,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -168,10 +212,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -181,10 +225,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">
@@ -194,10 +238,10 @@
 
     <div class="well">
         <div class="row">
-            <div class="col-md-2"><img class="poster-icon" src="{% static 'home/images/paiji.png' %}"></div>
-            <div class="col-md-10">
-                <h4>Rezo</h4>
-                <p>26 min</p>
+            <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>
+            <div class="col-sm-10 poster-info">
+                <h4 class="poster-name">Rezo</h4>
+                <p class="post-time">26 min</p>
             </div>
         </div>
         <div class="news-content">

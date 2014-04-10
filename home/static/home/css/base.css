@@ -3,6 +3,10 @@ body {
 	background-color: #eee;
 }
 
+#main {
+	width: 95%;
+}
+
 .nav {
 	margin-top: 15px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items */
 }
@@ -15,11 +19,30 @@ body {
 	color: #ffffff;
 }
 
+a {
+	color: #072;
+	padding: 3px;
+}
+
+a:not(.logo):hover {
+	color: #fff;
+	background-color: #072;
+	text-decoration: none;
+}
+
 #quota-bar {
 	width: 100%;
 	text-align: center;
 	color: #ffffff;
 	background-color: #2ecc71;
+}
+
+#quota-bar div.quota-field-danger {
+	background-color: #c0392b;
+}
+
+#quota-bar div.quota-field-normal {
+	background-color: inherit;
 }
 
 .nav .open>a, .nav> .open>a:hover, .nav .open>a:focus {
