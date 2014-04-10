@@ -68,7 +68,7 @@
 {% block left-sidebar %}
 <div class="col-md-3">
     <div class="well">
-        <h3>Prochainnement</h3>
+        <h3>Prochainement</h3>
         <p class="text-center"><a href="http://calendar.rez">Calendar</a></p>
         <table class="table table-striped">
             <tbody>
@@ -100,6 +100,18 @@
                 <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thomas</a></span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="well">
+        <h3>Sondage</h3>
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <p><span class="firstLetter">Q</span>uelle est le meilleur assos sur le campus? </p>
+            </div>
+        </div>
+        <div id="poll-result">
+
+        </div>
     </div>
 
     <div class="well">
@@ -151,10 +163,16 @@
     <div class="well info-rezo">
         <h3>Info</h3>
         <p>
-            Bienvenue sur Paiji2 ! Ce site est en début de développement et n'hésitez pas à donner vos idées tant que c'est pas trop tard!
+            Bienvenue sur Paiji2 ! Ce site est en début de développement. N'hésitez pas à donner vos avis sur les fonctionalités qu'on garde et les fonctionalités qu'on supprime. Les fonctionalités sont aussi reorganisé dans les onglets.
         </p>
         <p>
-            Enjoy!
+            Ce prototype sert <strong>uniquement</strong> pour vous donner une idées vers où on va au niveau de l'organisation du Paiji (les fonctionalités sont pas encore implémentées!), vous pouvez revenir sur cette page pour suivre le développement.
+        </p>
+        <p>
+            Vous pouvez contacter: <a href="rezo@metz.supelec.fr">rezo@metz.supelec.fr</a> ou <a href="mailto:me@siqi.fr">me@siqi.fr</a> pour des suggestions et des remarques.
+        </p>
+        <p>
+            Excusez-moi de mon français de grande qualité et enfin dite bonjour à votre <strong>Paiji2</strong>!
         </p>
     </div>
 
@@ -249,4 +267,32 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Rézo', 'Hours per Day'],
+          ['Rézo Supélec',     11],
+          ['Supélec Rézo',      2],
+          ['Rézo Metz Supélec',  2],
+        ]);
+
+        var options = {
+          legend: 'none',
+          pieHole: 0,
+          'chartArea': {'width': '100%', 'height': '80%'},
+          backgroundColor: { fill:'transparent' },
+          'legend': {'position': 'bottom'},
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('poll-result'));
+        chart.draw(data, options);
+      }
+    </script>
+
 {% endblock %}

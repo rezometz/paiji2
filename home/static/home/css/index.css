@@ -54,8 +54,12 @@
 }
 
 .info-rezo {
-	background-color: #16a085;
-	color: #ecf0f1;
+	background-color: #bdc3c7;
+	color: #34495e;
+}
+
+.info-rezo a {
+	color: #27ae60;
 }
 
 .table {
@@ -78,8 +82,15 @@ h4.poster-name {
 	margin: 0px;
 }
 
+.firstLetter {
+	font-size: 22px;
+}
+
 .poster-icon {
 	height: 40px;
+}
+
+#poll-result {
 }
 
 .weather-icon:before {
