@@ -91,6 +91,7 @@ h4.poster-name {
 }
 
 #poll-result {
+	text-align: center;
 }
 
 .weather-icon:before {
