@@ -1,3 +1,6 @@
 .DS_Store
 *.pyc
 settings_dev.py
+
+# Vim files
+*.swp
