@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+
+{{ equipement|length }}Vous semblez être le propriétaire du compte {{ utilisateur.prenom }} {{ utilisateur.nom }}.
+
+{{ utilisateur.quotas.up_restant|filesizeformat }}
+{{ utilisateur.quotas.down_restant|filesizeformat }}
+
+{% endblock %}
+
