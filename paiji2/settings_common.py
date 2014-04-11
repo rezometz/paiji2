@@ -24,6 +24,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'weather',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (

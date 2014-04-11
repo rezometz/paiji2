@@ -1,5 +1,6 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
+{% load weather_tag %}
 
 {% block title%}Home{% endblock %}
 
@@ -7,31 +8,8 @@
 
 {% block right-sidebar %}
 <div class="col-md-3">
-    <div class="well">
-        <div class="row weather">
-            <div class="col-sm-7">
-                <div class="city-name">Metz</div>
-                <p class="current-temp">10&deg;C <span class="weather-description">Beau temps</span></p>
-            </div>
-            <div class="col-sm-5">
-            <i href="" class="weather-icon" data-icon="K"></i>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <p><i href="" class="weather-icon" data-icon="A"></i></br>
-                Mer.</br>14-3&deg;C</p>
-            </div>
-            <div class="col-sm-4">
-                <p><i href="" class="weather-icon" data-icon="D"></i></br>
-                Jeu.</br>14-3&deg;C</p>
-            </div>
-            <div class="col-sm-4">
-                <p><i href="" class="weather-icon" data-icon="K"></i></br>
-                Ven.</br>14-3&deg;C</p>
-            </div>
-        </div>
-    </div>
+
+    {% get_weather %}
 
     <div class="well">
         <h3>Sondage</h3>
