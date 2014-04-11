@@ -6,24 +6,23 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
 
-user_model = get_user_model()
-try:
-    groups = {}
-    users = {}
-    for groupname, ranges in settings.IP_AUTH_GROUPS.iteritems():
-        (groups[groupname], created) = Group.objects.get_or_create(
-            name=groupname,
-        )
-        (users[groupname], created) = user_model.objects.get_or_create(
-            username=groupname,
-        )
-        groups[groupname].user_set.add(users[groupname])
-
-except ImportError:
-    pass
-
-
 class IpAuthGroupMiddleware(object):
+    def __init__(self):
+        user_model = get_user_model()
+        try:
+            self.groups = {}
+            self.users = {}
+            for groupname, ranges in settings.IP_AUTH_GROUPS.iteritems():
+                (self.groups[groupname], created) = Group.objects.get_or_create(
+                    name=groupname,
+                )
+                (self.users[groupname], created) = user_model.objects.get_or_create(
+                    username=groupname,
+                )
+                self.groups[groupname].user_set.add(self.users[groupname])
+        except ImportError:
+            pass
+
     def process_request(self, request):
         user = request.user
 
@@ -31,5 +30,5 @@ class IpAuthGroupMiddleware(object):
             for groupname, ranges in settings.IP_AUTH_GROUPS.iteritems():
                 ip_range = IpRangeList(*ranges)
                 if request.META['REMOTE_ADDR'] in ip_range:
-                    request.user = users[groupname]
+                    request.user = self.users[groupname]
 
