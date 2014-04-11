@@ -22,6 +22,17 @@ Then create the virtualenv by typing (in your working directory) :
 
     mkvirtualenv paiji2 --distribute -r 'requirements.txt'
 
+### Configure the website
+You can now configure your website. Start by copying the settings_example.py 
+file as settings.py (in the paiji2 directory) :
+
+    cd paiji2
+    cp settings_example.py settings.py
+
+Then open the settings.py file and change the different environments variables
+as you wish.
+
+
 ### Debug mode
 You are now fully prepared to work on on the project on development mode. The project can be launched using :
 
