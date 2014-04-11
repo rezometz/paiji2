@@ -25,7 +25,7 @@
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">IP: 192.168.1.1 ({{ request.user }})</div>
+                    <div class="col-sm-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
                     <div class="col-sm-4 quota-field-normal">1400Mo <i class="glyphicon glyphicon-upload"></i></div>
                     <div class="col-sm-4 quota-field-danger">Banissement du quota : -400Mo <i class="glyphicon glyphicon-download"></i></div>
                 </div>
