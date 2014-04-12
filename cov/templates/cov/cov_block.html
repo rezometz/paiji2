@@ -1,0 +1,31 @@
+<div class="well">
+    <h3>Covoiturage</h3>
+    <div class="row text-center">
+        {% if request.user.is_authenticated %}
+        <div class="col-sm-6">
+            <a data-toggle="modal" data-target="#propose-cov" href="#">
+                Proposer
+            </a>
+        </div>
+        {% endif %}
+        <div class="col-sm-6"><a href="#">Détails</a></div>
+    </div>
+    <table class="table table-striped">
+        <tbody>
+            {% for item in cov %}
+            <tr>
+                <td>
+                    <a href="mailto:{{ item.poster_email }}">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        {{ item.poster }}
+                    </a>
+                    <span class="label label-{{ item.annonce_type|yesno:'success,danger' }}">
+                        {{ item.get_annonce_type_display }}
+                    </span> 
+                    {{ item.itinerary }}, {{ item.dept_datetime|date:'H:i, jS F' }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
