@@ -1,6 +1,7 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
 {% load weather_tag %}
+{% load cov_tag %}
 
 {% block title%}Home{% endblock %}
 
@@ -72,25 +73,7 @@
         </table>
     </div>
 
-    <div class="well">
-        <h3>Covoiturage</h3>
-        <div class="row text-center">
-            <div class="col-sm-6">
-                <a data-toggle="modal" data-target="#propose-cov" href="#">
-                  Proposer
-                </a>
-
-            </div>
-            <div class="col-sm-6"><a href="#">Détails</a></div>
-        </div>
-        <table class="table table-striped">
-            <tbody>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Celia</a> </span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thibaut</a></span><span class="label label-danger">Demande</span> Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thomas</a></span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
-            </tbody>
-        </table>
-    </div>
+    {% get_cov %}
 
     <div class="well">
         <h3>Annonces</h3>

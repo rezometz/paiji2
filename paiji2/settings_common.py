@@ -25,7 +25,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'home',
     'weather',
+    'cov',
     'debug_toolbar',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,6 +65,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+KEY_CACHE_WEATHER = 'paiji2_weather_data'
 
 # Cache
 # https://docs.djangoproject.com/en/dev/topics/cache/
