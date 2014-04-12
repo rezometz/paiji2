@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,17 +112,19 @@
 
     <div id="main" class="container clearfix">
         <div class="row">
+            <div class="col-md-3">
             {% block left-sidebar %}
-            <!-- sidebar goes here, if different from default -->
-            <!-- otherwise omit this section -->
             {% endblock %}
+            {% include 'home/sidebar_left.html' %}
+            </div>
 
             {% block content %} {% endblock %}
 
+            <div class="col-md-3">
             {% block right-sidebar %}
-            <!-- sidebar goes here, if different from default -->
-            <!-- otherwise omit this section -->
             {% endblock %}
+            {% include 'home/sidebar_right.html' %}
+            </div>
         </div>
     </div>
 
@@ -148,4 +149,3 @@
 </body>
 
 </html>
-

@@ -1,124 +1,15 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
-{% load weather_tag %}
-{% load cov_tag %}
-{% load cov_proposal_modal %}
 
 {% block title%}Home{% endblock %}
 
 {% block style %}<link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}" />{% endblock %}
 
-{% block right-sidebar %}
-<div class="col-md-3">
 
-    {% get_weather %}
-
-    <div class="well">
-        <h3>Sondage</h3>
-        <div class="row text-center">
-            <div class="col-sm-12">
-                <p><span class="firstLetter">Q</span>uelle est le meilleur assos sur le campus? </p>
-            </div>
-        </div>
-        <div id="poll-result">
-
-        </div>
-    </div>
-
-    <div class="well">
-        <h3>Shout Box</h3>
-
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Pseudo">
-          <span class="input-group-addon">Says</span>
-          <input type="text" class="form-control" placeholder="Message">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div>
-
-        <table class="table table-striped">
-            <tbody>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-                <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-{% endblock %}
-
-{% block left-sidebar %}
-<div class="col-md-3">
-    <div class="well">
-        <h3>Prochainement</h3>
-        <p class="text-center"><a href="http://calendar.rez">Calendar</a></p>
-        <table class="table table-striped">
-            <tbody>
-                <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-                <tr><td><span class="begin-time">18:30 </span>Final Championnat de France de Handball Feminin - F002</td></tr>
-                <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-                <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-                <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-                <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    {% get_cov %}
-
-    <div class="well">
-        <h3>Annonces</h3>
-        <div class="row text-center">
-            <div class="col-sm-6">
-                <a data-toggle="modal" data-target="#propose-annonce" href="#">
-                  Ajouter
-                </a>
-            </div>
-        </div>
-        <table class="table table-striped">
-            <tbody>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Nicolas</a> </span>a trouvé une clé USB dans F204</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Pierre</a></span> cherche 500 euros perdu dans F001</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Guiillaume</a></span> vend iPhone 8 à 3 euros au PAPS</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="well">
-        <h3>Anniversaire</h3>
-        <p>Aujourd'hui, 10/04/2014, c'est le jour spécial de : </p>
-        <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-        <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-        <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-        <p>Joyeux anniversaire!</p>
-    </div>
-
-    <div class="well">
-        <h3>Server Status</h3>
-        <table class="table table-striped">
-            <tbody>
-                <tr><td>Web</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-                <tr><td>TV</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-                <tr><td>IRC</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
-{% endblock %}
 
 {% block content %}
 
+{% load cov_proposal_modal %}
 {% get_proposal_modal %}
 
 
