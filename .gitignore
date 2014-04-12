@@ -4,3 +4,4 @@ settings_dev.py
 
 # Vim files
 *.swp
+paiji2/settings.py
