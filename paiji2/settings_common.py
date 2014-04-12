@@ -63,3 +63,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Cache
+# https://docs.djangoproject.com/en/dev/topics/cache/
+
+CACHE_MIDDLEWARE_ALIAS = 'paiji2_cache'
+CACHE_MIDDLEWARE_SECONDS = 300
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
