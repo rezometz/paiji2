@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load weather_tag %}
 {% load cov_tag %}
+{% load cov_proposal_modal %}
 
 {% block title%}Home{% endblock %}
 
@@ -118,24 +119,7 @@
 
 {% block content %}
 
-<!-- Modal -->
-<div class="modal fade" id="propose-cov" tabindex="-1" role="dialog" aria-labelledby="propose-cov-label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="propose-cov-label">Proposer un covoiturage</h4>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+{% get_proposal_modal %}
 
 
 <div class="col-md-6">
