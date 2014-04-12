@@ -1,3 +1,4 @@
+{% load readmore %}
 <div class="well">
     <h3>Covoiturage</h3>
     <div class="row text-center">
@@ -19,7 +20,7 @@
                     {% else %}
                     <span class="label label-danger">
                     {% endif %}
-                        {{ item.get_annonce_type_display }}</span> {{ item.good_until|date:'H:i, jS F' }}, {{ item.notes }}</td></tr>
+                        {{ item.get_annonce_type_display }}</span> {{ item.good_until|date:'H:i, jS F' }}, {{ item.notes|readmore:10 }}</td></tr>
                 {% endfor %}
             </tbody>
         </table>
