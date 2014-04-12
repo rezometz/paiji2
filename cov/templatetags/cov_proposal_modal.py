@@ -12,6 +12,7 @@ register = template.Library()
 @register.inclusion_tag('cov/propose_modal.html', takes_context = True)
 def get_proposal_modal(context):
 	request = context['request']
+	print "getting REQUEST##########"
 	CovFormSet = modelformset_factory(Cov, formset=CovForm)
 	if request.method == 'POST':
 		formset = CovFormSet(request.POST, request.FILES)
@@ -22,5 +23,4 @@ def get_proposal_modal(context):
 	else:
 		formset = CovFormSet()
 
-	print formset
 	return {"formset": formset,}
