@@ -11,9 +11,15 @@
         </div>
         <table class="table table-striped">
             <tbody>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Celia</a> </span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thibaut</a></span><span class="label label-danger">Demande</span> Metz-Paris, 17h, 04/05/2014</td></tr>
-                <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Thomas</a></span><span class="label label-success">Offre</span> Metz-Paris, 17h, 04/05/2014</td></tr>
+                {% for item in cov %}
+                <tr><td><a href="mailto:{{item.poster_email}}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster }} </a>
+                    {% if item.annonce_type == 0 %}
+                    <span class="label label-success">
+                    {% else %}
+                    <span class="label label-danger">
+                    {% endif %}
+                        {{ item.get_annonce_type_display }}</span> {{ item.itinerary }}, {{ item.dept_datetime|date:'H:i, jS F' }}</td></tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
