@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+
+
+    {% load bootstrap3 %}
+
+
+{% block content %}
+<div class="col-md-6">
+    <div class="well">
+        <h3>Ajouter une note</h3>
+        <form action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    {{ request.user.first_name }}
+                </span>
+                {% bootstrap_field form.message show_label=False %}
+            </div>
+            <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+            <br />
+            {% buttons %}
+                <button type="submit" class="btn btn-success pull-right">
+                    Ajouter
+                </button>
+            {% endbuttons %}
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}
