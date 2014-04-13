@@ -24,8 +24,8 @@ class AccountClaimView(generic.FormView):
     template_name = 'rezo/claim_account.html'
     form_class = ConfirmForm
     
-    def __init__(self, *args, **kwargs):
-        super(AccountClaimView, self).__init__(*args, **kwargs)
+    def get_form(self, *args, **kwargs):
+        super(AccountClaimView, self).get_form(*args, **kwargs)
         
         equipements = Equipement.objects.using('rezo').filter(
             ip=self.request.META.get('REMOTE_ADDR'),
