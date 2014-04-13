@@ -41,6 +41,8 @@ class AccountClaimView(generic.FormView):
             print "Too much matching"
             exit()
 
+        return super(AccountClaimView, self).get_form(*args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         cd = super(AccountClaimView, self).get_context_data(*args, **kwargs)
 
