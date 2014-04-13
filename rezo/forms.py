@@ -7,8 +7,9 @@ class ConfirmForm(forms.Form):
     pass
 
 class UserCreationForm(auth.forms.UserCreationForm):
-    class Meta(auth.forms.UserCreationForm.Meta):
+    class Meta:
         model = User
+        fields = ()
 
 class UserAuthenticationForm(auth.forms.AuthenticationForm):
     pass
