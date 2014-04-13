@@ -28,6 +28,8 @@ INSTALLED_APPS = (
     'cov',
     'debug_toolbar',
     'south',
+    'bootstrap3',
+    'rezo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,6 +68,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
+
+
+AUTH_USER_MODEL = 'rezo.User'
 
 # Cache
 # https://docs.djangoproject.com/en/dev/topics/cache/
