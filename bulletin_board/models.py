@@ -14,7 +14,7 @@ class Note(models.Model):
         'Message',
         max_length=200,
     )
-    posted_at = models.DateField(
+    posted_at = models.DateTimeField(
         'Posted at',
     )
 

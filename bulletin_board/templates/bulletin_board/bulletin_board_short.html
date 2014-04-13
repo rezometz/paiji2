@@ -1,10 +1,18 @@
+
 <div class="row text-center">
-    <div class="col-sm-6">
+    {% if request.user.is_authenticated %}
+    <div class="col-sm-3">
         <a data-toggle="modal" data-target="#propose-annonce" href="#">
             Ajouter
         </a>
     </div>
+    {% endif %}
+    <div class="col-sm-9">
+        <a href="#">Toutes les annonces</a>
+    </div>
 </div>
+{% load cache %}
+{% cache 60 bulletin-board-short %}
 <ul class="list-unstyled">
     {% for note in notes %}
     <li>
@@ -21,3 +29,4 @@
     </li>
     {% endfor %}
 </ul>
+{% endcache %}
