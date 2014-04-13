@@ -1,4 +1,4 @@
-
+{% load readmore %}
 <div class="row text-center">
     {% if request.user.is_authenticated %}
     <div class="col-sm-3">
@@ -23,7 +23,7 @@
             {{ note.author.first_name }}
         </a>
     </span>
-    {{ note.message }}
+    {{ note.message|readmore:20 }}
     <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
     </li>
     {% endfor %}
