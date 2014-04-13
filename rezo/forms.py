@@ -22,7 +22,7 @@ class UserCreationForm(auth.forms.UserCreationForm):
 
     class Meta:
         model = auth.get_user_model()
-        fields = ()
+        fields = ('username', )
 
 class UserAuthenticationForm(auth.forms.AuthenticationForm):
     pass
