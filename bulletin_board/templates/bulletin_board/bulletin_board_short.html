@@ -13,21 +13,19 @@
 </div>
 {% load cache %}
 {% cache 60 bulletin-board-short %}
-<table class="table table-striped">
-    <tbody>
-        {% for note in notes %}
-        <tr>
-            <td>
-                <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
-                title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
-                <i class="glyphicon glyphicon-envelope"></i>
-                {{ note.author.first_name }}
-            </a>
-            {{ note.message|readmore:20 }}
-            <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
-        </td>
-    </tr>
+<ul class="list-unstyled">
+    {% for note in notes %}
+    <li>
+    <span class="begin-time">
+        <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
+            title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ note.author.first_name }}
+        </a>
+    </span>
+    {{ note.message|readmore:20 }}
+    <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
+    </li>
     {% endfor %}
-</tbody>
-</table>
+</ul>
 {% endcache %}
