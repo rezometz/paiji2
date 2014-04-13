@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'home',
     'weather',
     'cov',
+    'bulletin_board',
     'debug_toolbar',
     'south',
     'bootstrap3',

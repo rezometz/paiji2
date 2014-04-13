@@ -1,0 +1,23 @@
+<div class="row text-center">
+    <div class="col-sm-6">
+        <a data-toggle="modal" data-target="#propose-annonce" href="#">
+            Ajouter
+        </a>
+    </div>
+</div>
+<ul class="list-unstyled">
+    {% for note in notes %}
+    <li>
+    <span class="begin-time">
+        <a href="{{ note.author.email }}"
+            title="{{ note.author.first_name }} {{ note.author.last_name }}
+            ({{ note.author }})">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ note.author.first_name }}
+        </a>
+    </span>
+    {{ note.message }}
+    <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
+    </li>
+    {% endfor %}
+</ul>

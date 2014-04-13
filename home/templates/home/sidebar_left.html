@@ -18,21 +18,9 @@
 {% get_cov %}
 
 <div class="well">
+    {% load bulletin %}
     <h3>Annonces</h3>
-    <div class="row text-center">
-        <div class="col-sm-6">
-            <a data-toggle="modal" data-target="#propose-annonce" href="#">
-                Ajouter
-            </a>
-        </div>
-    </div>
-    <table class="table table-striped">
-        <tbody>
-            <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Nicolas</a> </span>a trouvé une clé USB dans F204</td></tr>
-            <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Pierre</a></span> cherche 500 euros perdu dans F001</td></tr>
-            <tr><td><span class="begin-time"><a href="mailto:a@b.c"><i class="glyphicon glyphicon-envelope"></i> Guiillaume</a></span> vend iPhone 8 à 3 euros au PAPS</td></tr>
-        </tbody>
-    </table>
+    {% display_bulletin_board 5 %}
 </div>
 
 <div class="well">
