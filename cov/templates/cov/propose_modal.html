@@ -6,16 +6,16 @@
         <h4 class="modal-title" id="propose-cov-label">Proposer un covoiturage</h4>
       </div>
       <div class="modal-body">
-        <form action="" method="post" class="form">{% csrf_token %}
+        <form action="." method="post">{% csrf_token %}
           <table>
-          {{ formset.as_table}}
+          {{ formset.as_p}}
           </table>
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Save changes"></input>
+        <input type="submit" class="btn btn-primary" value="Save changes"/>
       </div>
+      </form>
     </div>
   </div>
 </div>
