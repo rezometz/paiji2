@@ -211,3 +211,22 @@ class Equipement(models.Model):
         managed = False
         db_table = 'equipements'
 
+
+class AccountRecovery(models.Model):
+    id_rezo = models.PositiveIntegerField()
+    date = models.DateTimeField()
+    code = models.CharField(max_length=120)
+    email = models.EmailField()
+
+
+from django.contrib.auth.models import AbstractUser
+from django.utils.functional import cached_property
+class User(AbstractUser):
+    id_rezo = models.PositiveIntegerField(null=True, default=0)
+    
+    @cached_property
+    def get_rezo(self):
+        return Utilisateur.objects.using('rezo').select_related('quotas').get(
+            pk=self.id_rezo,
+        )
+    

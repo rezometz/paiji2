@@ -35,8 +35,6 @@ class WeatherFetcher(object):
         description = [current['weather'][0]['description']] + [w['weather'][0]['description'] for w in forcast['list']]
         icons = [self.icon_mapper[ w['weather'][0]['icon'][:-1] ] for w in forcast['list']]
 
-        print description
-
         for x in xrange(4):
             list_weather.append({'timestamp':date.fromtimestamp(forcast['list'][x]['dt']), 'icon':icons[x], 'min':temperature['forcast'][x]['temp']['min'], 'max':temperature['forcast'][x]['temp']['max'], 'desc':description[x]})
         list_weather[0]['current'] = current['main']['temp']

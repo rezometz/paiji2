@@ -25,8 +25,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
-                    <div class="col-sm-4 quota-field-normal">1400Mo <i class="glyphicon glyphicon-upload"></i></div>
-                    <div class="col-sm-4 quota-field-danger">Banissement du quota : -400Mo <i class="glyphicon glyphicon-download"></i></div>
+                    {% if request.user.id_rezo %}
+                    <div class="col-sm-4 quota-field-normal">
+                        {{ request.user.get_rezo.quotas.up_restant|filesizeformat }}
+                        <i class="glyphicon glyphicon-upload"></i>
+                    </div>
+                    <div class="col-sm-4 quota-field-normal">
+                        {{ request.user.get_rezo.quotas.down_restant|filesizeformat }}
+                        <i class="glyphicon glyphicon-download"></i>
+                    </div>
+                    {% else %}
+                    <div class="col-sm-8">
+                        <a href="{% url 'sign-in' %}" class="btn btn-xs btn-success">Sign in</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

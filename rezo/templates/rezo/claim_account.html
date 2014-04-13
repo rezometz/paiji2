@@ -1,12 +1,69 @@
 {% extends 'home/base.html' %}
 
-
 {% block content %}
+<div class="col-md-6">
+    <div class="well">
+        <h2>Compte Rézo</h2>
+        <p>
+        Cette page va vous servir à récupérer une interface 
+        de gestion pour votre compte Rézo si vous en possédez un.
+        <br />
+        Si jamais vous rencontrez le moindre souci durant la
+        récupération de votre compte, merci de nous envoyez un mail
+        à l'adresse suivante :<br />
+        &nbsp;&nbsp;&nbsp;
+        <a href="mailto:paiji@metz.supelec.fr">paiji@metz.supelec.fr</a>.
+        </p>
+        <h3>Processus</h3>
+        <p>
+        Dans un premier temps nous allons regarder si un compte actif
+        correspond à l'adresse IP que vous utilisez actuellement. Si
+        une correspondance est trouvée, nous vous demandons de vérifier
+        que vous êtes bien le propriétaire de ce compte. Pour cela votre
+        nom et votre prénom doivent se trouver plus bas sur la page.
+        </p>
+        {% if equipement|length > 0 %}
+        <p>La routine a trouvé une correspondance dans la base de données.</p>
+        <p>
+        Il semble que vous soyez le propriétaire du compte de l'utilisateur :
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ utilisateur.prenom }} {{ utilisateur.nom }}</b>
+        <br />
+        Si ce n'est pas le cas veuillez nous contacter à l'adresse mail ci-dessus,
+        sinon nous allons passez à l'étape suivante du processus.
+        </p>
+        <h3>Je suis bien propriétaire du compte</h3>
+        <p>
+        Cette étape nécessite avant tout que vous ayez validé l'adresse mail
+        donné au Rézo, si ce n'est toujours pas le cas, veuillez nous contacter.
+        Nous allons vous demander de confirmer la récupération du compte en cliquant
+        sur le bouton en fin de page. En cliquant sur ce bouton, vous certifiez être
+        le véritable propriétaire du compte. Un email vous sera alors envoyé à 
+        l'adresse que vous nous avez fourni. Si vous ne connaissez pas cette adresse
+        et que vous n'êtes pas sûr de sa validité, contactez-nous.<br />
+        Cet email contient un code de confirmation ainsi qu'un lien de confirmation,
+        qui vous permettra alors de récupérer votre compte.
+        </p>
 
-{{ equipement|length }}Vous semblez être le propriétaire du compte {{ utilisateur.prenom }} {{ utilisateur.nom }}.
-
-{{ utilisateur.quotas.up_restant|filesizeformat }}
-{{ utilisateur.quotas.down_restant|filesizeformat }}
-
+        <form action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Confirmation</legend>
+            <p class="alert alert-info">
+            En cliquant sur le bouton suivant, je certifie sur l'honneur être le 
+            possesseur du compte Rézo attribué à {{ utilisateur.prenom }} {{ utilisateur.nom }}.
+            <p>
+            <button type="submit" class="btn btn-info pull-right">
+                Confirmer
+            </button>
+        </fieldset>
+        </form>
+        {% else %}
+        <p class="alert alert-error">
+        Nous sommes désolés, mais il ne semble pas exister de correspondance.
+        </p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
 
