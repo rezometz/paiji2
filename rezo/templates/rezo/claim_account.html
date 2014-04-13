@@ -14,37 +14,33 @@
         &nbsp;&nbsp;&nbsp;
         <a href="mailto:paiji@metz.supelec.fr">paiji@metz.supelec.fr</a>.
         </p>
-        <h3>Processus</h3>
-        <p>
-        Dans un premier temps nous allons regarder si un compte actif
-        correspond à l'adresse IP que vous utilisez actuellement. Si
-        une correspondance est trouvée, nous vous demandons de vérifier
-        que vous êtes bien le propriétaire de ce compte. Pour cela votre
-        nom et votre prénom doivent se trouver plus bas sur la page.
-        </p>
-        {% if equipement|length > 0 %}
+        {% if utilisateur != None %}
         <p>La routine a trouvé une correspondance dans la base de données.</p>
         <p>
         Il semble que vous soyez le propriétaire du compte de l'utilisateur :
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ utilisateur.prenom }} {{ utilisateur.nom }}</b>
-        <br />
-        Si ce n'est pas le cas veuillez nous contacter à l'adresse mail ci-dessus,
-        sinon nous allons passez à l'étape suivante du processus.
+        </p>
+        <p class="alert alert-danger">
+        <b>Ce n'est pas mon compte : </b> contactez-nous.
         </p>
         <h3>Je suis bien propriétaire du compte</h3>
-        <p>
-        Cette étape nécessite avant tout que vous ayez validé l'adresse mail
-        donné au Rézo, si ce n'est toujours pas le cas, veuillez nous contacter.
-        Nous allons vous demander de confirmer la récupération du compte en cliquant
-        sur le bouton en fin de page. En cliquant sur ce bouton, vous certifiez être
-        le véritable propriétaire du compte. Un email vous sera alors envoyé à 
-        l'adresse que vous nous avez fourni. Si vous ne connaissez pas cette adresse
-        et que vous n'êtes pas sûr de sa validité, contactez-nous.<br />
-        Cet email contient un code de confirmation ainsi qu'un lien de confirmation,
-        qui vous permettra alors de récupérer votre compte.
+        {% if not email_verifie %}
+        <p class="alert alert-danger">
+            Vous n'avez jamais l'adresse mail fournie lors de votre inscription
+            nous ne pouvons donc nous permettre d'y envoyer une clef de validation.
+            Demandez au Rézo de vous envoyer un nouveau lien de confirmation ou
+            de changer votre email si vous ne la connaissez pas.
         </p>
-
+        {% elif account_registered %}
+        <p class="alert alert-danger">
+            Votre compte a déjà été enregistré.
+        </p>
+        {% else %}
+        <p>
+            En confirmant le lien ci-dessous, un email vous sera envoyé vous
+            permettant de récupérer votre compte.
+        </p>
         <form action="{{ request.get_full_path }}" method="post">
             {% csrf_token %}
             <fieldset>
@@ -58,8 +54,9 @@
             </button>
         </fieldset>
         </form>
+        {% endif %}
         {% else %}
-        <p class="alert alert-error">
+        <p class="alert alert-danger">
         Nous sommes désolés, mais il ne semble pas exister de correspondance.
         </p>
         {% endif %}

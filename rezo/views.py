@@ -33,13 +33,19 @@ class AccountClaimView(generic.FormView):
             utilisateur__etat='STATE_ARCHIVE',
         )
 
+        if len(equipements) == 0:
+            self.utilisateur = None
+            self.email_verifie = False
         if len(equipements) == 1:
-            self.equipement = equipements[0]
             self.utilisateur = equipements[0].utilisateur
             self.email_verifie = self.utilisateur.email == self.utilisateur.emailverifie
+            self.account_registered = get_user_model().objects.filter(
+                id_rezo=self.utilisateur.pk,
+            ).count() != 0
         elif len(equipements) > 1:
-            print "Too much matching"
-            exit()
+            self.utilisateur = None
+            self.email_verifie = False
+
 
         return super(AccountClaimView, self).get_form(*args, **kwargs)
 
@@ -48,11 +54,13 @@ class AccountClaimView(generic.FormView):
 
         cd['utilisateur'] = self.utilisateur
         cd['email_verifie'] = self.email_verifie
+        cd['account_registered'] = self.account_registered
 
         return cd
 
     def form_valid(self, form):
-        if not self.email_verifie:
+        if not self.email_verifie or self.account_registered:
+            # TODO : improve behaviour
             exit()
 
         self.uid = uuid.uuid4()
