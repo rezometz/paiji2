@@ -1,13 +1,4 @@
-@font-face {
-    font-family: 'MeteoconsRegular';
-    src: url('../fonts/meteocons-webfont.eot');
-    src: url('../fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/meteocons-webfont.woff') format('woff'),
-         url('../fonts/meteocons-webfont.ttf') format('truetype'),
-         url('../fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 .well h3{
 	word-wrap: break-word;
@@ -32,12 +23,6 @@
 
 .current-temp {
 	font-size: 20px;
-}
-
-.weather-description, .post-time {
-	font-size: 14px;
-	color: #999;
-	margin: 0px;
 }
 
 .status-label {
@@ -87,11 +72,4 @@ h4.poster-name {
 
 #poll-result {
 	text-align: center;
-}
-
-.weather-icon:before {
-	font-family: 'MeteoconsRegular';
-	content: attr(data-icon);
-	font-size: 400%;
-	font-style: normal;
 }
