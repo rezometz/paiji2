@@ -33,18 +33,16 @@ class AccountClaimView(generic.FormView):
             utilisateur__etat='STATE_ARCHIVE',
         )
 
-        if len(equipements) == 0:
-            self.utilisateur = None
-            self.email_verifie = False
         if len(equipements) == 1:
             self.utilisateur = equipements[0].utilisateur
             self.email_verifie = self.utilisateur.email == self.utilisateur.emailverifie
             self.account_registered = get_user_model().objects.filter(
                 id_rezo=self.utilisateur.pk,
             ).count() != 0
-        elif len(equipements) > 1:
+        else:
             self.utilisateur = None
             self.email_verifie = False
+            self.account_registered = False
 
 
         return super(AccountClaimView, self).get_form(*args, **kwargs)
