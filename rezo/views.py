@@ -87,10 +87,7 @@ class AccountClaimView(generic.FormView):
 
         return super(AccountClaimView, self).form_valid(form)
     def get_success_url(self):
-        return reverse('account-claim-confirm', kwargs={
-            'code': self.hash,
-            'email': self.utilisateur.emailverifie,
-        })
+        return reverse('index')
 
 
 class AccountClaimConfirmView(generic.CreateView):
