@@ -1,0 +1,41 @@
+{% extends 'home/base.html' %}
+
+
+    {% load bootstrap3 %}
+
+
+{% block content %}
+<div class="col-md-6">
+    <div class="well">
+        <h3>Proposer/Chercher un covoiturage</h3>
+        <form action="{{ request.get_full_path }}" method="post" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="annonceur">L'annonceur</label>
+                <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
+            </div>
+
+            <div class="form-group">
+                <label for="annonce_type">Type d'annonce</label>
+                {% bootstrap_field form.annonce_type show_label=False %}
+
+                <label for="good_until">Valid jusqu'à</label>
+                {% bootstrap_field form.good_until show_label=False %}
+
+                <label for="annonceur">Notes</label>
+                <p class="help-block">ex: Metz-Paris-Compiègne, vendredi vers 17h, 3 Places au PAPS à 15€/trajet, retour le dimenche vers 18h</p>
+                {% bootstrap_field form.notes show_label=False %}
+            </div>
+
+            <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+            <br />
+            {% buttons %}
+                <button type="submit" class="btn btn-success pull-right">
+                    Ajouter
+                </button>
+            {% endbuttons %}
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

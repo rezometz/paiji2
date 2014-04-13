@@ -4,6 +4,6 @@ from django.contrib import admin
 from cov.models import Covoiturage
 
 class CovoiturageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'poster', 'annonce_type', 'good_until', 'notes')
+    list_display = ('id', 'poster', 'annonce_type', 'good_until', 'notes', 'posted_at')
 
 admin.site.register(Covoiturage, CovoiturageAdmin)

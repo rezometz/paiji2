@@ -1,3 +1,41 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
 
-# Create your views here.
+from django.views import generic
+from django.core.urlresolvers import reverse
+
+from django.utils.translation import ugettext_lazy as _
+
+from django.contrib import messages
+
+from .models import Covoiturage as Cov
+
+
+class CovListView(generic.ListView):
+    model = Cov
+    paginate_by = 10
+    context_object_name = 'covs'
+
+    def get_queryset(self):
+        return super(CovListView, self).get_queryset().select_related(
+            'poster'
+        )
+
+class CovCreateView(generic.CreateView):
+    model = Cov
+    fields = ('annonce_type', 'good_until', 'notes')
+    template_name = 'cov/propose_cov_form.html'
+
+    def form_valid(self, form):
+        cov = form.save(commit=False)
+        cov.poster = self.request.user
+        cov.save()
+
+        return super(CovCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your request has been saved successfully :P'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
