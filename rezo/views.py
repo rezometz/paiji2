@@ -28,8 +28,8 @@ class AccountClaimView(generic.FormView):
         super(AccountClaimView, self).get_form(*args, **kwargs)
 
         equipements = Equipement.objects.using('rezo').filter(
-            # ip=self.request.META.get('REMOTE_ADDR'),
-            ip='10.69.8.114',
+            ip=self.request.META.get('REMOTE_ADDR'),
+            # ip='10.69.8.114',
         ).exclude(
             utilisateur__etat='STATE_ARCHIVE',
         )
