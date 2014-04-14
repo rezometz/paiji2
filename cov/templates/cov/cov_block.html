@@ -13,7 +13,7 @@
         <table class="table table-striped">
             <tbody>
                 {% for item in cov %}
-                <tr><td><a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster }} </a>
+                <tr><td><a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a>
                     {% if item.annonce_type == 0 %}
                     <span class="label label-success">
                     {% else %}

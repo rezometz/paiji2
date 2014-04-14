@@ -23,12 +23,13 @@ def create_hash(chain):
 class AccountClaimView(generic.FormView):
     template_name = 'rezo/claim_account.html'
     form_class = ConfirmForm
-    
+
     def get_form(self, *args, **kwargs):
         super(AccountClaimView, self).get_form(*args, **kwargs)
-        
+
         equipements = Equipement.objects.using('rezo').filter(
-            ip=self.request.META.get('REMOTE_ADDR'),
+            # ip=self.request.META.get('REMOTE_ADDR'),
+            ip='10.69.8.114',
         ).exclude(
             utilisateur__etat='STATE_ARCHIVE',
         )
@@ -68,7 +69,7 @@ class AccountClaimView(generic.FormView):
         AccountRecovery.objects.filter(
             email=self.utilisateur.emailverifie,
         ).delete()
-        
+
         AccountRecovery.objects.create(
             id_rezo=self.utilisateur.pk,
             date=now,
@@ -82,7 +83,7 @@ class AccountClaimView(generic.FormView):
             ).format(
                 url=self.request.build_absolute_uri(
                     reverse('account-claim-confirm', kwargs={
-                        'code': self.hash, 
+                        'code': self.hash,
                         'email': self.utilisateur.emailverifie,
                     })
                 ),
@@ -111,14 +112,14 @@ class AccountClaimConfirmView(generic.CreateView):
         except AccountRecovery.DoesNotExist:
             messages.error(self.request, 'Lien de confirmation invalide')
             return redirect(reverse('claim-account'))
-        
+
 
         self.utilisateur = Utilisateur.objects.using('rezo').get(
             pk=self.account.id_rezo,
         )
 
         return super(AccountClaimConfirmView, self).get_form(*args, **kwargs)
-    
+
     def get_context_data(self, *args, **kwargs):
         cd = super(AccountClaimConfirmView, self).get_context_data(*args, **kwargs)
 
@@ -127,9 +128,9 @@ class AccountClaimConfirmView(generic.CreateView):
         return cd
 
     def form_valid(self, form):
-        #response = 
+        #response =
         self.object = form.save(commit=False)
-        
+
         self.object.first_name = self.utilisateur.prenom
         self.object.last_name = self.utilisateur.nom
         self.object.email = self.utilisateur.emailverifie

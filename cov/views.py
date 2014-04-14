@@ -14,11 +14,20 @@ class CovListView(generic.ListView):
     model = Cov
     paginate_by = 10
     context_object_name = 'covs'
+    template_name='cov/cov_list.html'
 
     def get_queryset(self):
         return super(CovListView, self).get_queryset().select_related(
             'poster'
         )
+
+    def get_object(self):
+        # Call the superclass
+        object = super(CovListView, self).get_object()
+        # Record the last accessed date
+        object.label = labels.get(object.get_annonce_type_display())
+        # Return the object
+        return object
 
 class CovCreateView(generic.CreateView):
     model = Cov
