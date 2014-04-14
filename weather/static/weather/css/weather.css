@@ -21,3 +21,11 @@
 	font-size: 400%;
 	font-style: normal;
 }
+
+.city-name {
+    font-size: 28px;
+}
+
+.current-temp {
+    font-size: 20px;
+}
