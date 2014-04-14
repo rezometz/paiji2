@@ -158,3 +158,7 @@ class SignInView(generic.FormView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+class RezoAccountView(generic.TemplateView):
+    template_name = 'rezo/account.html'

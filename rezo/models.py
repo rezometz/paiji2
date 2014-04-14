@@ -88,17 +88,6 @@ class Ecole(models.Model):
 #        managed = False
 #        db_table = 'events'
 #
-#class Macs(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    mac = models.CharField(max_length=17)
-#    equipement_id = models.CharField(max_length=15)
-#    description = models.TextField()
-#    etat = models.CharField(max_length=14)
-#    timestamplasttimeup = models.IntegerField(db_column='timestampLastTimeUp') # Field name made lowercase.
-#    class Meta:
-#        managed = False
-#        db_table = 'macs'
-#
 #class Paiements(models.Model):
 #    id = models.IntegerField(primary_key=True)
 #    utilisateur_id = models.IntegerField()
@@ -206,10 +195,22 @@ class Equipement(models.Model):
     etat = models.CharField(max_length=14)
     timestampenregistrement = models.IntegerField(db_column='timestampEnregistrement') # Field name made lowercase.
     timestampdesactivationdefinitive = models.IntegerField(db_column='timestampDesactivationDefinitive') # Field name made lowercase.
-    typeequipement = models.CharField(db_column='typeEquipement', max_length=16, blank=True) # Field name made lowercase.
+    type_equip = models.CharField(db_column='typeEquipement', max_length=16, blank=True) # Field name made lowercase.
+    
     class Meta:
         managed = False
         db_table = 'equipements'
+
+class Macs(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.CharField(max_length=17, db_column="mac")
+    equipement = models.ForeignKey(Equipement, db_column="equipement_id", related_name='mac')
+    description = models.TextField()
+    etat = models.CharField(max_length=14)
+    timestamplasttimeup = models.IntegerField(db_column='timestampLastTimeUp') # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'macs'
 
 
 class AccountRecovery(models.Model):

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 from .views import AccountClaimView, AccountClaimConfirmView, \
-    SignInView
+    SignInView, RezoAccountView
 
 
 urlpatterns = patterns('',
@@ -21,6 +21,12 @@ urlpatterns = patterns('',
         r'^sign-in$',
         SignInView.as_view(),
         name="sign-in",
+    ),
+
+    url(
+        r'^account$',
+        RezoAccountView.as_view(),
+        name="rezo-account",
     ),
 
 )
