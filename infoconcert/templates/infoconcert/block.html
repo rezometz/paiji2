@@ -1,0 +1,19 @@
+<h3>Prochains concerts</h3>
+<ul class="list-unstyled">
+    {% for event in events %}
+    <li>
+        <span class="label label-{{ event.label }}">{{ event.type }}</span>
+        {% if event.is_free %}
+            <span class="label label-danger">Free</span>
+        {% endif %}
+        <a href="{{ event.url }}"><span class="summary">{{ event.summary }}</span></a>
+        <br />
+        <small>{{ event.organization.name }}
+        <span class="text-muted" title="{{ event.date|date }}">
+            Dans {{ event.date|timeuntil }}
+        </span>
+        </small>
+
+    </li>
+    {% endfor %}
+</ul>

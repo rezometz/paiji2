@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'weather',
     'cov',
     'bulletin_board',
+    'infoconcert',
     'debug_toolbar',
     'south',
     'bootstrap3',

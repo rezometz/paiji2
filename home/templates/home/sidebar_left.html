@@ -14,6 +14,11 @@
 </div>
 
 <div class="well">
+    {% load infoconcert %}
+    {% next_concerts 5 filter_free=True %}
+</div>
+
+<div class="well">
     {% load cov_tag %}
     <h3>Covoiturage</h3>
     {% get_cov 5 %}
