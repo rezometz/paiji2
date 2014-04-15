@@ -10,7 +10,7 @@
         <br />
         <small>{{ event.organization.name }}
         <span class="text-muted" title="{{ event.date|date }}">
-            Dans {{ event.date|timeuntil }}
+            {{ event.date|date:'l' }}, dans {{ event.date|timeuntil }}
         </span>
         </small>
 

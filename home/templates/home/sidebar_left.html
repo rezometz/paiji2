@@ -1,3 +1,4 @@
+{% load cache %}
 <div class="well">
     <h3>Prochainement</h3>
     <p class="text-center"><a href="http://calendar.rez">Calendar</a></p>
@@ -13,10 +14,12 @@
     </table>
 </div>
 
+{% cache 7200 'infoconcert-block' %}
 <div class="well">
     {% load infoconcert %}
     {% next_concerts 5 filter_free=True %}
 </div>
+{% endcache %}
 
 <div class="well">
     {% load cov_tag %}
