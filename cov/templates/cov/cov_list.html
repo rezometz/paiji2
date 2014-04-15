@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
-{% load staticfiles %}
+{# load staticfiles #}
 
-{% block style %}<link rel="stylesheet" type="text/css" href="{% static 'cov/css/cov.css' %}" />{% endblock %}
+{# block style #}<!-- <link rel="stylesheet" type="text/css" href="{# static 'cov/css/cov.css' #}" /> -->{# endblock #}
 
 {% block content %}
 
@@ -32,7 +32,7 @@
         </ul>
 
 
-        <div class="">
+        <div class="pagination-container">
         <ul class="pagination pagination-sm">
             <li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
                 {% if page_obj.has_previous %}

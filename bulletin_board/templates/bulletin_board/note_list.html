@@ -7,6 +7,24 @@
 <div class="col-md-6">
     <div class="well">
         <h3>Listes des dernières notes</h3>
+        <ul class="list-unstyled">
+            {% for note in notes %}
+            <li>
+            <span class="begin-time">
+                <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
+                    title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    {{ note.author.first_name }}
+                </a>
+            </span>
+            {{ note.message }}<br />
+            <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
+            </li>
+            <hr>
+            {% endfor %}
+        </ul>
+
+        <div class="pagination-container">
         <ul class="pagination pagination-sm">
             <li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
                 {% if page_obj.has_previous %}
@@ -30,21 +48,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="list-unstyled">
-            {% for note in notes %}
-            <li>
-            <span class="begin-time">
-                <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
-                    title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                    {{ note.author.first_name }}
-                </a>
-            </span>
-            {{ note.message }}<br />
-            <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
-            </li>
-            {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>
 {% endcache %}
