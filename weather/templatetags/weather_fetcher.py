@@ -18,16 +18,14 @@ class WeatherFetcher(object):
         '#', '50':'M'}
 
     def fetchJson(self, url):
-        u = urllib.FancyURLopener(None)
-
-        usock = u.open(url)
-        rawdata = usock.read()
-        usock.close()
-        return json.loads(rawdata)
+        return json.loads(urllib.urlopen(url).read())
 
     def fetchWeather(self):
-        current = self.fetchJson(self.currentWeatherUrl)
-        forcast = self.fetchJson(self.forcastWeatherUrl)
+        try:
+            current = self.fetchJson(self.currentWeatherUrl)
+            forcast = self.fetchJson(self.forcastWeatherUrl)
+        except:
+            return None
 
         list_weather = []
 
