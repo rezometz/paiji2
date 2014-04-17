@@ -222,7 +222,11 @@ class AccountRecovery(models.Model):
 
 from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
-class User(AbstractUser):
+
+from modular_blocks.models import TwoModularColumnsMixin
+
+
+class User(TwoModularColumnsMixin, AbstractUser):
     id_rezo = models.PositiveIntegerField(null=True, default=0)
     
     @cached_property

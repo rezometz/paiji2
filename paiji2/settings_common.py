@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'home',
     'weather',
     'cov',
+    'modular_blocks',
     'bulletin_board',
     'infoconcert',
     'debug_toolbar',

@@ -1,54 +1,6 @@
-{% load cache %}
-<div class="well">
-    <h3>Prochainement</h3>
-    <p class="text-center"><a href="http://calendar.rez">Calendar</a></p>
-    <table class="table table-striped">
-        <tbody>
-            <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-            <tr><td><span class="begin-time">18:30 </span>Final Championnat de France de Handball Feminin - F002</td></tr>
-            <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-            <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-            <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-            <tr><td><span class="begin-time">18:30 </span>Rezo AG - F002</td></tr>
-        </tbody>
-    </table>
-</div>
-
-{% cache 7200 'infoconcert-block' %}
-<div class="well">
-    {% load infoconcert %}
-    {% next_concerts 5 filter_free=True %}
-</div>
-{% endcache %}
-
-<div class="well">
-    {% load cov_tag %}
-    <h3>Covoiturage</h3>
-    {% get_cov 5 %}
-</div>
-
-<div class="well">
-    {% load bulletin %}
-    <h3>Annonces</h3>
-    {% display_bulletin_board 5 %}
-</div>
-
-<div class="well">
-    <h3>Anniversaire</h3>
-    <p>Aujourd'hui, 10/04/2014, c'est le jour spécial de : </p>
-    <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-    <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-    <p class="anniver-item"><i class="glyphicon glyphicon-user"></i> Paiji Rezo</p>
-    <p>Joyeux anniversaire!</p>
-</div>
-
-<div class="well">
-    <h3>Server Status</h3>
-    <table class="table table-striped">
-        <tbody>
-            <tr><td>Web</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-            <tr><td>TV</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-            <tr><td>IRC</td><td class="status-label"><span class="label label-success">Production</span></td></tr>
-        </tbody>
-    </table>
-</div>
+{% load modules %}
+{% for module in request.user.sidebar_left %}
+    <div class="well module" data-module="{{ module }}">
+        {% render_module module %}
+    </div>
+{% endfor %}

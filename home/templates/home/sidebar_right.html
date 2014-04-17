@@ -1,44 +1,6 @@
-{% load weather_tag %}
-{% get_weather %}
-
-<div class="well">
-    <h3>Sondage</h3>
-    <div class="row text-center">
-        <div class="col-sm-12">
-            <p><span class="firstLetter">Q</span>uelle est le meilleur assos sur le campus? </p>
-        </div>
+{% load modules %}
+{% for module in request.user.sidebar_right %}
+    <div class="well module" data-module="{{ module }}">
+        {% render_module module %}
     </div>
-    <div id="poll-result">
-
-    </div>
-</div>
-
-<div class="well">
-    <h3>Shout Box</h3>
-
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Pseudo">
-        <span class="input-group-addon">Says</span>
-        <input type="text" class="form-control" placeholder="Message">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-        </span>
-    </div>
-
-    <table class="table table-striped">
-        <tbody>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-            <tr><td><span class="speaker-name">User1: </span>Can anyone download and upload on FTSs the hole season of "Intelligence","TomorrowPeople"</td></tr>
-        </tbody>
-    </table>
-</div>
+{% endfor %}
