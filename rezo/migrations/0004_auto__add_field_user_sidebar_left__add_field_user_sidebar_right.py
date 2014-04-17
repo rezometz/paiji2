@@ -10,12 +10,12 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'User.sidebar_left'
         db.add_column(u'rezo_user', 'sidebar_left',
-                      self.gf('modulable_app.fields.ListTextField')(default='infoconcert:weather'),
+                      self.gf('modular_blocks.fields.ListTextField')(default='infoconcert:weather'),
                       keep_default=False)
 
         # Adding field 'User.sidebar_right'
         db.add_column(u'rezo_user', 'sidebar_right',
-                      self.gf('modulable_app.fields.ListTextField')(default='calendar:cov:bulletin-board'),
+                      self.gf('modular_blocks.fields.ListTextField')(default='calendar:cov:bulletin-board'),
                       keep_default=False)
 
 
@@ -110,8 +110,8 @@ class Migration(SchemaMigration):
             'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'sidebar_left': ('modulable_app.fields.ListTextField', [], {}),
-            'sidebar_right': ('modulable_app.fields.ListTextField', [], {}),
+            'sidebar_left': ('modular_blocks.fields.ListTextField', [], {}),
+            'sidebar_right': ('modular_blocks.fields.ListTextField', [], {}),
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
