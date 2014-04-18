@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+from django.contrib import auth
+
+from django.utils.translation import ugettext_lazy as _
+
+
+

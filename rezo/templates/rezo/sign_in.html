@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+<div class="col-md-6">
+    <div class="well">
+        <form action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-success pull-right">
+                Sign in
+            </button>
+            {% endbuttons %}
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

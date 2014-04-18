@@ -1,0 +1,68 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+{% load cache %}
+{% cache 60 'rezo-user-account' user.pk %}
+<div class="col-md-6">
+    <div class="well">
+        <h3>Quotas</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Entrant</th>
+                    <th>Sortant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Restant d'hier</th>
+                    <td>{{ request.user.get_rezo.quotas.restant_veille_in|filesizeformat }}</td>
+                    <td>{{ request.user.get_rezo.quotas.restant_veille_out|filesizeformat }}</td>
+                </tr>
+                <tr>
+                    <th>Consommation du jour</th>
+                    <td>{{ request.user.get_rezo.quotas.conso_in|filesizeformat }}</td>
+                    <td>{{ request.user.get_rezo.quotas.conso_out|filesizeformat }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Quota restant</th>
+                    <th>{{ request.user.get_rezo.quotas.up_restant|filesizeformat }}</th>
+                    <th>{{ request.user.get_rezo.quotas.down_restant|filesizeformat }}</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h3>Équipements rézotés</h3>
+        <table class="table table-striped">
+            <thead>
+               <tr>
+                    <th>Type</th>
+                    <th>IP</th>
+                    <th>MAC Adresse</th>
+                    <th>DNS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipement in request.user.get_rezo.equipements.all %}
+                <tr>
+                    <td>{{ equipement.type_equip }}</td>
+                    <td>{{ equipement.ip }}</td>
+                    <td>
+                    {% for mac in equipement.mac.all %}
+                    {{ mac.address }} ({{ mac.description }})<br />
+                    {% endfor %}
+                    </td>
+                    <td>{{ equipement.dnsrez }}</td>
+                <tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        Si ces informations sont incorrectes, ou si tu as des équipements non enregistrés, merci de les faire enregistrer auprès du Rézo.
+    </div>
+</div>
+{% endcache %}
+{% endblock %}

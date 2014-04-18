@@ -24,6 +24,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'weather',
+    'cov',
+    'modular_blocks',
+    'bulletin_board',
+    'infoconcert',
+    'debug_toolbar',
+    'south',
+    'bootstrap3',
+    'rezo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -46,9 +55,9 @@ WSGI_APPLICATION = 'paiji2.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -60,4 +69,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+KEY_CACHE_WEATHER = 'paiji2_weather_data'
+
+
+AUTH_USER_MODEL = 'rezo.User'
+
+# Cache
+# https://docs.djangoproject.com/en/dev/topics/cache/
+
+CACHE_MIDDLEWARE_ALIAS = 'paiji2_cache'
+CACHE_MIDDLEWARE_SECONDS = 300
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
