@@ -222,6 +222,7 @@ class AccountRecovery(models.Model):
 
 from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
+from django.core.urlresolvers import reverse
 
 from modular_blocks.models import TwoModularColumnsMixin
 
@@ -235,3 +236,6 @@ class User(TwoModularColumnsMixin, AbstractUser):
             pk=self.id_rezo,
         )
     
+
+    def get_absolute_url(self):
+        return reverse('index')
