@@ -15,6 +15,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+LOGIN_URL = 'sign-in'
+
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',

@@ -226,8 +226,10 @@ from django.core.urlresolvers import reverse
 
 from modular_blocks.models import TwoModularColumnsMixin
 
+from home.middleware import UserAuthGroupMixin
 
-class User(TwoModularColumnsMixin, AbstractUser):
+
+class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     id_rezo = models.PositiveIntegerField(null=True, default=0)
     
     @cached_property

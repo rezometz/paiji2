@@ -5,21 +5,21 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
+groups = {}
+users = {}
 
 class IpAuthGroupMiddleware(object):
     def __init__(self):
         user_model = get_user_model()
         try:
-            self.groups = {}
-            self.users = {}
             for groupname, ranges in settings.IP_AUTH_GROUPS.iteritems():
-                (self.groups[groupname], created) = Group.objects.get_or_create(
+                (groups[groupname], created) = Group.objects.get_or_create(
                     name=groupname,
                 )
-                (self.users[groupname], created) = user_model.objects.get_or_create(
+                (users[groupname], created) = user_model.objects.get_or_create(
                     username=groupname,
                 )
-                self.groups[groupname].user_set.add(self.users[groupname])
+                groups[groupname].user_set.add(users[groupname])
         except ImportError:
             pass
 
@@ -30,5 +30,14 @@ class IpAuthGroupMiddleware(object):
             for groupname, ranges in settings.IP_AUTH_GROUPS.iteritems():
                 ip_range = IpRangeList(*ranges)
                 if request.META['REMOTE_ADDR'] in ip_range:
-                    request.user = self.users[groupname]
+                    request.user = users[groupname]
 
+
+from django.db import models
+class UserAuthGroupMixin(models.Model):
+    
+    def is_authenticated(self):
+        return not self in users.itervalues()
+
+    class Meta:
+        abstract = True
