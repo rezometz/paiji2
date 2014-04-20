@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'backbone_calendar',
     'weather',
     'cov',
     'modular_blocks',
