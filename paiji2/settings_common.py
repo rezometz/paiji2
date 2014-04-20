@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'homepage_alert',
     'backbone_calendar',
     'weather',
     'cov',

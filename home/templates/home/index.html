@@ -1,5 +1,7 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
+{% load alerts %}
+
 
 {% block title%}Home{% endblock %}
 
@@ -10,22 +12,7 @@
 {% block content %}
 
 <div class="col-md-6">
-    <div class="well info-rezo">
-        <h3>Info</h3>
-        <p>
-            Bienvenue sur Paiji2 ! Ce site est en début de développement. N'hésitez pas à donner vos avis sur les fonctionalités qu'on garde et les fonctionalités qu'on supprime. Les fonctionalités sont aussi reorganisé dans les onglets.
-        </p>
-        <p>
-            Ce prototype sert <strong>uniquement</strong> pour vous donner une idées vers où on va au niveau de l'organisation du Paiji (les fonctionalités sont pas encore implémentées!), vous pouvez revenir sur cette page pour suivre le développement.
-        </p>
-        <p>
-            Vous pouvez contacter: <a href="rezo@metz.supelec.fr">rezo@metz.supelec.fr</a> ou <a href="mailto:me@siqi.fr">me@siqi.fr</a> pour des suggestions et des remarques.
-        </p>
-        <p>
-            Excusez-moi de mon français de grande qualité et enfin dite bonjour à votre <strong>Paiji2</strong>!
-        </p>
-    </div>
-
+    {% display_alerts %}
     <div class="well">
         <div class="row">
             <div class="col-sm-2"><img class="poster-icon" src="{% static 'home/images/rezo.png' %}"></div>

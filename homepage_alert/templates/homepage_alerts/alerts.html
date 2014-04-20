@@ -1,0 +1,13 @@
+{% load cache %}
+{% cache 3600 homepage-alerts %}
+{% for alert in alerts %}
+<div class="panel panel-{{ alert.get_type_name }}">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ alert.title }}</h3>
+    </div>
+    <div class="panel-body">
+        {{ alert.description|safe }}
+    </div>
+</div>
+{% endfor %}
+{% endcache %}
