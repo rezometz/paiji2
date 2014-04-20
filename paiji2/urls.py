@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     url(r'^rezo/', include('rezo.urls')),
 
     url(r'^', include('home.urls'), name='home'),
+
+    url(r'^calendar/', include('backbone_calendar.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 )
 
