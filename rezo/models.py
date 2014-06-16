@@ -196,7 +196,7 @@ class Equipement(models.Model):
     timestampenregistrement = models.IntegerField(db_column='timestampEnregistrement') # Field name made lowercase.
     timestampdesactivationdefinitive = models.IntegerField(db_column='timestampDesactivationDefinitive') # Field name made lowercase.
     type_equip = models.CharField(db_column='typeEquipement', max_length=16, blank=True) # Field name made lowercase.
-    
+
     class Meta:
         managed = False
         db_table = 'equipements'
@@ -231,13 +231,20 @@ from home.middleware import UserAuthGroupMixin
 
 class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     id_rezo = models.PositiveIntegerField(null=True, default=0)
-    
+
     @cached_property
     def get_rezo(self):
         return Utilisateur.objects.using('rezo').select_related('quotas').get(
             pk=self.id_rezo,
         )
-    
+
+    @cached_property
+    def get_related_groups(self):
+        posts = self.post.all()
+        groups = []
+        for post in posts:
+            groups.append(post.bureau.group)
+        return groups
 
     def get_absolute_url(self):
         return reverse('index')

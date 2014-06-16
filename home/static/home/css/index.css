@@ -65,3 +65,7 @@ h4.poster-name {
 #poll-result {
 	text-align: center;
 }
+
+.newsfeed-action {
+    font-size: 14px; 
+}

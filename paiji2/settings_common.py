@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'rezo',
     'survey',
+    'social',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,6 +77,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
 

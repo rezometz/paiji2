@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+{# load staticfiles #}
+
+{# block style #}<!-- <link rel="stylesheet" type="text/css" href="{# static 'cov/css/cov.css' #}" /> -->{# endblock #}
+
+{% block content %}
+
+<div class="col-md-6">
+    <div class="well">
+        <h3>Listes des dernières covs</h3>
+        <ul class="list-unstyled">
+            {% for cov in covs %}
+            <li class="cov-item">
+            <span class="begin-time">
+                <a href="mailto:{{ cov.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:cov.notes|add:'"'|urlencode }}"
+                    title="{{ cov.poster.first_name }} {{ cov.poster.last_name }} ({{ cov.poster }})">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    {{ cov.poster.first_name }} {{ cov.poster.last_name }}
+                </a>
+                {% if cov.annonce_type == 0 %}
+                <span class="label label-success">
+                {% else %}
+                <span class="label label-danger">
+                {% endif %}
+                {{ cov.get_annonce_type_display }}</span>
+            </span>
+            {{ cov.notes }}<br/>
+            <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
+            </li>
+            <hr>
+            {% endfor %}
+        </ul>
+
+
+        <div class="pagination-container">
+        <ul class="pagination pagination-sm">
+            <li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
+                {% if page_obj.has_previous %}
+                <a href="{% url 'cov-list' page=page_obj.previous_page_number %}">
+                {% else %}
+                <a href="#">
+                {% endif %}
+                    &laquo;
+                </a>
+            </li>
+            <li class="disabled"><a href="#">...</a></li>
+            <li class="active"><a href="#">{{ page_obj.number }}</a></li>
+            <li class="disabled"><a href="#">...</a></li>
+            <li{% if not page_obj.has_next %} class="disabled"{% endif %}>
+                {% if page_obj.has_next %}
+                <a href="{% url 'cov-list' page=page_obj.next_page_number %}">
+                {% else %}
+                <a href="#">
+                {% endif %}
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
