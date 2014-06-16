@@ -107,29 +107,5 @@
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Rézo', 'Hours per Day'],
-          ['Rézo Supélec',     11],
-          ['Supélec Rézo',      2],
-          ['Rézo Metz Supélec',  2],
-        ]);
-
-        var options = {
-          legend: 'none',
-          pieHole: 0,
-          'chartArea': {'width': '100%', 'height': '80%'},
-          backgroundColor: { fill:'transparent' },
-          'legend': {'position': 'bottom'},
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('poll-result'));
-        chart.draw(data, options);
-      }
-    </script>
 
 {% endblock %}
