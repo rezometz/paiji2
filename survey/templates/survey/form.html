@@ -1,0 +1,16 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<h3>{% blocktrans %}Survey: {{ poll }}{% endblocktrans %}</h3>
+{% if has_voted %}
+{{ chart.as_html }}
+{% blocktrans %}{{ nb_total_votes }} people have already voted{% endblocktrans %}
+{% else %}
+<form method="post" action="{% url 'survey-vote' %}">
+    {% csrf_token %}
+    {% bootstrap_field form.choice show_label=False %}
+    {% buttons %}
+        <input type="submit" value="{% trans 'Vote' %}" class="btn btn-primary" />
+    {% endbuttons %}
+</form>
+{% endif %}
