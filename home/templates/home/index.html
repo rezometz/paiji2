@@ -1,7 +1,7 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
 {% load newsfeed %}
-
+{% load readmore %}
 
 {% block title%}Home{% endblock %}
 
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="news-content">
-        {{ item.content|safe }}
+        {{ item.content|safe|readmore:200 }}
     </div>
 </div>
 {% endfor %}
