@@ -85,3 +85,6 @@ hr {
 .pagination {
 	display: inline-block;
 }
+.well.module {
+    word-wrap: break-word;
+}
