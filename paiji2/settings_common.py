@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rezo',
     'survey',
     'social',
+    'tinymce',
 )
 
 MIDDLEWARE_CLASSES = (

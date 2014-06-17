@@ -52,6 +52,9 @@ class Bureau(models.Model):
             return Bureau.objects.filter(group=self.group, endDate=None).count() > 0
         return False
 
+    def is_current(self):
+        return self.endDate is not None
+
     def clean(self):
         if self.currentBureauExist():
             raise ValidationError('Another current Bureau exists already, update its endDate before setting a new Bureau')

@@ -10,10 +10,14 @@ from models import Message, Group
 
 class MessageListView(generic.ListView):
     model = Message
-    paginate_by = 10
-    context_object_name = 'messages'
-    template_name='social/newsfeed_list.html'
-    queryset = Message.objects.all()[:5]
+    paginate_by = 8
+    context_object_name = 'news'
+    template_name='home/index.html'
+
+    def get_queryset(self):
+        return super(MessageListView, self).get_queryset().order_by('-pubDate').select_related(
+            'poster'
+        )
 
 class MessageCreateView(generic.CreateView):
     model = Message

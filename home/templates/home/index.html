@@ -1,6 +1,5 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
-{% load alerts %}
 {% load newsfeed %}
 
 
@@ -11,11 +10,62 @@
 
 
 {% block content %}
-
-<div class="col-md-6">
-    {% display_alerts %}
-    {% display_newsfeed nb=10 %}
+<div class="row">
+	<div class="col-md-8">
+        <h3>NewsFeed
+        	<span class="newsfeed-action">
+		        {% if request.user.is_authenticated %}
+		        <a href="{% url 'newsfeed-add' %}">
+		            Proposer
+		        </a>
+		        {% endif %}
+			</span>
+		</h3>
+    </div>
+    <div class="col-md-4 pagination-container">
+    	<ul class="pagination pagination-sm pull-right">
+			<li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
+			{% if page_obj.has_previous %}
+			<a href="{% url 'index' page=page_obj.previous_page_number %}">
+				{% else %}
+				<a href="#">
+					{% endif %}
+					&laquo;
+				</a>
+			</li>
+			<li class="disabled"><a href="#">...</a></li>
+			<li class="active"><a href="#">{{ page_obj.number }}</a></li>
+			<li class="disabled"><a href="#">...</a></li>
+			<li{% if not page_obj.has_next %} class="disabled"{% endif %}>
+			{% if page_obj.has_next %}
+			<a href="{% url 'index' page=page_obj.next_page_number %}">
+				{% else %}
+				<a href="#">
+					{% endif %}
+					&raquo;
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>
+
+
+{% for item in news %}
+<div class="well">
+    <div class="row">
+        <div class="col-sm-2"><img class="poster-icon" src="{{ item.group.logo.url }}"></div>
+        <div class="col-sm-10">
+            <h4 class="message-title">{{ item.title }}</h4>
+            <p class="text-muted"><a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.title|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a> pour {{ item.group }}, {{ item.pubDate|timesince }}</p>
+        </div>
+    </div>
+    <div class="news-content">
+        {{ item.content|safe }}
+    </div>
+</div>
+{% endfor %}
+
+
 
 {% endblock %}
 
