@@ -48,7 +48,9 @@ class Bureau(models.Model):
     group = models.ForeignKey(Group, blank=False, related_name='bureaus')
 
     def currentBureauExist(self):
-        return Bureau.objects.filter(group=self.group, endDate=None).count() > 0
+        if self.endDate = None:
+            return Bureau.objects.filter(group=self.group, endDate=None).count() > 0
+        return False
 
     def clean(self):
         if self.currentBureauExist():
