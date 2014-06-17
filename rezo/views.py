@@ -1,3 +1,7 @@
+import hashlib
+import uuid
+from datetime import datetime
+
 from django.views import generic
 from django.shortcuts import redirect
 
@@ -11,14 +15,11 @@ from .models import Equipement, Utilisateur, AccountRecovery
 from .forms import ConfirmForm, UserCreationForm, UserAuthenticationForm
 
 
-import hashlib
-import uuid
-from datetime import datetime
-
 def create_hash(chain):
     hash = hashlib.sha256()
     hash.update(chain)
-    return  hash.hexdigest()
+    return hash.hexdigest()
+
 
 class AccountClaimView(generic.FormView):
     template_name = 'rezo/claim_account.html'
@@ -36,7 +37,8 @@ class AccountClaimView(generic.FormView):
 
         if len(equipements) == 1:
             self.utilisateur = equipements[0].utilisateur
-            self.email_verifie = self.utilisateur.email == self.utilisateur.emailverifie
+            self.email_verifie = \
+                self.utilisateur.email == self.utilisateur.emailverifie
             self.account_registered = get_user_model().objects.filter(
                 id_rezo=self.utilisateur.pk,
             ).count() != 0
@@ -44,7 +46,6 @@ class AccountClaimView(generic.FormView):
             self.utilisateur = None
             self.email_verifie = False
             self.account_registered = False
-
 
         return super(AccountClaimView, self).get_form(*args, **kwargs)
 
@@ -77,22 +78,23 @@ class AccountClaimView(generic.FormView):
             email=self.utilisateur.emailverifie,
         )
 
-        send_mail(
-            '[Paiji2] Recuperation de votre compte', (
-            'Veuillez suivre le lien :\n  {url}\n'
-            ).format(
-                url=self.request.build_absolute_uri(
-                    reverse('account-claim-confirm', kwargs={
-                        'code': self.hash,
-                        'email': self.utilisateur.emailverifie,
-                    })
-                ),
+        content = 'Veuillez suivre le lien :\n  {url}\n'.format(
+            url=self.request.build_absolute_uri(
+                reverse('account-claim-confirm', kwargs={
+                    'code': self.hash,
+                    'email': self.utilisateur.emailverifie,
+                })
             ),
+        )
+        send_mail(
+            '[Paiji2] Recuperation de votre compte',
+            content,
             'paiji@metz.supelec.fr',
             [self.utilisateur.emailverifie, ],
         )
 
         return super(AccountClaimView, self).form_valid(form)
+
     def get_success_url(self):
         return reverse('index')
 
@@ -106,13 +108,12 @@ class AccountClaimConfirmView(generic.CreateView):
 
         try:
             self.account = AccountRecovery.objects.get(
-               code=self.kwargs.get('code'),
-               email=self.kwargs.get('email'),
+                code=self.kwargs.get('code'),
+                email=self.kwargs.get('email'),
             )
         except AccountRecovery.DoesNotExist:
             messages.error(self.request, 'Lien de confirmation invalide')
             return redirect(reverse('claim-account'))
-
 
         self.utilisateur = Utilisateur.objects.using('rezo').get(
             pk=self.account.id_rezo,
@@ -121,7 +122,9 @@ class AccountClaimConfirmView(generic.CreateView):
         return super(AccountClaimConfirmView, self).get_form(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
-        cd = super(AccountClaimConfirmView, self).get_context_data(*args, **kwargs)
+        cd = super(AccountClaimConfirmView, self).get_context_data(
+            *args, **kwargs
+        )
 
         cd['utilisateur'] = self.utilisateur
 

@@ -4,7 +4,10 @@ from .views import AccountClaimView, AccountClaimConfirmView, \
     SignInView, RezoAccountView
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',  # Prefix
+
+
     url(
         r'^account/claim$',
         AccountClaimView.as_view(),

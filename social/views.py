@@ -1,0 +1,42 @@
+from django.shortcuts import render
+from django.views import generic
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
+
+from models import Message, Group
+
+# Create your views here.
+
+class MessageListView(generic.ListView):
+    model = Message
+    paginate_by = 10
+    context_object_name = 'messages'
+    template_name='social/newsfeed_list.html'
+    queryset = Message.objects.all()[:5]
+
+class MessageCreateView(generic.CreateView):
+    model = Message
+    fields = ('group', 'title', 'content')
+    template_name = 'social/newsfeed_form.html'
+
+    def get_form(self, form_class):
+        form = super(MessageCreateView, self).get_form(form_class)
+        form.fields['group'].queryset = Group.objects.filter(bureaus__post__utilisateur=self.request.user)
+
+        return form
+
+    def form_valid(self, form):
+        message = form.save(commit=False)
+        message.poster = self.request.user
+        message.save()
+
+        return super(MessageCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your request has been saved successfully :P'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')

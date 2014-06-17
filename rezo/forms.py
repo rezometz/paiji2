@@ -3,8 +3,10 @@ from django.contrib import auth
 
 from .models import AccountRecovery
 
+
 class ConfirmForm(forms.Form):
     pass
+
 
 class UserCreationForm(auth.forms.UserCreationForm):
     def clean_username(self):
@@ -23,6 +25,7 @@ class UserCreationForm(auth.forms.UserCreationForm):
     class Meta:
         model = auth.get_user_model()
         fields = ('username', )
+
 
 class UserAuthenticationForm(auth.forms.AuthenticationForm):
     pass

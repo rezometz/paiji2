@@ -2,7 +2,7 @@ import urllib
 import django.utils.simplejson as json
 from datetime import date
 
-# Create your models here.
+
 class WeatherFetcher(object):
     """fetch Weather information from openweathermap API"""
     def __init__(self, lang, format, city):
@@ -11,11 +11,21 @@ class WeatherFetcher(object):
         self.format = format
         self.city = city
 
-        self.currentWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?q="+self.city+"&mode="+self.format+"&lang="+self.lang+"&units=metric&type=like"
-        self.forcastWeatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+self.city+"&mode="+self.format+"&lang="+self.lang+"&units=metric&cnt=4&type=like"
+        self.currentWeatherUrl = (
+            "http://api.openweathermap.org/data/2.5/weather"
+            "?q={city}&mode={mode}&lang={lang}&units=metric&type=like"
+        ).format(city=self.city, mode=self.format, lang=self.lang)
+        self.forcastWeatherUrl = (
+            "http://api.openweathermap.org/data/2.5/forecast/daily"
+            "?q={city}&mode={mode}&lang={lang}&units=metric&cnt=4&type=like"
+        ).format(city=self.city, mode=self.format, lang=self.lang)
 
-        self.icon_mapper = {'01':'B', '02':'H', '03':'N', '04':'Y', '09':'Q', '10':'R', '11':'6', '13':
-        '#', '50':'M'}
+        # FIXME : The mapper should explains to which
+        # weather corresponds each letter
+        self.icon_mapper = {
+            '01': 'B', '02': 'H', '03': 'N', '04': 'Y', '09': 'Q',
+            '10': 'R', '11': '6', '13': '#', '50': 'M',
+        }
 
     def fetchJson(self, url):
         return json.loads(urllib.urlopen(url).read())
@@ -29,13 +39,30 @@ class WeatherFetcher(object):
 
         list_weather = []
 
-        temperature = {'current' : current['main']['temp'], 'forcast' : forcast['list']}
-        description = [current['weather'][0]['description']] + [w['weather'][0]['description'] for w in forcast['list']]
-        icons = [self.icon_mapper[ w['weather'][0]['icon'][:-1] ] for w in forcast['list']]
+        temperature = {
+            'current': current['main']['temp'],
+            'forcast': forcast['list'],
+        }
+        current_description = [current['weather'][0]['description']]
+        forcast_description = [
+            w['weather'][0]['description'] for w in forcast['list']
+        ]
+        description = current_description + forcast_description
+        icons = [
+            self.icon_mapper[w['weather'][0]['icon'][:-1]]
+            for w in forcast['list']
+        ]
 
         for x in xrange(4):
-            list_weather.append({'timestamp':date.fromtimestamp(forcast['list'][x]['dt']), 'icon':icons[x], 'min':temperature['forcast'][x]['temp']['min'], 'max':temperature['forcast'][x]['temp']['max'], 'desc':description[x]})
+            list_weather.append({
+                'timestamp': date.fromtimestamp(forcast['list'][x]['dt']),
+                'icon': icons[x],
+                'min': temperature['forcast'][x]['temp']['min'],
+                'max': temperature['forcast'][x]['temp']['max'],
+                'desc': description[x],
+            })
         list_weather[0]['current'] = current['main']['temp']
-
-        weather = {'city' : current['name'], 'list_weather' : list_weather}
-        return weather
+        return {
+            'city': current['name'],
+            'list_weather': list_weather,
+        }

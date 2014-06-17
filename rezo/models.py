@@ -274,5 +274,13 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
             pk=self.id_rezo,
         )
 
+    @cached_property
+    def get_related_groups(self):
+        posts = self.post.all()
+        groups = []
+        for post in posts:
+            groups.append(post.bureau.group)
+        return groups
+
     def get_absolute_url(self):
         return reverse('index')
