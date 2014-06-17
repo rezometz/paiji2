@@ -1,7 +1,15 @@
 from django.conf.urls import patterns, url
 
-from home import views
+from social.views import MessageListView
 
 urlpatterns = patterns('',
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$',
+    	MessageListView.as_view(),
+    	name='index'
+    ),
+    url(
+        r'^(?P<page>\d+)?$',
+        MessageListView.as_view(),
+        name="index",
+    ),
 )

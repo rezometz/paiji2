@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load cache %}
+{% load alerts %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,7 +146,10 @@
             {% include 'home/sidebar_left.html' %}
             </div>
 
+            <div class="col-md-6">
+            {% display_alerts %}
             {% block content %} {% endblock %}
+            </div>
 
             <div class="col-md-3 droppable-modules sidebar-right">
             {% block right-sidebar %}

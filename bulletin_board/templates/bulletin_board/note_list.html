@@ -4,7 +4,6 @@
 {% block content %}
 {% load cache %}
 {% cache 60 bulletin-board page_obj.number %}
-<div class="col-md-6">
     <div class="well">
         <h3>Listes des dernières notes</h3>
         <ul class="list-unstyled">
@@ -50,6 +49,5 @@
         </ul>
         </div>
     </div>
-</div>
 {% endcache %}
 {% endblock %}

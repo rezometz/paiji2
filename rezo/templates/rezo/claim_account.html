@@ -1,11 +1,10 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<div class="col-md-6">
     <div class="well">
         <h2>Compte Rézo</h2>
         <p>
-        Cette page va vous servir à récupérer une interface 
+        Cette page va vous servir à récupérer une interface
         de gestion pour votre compte Rézo si vous en possédez un.
         <br />
         Si jamais vous rencontrez le moindre souci durant la
@@ -46,7 +45,7 @@
             <fieldset>
                 <legend>Confirmation</legend>
             <p class="alert alert-info">
-            En cliquant sur le bouton suivant, je certifie sur l'honneur être le 
+            En cliquant sur le bouton suivant, je certifie sur l'honneur être le
             possesseur du compte Rézo attribué à {{ utilisateur.prenom }} {{ utilisateur.nom }}.
             <p>
             <button type="submit" class="btn btn-info pull-right">
@@ -61,6 +60,5 @@
         </p>
         {% endif %}
     </div>
-</div>
 {% endblock %}
 

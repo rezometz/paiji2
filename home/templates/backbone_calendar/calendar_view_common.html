@@ -3,11 +3,9 @@
 {% load i18n %}
 
 {% block content %}
-<div class="col-md-6">
     <div class="well">
         <div id="calendar"></div>
     </div>
-</div>
 
 {% if editable_calendar %}
 {% load bootstrap3 %}
@@ -22,7 +20,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="#">
-                    {% bootstrap_form calendar_event_form %}        
+                    {% bootstrap_form calendar_event_form %}
                 </form>
             </div>
             <div class="modal-footer">
