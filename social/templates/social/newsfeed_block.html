@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="news-content">
-        {{ item.content }}
+        {{ item.content|safe }}
     </div>
 </div>
 {% endfor %}
