@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-6">
     <div class="well">
         {% bootstrap_pagination page_obj %}
         {% for poll in polls %}
@@ -35,6 +34,5 @@
         {% endfor %}
         {% bootstrap_pagination page_obj %}
     </div>
-</div>
 
 {% endblock %}
