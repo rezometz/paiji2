@@ -14,7 +14,7 @@ def readmore(txt, showwords=15):
         'this.parentNode.parentNode.getElementsByClassName(\'more\')[0].style.display=\'inline\';',
         'return false;',
     ])
-    words = re.split(r' ', escape(txt))
+    words = re.split(r' ', txt)
 
     # wrap the more part
     if len(words) > showwords:

@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="news-content">
-        {{ item.content|safe|readmore:200 }}
+        {{ item.content|readmore:200|safe }}
     </div>
 </div>
 {% endfor %}
