@@ -3,6 +3,26 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
 from django.contrib.auth import get_user_model
 
+from HTMLParser import HTMLParser
+
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+
+    def handle_data(self, d):
+        self.fed.append(d)
+
+    def get_data(self):
+        return ''.join(self.fed)
+
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
 
 class PollManager(models.Manager):
     def current(self):
@@ -10,9 +30,14 @@ class PollManager(models.Manager):
             return self.filter(
                 beginning__lt=now(),
                 end__gt=now(),
+            ).annotate(
+                votes_count=models.Count('choices__votes')
             )[0]
         except IndexError:
-            return self.latest()
+            return self.annotate(
+                votes_count=models.Count('choices__votes')
+            ).latest()
+
 
 
 class Poll(models.Model):
@@ -39,8 +64,12 @@ class Poll(models.Model):
         except Choice.DoesNotExist:
             return None
 
+    #def votes_count(self):
+    #    print dir(self)
+
     class Meta:
         get_latest_by = 'end'
+        ordering = ('-end', )
 
 
 class Choice(models.Model):
@@ -56,6 +85,9 @@ class Choice(models.Model):
 
     def __unicode__(self):
         return self.value
+
+    def stripped_value(self):
+        return strip_tags(self.value)
 
 
 class Vote(models.Model):

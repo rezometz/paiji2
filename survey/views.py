@@ -20,7 +20,7 @@ class SurveyVoteView(generic.CreateView):
     def form_valid(self, form):
         poll = form.save(commit=False)
         poll.user = self.request.user
-        super(SurveyVoteView, self).form_valid(form)
+        return super(SurveyVoteView, self).form_valid(form)
 
     def get_success_url(self):
         messages.success(self.request,  _(

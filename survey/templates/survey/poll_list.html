@@ -10,12 +10,30 @@
 {% block content %}
 <div class="col-md-6">
     <div class="well">
-    {% bootstrap_pagination page_obj %}
-    {% for poll in polls %}
+        {% bootstrap_pagination page_obj %}
+        {% for poll in polls %}
         <h3>{{ poll }}</h3>
-        {% display_poll_chart poll=poll %}
-    {% endfor %}
-    {% bootstrap_pagination page_obj %}
+        <div class="row">
+            <div class="col-md-6">
+                {% display_poll_chart poll=poll choices='choices' %}
+            </div>
+            <div class="col-md-6">
+                <h4>{% trans 'Results' %}</h4>
+                <ul class="list-group">
+                    {% for choice in choices|dictsortreversed:'nb_votes' %}
+                    <li class="list-group-item">
+                    <span class="badge">{{ choice.nb_votes }}</span>
+                    {{ choice|safe }} 
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% if not forloop.last %}
+        <hr />
+        {% endif %} 
+        {% endfor %}
+        {% bootstrap_pagination page_obj %}
     </div>
 </div>
 
