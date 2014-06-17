@@ -19,42 +19,42 @@ LOGIN_URL = 'sign-in'
 
 # Application definition
 INSTALLED_APPS = (
-    'suit',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'graphos',
-    'home',
-    'homepage_alert',
-    'backbone_calendar',
-    'weather',
-    'cov',
-    'modular_blocks',
-    'bulletin_board',
-    'infoconcert',
-    'debug_toolbar',
-    'south',
-    'bootstrap3',
-    'rezo',
-    'survey',
-    'social',
-)
+        'suit',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'graphos',
+        'home',
+        'homepage_alert',
+        'backbone_calendar',
+        'weather',
+        'cov',
+        'modular_blocks',
+        'bulletin_board',
+        'infoconcert',
+        'debug_toolbar',
+        'south',
+        'bootstrap3',
+        'rezo',
+        'survey',
+        'social',
+        )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        )
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-)
+        'django.core.context_processors.request',
+        )
 
 ROOT_URLCONF = 'paiji2.urls'
 
@@ -92,3 +92,14 @@ CACHE_MIDDLEWARE_ALIAS = 'paiji2_cache'
 CACHE_MIDDLEWARE_SECONDS = 300
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
+SUIT_CONFIG = {
+    'MENU_ICONS': {
+        'sites': 'icon-leaf',
+        'auth': 'icon-lock',
+        'backbone_calendar': 'icon-calendar',
+        'cov': 'icon-road',
+        'homepage_alert': 'icon-exclamation-sign',
+        'social': 'icon-user',
+        'survey': 'icon-tasks',
+    }
+}
