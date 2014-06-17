@@ -10,6 +10,8 @@
 
 
 {% block content %}
+{% load cache %}
+{% cache 60 index page_obj.number %}
 <div class="row">
 	<div class="col-md-8">
         <h3>NewsFeed
@@ -65,8 +67,7 @@
 </div>
 {% endfor %}
 
-
-
+{% endcache %}
 {% endblock %}
 
 {% block js %}
