@@ -28,3 +28,6 @@ class LatestEntriesFeed(Feed):
 
     def item_guid(self, item):
         return unicode(item.pk)
+
+    def item_pubdate(self, item):
+        return item.pubDate
