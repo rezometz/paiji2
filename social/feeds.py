@@ -15,8 +15,8 @@ class LatestEntriesFeed(Feed):
         return Message.objects.order_by('-pubDate')[:10]
 
     def item_title(self, item):
-        return '[{group}] {title}'.format(
-            group=item.group,
+        return u'[{group}] {title}'.format(
+            group=unicode(item.group),
             title=item.title,
         )
 
