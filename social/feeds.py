@@ -27,4 +27,4 @@ class LatestEntriesFeed(Feed):
         return reverse('index')
 
     def item_guid(self, item):
-        return item.pk
+        return unicode(item.pk)
