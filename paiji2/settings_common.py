@@ -27,6 +27,7 @@ INSTALLED_APPS = (
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'graphos',
+        'tinymce',
         'home',
         'homepage_alert',
         'backbone_calendar',
@@ -103,3 +104,19 @@ SUIT_CONFIG = {
         'survey': 'icon-tasks',
     }
 }
+
+TINYMCE_DEFAULT_CONFIG = {
+                'plugins': 'advimage,advlink,table,searchreplace,contextmenu,template,paste,save,autosave,media',
+                'mode':'exact',
+                'theme': 'advanced',
+                'cleanup_on_startup': True,
+                'custom_undo_redo_levels': 10,
+                #Theme options
+                'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontsizeselect",
+                'theme_advanced_buttons2' : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,forecolor",
+                'theme_advanced_buttons3' : "tablecontrols,|,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
+                'theme_advanced_toolbar_location' : "top",
+                'theme_advanced_statusbar_location' : "bottom",
+
+                'gecko_spellcheck' : True,
+            }
