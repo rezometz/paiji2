@@ -25,3 +25,6 @@ class LatestEntriesFeed(Feed):
 
     def item_link(self, item):
         return reverse('index')
+
+    def item_guid(self, item):
+        return item.pk
