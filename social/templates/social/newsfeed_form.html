@@ -1,6 +1,9 @@
 {% extends 'home/base.html' %}
-
 {% load bootstrap3 %}
+
+{% block style %}
+{{ form.media }}
+{% endblock %}
 
 {% block title %}Propose News{% endblock %}
 
@@ -24,7 +27,7 @@
                 {% bootstrap_field form.title show_label=False %}
 
                 <label for="content">Contenu</label>
-                <p class="help-block">Éventuellement en HTML</p>
+                <p class="help-block">Envie du coloriage? Faite-vous le plasir!</p>
                 {% bootstrap_field form.content show_label=False %}
             </div>
 
