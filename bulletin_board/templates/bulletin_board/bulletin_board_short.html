@@ -2,13 +2,13 @@
 {% load readmore %}
 <div class="row text-center">
     {% if request.user.is_authenticated %}
-    <div class="col-sm-3">
+    <div class="col-sm-4 unbreakable">
         <a href="{% url 'bulletin-add' %}">
             Ajouter
         </a>
     </div>
     {% endif %}
-    <div class="col-sm-9">
+    <div class="col-sm-8 unbreakable">
         <a href="{% url 'bulletin-board' %}">Toutes les annonces</a>
     </div>
 </div>
