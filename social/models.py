@@ -89,7 +89,7 @@ class Message(models.Model):
     )
 
     pubDate = models.DateTimeField(null = False)
-    title = models.TextField(max_length=140, blank=False)
+    title = models.CharField(max_length=140, blank=False)
     content = models.TextField(blank=False)
 
     IMPORTANCE_LEVEL = (

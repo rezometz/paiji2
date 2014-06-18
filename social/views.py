@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
+from tinymce.widgets import TinyMCE
+
 from models import Message, Group
 
 # Create your views here.
@@ -27,7 +29,7 @@ class MessageCreateView(generic.CreateView):
     def get_form(self, form_class):
         form = super(MessageCreateView, self).get_form(form_class)
         form.fields['group'].queryset = Group.objects.filter(bureaus__post__utilisateur=self.request.user)
-
+        form.fields['content'].widget = TinyMCE(attrs={'cols': 80, 'rows': 20})
         return form
 
     def form_valid(self, form):

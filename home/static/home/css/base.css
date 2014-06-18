@@ -85,6 +85,11 @@ hr {
 .pagination {
 	display: inline-block;
 }
+
 .well {
     word-wrap: break-word;
+}
+
+.well .unbreakable {
+	word-wrap: normal;
 }
