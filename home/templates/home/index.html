@@ -5,8 +5,10 @@
 
 {% block title%}Home{% endblock %}
 
-{% block style %}<link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}" />{% endblock %}
-
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
 
 
 {% block content %}
@@ -17,9 +19,9 @@
         <h3>NewsFeed
         	<span class="newsfeed-action">
 		        {% if request.user.is_authenticated %}
-		        <a href="{% url 'newsfeed-add' %}">
-		            Proposer
-		        </a>
+		        <a href="{% url 'newsfeed-add' %}"><i class="fa fa-plus"></i></a>
+
+		        <a href="{% url 'feed-latest' %}"><i class="fa fa-rss"></i></a>
 		        {% endif %}
 			</span>
 		</h3>
