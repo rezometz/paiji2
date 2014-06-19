@@ -1,5 +1,5 @@
 body {
-	margin-top: 125px; /* adjust this if the height of the menu bar changes */
+	margin-top: 155px; /* adjust this if the height of the menu bar changes */
 	background-color: #eee;
 }
 
@@ -92,4 +92,8 @@ hr {
 
 .well .unbreakable {
 	word-wrap: normal;
+}
+.alert-head {
+    margin-bottom: 0px;
+    border-radius: 0px;
 }

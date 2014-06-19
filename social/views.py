@@ -8,7 +8,6 @@ from tinymce.widgets import TinyMCE
 
 from models import Message, Group
 
-# Create your views here.
 
 class MessageListView(generic.ListView):
     model = Message
@@ -20,6 +19,7 @@ class MessageListView(generic.ListView):
         return super(MessageListView, self).get_queryset().order_by('-pubDate').select_related(
             'poster'
         )
+
 
 class MessageCreateView(generic.CreateView):
     model = Message
@@ -46,3 +46,8 @@ class MessageCreateView(generic.CreateView):
         ))
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
+
+
+class GroupView(generic.DetailView):
+    model = Group
+
