@@ -42,7 +42,8 @@ INSTALLED_APPS = (
         'rezo',
         'survey',
         'social',
-        )
+        'mettis',
+)
 
 MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
