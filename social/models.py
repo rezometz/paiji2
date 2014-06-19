@@ -3,6 +3,9 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
+
+from backbone_calendar.models import Calendar
 
 # Create your models here.
 
@@ -23,18 +26,26 @@ class GroupCategory(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length = 50, unique = True, blank = False)
+    slug = models.SlugField()
     category = models.ForeignKey(GroupCategory, null=False)
 
     createdOn = models.DateTimeField(null = False, blank = False)
     deletedOn = models.DateTimeField(null = True, blank = True)
 
-    logo = models.ImageField(upload_to = 'groups/logo')
+    logo = models.ImageField(upload_to = 'groups/logo', null=True)
     newsfeed = models.URLField(blank = True)
+
+    calendar = models.OneToOneField(Calendar, related_name='group', null=True)
 
     def save(self, *args, **kwargs):
         if self.pk is None:
             self.createdOn = timezone.now()
         super(Group, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('workgroup-view', kwargs={
+            'slug': self.slug,
+        })
 
     def __unicode__(self):
         return self.name

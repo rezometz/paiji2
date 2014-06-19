@@ -1,33 +1,39 @@
 {% load staticfiles %}
 {% load cache %}
+{% load i18n %}
 {% load alerts %}
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portail étudiant de Supélec, Metz">
-    <meta name="author" content="siqi">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Portail étudiant de Supélec, Metz">
+        <meta name="author" content="siqi">
 
-    <title>Paiji2 | {% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/images/favicon.png' %}" />
+        <title>Paiji2 | {% block title %}{% endblock %}</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/images/favicon.png' %}" />
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}" />
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}" />
 
-    <!-- Add custom CSS here -->
-    <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}" />
-    {% block style %}{% endblock %}
+        <!-- Add custom CSS here -->
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}" />
+        {% block style %}{% endblock %}
         <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-</head>
+    </head>
 
-<body>
-    <header>
-    <nav class="navbar navbar navbar-fixed-top" role="navigation" id="header">
+    <body>
+        <header>
+        <nav class="navbar navbar navbar-fixed-top" role="navigation" id="header">
+        <div class="alert alert-head alert-danger">
+            <p>
+            {% blocktrans %}Be careful, this is a development version. Any information created or updated in this version will be deleted at the end of the development process.{% endblocktrans %}
+            </p>
+        </div>
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
@@ -67,105 +73,119 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                        <i class="glyphicon glyphicon-user"></i>
+                        {% trans 'My groups' %}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for group in request.user.get_related_groups %}
+                        <li><a href="{{ group.get_absolute_url }}">{{ group }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                    </li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
+                    <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
+                        <div class="form-group">
+                            <input type="text" name="query" class="form-control" placeholder="Search Porygon...">
+                        </div>
+                    </form>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Social <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://integrator.rez">Integrators</a></li>
+                        <li><a href="#">Assos</a></li>
+                        <li><a href="http://calendar.rez">Calendar</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Services <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'cov-list' %}">Covoiturage</a></li>
+                        <li><a href="{% url 'bulletin-board' %}">Annonce</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://polardator.rez">Polardator</a></li>
+                        <li><a href="http://noodle.rez">Noodle</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Ressources <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header pull-right">FTPs</li>
+                        <li class="divider"></li>
+                        <li><a href="ftp://rez:57zero@azthek.rez">azthek.rez</a></li>
+                        <li><a href="ftp://rez:57zero@collet.rez">collet.rez</a></li>
+                        <li><a href="ftp://rez:57zero@ftpohm.rez">ftpohm.rez</a></li>
+                        <li><a href="ftp://rez:57zero@m2p.rez">m2p.rez</a></li>
+                        <li><a href="ftp://rez:57zero@metzies.rez">metzies.rez</a></li>
+                        <li><a href="ftp://rez:57zero@sono.rez">sono.rez</a></li>
+                        <li><a href="ftp://rez:57zero@tps.rez">tps.rez</a></li>
+                        <li class="dropdown-header pull-right">Médiathèque</li>
+                        <li class="divider"></li>
+                        <li><a href="http://azthek.rez">Azthek</a>
+                        <form action="http://azthek.rez/search" class="navbar-form navbar-left" role="search" method="post">
                             <div class="form-group">
-                                <input type="text" name="query" class="form-control" placeholder="Search Porygon...">
+                                <input name="query" type="text" class="form-control" placeholder="Search...">
                             </div>
                         </form>
+                        </li>
+                    </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Social <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://integrator.rez">Integrators</a></li>
-                            <li><a href="#">Assos</a></li>
-                            <li><a href="http://calendar.rez">Calendar</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Services <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url 'cov-list' %}">Covoiturage</a></li>
-                            <li><a href="{% url 'bulletin-board' %}">Annonce</a></li>
-                            <li class="divider"></li>
-                            <li><a href="http://polardator.rez">Polardator</a></li>
-                            <li><a href="http://noodle.rez">Noodle</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Ressources <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header pull-right">FTPs</li>
-                            <li class="divider"></li>
-                            <li><a href="ftp://rez:57zero@azthek.rez">azthek.rez</a></li>
-                            <li><a href="ftp://rez:57zero@collet.rez">collet.rez</a></li>
-                            <li><a href="ftp://rez:57zero@ftpohm.rez">ftpohm.rez</a></li>
-                            <li><a href="ftp://rez:57zero@m2p.rez">m2p.rez</a></li>
-                            <li><a href="ftp://rez:57zero@metzies.rez">metzies.rez</a></li>
-                            <li><a href="ftp://rez:57zero@sono.rez">sono.rez</a></li>
-                            <li><a href="ftp://rez:57zero@tps.rez">tps.rez</a></li>
-                            <li class="dropdown-header pull-right">Médiathèque</li>
-                            <li class="divider"></li>
-                            <li><a href="http://azthek.rez">Azthek</a>
-                                <form action="http://azthek.rez/search" class="navbar-form navbar-left" role="search" method="post">
-                                    <div class="form-group">
-                                        <input name="query" type="text" class="form-control" placeholder="Search...">
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Links <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">ENT</a></li>
-                            <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
-                            <li><a href="http://sogo.supelec.fr/">Webmail</a></li>
-                            <li><a href="http://supldap.rez/">SupLDAP</a></li>
-                            <li><a href="http://game.rez/">Hades</a></li>
-                            <li><a href="http://wiki.rez/">Wiki</a></li>
-                        </ul>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Links <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">ENT</a></li>
+                        <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
+                        <li><a href="http://sogo.supelec.fr/">Webmail</a></li>
+                        <li><a href="http://supldap.rez/">SupLDAP</a></li>
+                        <li><a href="http://game.rez/">Hades</a></li>
+                        <li><a href="http://wiki.rez/">Wiki</a></li>
+                    </ul>
                     </li>
                     <li><a href="#about">Rézo</a>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
         </div>
-        <!-- /.container -->
-    </nav>
-    </header>
+        </nav>
+        </header>
 
-    <div id="main" class="container clearfix">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                {% load bootstrap3 %}
-                {% bootstrap_messages %}
+        <div id="main" class="container clearfix">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    {% load bootstrap3 %}
+                    {% bootstrap_messages %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 droppable-modules sidebar-left">
+                    {% block left-sidebar %}
+                    {% endblock %}
+                    {% include 'home/sidebar_left.html' %}
+                </div>
+
+                <div class="col-md-6">
+                    {% display_alerts %}
+                    {% block content %} {% endblock %}
+                </div>
+
+                <div class="col-md-3 droppable-modules sidebar-right">
+                    {% block right-sidebar %}
+                    {% endblock %}
+                    {% include 'home/sidebar_right.html' %}
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 droppable-modules sidebar-left">
-            {% block left-sidebar %}
-            {% endblock %}
-            {% include 'home/sidebar_left.html' %}
-            </div>
 
-            <div class="col-md-6">
-            {% display_alerts %}
-            {% block content %} {% endblock %}
-            </div>
-
-            <div class="col-md-3 droppable-modules sidebar-right">
-            {% block right-sidebar %}
-            {% endblock %}
-            {% include 'home/sidebar_right.html' %}
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <footer>
+        <div class="container">
+            <footer>
             <hr>
             <div class="row">
                 <div class="col-lg-5">
@@ -178,14 +198,14 @@
                     <p class="pull-right">bugs ou suggestions: <a href="mailto:me@siqi.fr">me@siqi.fr</a></p>
                 </div>
             </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
 
-    <!-- JavaScript -->
-    <script type="text/javascript" src="{% static 'home/js/jquery-1.10.2.js' %}"></script>
-    <script type="text/javascript" src="{% static 'home/js/jquery-ui-1.10.4.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'home/js/bootstrap.js' %}"></script>
-    {% block js %}{% endblock %}
-</body>
+        <!-- JavaScript -->
+        <script type="text/javascript" src="{% static 'home/js/jquery-1.10.2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'home/js/jquery-ui-1.10.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'home/js/bootstrap.js' %}"></script>
+        {% block js %}{% endblock %}
+    </body>
 
 </html>

@@ -64,9 +64,6 @@ class Poll(models.Model):
         except Choice.DoesNotExist:
             return None
 
-    #def votes_count(self):
-    #    print dir(self)
-
     class Meta:
         get_latest_by = 'end'
         ordering = ('-end', )
