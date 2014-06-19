@@ -1,0 +1,14 @@
+{% load i18n %}
+<h3>{% trans 'Next stops' %}</h3>
+<div class="list-group">
+    {% for stop in stops %}
+    <div class="list-group-item">
+        <h5 class="list-group-item-heading">{{ stop.line }} - {% blocktrans with head=stop.head stop=stop.stop %}Heading {{ head }} - Stop {{ stop}}{% endblocktrans %}</h5>
+        <p class="list-group-item-text">
+        <b>
+        {% blocktrans with in=stop.time|timeuntil %}In {{ in }}{% endblocktrans %}
+    </b>
+        </p>
+    </div>
+    {% endfor %}
+</div>
