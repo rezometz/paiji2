@@ -4,11 +4,13 @@
     {% for stop in stops %}
     <div class="list-group-item">
         <h5 class="list-group-item-heading">{{ stop.line }} - {% blocktrans with head=stop.head stop=stop.stop %}Heading {{ head }} - Stop {{ stop}}{% endblocktrans %}</h5>
-        <p class="list-group-item-text">
-        <b>
-            {% blocktrans with in=stop.time|timeuntil time=stop.time|date:"H\hi" %}In {{ in }} at {{ time }}{% endblocktrans %}
-    </b>
-        </p>
+        <ul class="list-group-item-text">
+            {% for time in stop.stops %}
+            <li><b>
+            {% blocktrans with in=time|timeuntil time=time|date:"H\hi" %}In {{ in }} at {{ time }}{% endblocktrans %}
+        </b></li>
+            {% endfor %}
+        </ul>
     </div>
     {% endfor %}
 </div>

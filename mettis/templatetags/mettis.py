@@ -18,7 +18,7 @@ def next_stops_display():
             'line': stop[0],
             'head': stop[1],
             'stop': stop[2],
-            'time': m.next_bus(stop[3], stop[4], stop[5]),
+            'stops': m.next_bus_stops(stop[3], stop[4], stop[5], stops_number=3),
         })
     return {
         'stops': stops,
