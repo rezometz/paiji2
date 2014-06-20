@@ -6,6 +6,19 @@ from bs4 import BeautifulSoup
 from django.core.cache import cache
 from django.utils.timezone import now, localtime
 
+
+def nest_list(x0, f, n):
+    """
+        Useful function to create a list of n elements from a given object 
+        x0 and a function f (tail-recursive)
+        nest_list(x0, f, n) -> [x0, f(x0), f^2(x0), ..., f^(n-1)(x0)]
+    """
+    def nest(x0, f, n, l):
+        l.append(x0)
+        return l if n == 0 else nest(f(x0), f, n - 1, l)
+    return nest(x0, f, n-1, [])
+
+
 class MettisFetcher(object):
     url = 'http://lemet.fr/src/page_editions_horaires_iframe_build.php'
     params = '?ligne={ligne}&head={head}&arret={arret}'
@@ -55,30 +68,20 @@ class MettisFetcher(object):
                             'approximated': False,
                         }
 
-            
-    def next_bus(self, ligne, head, arret):
-        key = 'mettis_{ligne}_{head}_{arret}'.format(
-            ligne=ligne, head=head, arret=arret,
-        )
-        data = cache.get(key)
-        if data is None:
-            data = self.get_schedule(ligne, head, arret)
-            cache.set(key, data, 1 * 24 * 60 * 60)
-
-
-        date = localtime(now())
-        weekday = date.weekday()
+    def find_next_stop(self, from_time):
+        from_time = from_time.replace(minute=from_time.minute + 1)
+        weekday = from_time.weekday()
         if weekday <= 4:
-            timetable = data['week']
+            timetable = self.data['week']
         elif weekday == 5:
-            timetable = data['saturday']
+            timetable = self.data['saturday']
         elif weekday == 6:
-            timetable = data['sunday']
+            timetable = self.data['sunday']
 
         schedule = timetable[0]
         for time in timetable[1:]:
-            if date.hour >= schedule['hour'] and date.minute >= schedule['minutes'] \
-                and date.hour <= time['hour'] and date.minute <= time['minutes']:
+            if ((from_time.hour >= schedule['hour'] and from_time.minute > schedule['minutes']) or from_time.hour > schedule['hour']) \
+                and ((from_time.hour <= time['hour'] and from_time.minute <= time['minutes']) or from_time.hour < time['hour']):
                 schedule = time
                 break
             schedule = time
@@ -86,4 +89,15 @@ class MettisFetcher(object):
         if schedule is None:
             schedule = timetable[0]
 
-        return date.replace(hour=schedule['hour'], minute=schedule['minutes'])
+        return from_time.replace(hour=schedule['hour'], minute=schedule['minutes'])
+            
+    def next_bus_stops(self, ligne, head, arret, stops_number=1):
+        key = 'mettis_{ligne}_{head}_{arret}'.format(
+            ligne=ligne, head=head, arret=arret,
+        )
+        self.data = cache.get(key)
+        if self.data is None:
+            self.data = self.get_schedule(ligne, head, arret)
+            cache.set(key, self.data, 1 * 24 * 60 * 60)
+
+        return nest_list(localtime(now()), self.find_next_stop, stops_number+1)[1:]
