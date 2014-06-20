@@ -6,7 +6,7 @@
         <h5 class="list-group-item-heading">{{ stop.line }} - {% blocktrans with head=stop.head stop=stop.stop %}Heading {{ head }} - Stop {{ stop}}{% endblocktrans %}</h5>
         <p class="list-group-item-text">
         <b>
-        {% blocktrans with in=stop.time|timeuntil %}In {{ in }}{% endblocktrans %}
+            {% blocktrans with in=stop.time|timeuntil time=stop.time|date:"H\hi" %}In {{ in }} at {{ time }}{% endblocktrans %}
     </b>
         </p>
     </div>

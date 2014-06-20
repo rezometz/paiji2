@@ -75,12 +75,13 @@ class MettisFetcher(object):
         elif weekday == 6:
             timetable = data['sunday']
 
-        schedule = None
-        for time in timetable:
-            print "{hour}:{minutes}".format(**time)
-            if date.hour > time['hour'] and date.minute >= time['minutes']:
+        schedule = timetable[0]
+        for time in timetable[1:]:
+            if date.hour >= schedule['hour'] and date.minute >= schedule['minutes'] \
+                and date.hour <= time['hour'] and date.minute <= time['minutes']:
                 schedule = time
                 break
+            schedule = time
 
         if schedule is None:
             schedule = timetable[0]
