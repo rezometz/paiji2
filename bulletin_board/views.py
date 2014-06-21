@@ -38,3 +38,42 @@ class NoteCreateView(generic.CreateView):
         ))
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
+
+class NoteEditView(generic.UpdateView):
+    model = Note
+    fields = ('message', )
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update notes """
+        obj = self.get_object()
+        if obj.author != self.request.user:
+            return redirect(obj)
+        return super(NoteEditView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your note has been updated, '
+            'it will be refreshed in a moment'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
+
+class NoteDeleteView(generic.DeleteView):
+    model = Note
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update notes """
+        obj = self.get_object()
+        if obj.author != self.request.user:
+            return redirect(obj)
+        return super(NoteDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your note has been removed, '
+            'it will be refreshed in a moment'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
+
