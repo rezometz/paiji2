@@ -30,6 +30,7 @@ class AccountClaimView(generic.FormView):
 
         equipements = Equipement.objects.using('rezo').filter(
             ip=self.request.META.get('REMOTE_ADDR'),
+            timestampdesactivationdefinitive='0',
             # ip='10.69.8.114',
         ).exclude(
             utilisateur__etat='STATE_ARCHIVE',
