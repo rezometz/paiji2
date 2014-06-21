@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 from django.contrib.auth.decorators import login_required
 
-from .views import NoteListView, NoteCreateView
+from .views import *
 
 
 urlpatterns = patterns('',
@@ -21,5 +21,14 @@ urlpatterns = patterns('',
         login_required(NoteCreateView.as_view()),
         name="bulletin-add",
     ),
-
+    url(
+        r'board/edit/(?P<pk>[0-9]+)/$',
+        login_required(NoteEditView.as_view()),
+        name="bulletin-edit",
+    ),
+    url(
+        r'board/delete/(?P<pk>[0-9]+)/$',
+        login_required(NoteDeleteView.as_view()),
+        name="bulletin-delete",
+    ),
 )

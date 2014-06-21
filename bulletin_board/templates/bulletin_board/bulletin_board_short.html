@@ -1,5 +1,6 @@
 <h3>Annonces</h3>
 {% load readmore %}
+{% load staticfiles %}
 <div class="row text-center">
     {% if request.user.is_authenticated %}
     <div class="col-sm-4 unbreakable">
@@ -17,13 +18,18 @@
 <ul class="list-unstyled">
     {% for note in notes %}
     <li>
-    <span class="begin-time">
+    <div class="begin-time">
         <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
             title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
             <i class="glyphicon glyphicon-envelope"></i>
             {{ note.author.first_name }}
         </a>
-    </span>
+        {% if note.author == request.user %}
+            <span class="pull-right">
+                <a href="{% url 'bulletin-edit' note.id %}"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'bulletin-delete' note.id %}"><i class="fa fa-trash-o"></i></a></span>
+        {% endif %}
+    </div>
     {{ note.message|readmore:20 }}
     <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
     </li>
