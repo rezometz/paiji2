@@ -32,7 +32,6 @@ class CovListView(generic.ListView):
 class CovCreateView(generic.CreateView):
     model = Cov
     fields = ('annonce_type', 'good_until', 'notes')
-    template_name = 'cov/propose_cov_form.html'
 
     def form_valid(self, form):
         cov = form.save(commit=False)
@@ -45,6 +44,45 @@ class CovCreateView(generic.CreateView):
         messages.success(
             self.request, _(
             'Your request has been saved successfully :P'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
+
+
+class CovEditView(generic.UpdateView):
+    model = Cov
+    fields = ('annonce_type', 'good_until', 'notes')
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update Covs """
+        obj = self.get_object()
+        if obj.poster != self.request.user:
+            return redirect(obj)
+        return super(CovEditView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your cov has been updated, '
+            'it will be refreshed in a moment'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
+
+class CovDeleteView(generic.DeleteView):
+    model = Cov
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update Covs """
+        obj = self.get_object()
+        if obj.poster != self.request.user:
+            return redirect(obj)
+        return super(CovDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your cov has been removed, '
+            'it will be refreshed in a moment'
         ))
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')

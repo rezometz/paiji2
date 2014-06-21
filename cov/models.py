@@ -38,6 +38,9 @@ class Covoiturage(models.Model):
 		rep += self.notes
 		return rep
 
+	def isGood(self):
+		return self.good_until > timezone.now()
+
 	def save(self, *args, **kwargs):
 		if self.pk is None:
 			self.posted_at = timezone.now()

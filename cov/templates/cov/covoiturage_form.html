@@ -2,11 +2,22 @@
 
 {% load bootstrap3 %}
 
-{% block title %}Create Covoiturage{% endblock %}
+{% block title %}
+{% if form.instance and form.instance.pk %}
+                        Mettre à jour a cov
+                    {% else %}
+                        Create cov
+                    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div class="well">
-        <h3>Proposer/Chercher un covoiturage</h3>
+        {% if form.instance and form.instance.pk %}
+            <h3>Modifier un covoiturage</h3>
+        {% else %}
+            <h3>Proposer/Chercher un covoiturage</h3>
+        {% endif %}
+
         <form action="{{ request.get_full_path }}" method="post" role="form">
             {% csrf_token %}
             <div class="form-group">
@@ -30,7 +41,11 @@
             <br />
             {% buttons %}
                 <button type="submit" class="btn btn-success pull-right">
-                    Ajouter
+                    {% if form.instance and form.instance.pk %}
+                        Mettre à jour
+                    {% else %}
+                        Ajouter
+                    {% endif %}
                 </button>
             {% endbuttons %}
             <div class="clearfix"></div>
