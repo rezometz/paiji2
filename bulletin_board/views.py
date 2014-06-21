@@ -47,7 +47,7 @@ class NoteEditView(generic.UpdateView):
         """ Making sure that only authors can update notes """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return redirect(obj)
+            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(NoteEditView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
