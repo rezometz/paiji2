@@ -69,7 +69,8 @@ class MettisFetcher(object):
                         }
 
     def find_next_stop(self, from_time):
-        assert from_time.minute + 1 >= 0 && from_time.minute + 1 <= 59
+        if from_time.minute + 1 < 0 or from_time.minute + 1 > 59:
+            raise AssertionError('from_time.minute + 1 =' + str(from_time.minute+1))
         from_time = from_time.replace(minute=from_time.minute + 1)
         weekday = from_time.weekday()
         if weekday <= 4:
