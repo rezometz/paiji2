@@ -9,7 +9,7 @@ from django.utils.timezone import now, localtime
 
 def nest_list(x0, f, n):
     """
-        Useful function to create a list of n elements from a given object 
+        Useful function to create a list of n elements from a given object
         x0 and a function f (tail-recursive)
         nest_list(x0, f, n) -> [x0, f(x0), f^2(x0), ..., f^(n-1)(x0)]
     """
@@ -22,14 +22,14 @@ def nest_list(x0, f, n):
 class MettisFetcher(object):
     url = 'http://lemet.fr/src/page_editions_horaires_iframe_build.php'
     params = '?ligne={ligne}&head={head}&arret={arret}'
-    
+
     def make_url(self, ligne, head, arret):
         return self.url + self.params.format(
             ligne=ligne,
             head=head,
             arret=arret,
         )
-    
+
     def get_schedule(self, ligne, head, arret):
         url = self.make_url(ligne, head, arret)
         content = BeautifulSoup(urllib.urlopen(url).read())
@@ -69,6 +69,7 @@ class MettisFetcher(object):
                         }
 
     def find_next_stop(self, from_time):
+        assert from_time.minute + 1 >= 0 && from_time.minute + 1 <= 59
         from_time = from_time.replace(minute=from_time.minute + 1)
         weekday = from_time.weekday()
         if weekday <= 4:
@@ -90,7 +91,7 @@ class MettisFetcher(object):
             schedule = timetable[0]
 
         return from_time.replace(hour=schedule['hour'], minute=schedule['minutes'])
-            
+
     def next_bus_stops(self, ligne, head, arret, stops_number=1):
         key = 'mettis_{ligne}_{head}_{arret}'.format(
             ligne=ligne, head=head, arret=arret,
