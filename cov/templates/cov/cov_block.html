@@ -1,29 +1,39 @@
 {% load readmore %}
 
 <h3>Covoiturage</h3>
-    <div class="row text-center">
-        {% if request.user.is_authenticated %}
-        <div class="col-sm-6">
-            <a href="{% url 'cov-add' %}">
-                Proposer
-            </a>
-        </div>
-        {% endif %}
-        <div class="col-sm-6"><a href="{% url 'cov-list' %}">Détails</a></div>
+<div class="row text-center">
+    {% if request.user.is_authenticated %}
+    <div class="col-sm-6">
+        <a href="{% url 'cov-add' %}">
+            Proposer
+        </a>
     </div>
-        <table class="table table-striped">
-            <tbody>
-                {% for item in cov %}
-                <tr><td><a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a>
-                    {% if item.annonce_type == 0 %}
-                    <span class="label label-success">
-                    {% else %}
-                    <span class="label label-danger">
-                    {% endif %}
-                        {{ item.get_annonce_type_display }}</span> {{ item.good_until|date:'H:i, jS F' }}, {{ item.notes|readmore:10 }}
+    {% endif %}
+    <div class="col-sm-6"><a href="{% url 'cov-list' %}">Détails</a></div>
+</div>
 
-                    <span class="text-muted"><small>il y a {{ item.posted_at|timesince }}</small></span>
-                </td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<ul class="list-unstyled">
+        {% for item in cov %}
+        <li>
+        {% if item.poster == request.user %}
+            <div class="pull-right">
+                <a href="{% url 'cov-edit' item.id %}"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'cov-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
+            </div>
+        {% endif %}
+
+        <span>
+            <a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a>
+
+            {% if item.annonce_type == 0 %}
+                <span class="label label-success">{{ item.get_annonce_type_display }}</span>
+            {% else %}
+                <span class="label label-danger">{{ item.get_annonce_type_display }}</span>
+            {% endif %}
+                {{ item.good_until|date:'H:i, jS F' }}, {{ item.notes|readmore:10 }}
+        </span>
+
+            <span class="text-muted"><small>il y a {{ item.posted_at|timesince }}</small></span>
+        </li>
+        {% endfor %}
+</ul>

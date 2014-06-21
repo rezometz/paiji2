@@ -11,8 +11,22 @@
         <h3>Listes des dernières covs</h3>
         <ul class="list-unstyled">
             {% for cov in covs %}
+            {% if not cov.isGood %}
+                <li class="cov-item text-muted">
+                    <span class="begin-time">
+                    <span>
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        {{ cov.poster.first_name }} {{ cov.poster.last_name }}
+                    </span>
+                    <span class="label label-default">
+                    {{ cov.get_annonce_type_display }}</span>
+                    </span>
+                    {{ cov.notes }}<br/>
+                    <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
+                </li>
+            {% else %}
             <li class="cov-item">
-            <span class="begin-time">
+                <span class="begin-time">
                 <a href="mailto:{{ cov.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:cov.notes|add:'"'|urlencode }}"
                     title="{{ cov.poster.first_name }} {{ cov.poster.last_name }} ({{ cov.poster }})">
                     <i class="glyphicon glyphicon-envelope"></i>
@@ -24,10 +38,13 @@
                 <span class="label label-danger">
                 {% endif %}
                 {{ cov.get_annonce_type_display }}</span>
-            </span>
-            {{ cov.notes }}<br/>
-            <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
+                </span>
+                {{ cov.notes }}<br/>
+                <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
             </li>
+            {% endif %}
+
+
             <hr>
             {% endfor %}
         </ul>
