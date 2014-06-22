@@ -15,7 +15,7 @@
 <ul class="list-unstyled">
         {% for item in cov %}
         <li>
-        {% if item.poster == request.user %}
+        {% if item.author == request.user %}
             <div class="pull-right">
                 <a href="{% url 'cov-edit' item.id %}"><i class="fa fa-pencil"></i></a>
                 <a href="{% url 'cov-delete' item.id %}"><i class="fa fa-trash-o"></i></a>
@@ -23,7 +23,7 @@
         {% endif %}
 
         <span>
-            <a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a>
+            <a href="mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.author.first_name }} </a>
 
             {% if item.annonce_type == 0 %}
                 <span class="label label-success">{{ item.get_annonce_type_display }}</span>

@@ -46,11 +46,11 @@
 	color: #27ae60;
 }
 
-.poster-info {
+.author-info {
 	height: 40px;
 }
 
-h4.poster-name {
+h4.author-name {
 	margin: 0px;
 }
 
@@ -58,7 +58,7 @@ h4.poster-name {
 	font-size: 22px;
 }
 
-.poster-icon {
+.author-icon {
 	height: 40px;
 }
 

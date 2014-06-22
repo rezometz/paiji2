@@ -94,7 +94,7 @@ class Post(models.Model):
         unique_together = ('bureau', 'postType',)
 
 class Message(models.Model):
-    poster = models.ForeignKey(
+    author = models.ForeignKey(
         get_user_model(),
         related_name='message',
     )

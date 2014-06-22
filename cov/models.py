@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 class Covoiturage(models.Model):
 	"""model for Covoiturage"""
 
-	poster = models.ForeignKey(
+	author = models.ForeignKey(
         get_user_model(),
         related_name='covs',
     )
@@ -33,7 +33,7 @@ class Covoiturage(models.Model):
 		max_length=150)
 
 	def __unicode__(self):
-		rep = self.poster.first_name + self.poster.last_name
+		rep = self.author.first_name + self.author.last_name
 		rep += ' propose ' if self.ANNONCE_TYPE == 0 else ' cherche '
 		rep += self.notes
 		return rep
