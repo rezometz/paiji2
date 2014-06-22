@@ -3,7 +3,13 @@
 <div class="list-group">
     {% for stop in stops %}
     <div class="list-group-item">
-        <h5 class="list-group-item-heading">{{ stop.line }} - {% blocktrans with head=stop.head stop=stop.stop %}Heading {{ head }} - Stop {{ stop}}{% endblocktrans %}</h5>
+        <h5 class="list-group-item-heading">
+                {{ stop.line }} - {% blocktrans with head=stop.head stop=stop.stop %}Heading {{ head }} - Stop {{ stop}}{% endblocktrans %}
+
+            <a href="{{ url }}" title="{% trans 'Bus timetable' %}" target="_blank">
+                [{% trans 'Bus timetable' %}]
+            </a>
+        </h5>
         <ul class="list-group-item-text">
             {% for time in stop.stops %}
             <li><b>
