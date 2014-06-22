@@ -1,19 +1,29 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
 
-from .views import (
-    MessageCreateView, MessageListView,
-    GroupView,
-)
+from .views import *
 from .feeds import LatestEntriesFeed
 
 urlpatterns = [
-    url(  # Add a message
+    # Message
+    url(
         r'add$',
         login_required(MessageCreateView.as_view()),
         name="newsfeed-add",
     ),
-    url(  # Group view
+    url(
+        r'edit/(?P<pk>[0-9]+)/$',
+        login_required(MessageEditView.as_view()),
+        name="newsfeed-edit",
+    ),
+    url(
+        r'delete/(?P<pk>[0-9]+)/$',
+        login_required(MessageDeleteView.as_view()),
+        name="newsfeed-delete",
+    ),
+
+    # Group
+    url(
         r'(?P<slug>[\w-]+)/dashboard$',
         GroupView.as_view(),
         name="workgroup-view",

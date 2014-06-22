@@ -18,7 +18,6 @@ class NoteListView(generic.ListView):
             'author'
         )
 
-
 class NoteCreateView(generic.CreateView):
     model = Note
     fields = ('message', )
@@ -65,7 +64,7 @@ class NoteDeleteView(generic.DeleteView):
         """ Making sure that only authors can update notes """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return redirect(obj)
+            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(NoteDeleteView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):

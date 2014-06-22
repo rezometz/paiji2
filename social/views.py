@@ -24,7 +24,6 @@ class MessageListView(generic.ListView):
 class MessageCreateView(generic.CreateView):
     model = Message
     fields = ('group', 'title', 'content')
-    template_name = 'social/newsfeed_form.html'
 
     def get_form(self, form_class):
         form = super(MessageCreateView, self).get_form(form_class)
@@ -47,6 +46,49 @@ class MessageCreateView(generic.CreateView):
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
+class MessageEditView(generic.UpdateView):
+    model = Message
+    fields = ('group', 'title', 'content')
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update Messages """
+        obj = self.get_object()
+        if obj.poster != self.request.user:
+            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
+        return super(MessageEditView, self).dispatch(request, *args, **kwargs)
+
+    def get_form(self, form_class):
+        form = super(MessageEditView, self).get_form(form_class)
+        form.fields['group'].queryset = Group.objects.filter(bureaus__post__utilisateur=self.request.user)
+        form.fields['content'].widget = TinyMCE(attrs={'cols': 80, 'rows': 20})
+        return form
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your Message has been updated, '
+            'it will be refreshed in a moment'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
+
+class MessageDeleteView(generic.DeleteView):
+    model = Message
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update Messages """
+        obj = self.get_object()
+        if obj.poster!= self.request.user:
+            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
+        return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request, _(
+            'Your Message has been removed, '
+            'it will be refreshed in a moment'
+        ))
+        success_url = self.request.POST.get('next')
+        return success_url if success_url != '' else reverse('index')
 
 class GroupView(generic.DetailView):
     model = Group

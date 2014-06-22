@@ -4,11 +4,11 @@
 {% load bootstrap3 %}
 
 {% block title %}
-{% if form.instance and form.instance.pk %}
-Modify a note
-{% else %}
-Create a note
-{% endif %}
+    {% if form.instance and form.instance.pk %}
+    Modify a note
+    {% else %}
+    Create a note
+    {% endif %}
 {% endblock %}
 {% block content %}
 <div class="well">

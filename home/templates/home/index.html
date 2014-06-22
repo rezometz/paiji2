@@ -59,6 +59,11 @@
         <div class="col-sm-2"><img class="poster-icon" src="{{ item.group.logo.url }}"></div>
         <div class="col-sm-10">
             <h4 class="message-title">{{ item.title }}</h4>
+            {% if item.poster == request.user %}
+            	<span class="pull-right">
+                <a href="{% url 'newsfeed-edit' item.id %}"><i class="fa fa-pencil"></i></a>
+                <a href="{% url 'newsfeed-delete' item.id %}"><i class="fa fa-trash-o"></i></a></span>
+        	{% endif %}
             <p class="text-muted"><a href="mailto:{{ item.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:item.title|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.poster.first_name }} </a> pour {{ item.group }}, il y a {{ item.pubDate|timesince }}</p>
         </div>
     </div>
