@@ -3,9 +3,13 @@
     {% for event in events %}
     <li>
         <span class="label label-{{ event.label }}">{{ event.type }}</span>
+        <span class="label label-danger">
         {% if event.is_free %}
-            <span class="label label-danger">Free</span>
+            Free
+        {% else %}
+            {{ event.cost }}
         {% endif %}
+        </span>
         <a href="{{ event.url }}"><span class="summary">{{ event.summary }}</span></a>
         <br />
         <small>{{ event.organization.name }}

@@ -17,6 +17,7 @@ class InfoConcertFetcher(object):
         for event in self.content.findAll('', {'itemtype': 'http://data-vocabulary.org/Event', }):
             etype = event.find('', {'itemprop': 'eventType'})['content']
             free = event.find('', {'class': 'btn_gratuit'}) != None
+            cost = event.find('', {'class': 'lst_concert_prix'}).find('div').get_text().strip()
             if not filter_free or free:
                 yield {
                     'type': etype,
@@ -31,4 +32,5 @@ class InfoConcertFetcher(object):
                     'url': 'http://www.infoconcert.com/' + event.find('', {'itemprop': 'url'})['href'],
                     'label': self.labels.get(etype, 'danger'),
                     'is_free': free,
+                    'cost': cost,
                 }
