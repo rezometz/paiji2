@@ -80,8 +80,8 @@ class MettisFetcher(object):
 
         schedule = timetable[0]
         for time in timetable[1:]:
-            if ((from_time.hour >= schedule['hour'] and from_time.minute > schedule['minutes']) or from_time.hour > schedule['hour']) \
-                and ((from_time.hour <= time['hour'] and from_time.minute <= time['minutes']) or from_time.hour < time['hour']):
+            if ((from_time.hour >= schedule['hour'] and from_time.minute >= schedule['minutes']) or from_time.hour > schedule['hour']) \
+                and ((from_time.hour <= time['hour'] and from_time.minute < time['minutes']) or from_time.hour < time['hour']):
                 schedule = time
                 break
             schedule = time
