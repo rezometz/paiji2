@@ -88,6 +88,7 @@ class MessageDeleteView(generic.DeleteView):
             'it will be refreshed in a moment'
         ))
         success_url = self.request.POST.get('next')
+
         return success_url if success_url != '' else reverse('index')
 
 class GroupView(generic.DetailView):
