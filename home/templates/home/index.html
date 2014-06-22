@@ -11,7 +11,7 @@
 
 {% block content %}
 {% load cache %}
-{% cache 60 index page_obj.number %}
+{% cache 5 index page_obj.number %}
 <div class="row">
 	<div class="col-md-8">
         <h3>NewsFeed
@@ -57,12 +57,12 @@
     <div class="row">
         <div class="col-sm-2"><img class="author-icon" src="{{ item.group.logo.url }}"></div>
         <div class="col-sm-10">
-            <h4 class="message-title">{{ item.title }}</h4>
-            {% if item.author == request.user %}
+        	{% if item.author == request.user %}
             	<span class="pull-right">
                 <a href="{% url 'newsfeed-edit' item.id %}"><i class="fa fa-pencil"></i></a>
                 <a href="{% url 'newsfeed-delete' item.id %}"><i class="fa fa-trash-o"></i></a></span>
         	{% endif %}
+            <h4 class="message-title">{{ item.title }}</h4>
             <p class="text-muted"><a href="mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.title|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.author.first_name }} </a> pour {{ item.group }}, il y a {{ item.pubDate|timesince }}</p>
         </div>
     </div>

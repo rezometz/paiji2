@@ -59,7 +59,7 @@ h4.author-name {
 }
 
 .author-icon {
-	height: 40px;
+	width: 100%;
 }
 
 #poll-result {
