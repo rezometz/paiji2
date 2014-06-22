@@ -16,7 +16,7 @@
                     <span class="begin-time">
                     <span>
                         <i class="glyphicon glyphicon-envelope"></i>
-                        {{ cov.poster.first_name }} {{ cov.poster.last_name }}
+                        {{ cov.author.first_name }} {{ cov.author.last_name }}
                     </span>
                     <span class="label label-default">
                     {{ cov.get_annonce_type_display }}</span>
@@ -27,10 +27,10 @@
             {% else %}
             <li class="cov-item">
                 <span class="begin-time">
-                <a href="mailto:{{ cov.poster.email }}?subject={{ '[Paiji2] Concernant "'|add:cov.notes|add:'"'|urlencode }}"
-                    title="{{ cov.poster.first_name }} {{ cov.poster.last_name }} ({{ cov.poster }})">
+                <a href="mailto:{{ cov.author.email }}?subject={{ '[Paiji2] Concernant "'|add:cov.notes|add:'"'|urlencode }}"
+                    title="{{ cov.author.first_name }} {{ cov.author.last_name }} ({{ cov.author }})">
                     <i class="glyphicon glyphicon-envelope"></i>
-                    {{ cov.poster.first_name }} {{ cov.poster.last_name }}
+                    {{ cov.author.first_name }} {{ cov.author.last_name }}
                 </a>
                 {% if cov.annonce_type == 0 %}
                 <span class="label label-success">

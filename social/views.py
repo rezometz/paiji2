@@ -17,7 +17,7 @@ class MessageListView(generic.ListView):
 
     def get_queryset(self):
         return super(MessageListView, self).get_queryset().order_by('-pubDate').select_related(
-            'poster'
+            'author'
         )
 
 
@@ -33,7 +33,7 @@ class MessageCreateView(generic.CreateView):
 
     def form_valid(self, form):
         message = form.save(commit=False)
-        message.poster = self.request.user
+        message.author = self.request.user
         message.save()
 
         return super(MessageCreateView, self).form_valid(form)
@@ -53,7 +53,7 @@ class MessageEditView(generic.UpdateView):
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """
         obj = self.get_object()
-        if obj.poster != self.request.user:
+        if obj.author != self.request.user:
             return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(MessageEditView, self).dispatch(request, *args, **kwargs)
 
@@ -77,7 +77,7 @@ class MessageDeleteView(generic.DeleteView):
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """
         obj = self.get_object()
-        if obj.poster!= self.request.user:
+        if obj.author!= self.request.user:
             return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
 

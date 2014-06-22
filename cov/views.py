@@ -18,7 +18,7 @@ class CovListView(generic.ListView):
 
     def get_queryset(self):
         return super(CovListView, self).get_queryset().select_related(
-            'poster'
+            'author'
         )
 
     def get_object(self):
@@ -35,7 +35,7 @@ class CovCreateView(generic.CreateView):
 
     def form_valid(self, form):
         cov = form.save(commit=False)
-        cov.poster = self.request.user
+        cov.author = self.request.user
         cov.save()
 
         return super(CovCreateView, self).form_valid(form)
@@ -56,7 +56,7 @@ class CovEditView(generic.UpdateView):
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
-        if obj.poster != self.request.user:
+        if obj.author != self.request.user:
             return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(CovEditView, self).dispatch(request, *args, **kwargs)
 
@@ -74,7 +74,7 @@ class CovDeleteView(generic.DeleteView):
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
-        if obj.poster != self.request.user:
+        if obj.author != self.request.user:
             return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
         return super(CovDeleteView, self).dispatch(request, *args, **kwargs)
 
