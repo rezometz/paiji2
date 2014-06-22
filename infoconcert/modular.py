@@ -15,7 +15,7 @@ class InfoConcertModule(ModuleApp):
             cache_time=30 * 60,
             kwargs={
                 'nb': 5,
-                'filter_free': True,
+                'filter_free': False,
             },
         ),
     ]
