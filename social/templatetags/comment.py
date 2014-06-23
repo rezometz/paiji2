@@ -16,7 +16,7 @@ def display_comment_area(context, on_message, nb=5):
         'request': context['request'],
         'comments': Comment.objects.select_related('author').filter(
         		message = on_message
-        	).order_by('-pubDate')[:nb],
+        	).order_by('pubDate')[:nb],
         'on_message': on_message,
         'form': CommentForm(),
     }
