@@ -18,8 +18,9 @@
 		{% csrf_token %}
 		{% bootstrap_field form.content show_label=False %}
 		{% buttons %}
-            <input style="position: absolute; left: -9999px; width: 1px; height: 1px;" type="submit" value="Sent" class="btn btn-success" />
+            <input style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" type="submit" value="Sent" class="btn btn-success" />
         {% endbuttons %}
+        <div class="clearfix"></div>
 	</form>
 	{% endif %}
 </ul>
