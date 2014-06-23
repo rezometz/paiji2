@@ -69,3 +69,12 @@ h4.author-name {
 .newsfeed-action {
     font-size: 14px;
 }
+
+.comments {
+	background-color: #ecf0f1;
+	padding: 5px;
+}
+
+.comments hr {
+	border-color: #bdc3c7;
+}

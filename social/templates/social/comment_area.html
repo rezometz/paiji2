@@ -1,0 +1,23 @@
+{% load bootstrap3 %}
+
+<ul class="list-unstyled comments">
+	{% for comment in comments %}
+		<li>
+    		<a href="mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.message|add:'"'|urlencode }}"
+            title="{{ comment.author.first_name }} {{ comment.author.last_name }} ({{ comment.author }})">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ comment.author.first_name }}
+       		</a> : {{ comment.content }}
+    		<span class="text-muted"><small>il y a {{ comment.pubDate|timesince }}</small></span>
+		</li>
+		<hr>
+	{% endfor %}
+
+	<form method="post" action="{% url 'comment-add' on_message.id %}">
+		{% csrf_token %}
+		{% bootstrap_field form.content show_label=False %}
+		{% buttons %}
+            <input style="position: absolute; left: -9999px; width: 1px; height: 1px;" type="submit" value="Sent" class="btn btn-success" />
+        {% endbuttons %}
+	</form>
+</ul>

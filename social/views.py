@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.views import generic
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
 from tinymce.widgets import TinyMCE
 
-from models import Message, Group
+from models import Message, Comment, Group
+from forms import CommentForm
 
 
 class MessageListView(generic.ListView):
@@ -19,7 +21,6 @@ class MessageListView(generic.ListView):
         return super(MessageListView, self).get_queryset().order_by('-pubDate').select_related(
             'author'
         )
-
 
 class MessageCreateView(generic.CreateView):
     model = Message
@@ -90,6 +91,23 @@ class MessageDeleteView(generic.DeleteView):
         success_url = self.request.POST.get('next')
 
         return success_url if success_url != '' else reverse('index')
+
+class CommentCreateView(generic.CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.author=self.request.user
+        comment.message=Message.objects.get(id=self.kwargs['on_message'])
+        comment.pubDate=timezone.now()
+        return super(CommentCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.success(self.request,  _(
+            "Your comment has been successfully saved."
+        ))
+        return reverse('index')
 
 class GroupView(generic.DetailView):
     model = Group

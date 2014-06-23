@@ -1,6 +1,7 @@
 {% extends "home/base.html" %}
 {% load staticfiles %}
 {% load readmore %}
+{% load comment %}
 
 {% block title%}Home{% endblock %}
 
@@ -10,8 +11,6 @@
 
 
 {% block content %}
-{% load cache %}
-{% cache 60 index page_obj.number request.user %}
 <div class="row">
 	<div class="col-md-8">
         <h3>NewsFeed
@@ -69,10 +68,11 @@
     <div class="news-content">
         {{ item.content|readmore:200|safe }}
     </div>
+
+    {% display_comment_area on_message=item %}
 </div>
 {% endfor %}
 
-{% endcache %}
 {% endblock %}
 
 {% block js %}
