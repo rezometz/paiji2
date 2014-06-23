@@ -121,3 +121,19 @@ class Message(models.Model):
 
     class Meta:
         ordering = ('group__name', '-pubDate', )
+
+
+class Comment(model.Model):
+    author = models.ForeignKey(
+            get_user_model(),
+            related_name='comment'
+        )
+    message = models.ForeignKey(
+            Message,
+            related_name='comment'
+        )
+
+    pubDate = models.DateTimeField(null=False)
+    content = models.CharField(max_length=140, blank=False)
+
+
