@@ -72,7 +72,15 @@ h4.author-name {
 
 .comments {
 	background-color: #ecf0f1;
-	padding: 5px;
+	padding: 15px;
+	margin-top: 20px;
+	margin-right: -19px;
+	margin-left: -19px;
+	margin-bottom: -19px;
+}
+
+.comments li {
+	padding: 3px;
 }
 
 .comments hr {
