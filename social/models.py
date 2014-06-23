@@ -119,11 +119,14 @@ class Message(models.Model):
             self.pubDate = timezone.now()
         super(Message, self).save(*args, **kwargs)
 
+    def __unicode__(self):
+        return self.title
+
     class Meta:
         ordering = ('group__name', '-pubDate', )
 
 
-class Comment(model.Model):
+class Comment(models.Model):
     author = models.ForeignKey(
             get_user_model(),
             related_name='comment'
@@ -135,5 +138,5 @@ class Comment(model.Model):
 
     pubDate = models.DateTimeField(null=False)
     content = models.CharField(max_length=140, blank=False)
-
-
+    class Meta:
+        ordering = ('message', '-pubDate', )

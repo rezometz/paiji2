@@ -13,6 +13,10 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ('id', 'author', 'group', 'title', 'pubDate', 'importance')
     ordering = ('-pubDate', )
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'message', 'author', 'pubDate', 'content')
+    ordering = ('message', '-pubDate', )
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'bureau', 'utilisateur', 'postType')
     def get_form(self, request, obj=None, **kwargs):
@@ -26,3 +30,4 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Bureau, BureauAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Message, MessageAdmin)
+admin.site.register(Comment, CommentAdmin)

@@ -21,6 +21,11 @@ urlpatterns = [
         login_required(MessageDeleteView.as_view()),
         name="newsfeed-delete",
     ),
+    url(
+        r'^comment/(?P<on_message>[0-9]+)/$',
+        login_required(CommentCreateView.as_view()),
+        name="comment-add"
+    ),
 
     # Group
     url(
