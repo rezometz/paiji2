@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="well">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="">{% trans 'Dashboard' %}</a></li>
+    <li><a href="">{% trans 'News' %}</a></li>
+    <li><a href="{% url 'workgroup-members' slug=group.slug %}">{% trans 'Members' %}</a></li> 
+</ul>
+{% block tab-content %}
+{% endblock %}
+</div>
+{% endblock %}

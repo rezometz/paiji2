@@ -1,7 +1,11 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
 
-from .views import *
+from .views import (
+    MessageCreateView, MessageEditView, MessageDeleteView,
+    CommentCreateView,
+    GroupView, GroupMembersView,
+)
 from .feeds import LatestEntriesFeed
 
 urlpatterns = [
@@ -32,6 +36,12 @@ urlpatterns = [
         r'(?P<slug>[\w-]+)/dashboard$',
         GroupView.as_view(),
         name="workgroup-view",
+    ),
+    # Group Members
+    url(
+        r'(?P<slug>[\w-]+)/members$',
+        GroupMembersView.as_view(),
+        name="workgroup-members",
     ),
 
     # Feeds

@@ -84,7 +84,7 @@ class Bureau(models.Model):
 class Post(models.Model):
     utilisateur = models.ForeignKey(get_user_model(), related_name='post')
 
-    bureau = models.ForeignKey(Bureau)
+    bureau = models.ForeignKey(Bureau, related_name='members')
 
     description = models.TextField(blank=True)
 
