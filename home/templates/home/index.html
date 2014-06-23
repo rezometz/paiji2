@@ -69,7 +69,7 @@
         {{ item.content|readmore:200|safe }}
     </div>
 
-    {% display_comment_area on_message=item %}
+    {% display_comment_area on_message=item nb=20 %}
 </div>
 {% endfor %}
 
