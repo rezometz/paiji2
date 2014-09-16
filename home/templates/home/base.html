@@ -1,7 +1,6 @@
 {% load staticfiles %}
 {% load cache %}
 {% load i18n %}
-{% load alerts %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -170,30 +169,7 @@
         </header>
 
         <div id="main" class="container clearfix">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    {% load bootstrap3 %}
-                    {% bootstrap_messages %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 droppable-modules sidebar-left">
-                    {% block left-sidebar %}
-                    {% endblock %}
-                    {% include 'home/sidebar_left.html' %}
-                </div>
-
-                <div class="col-md-6">
-                    {% display_alerts %}
-                    {% block content %} {% endblock %}
-                </div>
-
-                <div class="col-md-3 droppable-modules sidebar-right">
-                    {% block right-sidebar %}
-                    {% endblock %}
-                    {% include 'home/sidebar_right.html' %}
-                </div>
-            </div>
+            {% block layout %}{% endblock %}
         </div>
 
         <div class="container">

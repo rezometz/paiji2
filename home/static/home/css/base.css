@@ -96,3 +96,7 @@ hr {
     margin-bottom: 0px;
     border-radius: 0px;
 }
+
+.dark-text a {
+	color: #2980b9;
+}

@@ -1,0 +1,9 @@
+{% extends 'social/group_base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'News' %}{% endblock %}
+
+{% block content %}
+{% include "home/news-feed.html" %}
+{% endblock %}

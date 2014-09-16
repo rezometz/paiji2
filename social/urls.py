@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .views import (
     MessageCreateView, MessageEditView, MessageDeleteView,
     CommentCreateView,
-    GroupView, GroupMembersView,
+    GroupView, GroupMembersView, GroupNewsView,
 )
 from .feeds import LatestEntriesFeed
 
@@ -42,6 +42,13 @@ urlpatterns = [
         r'(?P<slug>[\w-]+)/members$',
         GroupMembersView.as_view(),
         name="workgroup-members",
+    ),
+
+    # Group News
+    url(
+        r'(?P<slug>[\w-]+)/news$',
+        GroupNewsView.as_view(),
+        name="workgroup-news",
     ),
 
     # Feeds
