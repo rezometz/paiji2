@@ -13,10 +13,15 @@ def nest_list(x0, f, n):
         x0 and a function f (tail-recursive)
         nest_list(x0, f, n) -> [x0, f(x0), f^2(x0), ..., f^(n-1)(x0)]
     """
-    def nest(x0, f, n, l):
-        l.append(x0)
-        return l if n == 0 else nest(f(x0), f, n - 1, l)
-    return nest(x0, f, n-1, [])
+    def nest(f, n, l):
+        if n == 0:
+            return l
+        next = f(l[-1])
+        if next is None:
+            return None
+        l.append(next)
+        return nest(f, n-1, l)
+    return nest(f, n, [x0])
 
 
 class MettisFetcher(object):
@@ -36,6 +41,8 @@ class MettisFetcher(object):
 
         schedule = content.find('', {'id': 'horaires'})
 
+        if schedule is None:
+            return None
         week = schedule.find('', {'class': 'un'})
         saturday = schedule.find('', {'class': 'deux'})
         sunday = schedule.find('', {'class': 'trois'})
@@ -69,6 +76,8 @@ class MettisFetcher(object):
                         }
 
     def find_next_stop(self, from_time):
+        if self.data is None or from_time is None:
+            return None
         from_time = from_time.replace(minute=from_time.minute)
         weekday = from_time.weekday()
         if weekday <= 4:
@@ -98,6 +107,7 @@ class MettisFetcher(object):
         self.data = cache.get(key)
         if self.data is None:
             self.data = self.get_schedule(ligne, head, arret)
-            cache.set(key, self.data, 1 * 24 * 60 * 60)
+            if self.data:
+                cache.set(key, self.data, 1 * 24 * 60 * 60)
 
-        return nest_list(localtime(now()), self.find_next_stop, stops_number+1)[1:]
+        return nest_list(localtime(now()), self.find_next_stop, stops_number)
