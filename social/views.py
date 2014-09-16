@@ -33,7 +33,7 @@ class MessageCreateView(generic.CreateView):
     def get_form(self, form_class):
         form = super(MessageCreateView, self).get_form(form_class)
         form.fields['group'].queryset = Group.objects.filter(
-            bureaus__post__utilisateur=self.request.user
+            bureaus__members__utilisateur=self.request.user
         )
         form.fields['content'].widget = TinyMCE(attrs={'cols': 80, 'rows': 20})
         return form
@@ -70,7 +70,7 @@ class MessageEditView(generic.UpdateView):
     def get_form(self, form_class):
         form = super(MessageEditView, self).get_form(form_class)
         form.fields['group'].queryset = Group.objects.filter(
-            bureaus__post__utilisateur=self.request.user
+            bureaus__members__utilisateur=self.request.user
         )
         form.fields['content'].widget = TinyMCE(attrs={'cols': 80, 'rows': 20})
         return form
