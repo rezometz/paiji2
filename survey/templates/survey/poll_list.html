@@ -1,4 +1,4 @@
-{% extends "home/base.html" %}
+{% extends "home/layout_three_columns.html" %}
 {% load i18n %}
 {% load survey %}
 {% load bootstrap3 %}
@@ -22,7 +22,7 @@
                     {% for choice in choices|dictsortreversed:'nb_votes' %}
                     <li class="list-group-item">
                     <span class="badge">{{ choice.nb_votes }}</span>
-                    {{ choice|safe }} 
+                    {{ choice|safe }}
                     </li>
                     {% endfor %}
                 </ul>
@@ -30,7 +30,7 @@
         </div>
         {% if not forloop.last %}
         <hr />
-        {% endif %} 
+        {% endif %}
         {% endfor %}
         {% bootstrap_pagination page_obj %}
     </div>

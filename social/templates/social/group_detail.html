@@ -7,12 +7,10 @@
 
 
 
-{% block tab-content %}
-<div id="calendar"></div> 
-{% endblock %}
+{% block content %}
+<div id="calendar"></div>
 
-{% block right-sidebar %}
-<div class="well">
+<div class="well pull-right">
     <a href="{{ group.calendar.get_icalendar_url }}"
         class="btn btn-success">
         {% bootstrap_icon 'download' %}

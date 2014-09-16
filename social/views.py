@@ -129,6 +129,31 @@ class CommentCreateView(generic.CreateView):
 class GroupView(generic.DetailView):
     model = Group
 
+class GroupNewsView(generic.ListView):
+    model = Message
+    template_name = 'social/news_list.html'
+    context_object_name = 'news'
+    paginate_by = 8
+
+    def get_queryset(self):
+        qs = super(GroupNewsView, self).get_queryset()
+        qs = qs.filter(group=self.group)
+        qs = qs.order_by(
+            '-pubDate'
+        ).select_related(
+            'author'
+        )
+        return qs
+
+    def dispatch(self, *args, **kwargs):
+        self.group = get_object_or_404(Group, slug=kwargs['slug'])
+        return super(GroupNewsView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self):
+        cd = super(GroupNewsView, self).get_context_data()
+        cd['group'] = self.group
+        return cd
+
 
 class GroupMembersView(generic.ListView):
     model = get_user_model()
