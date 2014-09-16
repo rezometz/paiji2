@@ -1,5 +1,6 @@
 import re
-import urllib
+import urllib2
+import socket
 
 from bs4 import BeautifulSoup
 
@@ -37,7 +38,11 @@ class MettisFetcher(object):
 
     def get_schedule(self, ligne, head, arret):
         url = self.make_url(ligne, head, arret)
-        content = BeautifulSoup(urllib.urlopen(url).read())
+        try:
+            content = BeautifulSoup(urllib2.urlopen(url, timeout=0.5).read())
+        except socket.timeout:
+            print "mettis fetcher timed out"
+            return None
 
         schedule = content.find('', {'id': 'horaires'})
 
@@ -103,11 +108,13 @@ class MettisFetcher(object):
     def next_bus_stops(self, ligne, head, arret, stops_number=1):
         key = 'mettis_{ligne}_{head}_{arret}'.format(
             ligne=ligne, head=head, arret=arret,
-        )
+        ).replace(' ', '-')
         self.data = cache.get(key)
         if self.data is None:
             self.data = self.get_schedule(ligne, head, arret)
-            if self.data:
+            if self.data is None:
+                return None
+            else:
                 cache.set(key, self.data, 1 * 24 * 60 * 60)
 
         return nest_list(localtime(now()), self.find_next_stop, stops_number)
