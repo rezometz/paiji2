@@ -121,3 +121,5 @@ TINYMCE_DEFAULT_CONFIG = {
 
                 'gecko_spellcheck' : True,
             }
+
+METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
