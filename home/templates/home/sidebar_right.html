@@ -1,6 +1,6 @@
 {% load modules %}
 {% if request.user.is_authenticated %}
-<iframe src="https://kiwiirc.com/client/irc.rezometz.org/?nick={{ request.user.first_name }}_{{ request.user.last_name }}|?#campus" style="border:0; width:100%; height:450px;"></iframe>
+<iframe src="http://kiwi.rezometz.org:7778?nick={{ request.user.first_name }}_{{ request.user.last_name }}|?#campus" style="border:0; width:100%; height:450px;"></iframe>
 {% else %}
 <iframe src="https://kiwiirc.com/client/irc.rezometz.org/?nick=anonymous|?#campus" style="border:0; width:100%; height:450px;"></iframe>
 {% endif %}
