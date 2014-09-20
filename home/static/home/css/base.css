@@ -57,7 +57,7 @@ a:not(.logo):hover {
 }
 
 .dropdown-menu {
-	z-index: 1;
+	z-index: 10;
 }
 
 footer {
