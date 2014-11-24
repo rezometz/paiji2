@@ -9,5 +9,6 @@ from django.utils import timezone
 
 # Create your views here.
 class IndexView(generic.TemplateView):
-    """docstring for IndexView"""
-    template_name = 'home/index.html'
+	"""docstring for IndexView"""
+	template_name = 'home/index.html'
+

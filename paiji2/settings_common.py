@@ -83,7 +83,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
-
+KEY_CACHE_FTPS = 'paiji2_ftps_data'
 
 AUTH_USER_MODEL = 'rezo.User'
 
