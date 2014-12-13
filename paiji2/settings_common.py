@@ -36,7 +36,7 @@ INSTALLED_APPS = (
         'modular_blocks',
         'bulletin_board',
         'infoconcert',
-        'debug_toolbar',
+#        'debug_toolbar',
         'south',
         'bootstrap3',
         'rezo',
