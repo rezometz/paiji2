@@ -30,11 +30,6 @@
     <body>
         <header>
         <nav class="navbar navbar" role="navigation" id="header">
-        <div class="alert alert-head alert-danger">
-            <p>
-            {% blocktrans %}Be careful, this is a development version. Any information created or updated in this version will be deleted at the end of the development process.{% endblocktrans %}
-            </p>
-        </div>
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
