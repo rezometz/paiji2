@@ -1,8 +1,5 @@
 {% load modules %}
 
-{% if request.user.is_authenticated %}
-<iframe class="irc" src="http://kiwi.rezometz.org:7778?nick={{ request.user.first_name }}_{{ request.user.last_name }}|?#campus" style="border:0; width:100%; height:450px;"></iframe>
-{% endif %}
 {% for module in request.user.sidebar_right %}
     <div class="well module" data-module="{{ module }}">
         {% render_module module %}
