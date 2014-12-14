@@ -80,7 +80,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/groups/'
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
 KEY_CACHE_FTPS = 'paiji2_ftps_data'
