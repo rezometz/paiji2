@@ -28,10 +28,8 @@
         <h3>Je suis bien propriétaire du compte</h3>
         {% if not email_verifie %}
         <p class="alert alert-danger">
-            Vous n'avez jamais l'adresse mail fournie lors de votre inscription
-            nous ne pouvons donc nous permettre d'y envoyer une clef de validation.
-            Demandez au Rézo de vous envoyer un nouveau lien de confirmation ou
-            de changer votre email si vous ne la connaissez pas.
+            Votre adresse mail (prenom.nom@metz.supelec.fr par défaut) n'est pas encore vérifiée auprès rézo!
+            Demandez au Rézo de vous envoyer un nouveau lien de confirmation.
         </p>
         {% elif account_registered %}
         <p class="alert alert-danger">
