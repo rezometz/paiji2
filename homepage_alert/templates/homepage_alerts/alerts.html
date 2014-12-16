@@ -1,5 +1,5 @@
 {% load cache %}
-{% cache 3600 homepage-alerts %}
+{% cache 60 homepage-alerts %}
 {% for alert in alerts %}
 <div class="panel panel-{{ alert.get_type_name }}">
     <div class="panel-heading">
