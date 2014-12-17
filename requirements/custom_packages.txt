@@ -1,0 +1,3 @@
+git+http://github.com/gpichot/django-backbone-calendar
+git+http://github.com/gpichot/django-graphos
+git+http://github.com/rezometz/django-modular-blocks
