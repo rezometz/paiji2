@@ -5,12 +5,9 @@ PyYAML==3.11
 South==0.8.4
 beautifulsoup4==4.3.2
 django-backbone==0.3.1
-git+git://github.com/gpichot/django-backbone-calendar
 django-bootstrap3==4.2.0
 django-debug-toolbar==1.0.1
-git+git://github.com/gpichot/django-graphos
 django-ical==1.2
-git+git://github.com/rezometz/django-modular-blocks
 django-pagination-py3==1.1.1
 django-planet==0.6.2
 django-suit==0.2.8
