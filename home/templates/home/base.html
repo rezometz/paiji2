@@ -33,7 +33,7 @@
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
-            {% blocktrans %}Your sidebar are empty! You can fill them with widgets (cov, bulletin boards, next bus stops and so on) using the following link:{% endblocktrans %}
+            {% blocktrans %}Your sidebars are empty! You can fill them with widgets (cov, bulletin boards, next bus stops and so on) using the following link:{% endblocktrans %}
             <br />
             <a href="{% url 'modular-change' %}">{% trans 'I want to change my layout' %}</a>
             </p>
@@ -150,6 +150,7 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">Inscription des groupes</a></li>
+                        <li><a href="https://rezo.rez/">Interface de gestion</a></li>
                     </ul>
                     </li>
                 </ul>
