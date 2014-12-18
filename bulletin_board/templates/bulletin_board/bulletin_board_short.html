@@ -30,7 +30,7 @@
                 <a href="{% url 'bulletin-delete' note.id %}"><i class="fa fa-trash-o"></i></a></span>
         {% endif %}
     </div>
-    {{ note.message|readmore:20 }}
+    {{ note.message|urlize|readmore:20 }}
     <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
     </li>
     <hr>
