@@ -17,7 +17,7 @@
                     {{ note.author.first_name }}
                 </a>
             </span>
-            {{ note.message }}<br />
+            {{ note.message | urlize}}<br />
             <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
             </li>
             <hr>
