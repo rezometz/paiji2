@@ -270,15 +270,12 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     @cached_property
     def get_rezo(self):
-        return Utilisateur.objects.using('rezo').select_related('quotas').get(
-            pk=self.id_rezo,
-        )
-        
-    @cached_property
-    def get_paiements(self):
-        return Utilisateur.objects.using('rezo').select_related('quotas').get(
-            pk=self.id_rezo,
-        )
+        try:
+            return Utilisateur.objects.using('rezo').select_related('quotas').get(
+                pk=self.id_rezo,
+            )
+        except:
+            return None
 
     @cached_property
     def get_related_groups(self):
@@ -290,3 +287,13 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     def get_absolute_url(self):
         return reverse('index')
+
+    def save(self, *args, **kwargs):
+        if len(self.sidebar_left) == 0:
+            self.sidebar_left = [u'survey-form', u'calendar-events', u'cov']
+        if len(self.sidebar_right) == 0:
+            self.sidebar_right = [u'weather', u'bulletin-board', u'infoconcert']
+        return super(User, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ('username', )

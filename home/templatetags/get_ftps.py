@@ -8,6 +8,7 @@ import urllib2
 register = template.Library()
 
 def fetchFTPs():
+<<<<<<< HEAD
     response = urllib2.urlopen('http://porygon.rez', timeout=1).read()
     soup = BeautifulSoup(response)
     ftps = []
@@ -16,6 +17,19 @@ def fetchFTPs():
             'name': ftp.text,
             'link': ftp.get('href')
             })
+=======
+    ftps = []
+    try:
+        response = urllib2.urlopen('http://porygon.rez', timeout=1).read()
+        soup = BeautifulSoup(response)
+        for ftp in soup.select('#ftp_list a'):
+            ftps.append({
+                'name': ftp.text,
+                'link': ftp.get('href')
+                })
+    except urllib2.URLError:
+        pass
+>>>>>>> ff11b318f416cd17afff37561e23ab5487cadb52
     return ftps
 
 @register.inclusion_tag('home/ftps_list.html')
@@ -23,6 +37,7 @@ def get_ftps():
     cache = get_cache('default')
     ftps = cache.get(settings.KEY_CACHE_FTPS)
     if ftps is None:
+<<<<<<< HEAD
 		try:
 			ftps = fetchFTPs()
 		except : #URLError:
@@ -33,4 +48,9 @@ def get_ftps():
 				}]
         #Cache ftps info for 25 min
 		cache.set(settings.KEY_CACHE_FTPS, ftps, 60*25)
+=======
+        ftps = fetchFTPs()
+        # Cache ftps info for 25 min
+        cache.set(settings.KEY_CACHE_FTPS, ftps, 60*25)
+>>>>>>> ff11b318f416cd17afff37561e23ab5487cadb52
     return {'ftps': ftps}

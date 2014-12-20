@@ -6,7 +6,7 @@
 {% load cache %}
 {% cache 60 bulletin-board page_obj.number %}
     <div class="well">
-        <h3>Listes des dernières notes</h3>
+        <h3>Archives</h3>
         <ul class="list-unstyled">
             {% for note in notes %}
             <li>
@@ -17,7 +17,7 @@
                     {{ note.author.first_name }}
                 </a>
             </span>
-            {{ note.message }}<br />
+            {{ note.message|urlize }}<br />
             <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
             </li>
             <hr>
