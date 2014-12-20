@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+{% block style %}<link rel="stylesheet" type="text/css" href="{% static 'weather/css/weather.css' %}" />{% endblock %}
+
+<div class="row weather">
+    <div class="col-sm-7">
+        <div class="city-name">{{ weather.city }}</div>
+        <p class="current-temp">{{ weather.list_weather.0.current|floatformat }} &deg;C <span class="weather-description">{{ weather.list_weather.0.desc }}</br>{{ weather.list_weather.0.min|floatformat }} - {{ weather.list_weather.0.max|floatformat }} &deg;C</span></p>
+    </div>
+    <div class="col-sm-5">
+        <i href="" class="weather-icon" data-icon="{{ weather.list_weather.0.icon }}"></i>
+    </div>
+</div>
+<div class="row">
+    {% for item in weather.list_weather|slice:"1:" %}
+    <div class="col-sm-4">
+        <p><i href="" class="weather-icon" data-icon="{{ item.icon }}"></i></br>
+        {{ item.timestamp|date:'D' }}.</br>{{ item.min|floatformat }} - {{ item.max|floatformat }}&deg;C</p>
+    </div>
+    {% endfor %}
+</div>

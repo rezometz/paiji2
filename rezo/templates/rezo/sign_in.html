@@ -1,0 +1,21 @@
+{% extends "home/layout_three_columns.html" %}
+
+{% block title %}Sign-in{% endblock %}
+
+{% block content %}
+{% load bootstrap3 %}
+
+    <div class="well">
+        <form action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-success pull-right">
+                Sign in
+            </button>
+            {% endbuttons %}
+            <div class="clearfix"></div>
+        </form>
+    </div>
+
+{% endblock %}

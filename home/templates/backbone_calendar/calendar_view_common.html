@@ -1,0 +1,63 @@
+{% extends 'backbone_calendar/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="well">
+        <div id="calendar"></div>
+    </div>
+
+{% if editable_calendar %}
+{% load bootstrap3 %}
+<div id="calendar-event-dialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="calendar-event-dialog-title"
+                    data-new="{% trans 'Add event' %}" data-edit="{% trans 'Edit event' %}">
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="#">
+                    {% bootstrap_form calendar_event_form %}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+                <button type="button" class="btn btn-primary" id="calendar-event-dialog-ok">{% trans 'OK' %}</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endif %}
+{% endblock %}
+
+{% block right-sidebar %}
+{% block calendar-nav %}
+
+{% endblock %}
+{{ block.super }}
+{% endblock %}
+
+{% block stylesheets %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/libs/fullcalendar/css/fullcalendar.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/libs/fullcalendar/css/fullcalendar.print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/libs/jquery/css/themes/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/libs/jquery/css/themes/jquery-ui.timepicker.addon.css" />
+{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}libs/fullcalendar/js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/underscore/js/underscore.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libs/backbone/js/backbone.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/backbone-calendar/langs/{{ LANGUAGE_CODE|lower }}.js"></script>
+{% if editable_calendar %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/backbone-calendar/edit.options.js"></script>
+{% endif %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/backbone-calendar/calendar.js"></script>
+{% endblock %}

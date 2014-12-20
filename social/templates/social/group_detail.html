@@ -1,0 +1,34 @@
+{% extends 'social/group_base.html' %}
+{% load i18n %}
+{% load backbone_calendar %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans 'Dashboard' %}{% endblock %}
+
+
+
+{% block content %}
+<div id="calendar"></div>
+
+<div class="well pull-right">
+    <a href="{{ group.calendar.get_icalendar_url }}"
+        class="btn btn-success">
+        {% bootstrap_icon 'download' %}
+        {% trans 'Download iCalendar file (.ics)' %}
+    </a>
+</div>
+{% get_calendar_display calendar=group.calendar as display %}
+{{ display.print_list_agendas }}
+{% endblock %}
+
+{% block style %}
+{% print_stylesheet_links %}
+{% endblock %}
+
+{% block js %}
+{% print_javascript_scripts %}
+{% get_calendar_display calendar=group.calendar as display %}
+<script type="text/javascript">
+var calendar = {{ display.to_json }};
+</script>
+{% endblock %}

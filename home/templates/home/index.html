@@ -1,0 +1,16 @@
+{% extends "home/layout_three_columns.html" %}
+{% load staticfiles %}
+
+{% block title%}Home{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% include "home/news-feed.html" %}
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

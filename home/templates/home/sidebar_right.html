@@ -1,0 +1,18 @@
+{% load modules %}
+
+{% for module in request.user.sidebar_right %}
+    <div class="well module" data-module="{{ module }}">
+        {% render_module module %}
+    </div>
+{% endfor %}
+
+<script type="text/javascript">
+.bind({
+    beforeunload: function(ev) {
+        ev.preventDefault();
+    },
+    unload: function(ev) {
+        ev.preventDefault();
+    }
+});
+</script>

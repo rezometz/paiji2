@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+{% load alerts %}
+{% block layout %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        {% load bootstrap3 %}
+        {% bootstrap_messages %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 droppable-modules sidebar-left">
+        {% block left-sidebar %}
+        {% endblock %}
+        {% include 'home/sidebar_left.html' %}
+    </div>
+
+    <div class="col-md-6">
+        {% display_alerts %}
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class="col-md-3 droppable-modules sidebar-right">
+        {% block right-sidebar %}
+        {% endblock %}
+        {% include 'home/sidebar_right.html' %}
+    </div>
+</div>
+{% endblock %}

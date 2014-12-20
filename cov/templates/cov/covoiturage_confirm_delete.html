@@ -1,0 +1,25 @@
+{% extends "home/layout_three_columns.html" %}
+{% load bootstrap3 %}
+
+{% block title %}Confirm deleting a covoiturage{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h3>Vous allez supprimer cette covoiturage ?</h3>
+    <div>'{{ object.notes }}'</div>
+
+    <form action="" method="post" role="form">
+        {% csrf_token %}
+
+        <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+
+        {% buttons %}
+            <button type="submit" class="btn btn-danger pull-right">
+                Supprimer
+            </button>
+        {% endbuttons %}
+        <div class="clearfix"></div>
+    </form>
+</div>
+
+{% endblock %}

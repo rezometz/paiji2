@@ -1,0 +1,11 @@
+{% extends "home/layout_three_columns.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Vote' %}{% endblock %}
+
+{% block content %}
+    <div class="well">
+        {% load survey %}
+        {% display_survey_form %}
+    </div>
+{% endblock %}

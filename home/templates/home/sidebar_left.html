@@ -1,0 +1,7 @@
+{% load modules %}
+{% for module in request.user.sidebar_left %}
+    <div class="well module" data-module="{{ module }}">
+        {% render_module module %}
+    </div>
+{% endfor %}
+

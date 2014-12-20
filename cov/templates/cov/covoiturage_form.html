@@ -1,0 +1,54 @@
+{% extends "home/layout_three_columns.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+{% if form.instance and form.instance.pk %}
+                        Mettre à jour a cov
+                    {% else %}
+                        Create cov
+                    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="well">
+        {% if form.instance and form.instance.pk %}
+            <h3>Modifier un covoiturage</h3>
+        {% else %}
+            <h3>Proposer/Chercher un covoiturage</h3>
+        {% endif %}
+
+        <form action="{{ request.get_full_path }}" method="post" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="annonceur">L'annonceur</label>
+                <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
+            </div>
+
+            <div class="form-group">
+                <label for="annonce_type">Type d'annonce</label>
+                {% bootstrap_field form.annonce_type show_label=False %}
+
+                <label for="good_until">Valid jusqu'à</label>
+                {% bootstrap_field form.good_until show_label=False %}
+
+                <label for="annonceur">Notes</label>
+                <p class="help-block">ex: Metz-Paris-Compiègne, vendredi vers 17h, 3 Places au PAPS à 15€/trajet, retour le dimenche vers 18h</p>
+                {% bootstrap_field form.notes show_label=False %}
+            </div>
+
+            <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+            <br />
+            {% buttons %}
+                <button type="submit" class="btn btn-success pull-right">
+                    {% if form.instance and form.instance.pk %}
+                        Mettre à jour
+                    {% else %}
+                        Ajouter
+                    {% endif %}
+                </button>
+            {% endbuttons %}
+            <div class="clearfix"></div>
+        </form>
+    </div>
+{% endblock %}
