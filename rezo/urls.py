@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
-
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 from django.contrib.auth.views import (
     logout,
     password_reset,
@@ -37,7 +38,7 @@ urlpatterns = patterns(
     url(
         r'^account$',
         RezoAccountView.as_view(),
-        name="rezo-account",
+        name="account",
     ),
 
     url(
@@ -46,9 +47,42 @@ urlpatterns = patterns(
             logout
         ),
         {
-            'next_page': '/',
+            'next_page': reverse_lazy('index'),
         },
         name="logout",
     ),
-
+    url(
+        r'^password/lost$',
+        password_reset,
+        {
+            'template_name': 'rezo/user/password_reset.html',
+        },
+        name="password-reset",
+    ),
+    url(
+        r'^password/reset/done$',
+        generic.TemplateView.as_view(
+            template_name='rezo/user/password_reset_done.html'
+        ),
+        name="password_reset_done",
+    ),
+    url(
+        r'^password/reset/confirm/(?P<uidb64>[\w\d]+)/(?P<token>[\d\w-]+)$',
+        password_reset_confirm,
+        {
+            'template_name': 'rezo/user/password_reset_confirm.html',
+            'post_reset_redirect': reverse_lazy('sign-in'),
+        },
+        name="password_reset_confirm",
+    ),
+    url(r'password/change$',
+        login_required(
+            password_change
+        ),
+        {
+            'template_name': 'rezo/user/password_change.html',
+            'post_change_redirect': reverse_lazy('account'),
+        },
+        name="password-change",
+    ),
 )
