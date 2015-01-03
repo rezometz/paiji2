@@ -45,18 +45,23 @@
                     <div class="col-sm-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
                     {% if request.user.id_rezo %}
                     {% cache 30 rezo-quotas request.user.id_rezo %}
-                    <div class="col-sm-4 quota-field-normal">
+                    <div class="col-sm-3 quota-field-normal">
                         {{ request.user.get_rezo.quotas.up_restant|filesizeformat }}
                         <i class="glyphicon glyphicon-upload"></i>
                     </div>
-                    <div class="col-sm-4 quota-field-normal">
+                    <div class="col-sm-3 quota-field-normal">
                         {{ request.user.get_rezo.quotas.down_restant|filesizeformat }}
                         <i class="glyphicon glyphicon-download"></i>
                     </div>
                     {% endcache %}
+                    <div class="col-sm-2">
+                        <a href="{% url 'logout' %}" class="btn btn-xs btn-warning pull-right">
+                            {% trans 'Sign out' %}
+                        </a>
+                </div>
                     {% else %}
                     <div class="col-sm-8">
-                        <a href="{% url 'sign-in' %}" class="btn btn-xs btn-success">Sign in</a>
+                        <a href="{% url 'sign-in' %}" class="btn btn-xs btn-success">{% trans 'Sign in' %}</a>
                     </div>
                     {% endif %}
                 </div>
