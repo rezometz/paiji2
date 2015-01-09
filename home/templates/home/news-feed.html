@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="news-content">
-        {{ item.content|readmore:200|safe }}
+        {{ item.content|safe }}
     </div>
 
     {% display_comment_area on_message=item nb=20 %}
