@@ -26,12 +26,6 @@ class MessageListView(generic.ListView):
             'author'
         )
 
-    def get_context_data(self):
-        cd = super(MessageListView, self).get_context_data()
-        cd['admin_email'] = settings.ADMIN_EMAIL
-        return cd
-
-
 class MessageCreateView(generic.CreateView):
     model = Message
     fields = ('group', 'title', 'content')

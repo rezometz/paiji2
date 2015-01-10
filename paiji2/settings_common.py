@@ -56,6 +56,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
         'django.core.context_processors.request',
+        'rezo.context_processors.get_admin_email',
         )
 
 ROOT_URLCONF = 'paiji2.urls'
