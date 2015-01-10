@@ -10,6 +10,7 @@ from tinymce.widgets import TinyMCE
 
 from .models import Message, Comment, Group
 from .forms import CommentForm
+from django.conf import settings
 
 
 class MessageListView(generic.ListView):
@@ -24,6 +25,11 @@ class MessageListView(generic.ListView):
         ).select_related(
             'author'
         )
+
+    def get_context_data(self):
+        cd = super(MessageListView, self).get_context_data()
+        cd['admin_email'] = settings.ADMIN_EMAIL
+        return cd
 
 
 class MessageCreateView(generic.CreateView):

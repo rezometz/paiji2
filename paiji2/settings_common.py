@@ -123,3 +123,4 @@ TINYMCE_DEFAULT_CONFIG = {
             }
 
 METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
+ADMIN_EMAIL = 'paiji-dev@rezometz.org'

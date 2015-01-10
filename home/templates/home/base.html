@@ -129,9 +129,9 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Ressources <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {% get_ftps %}
-                        
+
                         <!-- Lien vers le défunt Azthek
-                        
+
                         <li class="dropdown-header pull-right">Médiathèque</li>
                         <li class="divider"></li>
                         <li><a href="http://azthek.rez">Azthek</a>
@@ -140,7 +140,7 @@
                                 <input name="query" type="text" class="form-control" placeholder="Search...">
                             </div>
                         </form>
-                        </li> 
+                        </li>
                         -->
                     </ul>
                     </li>
@@ -185,7 +185,7 @@
                     <p><a href="{% url 'modular-change' %}">Changer mon layout</a></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="pull-right">bugs ou suggestions: <a href="mailto:paiji-dev@rezometz.org">paiji-dev@rezometz.org</a></p>
+                    <p class="pull-right">bugs ou suggestions: <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>
                 </div>
             </div>
             </footer>
