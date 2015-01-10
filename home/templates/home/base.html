@@ -55,13 +55,13 @@
                     </div>
                     {% endcache %}
                     <div class="col-sm-2">
-                        <a href="{% url 'logout' %}" class="btn btn-xs btn-warning pull-right">
+                        <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
                             {% trans 'Sign out' %}
                         </a>
                 </div>
                     {% else %}
                     <div class="col-sm-8">
-                        <a href="{% url 'sign-in' %}" class="btn btn-xs btn-success">{% trans 'Sign in' %}</a>
+                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Sign in' %}</a>
                     </div>
                     {% endif %}
                 </div>

@@ -100,3 +100,18 @@ hr {
 .dark-text a {
 	color: #2980b9;
 }
+
+.auth-button {
+    color: white;
+    font-size: 13px;
+    height: 100%;
+    padding: 1px 10px 1px 10px;
+}
+
+.sign-out {
+	background-color: #e67e22;
+}
+
+.sign-in {
+	background-color: #27ae60;
+}
