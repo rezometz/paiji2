@@ -44,3 +44,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# Admins
+ADMINS = (('Paiji developers', 'paiji-dev@rezometz.org'))
+

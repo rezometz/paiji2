@@ -56,6 +56,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
         'django.core.context_processors.request',
+        'rezo.context_processors.get_admin_email',
         )
 
 ROOT_URLCONF = 'paiji2.urls'
@@ -123,3 +124,4 @@ TINYMCE_DEFAULT_CONFIG = {
             }
 
 METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
+ADMIN_EMAIL = 'paiji-dev@rezometz.org'

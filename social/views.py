@@ -10,6 +10,7 @@ from tinymce.widgets import TinyMCE
 
 from .models import Message, Comment, Group
 from .forms import CommentForm
+from django.conf import settings
 
 
 class MessageListView(generic.ListView):
@@ -24,7 +25,6 @@ class MessageListView(generic.ListView):
         ).select_related(
             'author'
         )
-
 
 class MessageCreateView(generic.CreateView):
     model = Message

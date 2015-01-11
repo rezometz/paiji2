@@ -10,7 +10,7 @@ from .models import Note
 
 class NoteListView(generic.ListView):
     model = Note
-    paginate_by = 10
+    paginate_by = 25
     context_object_name = 'notes'
 
     def get_queryset(self):

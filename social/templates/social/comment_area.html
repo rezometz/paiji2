@@ -7,7 +7,7 @@
             title="{{ comment.author.first_name }} {{ comment.author.last_name }} ({{ comment.author }})">
             <i class="glyphicon glyphicon-envelope"></i>
             {{ comment.author.first_name }}
-       		</a> : {{ comment.content }}
+       		</a> : {{ comment.content|urlize }}
     		<span class="text-muted"><small>il y a {{ comment.pubDate|timesince }}</small></span>
 		</li>
 		<hr>

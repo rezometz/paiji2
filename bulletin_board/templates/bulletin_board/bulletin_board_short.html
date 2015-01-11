@@ -1,6 +1,7 @@
 <h3>Shoutbox</h3>
 {% load readmore %}
 {% load staticfiles %}
+{% load bootstrap3 %}
 <div class="row text-center">
     {% if request.user.is_authenticated %}
     <div class="col-sm-4 unbreakable">
@@ -13,8 +14,7 @@
         <a href="{% url 'bulletin-board' %}">Archives</a>
     </div>
 </div>
-{% load cache %}
-{% cache 60 bulletin-board-short %}
+
 <ul class="list-unstyled">
     {% for note in notes %}
     <li>
@@ -36,4 +36,20 @@
     <hr>
     {% endfor %}
 </ul>
-{% endcache %}
+
+<form action="{{ bulletin_add }}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ request.user.first_name }}
+        </span>
+        {% bootstrap_field form.message show_label=False %}
+    </div>
+    <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+    <br />
+    {% buttons %}
+    <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
+    {% endbuttons %}
+    <div class="clearfix"></div>
+</form>
