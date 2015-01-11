@@ -11,6 +11,8 @@
 #    'django-admin.py sqlcustom [appname]'
 # into your database.
 from __future__ import unicode_literals
+from datetime import datetime
+from calendar import monthrange
 
 from django.db import models
 
@@ -96,31 +98,6 @@ class Ecole(models.Model):
 #        managed = False
 #        db_table = 'events'
 #
-class Paiements(models.Model):
-    id = models.IntegerField(primary_key=True)
-    utilisateur_id = models.IntegerField()
-    rezoteur_id = models.IntegerField()
-    timestamp = models.IntegerField()
-    moyenpaiement = models.CharField(db_column='moyenPaiement', max_length=7)
-    banque_id = models.IntegerField()
-    chknumero = models.IntegerField(db_column='chkNumero')
-    trezpointage = models.IntegerField(db_column='trezPointage')
-    commentaires = models.TextField()
-    class Meta:
-        managed = False
-        db_table = 'paiements'
-
-class PaiementsVentilations(models.Model):
-    id = models.IntegerField(primary_key=True)
-    paiement_id = models.IntegerField()
-    montant = models.DecimalField(max_digits=10, decimal_places=2)
-    prixunitaire = models.DecimalField(
-       db_column='prixUnitaire', max_digits=10, decimal_places=2
-    )
-    affectation = models.CharField(max_length=10)
-    class Meta:
-        managed = False
-        db_table = 'paiements_ventilations'
 #
 #
 #class Rezoswitches(models.Model):
@@ -159,7 +136,7 @@ class PaiementsVentilations(models.Model):
 
 class Utilisateur(models.Model):
     id = models.IntegerField(primary_key=True)
-    ecole = models.ForeignKey(Ecole, to_field="id")
+    ecole = models.ForeignKey(Ecole, to_field='id')
     precisionecole = models.TextField(db_column='precisionEcole')
     nom = models.TextField()
     prenom = models.TextField()
@@ -185,7 +162,7 @@ class Utilisateur(models.Model):
 
 class Quotas(models.Model):
     utilisateur = models.OneToOneField(
-        Utilisateur, to_field="id", unique=True,
+        Utilisateur, to_field='id', unique=True,
         db_column='id', related_name="quotas",
     )
     restant_veille_in = models.BigIntegerField()
@@ -256,6 +233,37 @@ class AccountRecovery(models.Model):
     email = models.EmailField()
 
 
+class Paiements(models.Model):
+    id = models.IntegerField(primary_key=True)
+    utilisateur_id = models.ForeignKey(Utilisateur, to_field='id',
+        db_column='utilisateur_id', related_name='paiements',
+    )
+    rezoteur_id = models.IntegerField()
+    timestamp = models.IntegerField()
+    moyenpaiement = models.CharField(db_column='moyenPaiement', max_length=7)
+    banque_id = models.IntegerField()
+    chknumero = models.IntegerField(db_column='chkNumero')
+    trezpointage = models.IntegerField(db_column='trezPointage')
+    commentaires = models.TextField()
+    class Meta:
+        managed = False
+        db_table = 'paiements'
+
+
+class PaiementsVentilations(models.Model):
+    id = models.IntegerField(primary_key=True)
+    paiement_id = models.ForeignKey(Paiements, to_field='id',
+        db_column='paiement_id', related_name='paiements_ventilations',
+    )
+    montant = models.DecimalField(max_digits=10, decimal_places=2)
+    prixunitaire = models.DecimalField(
+       db_column='prixUnitaire', max_digits=10, decimal_places=2
+    )
+    affectation = models.CharField(max_length=10)
+    class Meta:
+        managed = False
+        db_table = 'paiements_ventilations'
+
 from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
 from django.core.urlresolvers import reverse
@@ -276,7 +284,58 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
             )
         except:
             return None
-
+    
+    def expire_on(self):
+        end_timestamp = 0
+        for paiement in Utilisateur.objects.using(
+                    'rezo',
+                ).select_related(
+                    'paiements',
+                ).get(
+                    pk=self.id_rezo,
+                ).paiements.all():
+            
+            if paiement.timestamp > end_timestamp:
+                end_timestamp = paiement.timestamp
+            
+            virt_amount = 0
+            
+            # Starting from 01/08/2014, the number of paying months goes
+            # from 10 to 8
+            if paiement.timestamp > 1406851200:
+                yearly_paying_months = 8
+            else:
+                yearly_paying_months = 10
+            
+            for ventilation in Paiements.objects.using(
+                        'rezo',
+                    ).select_related(
+                        'paiements_ventilations',
+                    ).get(
+                        id=paiement.id,
+                    ).paiements_ventilations.all():
+                    
+                while ventilation.montant > 0:
+                    if ventilation.montant >= yearly_paying_months * ventilation.prixunitaire:
+                        virt_amount += 12 * ventilation.prixunitaire
+                        ventilation.montant -= yearly_paying_months * ventilation.prixunitaire
+                    else:
+                        virt_amount += ventilation.montant
+                        ventilation.montant = 0
+        
+        end_date = datetime.fromtimestamp(end_timestamp)
+        
+        year = end_date.year + virt_amount/ventilation.prixunitaire/12
+        
+        month = int(float(end_date.month + virt_amount/ventilation.prixunitaire % \
+            12) + 365.25/12 * float((virt_amount % ventilation.prixunitaire) /\
+            ventilation.prixunitaire / monthrange(year, end_date.month)[1]))
+        
+        day = int(float(end_date.day) + 365.25/12 * float((virt_amount % ventilation.prixunitaire)/\
+            ventilation.prixunitaire % monthrange(year, month)[1]))
+        
+        return end_date.replace(year, month, day)
+    
     @cached_property
     def get_related_groups(self):
         posts = self.post.all()
