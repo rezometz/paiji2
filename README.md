@@ -32,6 +32,15 @@ file as settings.py (in the paiji2 directory) :
 Then open the settings.py file and change the different environments variables
 as you wish.
 
+### Static Files ###
+
+First you will need to install nodejs and bower.
+
+    npm install -g bower
+
+Then in django to fetch the JS and CSS files run:
+
+    python manage.py bower install
 
 ### Debug mode
 You are now fully prepared to work on on the project on development mode. The project can be launched using :
