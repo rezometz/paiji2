@@ -5,14 +5,3 @@
         {% render_module module %}
     </div>
 {% endfor %}
-
-<script type="text/javascript">
-.bind({
-    beforeunload: function(ev) {
-        ev.preventDefault();
-    },
-    unload: function(ev) {
-        ev.preventDefault();
-    }
-});
-</script>
