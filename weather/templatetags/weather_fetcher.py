@@ -23,8 +23,15 @@ class WeatherFetcher(object):
         # FIXME : The mapper should explains to which
         # weather corresponds each letter
         self.icon_mapper = {
-            '01': 'B', '02': 'H', '03': 'N', '04': 'Y', '09': 'Q',
-            '10': 'R', '11': '6', '13': '#', '50': 'M',
+            '01': 'day-sunny',
+            '02': 'day-cloudy',
+            '03': 'cloud',
+            '04': 'cloudy',
+            '09': 'showers',
+            '10': 'rain',
+            '11': 'lightning',
+            '13': 'snow',
+            '50': 'fog',
         }
 
     def fetchJson(self, url):
