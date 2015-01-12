@@ -115,3 +115,11 @@ hr {
 .sign-in {
 	background-color: #27ae60;
 }
+
+.cotisation-warning {
+    background-color: #c0392b;
+    font-size: 13px;
+    height: 100%;
+    padding: 1px 10px 1px 10px;
+    margin: 1px 0px;
+}

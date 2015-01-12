@@ -337,6 +337,10 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         return end_date.replace(year, month, day)
     
     @cached_property
+    def cotisation_warning(self):
+        return self.expire_on() > datetime.today() - datetime.timedelta(day=15)
+    
+    @cached_property
     def get_related_groups(self):
         posts = self.post.all()
         groups = []
