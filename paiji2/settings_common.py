@@ -36,14 +36,15 @@ INSTALLED_APPS = (
         'modular_blocks',
         'bulletin_board',
         'infoconcert',
-#        'debug_toolbar',
+        'djangobower',
+        #        'debug_toolbar',
         'south',
         'bootstrap3',
         'rezo',
         'survey',
         'social',
         'mettis',
-)
+        )
 
 MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,9 +80,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + (
+        'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
+BOWER_INSTALLED_APPS = (
+    'bootstrap',
+    'components-font-awesome',
+    'morris.js',
+)
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
 KEY_CACHE_FTPS = 'paiji2_ftps_data'
@@ -96,32 +109,32 @@ CACHE_MIDDLEWARE_SECONDS = 300
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 SUIT_CONFIG = {
-    'MENU_ICONS': {
-        'sites': 'icon-leaf',
-        'auth': 'icon-lock',
-        'backbone_calendar': 'icon-calendar',
-        'cov': 'icon-road',
-        'homepage_alert': 'icon-exclamation-sign',
-        'social': 'icon-user',
-        'survey': 'icon-tasks',
-    }
-}
+        'MENU_ICONS': {
+            'sites': 'icon-leaf',
+            'auth': 'icon-lock',
+            'backbone_calendar': 'icon-calendar',
+            'cov': 'icon-road',
+            'homepage_alert': 'icon-exclamation-sign',
+            'social': 'icon-user',
+            'survey': 'icon-tasks',
+            }
+        }
 
 TINYMCE_DEFAULT_CONFIG = {
-                'plugins': 'advimage,advlink,table,searchreplace,contextmenu,template,paste,save,autosave,media',
-                'mode':'exact',
-                'theme': 'advanced',
-                'cleanup_on_startup': True,
-                'custom_undo_redo_levels': 10,
-                #Theme options
-                'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontsizeselect",
-                'theme_advanced_buttons2' : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,forecolor",
-                'theme_advanced_buttons3' : "tablecontrols,|,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
-                'theme_advanced_toolbar_location' : "top",
-                'theme_advanced_statusbar_location' : "bottom",
+        'plugins': 'advimage,advlink,table,searchreplace,contextmenu,template,paste,save,autosave,media',
+        'mode':'exact',
+        'theme': 'advanced',
+        'cleanup_on_startup': True,
+        'custom_undo_redo_levels': 10,
+        #Theme options
+        'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontsizeselect",
+        'theme_advanced_buttons2' : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,forecolor",
+        'theme_advanced_buttons3' : "tablecontrols,|,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
+        'theme_advanced_toolbar_location' : "top",
+        'theme_advanced_statusbar_location' : "bottom",
 
-                'gecko_spellcheck' : True,
-            }
+        'gecko_spellcheck' : True,
+        }
 
 METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
