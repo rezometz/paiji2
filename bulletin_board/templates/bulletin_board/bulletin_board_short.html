@@ -2,7 +2,25 @@
 {% load readmore %}
 {% load staticfiles %}
 {% load bootstrap3 %}
+<form action="{{ bulletin_add }}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ request.user.first_name }}
+        </span>
+        {% bootstrap_field form.message show_label=False %}
+    </div>
+    <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+    <br />
+    {% buttons %}
+    <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
+    {% endbuttons %}
+    <div class="clearfix"></div>
+</form>
+
 <div class="row text-center">
+<!-- Just commenting that out for the time being, let's see how users react.
     {% if request.user.is_authenticated %}
     <div class="col-sm-4 unbreakable">
         <a href="{% url 'bulletin-add' %}">
@@ -10,7 +28,8 @@
         </a>
     </div>
     {% endif %}
-    <div class="col-sm-8 unbreakable">
+-->
+    <div class="col-sm-12 unbreakable">
         <a href="{% url 'bulletin-board' %}">Archives</a>
     </div>
 </div>
