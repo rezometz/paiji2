@@ -6,10 +6,12 @@
 First, you have to get the last release of this repository (or a previous one).
 For so, clone it into the directory of your choice :
 
-    git clone https://github.com/liusiqi43/paiji2.git
+    git clone https://github.com/rezometz/paiji2.git
 
 Then go into the newly created directory named "paiji2" which
 will be referenced as "working directory" in the next paragraphs.
+
+See http://wiki.rezometz.org for more details.
 
 ### Virtualenv
 As we are using new releases of python packages and to avoid 
@@ -20,7 +22,8 @@ First, you have to install virtualenv and virtualenvwrapper (recommended).
 
 Then create the virtualenv by typing (in your working directory) :
 
-    mkvirtualenv paiji2 --distribute -r 'requirements.txt'
+    mkvirtualenv paiji2 -r 'requirement/devs.txt'
+	pip install -r 'requirements/custom_packages.txt'
 
 ### Configure the website
 You can now configure your website. Start by copying the settings_example.py 
