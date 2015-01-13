@@ -61,6 +61,22 @@
                 {% endfor %}
             </tbody>
         </table>
+        
+        <h3>Cotisation</h3>
+        <table class="table table-striped">
+            <thead>
+               <tr>
+                    <th></th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Expiration</td>
+                    <td>{{ request.user.expire_on|date:"l j F Y" }}</td>
+                <tr>
+            </tbody>
+        </table>
         Si ces informations sont incorrectes, ou si tu as des équipements non enregistrés, merci de les faire enregistrer auprès du Rézo.
     </div>
 {% endcache %}
