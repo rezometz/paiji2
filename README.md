@@ -34,7 +34,7 @@ as you wish.
 
 ### Static Files ###
 
-First you will need to install nodejs and bower.
+First you will need to install nodejs and bower in the virtualenv.
 
     npm install -g bower
 
