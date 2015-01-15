@@ -30,7 +30,7 @@
             {% else %}
                 <span class="label label-danger">{{ item.get_annonce_type_display }}</span>
             {% endif %}
-                {{ item.good_until|date:'H:i, jS F' }}, {{ item.notes|readmore:10 }}
+            {{ item.notes|readmore:10 }}
         </span>
 
             <span class="text-muted"><small>il y a {{ item.posted_at|timesince }}</small></span>
