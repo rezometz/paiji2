@@ -13,27 +13,27 @@
 {% block content %}
     <div class="well">
         {% if form.instance and form.instance.pk %}
-            <h3>{% trans 'Modifier un covoiturage' %}</h3>
+            <h3>Modifier un covoiturage</h3>
         {% else %}
-            <h3>{% trans 'Proposer/Chercher un covoiturage' %}</h3>
+            <h3>Proposer/Chercher un covoiturage</h3>
         {% endif %}
 
         <form action="{{ request.get_full_path }}" method="post" role="form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="annonceur">{% trans 'Annonceur' %}</label>
+                <label for="annonceur">L'annonceur</label>
                 <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
             </div>
 
             <div class="form-group">
-                <label for="annonce_type">{% trans 'Type d'annonce' %}</label>
+                <label for="annonce_type">Type d'annonce</label>
                 {% bootstrap_field form.annonce_type show_label=False %}
 
-                <label for="good_until">{% trans 'Heure de départ' %}</label>
+                <label for="good_until">Valid jusqu'à</label>
                 {% bootstrap_field form.good_until show_label=False %}
 
-                <label for="annonceur">{% trans 'Précisions' %}</label>
-                <p class="help-block">Ex: Metz-Paris-Compiègne, vendredi vers 17h, 3 Places au PAPS à 15€/trajet, retour le dimenche vers 18h</p>
+                <label for="annonceur">Notes</label>
+                <p class="help-block">ex: Metz-Paris-Compiègne, vendredi vers 17h, 3 Places au PAPS à 15€/trajet, retour le dimenche vers 18h</p>
                 {% bootstrap_field form.notes show_label=False %}
             </div>
 
@@ -42,9 +42,9 @@
             {% buttons %}
                 <button type="submit" class="btn btn-success pull-right">
                     {% if form.instance and form.instance.pk %}
-                        {% trans 'Mettre à jour' %}
+                        Mettre à jour
                     {% else %}
-                        {% trans 'Ajouter' %}
+                        Ajouter
                     {% endif %}
                 </button>
             {% endbuttons %}
