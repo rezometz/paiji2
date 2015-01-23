@@ -3,7 +3,7 @@
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
 		<li>
-    		<a href="mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.message|add:'"'|urlencode }}"
+    		<a href="mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.content|add:'"'|urlencode }}"
             title="{{ comment.author.first_name }} {{ comment.author.last_name }} ({{ comment.author }})">
             <i class="glyphicon glyphicon-envelope"></i>
             {{ comment.author.first_name }}
