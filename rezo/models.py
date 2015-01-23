@@ -235,7 +235,7 @@ class AccountRecovery(models.Model):
 
 class Paiements(models.Model):
     id = models.IntegerField(primary_key=True)
-    utilisateur_id = models.ForeignKey(Utilisateur, to_field='id',
+    user = models.ForeignKey(Utilisateur, to_field='id',
         db_column='utilisateur_id', related_name='paiements',
     )
     rezoteur_id = models.IntegerField()
@@ -285,54 +285,55 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         except:
             return None
     
+    @cached_property
     def expire_on(self):
-        end_timestamp = 0
-        for paiement in Utilisateur.objects.using(
-                    'rezo',
-                ).select_related(
-                    'paiements',
-                ).get(
-                    pk=self.id_rezo,
-                ).paiements.all():
+        end_date = datetime.min
+        
+        payments = Paiements.objects.using('rezo').select_related(
+                'paiements'
+            ).filter(
+                user=self.id_rezo
+            )
+        
+        unit_price = 0
+        for payment in payments:
+            # date at which the payment has been made
+            pay_day = datetime.fromtimestamp(payment.timestamp)
             
-            if paiement.timestamp > end_timestamp:
-                end_timestamp = paiement.timestamp
+            if pay_day > end_date:
+                end_date = pay_day
             
             virt_amount = 0
             
             # Starting from 01/08/2014, the number of paying months goes
             # from 10 to 8
-            if paiement.timestamp > 1406851200:
+            if pay_day > datetime(2014,8,1):
                 yearly_paying_months = 8
             else:
                 yearly_paying_months = 10
             
-            for ventilation in Paiements.objects.using(
-                        'rezo',
-                    ).select_related(
-                        'paiements_ventilations',
-                    ).get(
-                        id=paiement.id,
-                    ).paiements_ventilations.all():
-                    
-                while ventilation.montant > 0:
-                    if ventilation.montant >= yearly_paying_months * ventilation.prixunitaire:
-                        virt_amount += 12 * ventilation.prixunitaire
-                        ventilation.montant -= yearly_paying_months * ventilation.prixunitaire
+            for vent in payment.paiements_ventilations.all():
+                if(not unit_price):
+                    unit_price = vent.prixunitaire
+                while vent.montant > 0:
+                    if vent.montant >= yearly_paying_months * unit_price:
+                        virt_amount += 12 * unit_price
+                        vent.montant -= yearly_paying_months * unit_price
                     else:
-                        virt_amount += ventilation.montant
-                        ventilation.montant = 0
+                        virt_amount += vent.montant
+                        vent.montant = 0
         
-        end_date = datetime.fromtimestamp(end_timestamp)
+        unit_price = float(unit_price)
+        virt_amount = float(virt_amount)
         
-        year = end_date.year + virt_amount/ventilation.prixunitaire/12
+        year = int(end_date.year + virt_amount/(unit_price*12))
         
-        month = int(float(end_date.month + virt_amount/ventilation.prixunitaire % \
-            12) + 365.25/12 * float((virt_amount % ventilation.prixunitaire) /\
-            ventilation.prixunitaire / monthrange(year, end_date.month)[1]))
+        month = int(end_date.month + virt_amount/unit_price % 12 + \
+            365.25/12 * (virt_amount % unit_price) /\
+            unit_price / monthrange(year, end_date.month)[1])
         
-        day = int(float(end_date.day) + 365.25/12 * float((virt_amount % ventilation.prixunitaire)/\
-            ventilation.prixunitaire % monthrange(year, month)[1]))
+        day = int(end_date.day + 365.25/12 * (virt_amount % unit_price) / \
+            unit_price % monthrange(year, month)[1])
         
         return end_date.replace(year, month, day)
     
