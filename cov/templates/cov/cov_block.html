@@ -26,9 +26,9 @@
             <a href="mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.author.first_name }} </a>
 
             {% if item.annonce_type == 0 %}
-                <span class="label label-success">{{ item.get_annonce_type_display }}</span>
+                <span class="label label-success">{{ item.get_annonce_type_display }} {{ item.good_until|date:'H:i, jS F' }}</span>
             {% else %}
-                <span class="label label-danger">{{ item.get_annonce_type_display }}</span>
+                <span class="label label-danger">{{ item.get_annonce_type_display }} {{ item.good_until|date:'H:i, jS F' }}</span>
             {% endif %}
             {{ item.notes|readmore:10 }}
         </span>
