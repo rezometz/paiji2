@@ -67,8 +67,8 @@
                     {% if request.user.cotisation_warning %}
                         <div class="col-sm-12 quota-field-normal">
                             <div class="pull-left cotisation-warning">
-                            {% block trans %} 
-                                /!\ Votre cotisation expire le {{ request.user.expire_on|date:"d/m/Y" }} 
+                            {% block trans %}
+                                /!\ Votre cotisation expire le {{ request.user.expire_on|date:"d/m/Y" }}
                             {% endblock %}
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Services <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'cov-list' %}">Covoiturage</a></li>
-                        <li><a href="{% url 'bulletin-board' %}">Annonce</a></li>
+                        <li><a href="{% url 'bulletin-board' %}">Shoutbox</a></li>
                         <li class="divider"></li>
                         <li><a href="http://noodle.rez">Noodle</a></li>
                     </ul>
