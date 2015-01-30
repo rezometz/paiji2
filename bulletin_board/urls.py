@@ -8,12 +8,12 @@ from .views import *
 urlpatterns = patterns('',
     url(
         r'^board$',
-        NoteListView.as_view(),
+        login_required(NoteListView.as_view()),
         name="bulletin-board",
     ),
     url(
         r'^board/(?P<page>\d+)$',
-        NoteListView.as_view(),
+        login_required(NoteListView.as_view()),
         name="bulletin-board",
     ),
     url(
