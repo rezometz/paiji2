@@ -12,10 +12,7 @@ class CovModule(ModuleApp):
             name='cov',
             library='cov_tag',
             tag='get_cov',
-            cache_time=60,
-            kwargs={
-                'nb': 5,
-            }
+            cache_time=60
         ),
     ]
 modules.register(CovModule)
