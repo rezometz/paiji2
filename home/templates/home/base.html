@@ -33,9 +33,9 @@
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
-            {% blocktrans %}Your sidebars are empty! You can fill them with widgets (cov, bulletin boards, next bus stops and so on) using the following link:{% endblocktrans %}
+            {% blocktrans %}Votre page est vide, vous pouvez y ajouter des modules (covoiturage, shoutbox, météo, etc...) en utilisant le lien suivant : {% endblocktrans %}
             <br />
-            <a href="{% url 'modular-change' %}">{% trans 'I want to change my layout' %}</a>
+            <a href="{% url 'modular-change' %}">{% trans 'Personaliser ma page' %}</a>
             </p>
         </div>
         {% endif %}
@@ -56,12 +56,12 @@
                     {% endcache %}
                     <div class="col-sm-2">
                         <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
-                            {% trans 'Sign out' %}
+                            {% trans 'Déconnexion' %}
                         </a>
                     </div>
                     {% else %}
                     <div class="col-sm-8">
-                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Sign in' %}</a>
+                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connection' %}</a>
                     </div>
                     {% endif %}
                     {% if request.user.cotisation_warning %}
@@ -97,7 +97,7 @@
                     <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                         <i class="glyphicon glyphicon-user"></i>
-                        {% trans 'My groups' %}
+                        {% trans 'Mes groupes' %}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -113,7 +113,7 @@
                     <li>
                     <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
                         <div class="form-group">
-                            <input type="text" name="query" class="form-control" placeholder="Search Porygon...">
+                            <input type="text" name="query" class="form-control" placeholder="{% trans 'Chercher sur les FTPs' %}">
                         </div>
                     </form>
                     </li>
@@ -152,7 +152,7 @@
                     </ul>
                     </li>
                     <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">Inscription des groupes</a></li>
                         <li><a href="https://rezo.rez/">Interface de gestion</a></li>
@@ -178,10 +178,10 @@
                     <p>Copyright &copy; Rézo, Supélec Metz, 2014</p>
                 </div>
                 <div class="col-lg-3">
-                    <p><a href="{% url 'modular-change' %}">Changer mon layout</a></p>
+                    <p><a href="{% url 'modular-change' %}">{% trans 'Personnaliser ma page' %}</a></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="pull-right">bugs ou suggestions: <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>
+                    <p class="pull-right">{% trans 'bugs ou suggestions : ' %} <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>
                 </div>
             </div>
             </footer>
