@@ -2,20 +2,21 @@
 
 
 {% load bootstrap3 %}
+{% load i18n %}
 
 {% block title %}
     {% if form.instance and form.instance.pk %}
-    Modify a note
+        {% trans 'Éditer un message' %}
     {% else %}
-    Create a note
+        {% trans 'Poster un message' %}
     {% endif %}
 {% endblock %}
 {% block content %}
 <div class="well">
     {% if form.instance and form.instance.pk %}
-    <h3>Modifier une note</h3>
+    <h3>{% trans 'Éditer un message' %}</h3>
     {% else %}
-    <h3>Ajouter une note</h3>
+    <h3>{% trans 'Poster un message' %}</h3>
     {% endif %}
 
     <form action="{{ request.get_full_path }}" method="post">
