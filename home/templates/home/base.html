@@ -61,7 +61,7 @@
                     </div>
                     {% else %}
                     <div class="col-sm-8">
-                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connection' %}</a>
+                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connexion' %}</a>
                     </div>
                     {% endif %}
                     {% if request.user.cotisation_warning %}
@@ -118,45 +118,38 @@
                     </form>
                     </li>
                     <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Social <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rez <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="http://integrator.rez">Integrators</a></li>
-                        <li><a href="#">Assos</a></li>
-                        <li><a href="http://calendar.rez">Calendar</a></li>
-                    </ul>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Services <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'cov-list' %}">Covoiturage</a></li>
-                        <li><a href="{% url 'bulletin-board' %}">Shoutbox</a></li>
+                        <li><a href="http://noodle.rez">Polardator</a></li>
                         <li class="divider"></li>
-                        <li><a href="http://noodle.rez">Noodle</a></li>
+                        <!-- <li><a href="http://calendar.rez">Calendar</a></li> Waiting for the calendar module -->
+                        <!-- <li><a href="#">Assos</a></li> Waiting for the assoc module -->
+                        <li><a href="{% url 'cov-list' %}">{% trans 'Covoiturage' %}</a></li>
+                        <li><a href="{% url 'bulletin-board' %}">Shoutbox</a></li>
                     </ul>
                     </li>
                     <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Ressources <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">FTPs <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {% get_ftps %}
                     </ul>
                     </li>
                     <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Links <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supélec <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">ENT</a></li>
                         <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
-                        <li><a href="http://sogo.supelec.fr/">Webmail</a></li>
-                        <li><a href="http://supldap.rez/">SupLDAP</a></li>
-                        <li><a href="http://game.rez/">Hades</a></li>
-                        <li><a href="http://wiki.rez/">Wiki</a></li>
+                        <li><a href="http://sogo.supelec.fr/">Webmail (sogo)</a></li>
                     </ul>
                     </li>
                     <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo<b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">Inscription des groupes</a></li>
-                        <li><a href="https://rezo.rez/">Interface de gestion</a></li>
-			<li><a href="{% url 'account' %}">Quotas & équipements rézotés</a></li>
+                        <li><a href="https://rezo.rez/">rezo.rez</a></li>
+                        <li><a href="{% url 'account' %}">{% trans 'Quotas & équipements rézotés' %}</a></li>
+                        <li><a href="http://wiki.rez/">wiki.rez</a></li>
                     </ul>
                     </li>
                 </ul>
