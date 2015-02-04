@@ -348,7 +348,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         for post in posts:
             groups.append(post.bureau.group)
         return groups
-
+            
     def get_absolute_url(self):
         return reverse('index')
 

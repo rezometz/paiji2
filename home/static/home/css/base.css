@@ -123,3 +123,7 @@ hr {
     padding: 1px 10px 1px 10px;
     margin: 1px 0px;
 }
+
+.disabled-eq {
+    background-color: #e67e22;
+}

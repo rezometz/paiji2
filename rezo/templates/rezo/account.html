@@ -4,6 +4,7 @@
 
 {% block content %}
 {% load cache %}
+{% load i18n %}
 {% cache 60 'rezo-user-account' user.pk %}
     <div class="well">
         <h3>Quotas</h3>
@@ -39,16 +40,22 @@
         <h3>Équipements rézotés</h3>
         <table class="table table-striped">
             <thead>
-               <tr>
-                    <th>Type</th>
+                <tr>
+                    <th>{% trans 'État' %}</th>
+                    <th>{% trans 'Type' %}</th>
                     <th>IP</th>
-                    <th>MAC Adresse</th>
+                    <th>{% trans 'Adresses MAC' %}</th>
                     <th>DNS</th>
                 </tr>
             </thead>
             <tbody>
                 {% for equipement in request.user.get_rezo.equipements.all %}
                 <tr>
+                    {% if equipement.etat == 'STATE_ACTIVE' %}
+                        <td>{% trans 'Activé' %}</td>
+                    {% else %}
+                        <td>{% trans 'Désactivé' %}</td>
+                    {% endif %}
                     <td>{{ equipement.type_equip }}</td>
                     <td>{{ equipement.ip }}</td>
                     <td>
