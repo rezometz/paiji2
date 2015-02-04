@@ -33,9 +33,9 @@
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
-            {% blocktrans %}Votre page est vide, vous pouvez y ajouter des modules (covoiturage, shoutbox, météo, etc...) en utilisant le lien suivant : {% endblocktrans %}
+            {% blocktrans %}Votre page est vide, vous pouvez y ajouter des modules (covoiturage, shoutbox, météo, etc.) en utilisant le lien suivant : {% endblocktrans %}
             <br />
-            <a href="{% url 'modular-change' %}">{% trans 'Personaliser ma page' %}</a>
+            <a href="{% url 'modular-change' %}">{% trans 'Personnaliser ma page' %}</a>
             </p>
         </div>
         {% endif %}
