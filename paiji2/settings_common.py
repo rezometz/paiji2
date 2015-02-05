@@ -95,6 +95,7 @@ BOWER_INSTALLED_APPS = (
     'components-font-awesome',
     'morris.js',
     'weather-icons',
+    'jquery-ui',
 )
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
