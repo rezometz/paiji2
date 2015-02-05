@@ -138,5 +138,15 @@ TINYMCE_DEFAULT_CONFIG = {
         'gecko_spellcheck' : True,
         }
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
+
 METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
