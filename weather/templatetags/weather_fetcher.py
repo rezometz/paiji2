@@ -55,10 +55,9 @@ class WeatherFetcher(object):
             w['weather'][0]['description'] for w in forcast['list']
         ]
         description = current_description + forcast_description
-        icons = [
-            self.icon_mapper[w['weather'][0]['icon'][:-1]]
-            for w in forcast['list']
-        ]
+
+        icons = [self.icon_mapper[w['weather'][0]['icon'][:2]]
+                for x in forcast['list']]
 
         for x in xrange(4):
             list_weather.append({
@@ -67,9 +66,9 @@ class WeatherFetcher(object):
                 'min': temperature['forcast'][x]['temp']['min'],
                 'max': temperature['forcast'][x]['temp']['max'],
                 'desc': description[x],
-            })
-        list_weather[0]['current'] = current['main']['temp']
+                })
+            list_weather[0]['current'] = current['main']['temp']
         return {
-            'city': current['name'],
-            'list_weather': list_weather,
-        }
+                'city': current['name'],
+                'list_weather': list_weather,
+                }
