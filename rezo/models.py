@@ -315,25 +315,29 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
             for vent in payment.paiements_ventilations.all():
                 if(not unit_price):
                     unit_price = vent.prixunitaire
-                while vent.montant > 0:
-                    if vent.montant >= yearly_paying_months * unit_price:
-                        virt_amount += 12 * unit_price
-                        vent.montant -= yearly_paying_months * unit_price
-                    else:
-                        virt_amount += vent.montant
-                        vent.montant = 0
+                
+                if vent.affectation == "COTISATION":
+                    while vent.montant > 0:
+                        if vent.montant >= yearly_paying_months * unit_price:
+                            virt_amount += 12 * unit_price
+                            vent.montant -= yearly_paying_months * unit_price
+                        else:
+                            virt_amount += vent.montant
+                            vent.montant = 0
         
         unit_price = float(unit_price)
         virt_amount = float(virt_amount)
         
         year = int(end_date.year + virt_amount/(unit_price*12))
         
-        month = int(end_date.month + virt_amount/unit_price % 12 + \
-            365.25/12 * (virt_amount % unit_price) /\
-            unit_price / monthrange(year, end_date.month)[1])
+        month = int(end_date.month + 
+            virt_amount/unit_price % 12 + 
+            365.25/12 * (virt_amount % unit_price) / unit_price / monthrange(year, end_date.month)[1])
         
         day = int(end_date.day + 365.25/12 * (virt_amount % unit_price) / \
-            unit_price % monthrange(year, month)[1])
+            unit_price) % monthrange(year, month)[1]
+        if day == 0:
+            day = monthrange(year, month)[1]
         
         return end_date.replace(year, month, day)
     
