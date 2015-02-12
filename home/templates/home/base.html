@@ -2,6 +2,7 @@
 {% load cache %}
 {% load i18n %}
 {% load get_ftps %}
+{% load copyright %}
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -124,8 +125,6 @@
                         <li><a href="http://integrator.rez">Integrators</a></li>
                         <li><a href="http://noodle.rez">Polardator</a></li>
                         <li class="divider"></li>
-                        <!-- <li><a href="http://calendar.rez">Calendar</a></li> Waiting for the calendar module -->
-                        <!-- <li><a href="#">Assos</a></li> Waiting for the assoc module -->
                         <li><a href="{% url 'cov-list' %}">{% trans 'Covoiturage' %}</a></li>
                         <li><a href="{% url 'bulletin-board' %}">Shoutbox</a></li>
                     </ul>
@@ -170,7 +169,7 @@
             <hr>
             <div class="row">
                 <div class="col-lg-5">
-                    <p>Copyright &copy; Rézo, Supélec Metz, 2014</p>
+                    <p>Copyright &copy; Rézo, Supélec Metz, {% copyright_year %}</p>
                 </div>
                 <div class="col-lg-3">
                     <p><a href="{% url 'modular-change' %}">{% trans 'Personnaliser ma page' %}</a></p>

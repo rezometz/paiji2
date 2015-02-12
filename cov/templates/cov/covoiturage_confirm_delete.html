@@ -1,11 +1,12 @@
 {% extends "home/layout_three_columns.html" %}
 {% load bootstrap3 %}
+{% load i18n %}
 
-{% block title %}Confirm deleting a covoiturage{% endblock %}
+{% block title %}{% blocktrans %}Confirmation de suppression d'un covoiturage{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div class="well">
-    <h3>Vous allez supprimer cette covoiturage ?</h3>
+    <h3>{% trans 'Voulez-vous vraiment supprimer ce covoiturage ?' %}</h3>
     <div>'{{ object.notes }}'</div>
 
     <form action="" method="post" role="form">
@@ -15,7 +16,7 @@
 
         {% buttons %}
             <button type="submit" class="btn btn-danger pull-right">
-                Supprimer
+                {% trans 'Supprimer' %}
             </button>
         {% endbuttons %}
         <div class="clearfix"></div>

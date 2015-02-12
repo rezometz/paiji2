@@ -3,19 +3,19 @@
 {% load i18n %}
 
 {% if no_poll %}
-{% trans 'There is no poll at this moment.' %}
+{% trans 'Pas de sondage en cours' %}
 {% else %}
     <h3>{% blocktrans %}Sondage : {{ poll }}{% endblocktrans %}</h3>
 
     {% if has_voted %}
         {% display_poll_chart poll=poll %}
-        {% blocktrans with votes_count=poll.votes_count %}{{ votes_count }} personnes ont déjà voté !{% endblocktrans %}
+        {% blocktrans with votes_count=poll.votes_count %}{{ votes_count }} personnes ont déjà voté{% endblocktrans %}
     {% else %}
         <form method="post" action="{% url 'survey-vote' %}">
             {% csrf_token %}
             {% bootstrap_field form.choice show_label=False %}
             {% buttons %}
-                <input type="submit" value="{% trans 'Vote' %}" class="btn btn-primary" />
+                <input type="submit" value="{% trans 'Voter' %}" class="btn btn-primary" />
             {% endbuttons %}
         </form>
     {% endif %}
