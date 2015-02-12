@@ -1,5 +1,5 @@
 {% load i18n %}
-<h3>{% trans 'Next stops' %}</h3>
+<h3>{% trans 'Prochains arrêts du Mettis' %}</h3>
 <div class="list-group">
     {% for stop in stops %}
     {% if error %}
@@ -7,11 +7,9 @@
     {% else %}
     <div class="list-group-item">
         <h5 class="list-group-item-heading">
-                {{ stop.line }} - {% blocktrans with head=stop.direction stop=stop.from_stop %}Heading {{ head }} - from stop {{ stop }}{% endblocktrans %}
+                {{ stop.line }} - {% blocktrans with head=stop.direction stop=stop.from_stop %}Direction {{ head }} - arrêt {{ stop }}{% endblocktrans %}
 
-            <a href="{{ url }}" title="{% trans 'Bus timetable' %}" target="_blank">
-                [{% trans 'Bus timetable' %}]
-            </a>
+            <a href="{{ url }}" title="{% trans 'Horaires de bus' %}" target="_blank">[{% trans 'Horaires de bus' %}]</a>
         </h5>
         <ul class="list-group-item-text">
             {% for time in stop.next_stops %}

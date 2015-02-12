@@ -5,11 +5,11 @@
 {% if no_poll %}
 {% trans 'There is no poll at this moment.' %}
 {% else %}
-    <h3>{% blocktrans %}Survey: {{ poll }}{% endblocktrans %}</h3>
+    <h3>{% blocktrans %}Sondage : {{ poll }}{% endblocktrans %}</h3>
 
     {% if has_voted %}
         {% display_poll_chart poll=poll %}
-        {% blocktrans with votes_count=poll.votes_count %}{{ votes_count }} people have already voted{% endblocktrans %}
+        {% blocktrans with votes_count=poll.votes_count %}{{ votes_count }} personnes ont déjà voté !{% endblocktrans %}
     {% else %}
         <form method="post" action="{% url 'survey-vote' %}">
             {% csrf_token %}
@@ -22,5 +22,5 @@
 
 {% endif %}
 <p>
-<a href="{% url 'survey-list' %}">{% trans 'Old polls' %}</a>
+<a href="{% url 'survey-list' %}">{% trans 'Anciens sondages' %}</a>
 </p>

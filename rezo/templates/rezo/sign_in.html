@@ -12,10 +12,10 @@
         {% bootstrap_form form %}
         {% buttons %}
         <a href="{% url 'password-reset' %}" class="btn btn-warning">
-            {% trans 'I forgot my password' %}
+            {% trans 'J&#39;ai oublié mon mot de passe' %}
         </a>
         <button type="submit" class="btn btn-success pull-right">
-            Sign in
+            {% trans 'Connexion' %}
         </button>
         {% endbuttons %}
         <div class="clearfix"></div>
