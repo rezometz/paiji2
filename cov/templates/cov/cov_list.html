@@ -9,7 +9,7 @@
 {% block content %}
 
     <div class="well">
-        <h3>Liste des derniers covoiturages</h3>
+        <h3>{% trans 'Liste des derniers covoiturages' %}</h3>
         <ul class="list-unstyled">
             {% for cov in covs %}
             {% if not cov.isGood %}

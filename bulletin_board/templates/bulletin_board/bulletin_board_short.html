@@ -19,21 +19,6 @@
     <div class="clearfix"></div>
 </form>
 
-<div class="row text-center">
-<!-- Just commenting that out for the time being, let's see how users react.
-    {% if request.user.is_authenticated %}
-    <div class="col-sm-4 unbreakable">
-        <a href="{% url 'bulletin-add' %}">
-            Ajouter
-        </a>
-    </div>
-    {% endif %}
--->
-    <div class="col-sm-12 unbreakable">
-        <a href="{% url 'bulletin-board' %}">Archives</a>
-    </div>
-</div>
-
 <ul class="list-unstyled">
     {% for note in notes %}
     <li>
@@ -55,3 +40,18 @@
     <hr>
     {% endfor %}
 </ul>
+
+<div class="row text-center">
+<!-- Just commenting that out for the time being, let's see how users react.
+    {% if request.user.is_authenticated %}
+    <div class="col-sm-4 unbreakable">
+        <a href="{% url 'bulletin-add' %}">
+            Ajouter
+        </a>
+    </div>
+    {% endif %}
+-->
+    <div class="col-sm-12 unbreakable">
+        <a href="{% url 'bulletin-board' %}">Archives</a>
+    </div>
+</div>

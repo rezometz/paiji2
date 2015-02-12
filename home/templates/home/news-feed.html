@@ -1,8 +1,9 @@
 {% load readmore %}
 {% load comment %}
+{% load i18n %}
 <div class="row">
 	<div class="col-md-8">
-        <h3>NewsFeed
+        <h3>{% trans 'Actualités' %}
         	<span class="newsfeed-action">
 		        {% if request.user.is_authenticated %}
 		        <a href="{% url 'newsfeed-add' %}"><i class="fa fa-plus"></i></a>

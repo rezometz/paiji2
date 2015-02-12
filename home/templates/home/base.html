@@ -63,7 +63,7 @@
                     {% else %}
                     <div class="col-sm-8">
                         <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connexion' %}</a>
-                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'Récupérer un compte' %}</a>
+                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'S&#39;enregistrer' %}</a>
                     </div>
                     {% endif %}
                     {% if request.user.cotisation_warning %}

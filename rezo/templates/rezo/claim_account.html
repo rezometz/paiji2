@@ -7,39 +7,46 @@
     <div class="well">
         <h2>Compte Rézo</h2>
         <p>
-        Cette page va vous servir à récupérer une interface
-        de gestion pour votre compte Rézo si vous en possédez un.
+		{% blocktrans %}
+			Cette page va vous servir à récupérer une interface
+			de gestion pour votre compte Rézo si vous en possédez un.
+		{% endblocktrans %}
         <br />
+        {% blocktrans %}
         Si jamais vous rencontrez le moindre souci durant la
         récupération de votre compte, merci de nous envoyez un mail
-        à l'adresse suivante :<br />
+        à l'adresse suivante :
+        {% endblocktrans %}<br />
         &nbsp;&nbsp;&nbsp;
         <a href="mailto:paiji@metz.supelec.fr">paiji@metz.supelec.fr</a>.
         </p>
         {% if utilisateur != None %}
-        <p>La routine a trouvé une correspondance dans la base de données.</p>
         <p>
-        Il semble que vous soyez le propriétaire du compte de l'utilisateur :
+        {% blocktrans %}Il semble que vous soyez le propriétaire du compte de l'utilisateur :{% endblocktrans %}
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ utilisateur.prenom }} {{ utilisateur.nom }}</b>
         </p>
         <p class="alert alert-danger">
-        <b>Ce n'est pas mon compte : </b> contactez-nous.
+        <b>{% trans 'Ce n&#39;est pas mon compte' %} : </b> {% trans 'contactez-nous.' %}
         </p>
-        <h3>Je suis bien propriétaire du compte</h3>
+        <h3>{% trans 'Je suis bien propriétaire du compte' %}</h3>
         {% if not email_verifie %}
         <p class="alert alert-danger">
+			{% blocktrans %}
             Votre adresse mail (prenom.nom@metz.supelec.fr par défaut) n'est pas encore vérifiée auprès du Rézo!
             Demandez au Rézo de vous envoyer un nouveau lien de confirmation.
+            {% endblocktrans %}
         </p>
         {% elif account_registered %}
         <p class="alert alert-danger">
-            Votre compte a déjà été enregistré.
+            {% trans 'Votre compte a déjà été enregistré.' %}
         </p>
         {% else %}
         <p>
+			{% blocktrans %}
             En confirmant le lien ci-dessous, un email vous sera envoyé vous
             permettant de récupérer votre compte.
+            {% endblocktrans %}
         </p>
         <form action="{{ request.get_full_path }}" method="post">
             {% csrf_token %}
