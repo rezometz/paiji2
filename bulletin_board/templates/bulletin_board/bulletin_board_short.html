@@ -11,7 +11,7 @@
         </span>
         {% bootstrap_field form.message show_label=False %}
     </div>
-    <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
+    <input type="hidden" value="{{ request.path }}" name="next" />
     <br />
     {% buttons %}
     <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
