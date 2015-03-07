@@ -1,9 +1,11 @@
 {% extends "home/layout_three_columns.html" %}
 
+{% load cache %}
+{% load bulletin %}
+
 {% block title%}Shoutbox{% endblock %}
 
 {% block content %}
-{% load cache %}
 {% cache 60 bulletin-board page_obj.number %}
     <div class="well">
         <h3>Archives</h3>
@@ -17,7 +19,7 @@
                     {{ note.author.first_name }}
                 </a>
             </span>
-            {{ note.message|urlize }}<br />
+            {{ note.message|urlize2 }}<br />
             <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
             </li>
             <hr>
