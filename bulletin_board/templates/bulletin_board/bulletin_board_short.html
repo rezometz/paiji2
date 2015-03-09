@@ -1,7 +1,10 @@
 <h3>Shoutbox</h3>
+
 {% load readmore %}
 {% load staticfiles %}
 {% load bootstrap3 %}
+{% load bulletin %}
+
 <form action="{{ bulletin_add }}" method="post">
     {% csrf_token %}
     <div class="input-group">
@@ -34,7 +37,7 @@
                 <a href="{% url 'bulletin-delete' note.id %}"><i class="fa fa-trash-o"></i></a></span>
         {% endif %}
     </div>
-    {{ note.message|urlize|readmore:20 }}
+    {{ note.message|urlize2|readmore:20 }}
     <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
     </li>
     <hr>
