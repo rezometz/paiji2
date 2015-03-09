@@ -6,3 +6,6 @@ settings_dev.py
 *.swp
 paiji2/settings.py
 db.sqlite3
+node-v*
+components/
+node_modules/
