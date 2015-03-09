@@ -11,7 +11,7 @@
 #    'django-admin.py sqlcustom [appname]'
 # into your database.
 from __future__ import unicode_literals
-from datetime import datetime
+from datetime import datetime, timedelta
 from calendar import monthrange
 
 from django.db import models
@@ -328,18 +328,10 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         unit_price = float(unit_price)
         virt_amount = float(virt_amount)
         
-        year = int(end_date.year + virt_amount/(unit_price*12))
+        days = int(365.25/12 * (virt_amount / unit_price))
+        import pdb; pdb.set_trace()
         
-        month = int(end_date.month + 
-            virt_amount/unit_price % 12 + 
-            365.25/12 * (virt_amount % unit_price) / unit_price / monthrange(year, end_date.month)[1])
-        
-        day = int(end_date.day + 365.25/12 * (virt_amount % unit_price) / \
-            unit_price) % monthrange(year, month)[1]
-        if day == 0:
-            day = monthrange(year, month)[1]
-        
-        return end_date.replace(year, month, day)
+        return end_date + timedelta(days)
     
     @cached_property
     def cotisation_warning(self):
