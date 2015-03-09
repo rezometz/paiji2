@@ -329,7 +329,6 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         virt_amount = float(virt_amount)
         
         days = int(365.25/12 * (virt_amount / unit_price))
-        import pdb; pdb.set_trace()
         
         return end_date + timedelta(days)
     
