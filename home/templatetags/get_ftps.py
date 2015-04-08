@@ -12,7 +12,7 @@ def fetchFTPs():
     try:
         response = urllib2.urlopen('http://porygon.rez', timeout=1).read()
         soup = BeautifulSoup(response)
-        for ftp in soup.select('#host a'):
+        for ftp in soup.select('.host a'):
             ftps.append({
                 'name': ftp.text,
                 'link': ftp.get('href')
