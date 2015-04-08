@@ -12,14 +12,14 @@ def fetchFTPs():
     try:
         response = urllib2.urlopen('http://porygon.rez', timeout=1).read()
         soup = BeautifulSoup(response)
-        for ftp in soup.select('#ftp_list a'):
+        for ftp in soup.select('#host a'):
             ftps.append({
                 'name': ftp.text,
                 'link': ftp.get('href')
                 })
     except urllib2.URLError:	#Porygon not available
         pass
-        
+
     return ftps
 
 @register.inclusion_tag('home/ftps_list.html')
