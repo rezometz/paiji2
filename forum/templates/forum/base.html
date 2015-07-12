@@ -6,16 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<nav id="forum-nav">
-<ul id="forum-ul">
+<div class="well module">
+<h1>Forum</h1>
+<nav class="forum-nav">
+<ul class="forum-ul">
     <li><a href="{% url 'forum:topic-list' %}">Tous les topics</a></li>
     <li><a href="{% url 'forum:recent-list' %}">Messages récemment publiés</a></li>
     <li><a href="{% url 'forum:new' %}">Ouvrir un nouveau topic</a></li>
 </ul>
-</nav>
-
 <header id="forum-header">{% block forum_header %}{% endblock %}</header>
 <section id="forum-content">{% block forum_content %}{% endblock %}</section>
 <footer id="forum-footer">{% block forum_footer %}{% endblock %}</footer>
+</div>
 {% endblock %}
-

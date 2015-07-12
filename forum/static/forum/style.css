@@ -26,19 +26,21 @@ header.forum-topic {
     margin-top: 1em;
 }
 
-span.forum-par {
-    font-style: italic;
-}
-
-span.forum-author {
-    font-variant: small-caps;
-}
-
-span.forum-date {
-    font-style: italic;
-    color: #444;
-}
-
 a.forum-message-title {
     font-weight: bold;
+}
+
+.forum-ul , .forum-pages , .forum-topic-nav , .forum-time-nav , .forum-logic-nav  {
+    text-align: center;
+}
+
+.forum-ul li, .forum-pages li, .forum-topic-nav li, .forum-time-nav li, .forum-logic-nav li {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+a.forum-message-title:visited {
+    font-weight: bold;
+    color: #FFC121;
 }

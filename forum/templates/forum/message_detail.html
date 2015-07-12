@@ -17,6 +17,37 @@
 </ul>
 {% endif %}
 
+{% endblock %}
+
+{% block header_id %}
+    {% if msg == message %}
+        id="message_h"
+    {% elif msg == question %}
+        id="question_h"
+    {% endif  %}
+{% endblock %}
+
+{% block text %}
+    {% if msg == message %}
+        <section id="forum-message" class="forum-text">
+        {{ msg.text|urlize|linebreaks }}
+        </section>
+        <div class="forum-ans">
+            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+        </div>
+        {% block answer_form %}{% endblock %}
+    {% elif msg == question %}
+        <section id="forum-question" class="forum-text">
+        {{ msg.text|urlize|linebreaks }}
+        </section>
+        <div class="forum-ans">
+            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+        </div>
+    {% endif  %}
+{% endblock %}
+
+{% block forum_footer %}
+
 {% if prev or next %}
 <ul class="forum-time-nav">
     {% if prev %}
@@ -46,31 +77,4 @@
     {% endif %}
 </ul>
 {% endif %}
-{% endblock %}
-
-{% block header_id %}
-    {% if msg == message %}
-        id="message_h"
-    {% elif msg == question %}
-        id="question_h"
-    {% endif  %}
-{% endblock %}
-
-{% block text %}
-    {% if msg == message %}
-        <section id="forum-message" class="forum-text">
-        {{ msg.text|urlize|linebreaks }}
-        </section>
-        <div class="forum-ans">
-            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
-        </div>
-        {% block answer_form %}{% endblock %}
-    {% elif msg == question %}
-        <section id="forum-question" class="forum-text">
-        {{ msg.text|urlize|linebreaks }}
-        </section>
-        <div class="forum-ans">
-            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
-        </div>
-    {% endif  %}
 {% endblock %}
