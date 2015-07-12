@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^calendar/', include('backbone_calendar.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^forum/', include('forum.urls', namespace='forum')),
 
     (r'^tinymce/', include('tinymce.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

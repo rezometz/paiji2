@@ -37,6 +37,7 @@ INSTALLED_APPS = (
         'bulletin_board',
         'infoconcert',
         'djangobower',
+        'forum',
         #        'debug_toolbar',
         'south',
         'bootstrap3',
