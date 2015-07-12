@@ -1,0 +1,45 @@
+.icon-selector input[type="radio"]:checked + label {
+    background-color: #DBFFEB;
+    border: 3px solid #FF8400;
+    border-radius: 0.8em;
+    padding: 0.5em;
+}
+
+.icon-selector label {
+    display: inline-block;
+}
+
+//.icon-selector input[type="radio"] {
+//    display: none;
+//}
+
+section.text, #message_h, #question_h{
+    //background-color: #F1FFF7;
+    background-color: #DBFFEB;
+}
+
+section.text, header.topic, header.entry {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+header.topic {
+    margin-top: 1em;
+}
+
+span.par {
+    font-style: italic;
+}
+
+span.author {
+    font-variant: small-caps;
+}
+
+span.date {
+    font-style: italic;
+    color: #444;
+}
+
+a.message_title {
+    font-weight: bold;
+}

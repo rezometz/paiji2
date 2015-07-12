@@ -1,0 +1,9 @@
+{% extends 'forum/index.html' %}
+
+{% block forum_content %}
+<form action="{% url 'forum:new' %}" method="post">
+{% csrf_token %}
+{% include 'forum/form.html' %}
+<input type="submit" value="Publier le message" />
+</form>
+{% endblock %}

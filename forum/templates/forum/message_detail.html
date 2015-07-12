@@ -1,0 +1,76 @@
+{% extends 'forum/index.html' %}
+
+{% block forum_header %}
+
+{% if prev_topic or next_topic %}
+<ul class="topic-nav">
+    {% if prev_topic %}
+<li>
+<a class='prev' href="{% url 'forum:message' prev_topic.pk %}">topic précédent</a>
+</li>
+    {% endif %}
+    {% if next_topic %}
+<li>
+<a class='next' href="{% url 'forum:message' next_topic.pk %}">topic suivant</a>
+</li>
+    {% endif %}
+</ul>
+{% endif %}
+
+{% if prev or next %}
+<ul class="time-nav">
+    {% if prev %}
+<li>
+<a class='prev' href="{% url 'forum:message' prev.pk %}">message précédent (temporellement)</a>
+</li>
+    {% endif %}
+    {% if next %}
+<li>
+<a class='next' href="{% url 'forum:message' next.pk %}">message suivant (temporellement)</a>
+</li>
+    {% endif %}
+</ul>
+{% endif %}
+
+{% if up or down %}
+<ul class="logic-nav">
+    {% if up %}
+<li>
+<a class='up' href="{% url 'forum:message' up.pk %}">message plus haut</a>
+</li>
+    {% endif %}
+    {% if down %}
+<li>
+<a class='down' href="{% url 'forum:message' down.pk %}">message plus bas</a>
+</li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block header_id %}
+    {% if msg == message %}
+        id="message_h"
+    {% elif msg == question %}
+        id="question_h"
+    {% endif  %}
+{% endblock %}
+
+{% block text %}
+    {% if msg == message %}
+        <section id="message" class="text">
+        {{ msg.text|urlize|linebreaks }}
+        </section>
+        <div class="ans">
+            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+        </div>
+        {% block answer_form %}{% endblock %}
+    {% elif msg == question %}
+        <section id="question" class="text">
+        {{ msg.text|urlize|linebreaks }}
+        </section>
+        <div class="ans">
+            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+        </div>
+    {% endif  %}
+{% endblock %}

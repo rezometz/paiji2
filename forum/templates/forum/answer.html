@@ -1,0 +1,9 @@
+{% extends 'forum/message_detail.html' %}
+{% block answer_form %}
+<form action="{% url 'forum:answer' msg.pk %}" method="post">
+{% csrf_token %}
+{% include 'forum/form.html' %}
+<input type="submit" value="Publier la réponse" />
+</form>
+{% endblock %}
+

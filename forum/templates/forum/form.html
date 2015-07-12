@@ -1,0 +1,19 @@
+{% load static %}
+
+{{ form.non_field_errors }}
+<div class="icon-selector">
+    {{ form.icon.errors }}
+    {% for radio in form.icon %}
+        {{ radio.tag }}
+        <label for="{{ radio.id_for_label }}">
+        <img class="icon" src="{% static radio.choice_label %}" alt="{{ radio.choice_label }}"/> 
+        </label>
+    {% endfor %}
+</div>
+
+{{ form.title.errors }}
+<p>{{ form.title.label_tag }}{{ form.title }}</p>
+
+{{ form.text.errors }}
+<p>{{ form.text.label_tag}}{{ form.text }}</p>
+

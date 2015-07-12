@@ -1,0 +1,36 @@
+{% extends "forum/base.html" %}
+{% load static %}
+
+{% block forum_content %}
+
+{% for msg in object_list %}
+<div class ="entry">
+    <header
+    class="entry"
+    {% block header_id %}{% endblock %}>
+        <img class="icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
+        <a class="message_title" href="{% url 'forum:message' msg.pk %}" title="[{{ msg.lectures }} lecture{{ msg.lectures|pluralize }}]">
+            {{ msg.title }}
+        </a>
+        <span class="par"> par </span>
+        <span class="author">{{ msg.author }}</span>
+        <span class="date">{{ msg.pub_date }}</span>
+        <span class="topic_indic">(topic :
+        <span class="topic_title"> {{ msg.topic.title }}</span>
+         )
+        </span>
+    </header>
+    {% block text %}
+    {% endblock %}
+</div> {# class="entry" #}
+{% endfor %}
+
+{% endblock %}
+
+{% block forum_footer %}
+{% include 'forum/news-pages.html' %}
+{% endblock %}
+
+{% block forum_header %}
+{% include 'forum/news-pages.html' %}
+{% endblock %}

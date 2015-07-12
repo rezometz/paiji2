@@ -1,0 +1,21 @@
+{% extends 'home/layout_three_columns.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" type="text/css" href="{% static "forum/style.css" %}"/>
+{% endblock %}
+
+{% block content %}
+<nav id="forum-nav">
+<ul id="forum-ul">
+    <li><a href="{% url 'forum:topic-list' %}">Tous les topics</a></li>
+    <li><a href="{% url 'forum:recent-list' %}">Messages récemment publiés</a></li>
+    <li><a href="{% url 'forum:new' %}">Ouvrir un nouveau topic</a></li>
+</ul>
+</nav>
+
+<header id="forum-header">{% block forum_header %}{% endblock %}</header>
+<section id="forum-content">{% block forum_content %}{% endblock %}</section>
+<footer id="forum-footer">{% block forum_footer %}{% endblock %}</footer>
+{% endblock %}
+

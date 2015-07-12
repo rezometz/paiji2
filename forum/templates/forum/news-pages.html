@@ -1,0 +1,24 @@
+{% if is_paginated %}
+
+<ul class="pages">
+
+{% if page_obj.has_previous %}
+    {% if page_obj.previous_page_number != 1 %}
+<li><a href="{% url 'forum:recent-page' 1 %}">1</a></li>
+<li>…</li>
+    {% endif %}
+<li><a href="{% url 'forum:recent-page' page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a></li>
+{% endif %}
+
+<li class="current"><b>{{ page_obj.number }}</b></li>
+
+{% if page_obj.has_next %}
+<li><a href="{% url 'forum:recent-page' page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a></li>
+    {% if page_obj.next_page_number != paginator.num_pages %}
+<li>…</li>
+<li><a href="{% url 'forum:recent-page' paginator.num_pages %}">{{ paginator.num_pages }}</a></li>
+    {% endif %}
+{% endif %}
+
+</ul>
+{% endif %}
