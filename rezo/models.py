@@ -85,7 +85,6 @@ class Ecole(models.Model):
     rezotable = models.CharField(max_length=1)
 
     class Meta:
-        managed = False
         db_table = 'ecoles'
 
 #class Events(models.Model):
@@ -156,7 +155,6 @@ class Utilisateur(models.Model):
     )
 
     class Meta:
-        managed = False
         db_table = 'utilisateurs'
 
 
@@ -180,7 +178,6 @@ class Quotas(models.Model):
         return self.restant_veille_in - self.conso_in
 
     class Meta:
-        managed = False
         db_table = 'quotas'
 
 
@@ -205,7 +202,6 @@ class Equipement(models.Model):
     )
 
     class Meta:
-        managed = False
         db_table = 'equipements'
 
 
@@ -222,7 +218,6 @@ class Macs(models.Model):
     )
 
     class Meta:
-        managed = False
         db_table = 'macs'
 
 
@@ -246,7 +241,6 @@ class Paiements(models.Model):
     trezpointage = models.IntegerField(db_column='trezPointage')
     commentaires = models.TextField()
     class Meta:
-        managed = False
         db_table = 'paiements'
 
 
@@ -261,7 +255,6 @@ class PaiementsVentilations(models.Model):
     )
     affectation = models.CharField(max_length=10)
     class Meta:
-        managed = False
         db_table = 'paiements_ventilations'
 
 from django.contrib.auth.models import AbstractUser
