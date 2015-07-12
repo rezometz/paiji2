@@ -1,11 +1,11 @@
-.icon-selector input[type="radio"]:checked + label {
+.forum-icon-selector input[type="radio"]:checked + label {
     background-color: #DBFFEB;
     border: 3px solid #FF8400;
     border-radius: 0.8em;
     padding: 0.5em;
 }
 
-.icon-selector label {
+.forum-icon-selector label {
     display: inline-block;
 }
 
@@ -13,33 +13,32 @@
 //    display: none;
 //}
 
-section.text, #message_h, #question_h{
-    //background-color: #F1FFF7;
+section.forum-text, #message_h, #question_h{
     background-color: #DBFFEB;
 }
 
-section.text, header.topic, header.entry {
+section.forum-text, header.forum-topic, header.forum-entry {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
 
-header.topic {
+header.forum-topic {
     margin-top: 1em;
 }
 
-span.par {
+span.forum-par {
     font-style: italic;
 }
 
-span.author {
+span.forum-author {
     font-variant: small-caps;
 }
 
-span.date {
+span.forum-date {
     font-style: italic;
     color: #444;
 }
 
-a.message_title {
+a.forum-message-title {
     font-weight: bold;
 }
