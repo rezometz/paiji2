@@ -103,6 +103,9 @@
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                    <a href="{% url 'forum:topic-list' %}">Forum</a>
+                    </li>
+                    <li>
                     <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
                         <div class="form-group">
                             <input type="text" name="query" class="form-control" placeholder="{% trans 'Chercher sur les FTP' %}">
