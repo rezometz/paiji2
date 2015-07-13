@@ -111,10 +111,10 @@
                 </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
-                    {% if request.user.is_authenticated %}
                     <li>
                     <a href="{% url 'forum:topic-list' %}">Forum</a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li>
                     <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
                         <div class="form-group">
