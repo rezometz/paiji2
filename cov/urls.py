@@ -6,12 +6,12 @@ from .views import *
 urlpatterns = patterns('',
     url(
         r'^$',
-        CovListView.as_view(),
+        login_required(CovListView.as_view()),
         name="cov-list",
     ),
     url(
         r'^(?P<page>\d+)?$',
-        CovListView.as_view(),
+        login_required(CovListView.as_view()),
         name="cov-list",
     ),
     url(
