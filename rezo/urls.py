@@ -37,7 +37,7 @@ urlpatterns = patterns(
 
     url(
         r'^account$',
-        RezoAccountView.as_view(),
+        login_required(RezoAccountView.as_view()),
         name="account",
     ),
 
