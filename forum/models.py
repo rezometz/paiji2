@@ -15,7 +15,7 @@ class MessageIcon(models.Model):
         #return settings.STATIC_URL + 'forum/icons/' + self.filename
         return 'forum/icons/' + self.filename
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
         
 
@@ -95,7 +95,7 @@ class Message(models.Model):
         else:
             return self.question.topic()
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
