@@ -3,11 +3,17 @@
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
 		<li>
-    		<a href="mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.content|add:'"'|urlencode }}"
+    		<a href=
+            {% if request.user.is_authenticated %}
+            "mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.content|add:'"'|urlencode }}"
+            {% else %}
+            "{% url 'sign-in' %}"
+            {% endif %}
             title="{{ comment.author.first_name }} {{ comment.author.last_name }} ({{ comment.author }})">
             <i class="glyphicon glyphicon-envelope"></i>
             {{ comment.author.first_name }}
-       		</a> : {{ comment.content|urlize }}
+       		</a>
+            : {{ comment.content|urlize }}
     		<span class="text-muted"><small>il y a {{ comment.pubDate|timesince }}</small></span>
 		</li>
 		<hr>
