@@ -162,7 +162,11 @@ class SignInView(generic.FormView):
         return super(SignInView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('index')
+        try:
+            url = self.request.GET['next']
+        except:
+            return reverse('index')
+        return url
 
 
 class RezoAccountView(generic.TemplateView):
