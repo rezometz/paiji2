@@ -12,6 +12,7 @@ def update_icons_db():
             print "fichier {} ajoute".format(i)
         except MultipleObjectsReturned:
             print "{} n'est pas unique".format(i)
-            raise
+        except:
+            pass
 
 update_icons_db()
