@@ -34,27 +34,27 @@ urlpatterns = [
     # Group
     url(
         r'(?P<slug>[\w-]+)/dashboard$',
-        GroupView.as_view(),
+        login_required(GroupView.as_view()),
         name="workgroup-view",
     ),
     # Group Members
     url(
         r'(?P<slug>[\w-]+)/members$',
-        GroupMembersView.as_view(),
+        login_required(GroupMembersView.as_view()),
         name="workgroup-members",
     ),
 
     # Group News
     url(
         r'(?P<slug>[\w-]+)/news$',
-        GroupNewsView.as_view(),
+        login_required(GroupNewsView.as_view()),
         name="workgroup-news",
     ),
 
     # Feeds
     url(
         r'^feeds/latest$',
-        LatestEntriesFeed(),
+        login_required(LatestEntriesFeed()),
         name="feed-latest",
     ),
 ]
