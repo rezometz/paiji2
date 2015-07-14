@@ -24,6 +24,7 @@ a.forum-message-title:visited {
 
 .forum-text {
     margin-bottom: 0px;
+    background-color: #FAFAFA;
 }
 
 #forum-question-text {
