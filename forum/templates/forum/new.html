@@ -1,5 +1,6 @@
-{% extends 'forum/index.html' %}
+{% extends 'forum/base.html' %}
 
+{% block class-new %}active{% endblock %}
 {% block forum_content %}
 <form action="{% url 'forum:new' %}" method="post">
 {% csrf_token %}

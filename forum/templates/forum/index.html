@@ -1,6 +1,16 @@
 {% extends "forum/base.html" %}
 {% load static %}
 
+{% block class-topics %}active{% endblock %}
+
+{% block pagination-bottom %}
+{% include 'forum/topic-pagination.html' %}
+{% endblock %}
+
+{% block pagination-up %}
+{% include 'forum/topic-pagination.html' %}
+{% endblock %}
+
 {% block forum_content %}
 
 {% for msg, padding in object_list %}
@@ -11,12 +21,6 @@
     {% block text %}{% endblock %}
 </div> {# class="entry" #}
 {% endfor %}
+
 {% endblock %}
 
-{% block forum_footer %}
-{% include 'forum/pages.html' %}
-{% endblock %}
-
-{% block forum_header %}
-{% include 'forum/pages.html' %}
-{% endblock %}
