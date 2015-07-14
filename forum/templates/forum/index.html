@@ -19,6 +19,40 @@
 <div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ padding }}px;">
     {% include 'forum/subheader.html' %}
     {% block text %}{% endblock %}
+    {% if msg == message %}
+        <nav class="navbar-forum-message">
+        <ul class="nav nav-justified nav-forum-message">
+            <li {% if not up %} class="disabled"{% endif %}>
+                <a href={% if up %}"{% url 'forum:message' up.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </li>
+            <li {% if not prev %} class="disabled"{% endif %}>
+                <a href={% if prev %}"{% url 'forum:message' prev.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <span class="glyphicon glyphicon-step-backward"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'forum:answer' msg.pk %}#forum-answer">
+                <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </li>
+            <li {% if not next %} class="disabled"{% endif %}>
+                <a href={% if next %}"{% url 'forum:message' next.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <span class="glyphicon glyphicon-step-forward"></span>
+                </a>
+            </li>
+            <li {% if not down %} class="disabled"{% endif %}>
+                <a href={% if down %}"{% url 'forum:message' down.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+            </li>
+        </ul>
+        </nav>
+        {% if msg == message %}
+            {% block answer_form %}{% endblock %}
+        {% endif %}
+    {% endif %}
 </div>
 {% endfor %}
 

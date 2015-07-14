@@ -37,3 +37,24 @@ a.forum-message-title:visited {
 .topic-entry {
     margin-top: 1em;
 }
+
+.navbar-forum-message {
+    font-size: 10pt;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    background-color: #DBFFEB;
+}
+
+.nav-forum-message {
+    margin-top: 0px; 
+}
+
+.nav-forum-message li a {
+    padding: 0px 0px;
+    color: #072;
+}
+
+.nav-forum-message li.disabled a {
+    padding: 0px 0px;
+    color: #FFF;
+}

@@ -8,32 +8,36 @@
 <ul class="nav nav-pills nav-justified">
     <li {% if not prev_topic %}class="disabled"{% endif %}>
         <a href={% if prev_topic %}"{% url 'forum:message' prev_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
-        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="glyphicon glyphicon-arrow-left"></span>
         topic
         </a>
     </li>
-        <li {% if not up %} class="disabled"{% endif %}>
+    {% comment %}
+    <li {% if not up %} class="disabled"{% endif %}>
         <a href={% if up %}"{% url 'forum:message' up.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-up"></span>
         précédent
         </a>
     </li>
+    {% endcomment %}
     <li>
         <a href="{% url 'forum:topic' message.pk %}#forum-message">
         <span class="glyphicon glyphicon-fullscreen"></span>
         tout lire
         </a>
     </li>
+    {% comment %}
     <li {% if not down %} class="disabled"{% endif %}>
         <a href={% if down %}"{% url 'forum:message' down.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-down"></span>
         suivant
         </a>
     </li>
+    {% endcomment %}
     <li {% if not next_topic %}class="disabled"{% endif %}>
         <a href={% if next_topic %}"{% url 'forum:message' next_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
         topic
-        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
     </li>
 </ul>
@@ -44,9 +48,6 @@
 {% block text %}
     {% if msg == message or msg == question %}
         {% include 'forum/text_message.html' %}
-    {% endif %}
-    {% if msg == message %}
-        {% block answer_form %}{% endblock %}
     {% endif %}
 {% endblock %}
 
