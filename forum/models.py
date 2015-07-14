@@ -73,15 +73,16 @@ class Message(models.Model):
     def childs_nb(self):
         nb = 0
         for answer in self.answers.all():
-            nb += answer.answers.count()
+            nb += answer.childs_nb()
         return nb + self.answers.count()
 
     def childs_depth(self):
         if self.answers.count() == 0:
             return 0
         else:
-            return 1 + max([ i.childs_depth()\
-                for i in self.answers.all() ])
+            return 1 + max(
+                [ i.childs_depth() for i in self.answers.all() ]
+            )
 
     def level(self):
         if self.question == None:

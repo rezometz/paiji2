@@ -22,11 +22,28 @@
     </div>
 </div>{# row #}
 
-<div class="nav nav-tabs nav-justified">
-    <li class="{% block class-topics %}{% endblock %}"><a href="{% url 'forum:topic-list' %}">liste des topics</a></li>
-    <li class="{% block class-recent %}{% endblock %}"><a href="{% url 'forum:recent-list' %}">messages récents</a></li>
-    <li class="{% block class-new %}{% endblock %}"><a href="{% url 'forum:new' %}">ouvrir un topic</a></li>
-</div>
+<nav class="navbar navbar-default">
+<ul class="nav nav-tabs nav-justified">
+    <li class="{% block class-recent %}{% endblock %}">
+        <a href="{% url 'forum:recent-list' %}">
+            <span class="glyphicon glyphicon-time"></span>
+            messages récents
+        </a>
+    </li>
+    <li class="{% block class-topics %}{% endblock %}">
+        <a href="{% url 'forum:topic-list' %}">
+            <span class="glyphicon glyphicon-list"></span>
+            liste des topics
+        </a>
+    </li>
+    <li class="{% block class-new %}{% endblock %}">
+        <a href="{% url 'forum:new' %}">
+            <span class="glyphicon glyphicon-pencil"></span>
+            ouvrir un topic
+        </a>
+    </li>
+</ul>
+</nav>
 
 <div class="well">
     <div class="row">
@@ -35,7 +52,7 @@
         </div>
     </div>
 
-    {% block forum_content %}{% endblock %}
+    {% block forum-content %}{% endblock %}
 
     <div class="row">
         <div class="centered pagination-container">

@@ -113,6 +113,9 @@ def message_view(request, pk):
         message.save()
     return render(request, 'forum/message_detail.html', context)
 
+def topic_view(request, pk):
+    context = _get_message_context(pk)
+    return render(request, 'forum/topic.html', context)
 
 class IconField(ModelChoiceField):
 

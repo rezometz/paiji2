@@ -11,7 +11,9 @@
 {% include 'forum/topic-pagination.html' %}
 {% endblock %}
 
-{% block forum_content %}
+{% block forum-content %}
+
+{% block forum-top-nav %}{% endblock %}
 
 {% for msg, padding in object_list %}
 <div class ="forum-entry" style="margin-left: {{ padding }}px;">
@@ -21,6 +23,8 @@
     {% block text %}{% endblock %}
 </div> {# class="entry" #}
 {% endfor %}
+
+{% block forum-bottom-nav %}{% endblock %}
 
 {% endblock %}
 
