@@ -1,3 +1,7 @@
+.forum-action {
+    font-size: 14px;
+}
+
 .forum-icon-selector input[type="radio"]:checked + label {
     background-color: #DBFFEB;
     border: 3px solid #FF8400;
@@ -9,38 +13,49 @@
     display: inline-block;
 }
 
-//.icon-selector input[type="radio"] {
-//    display: none;
-//}
-
-section.forum-text, #message_h, #question_h{
-    background-color: #DBFFEB;
-}
-
-section.forum-text, header.forum-topic, header.forum-entry {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-header.forum-topic {
-    margin-top: 1em;
-}
-
 a.forum-message-title {
     font-weight: bold;
-}
-
-.forum-ul , .forum-pages , .forum-topic-nav , .forum-time-nav , .forum-logic-nav  {
-    text-align: center;
-}
-
-.forum-ul li, .forum-pages li, .forum-topic-nav li, .forum-time-nav li, .forum-logic-nav li {
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 5px;
 }
 
 a.forum-message-title:visited {
     font-weight: bold;
     color: #FFC121;
+}
+
+.forum-text {
+    margin-bottom: 0px;
+    background-color: #FAFAFA;
+}
+
+#forum-question-text {
+    background-color: #FFE3F4;
+}
+
+#forum-message-text {
+    background-color: #DBFFEB;
+}
+
+.topic-entry {
+    margin-top: 1em;
+}
+
+.navbar-forum-message {
+    font-size: 10pt;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    background-color: #DBFFEB;
+}
+
+.nav-forum-message {
+    margin-top: 0px; 
+}
+
+.nav-forum-message li a {
+    padding: 0px 0px;
+    color: #072;
+}
+
+.nav-forum-message li.disabled a {
+    padding: 0px 0px;
+    color: #FFF;
 }

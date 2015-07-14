@@ -112,7 +112,10 @@
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                    <a href="{% url 'forum:topic-list' %}">Forum</a>
+                        <a href="{% url 'forum:topic-list' %}">
+                            <span class="glyphicon glyphicon-list"></span>
+                            Forum
+                        </a>
                     </li>
                     {% if request.user.is_authenticated %}
                     <li>

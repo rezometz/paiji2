@@ -1,0 +1,50 @@
+{% extends 'forum/index.html' %}
+
+{% block class-topics %}{% endblock %}
+
+{% block forum-top-nav %}
+
+<nav class="navbar navbar-default">
+<ul class="nav nav-pills nav-justified">
+    <li {% if not prev_topic %}class="disabled"{% endif %}>
+        <a {% if prev_topic %}href="{% url 'forum:topic' prev_topic.pk %}#forum-message"{% endif %}>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        topic
+        </a>
+    {% comment %}
+    </li>
+        <li {% if not up %} class="disabled"{% endif %}>
+        <a href={% if up %}"{% url 'forum:message' up.pk %}"{% else %}"#"{% endif %}>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        précédent
+        </a>
+    </li>
+    {% endcomment %}
+    <li>
+        <a href="{% url 'forum:message' message.pk %}#forum-message">
+        <span class="glyphicon glyphicon-sort"></span>
+        enrouler
+        </a>
+    </li>
+    {% comment %}
+    <li {% if not down %} class="disabled"{% endif %}>
+        <a href={% if down %}"{% url 'forum:message' down.pk %}"{% else %}"#"{% endif %}>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        suivant
+        </a>
+    </li>
+    {% endcomment %}
+    <li {% if not next_topic %}class="disabled"{% endif %}>
+        <a {% if next_topic %}href="{% url 'forum:topic' next_topic.pk %}#forum-message"{% endif %}>
+        topic
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+    </li>
+</ul>
+</nav>
+
+{% endblock %}
+
+{% block text %}
+    {% include 'forum/text_message.html' %}
+{% endblock %}

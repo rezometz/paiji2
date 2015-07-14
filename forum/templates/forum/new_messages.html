@@ -1,13 +1,23 @@
 {% extends "forum/base.html" %}
 {% load static %}
 
-{% block forum_content %}
+{% block class-recent %}active{% endblock %}
+
+{% block pagination-bottom %}
+{% include 'forum/news-pagination.html' %}
+{% endblock %}
+
+{% block pagination-up %}
+{% include 'forum/news-pagination.html' %}
+{% endblock %}
+
+{% block forum-content %}
 
 {% for msg in object_list %}
 <div class ="forum-entry">
     <header class="forum-entry" {% block header_id %}{% endblock %}>
         {% include 'forum/subheader.html' %}
-        <span class="forum-topic-indic">[topic: <span class="forum-topic-title"> {{ msg.topic.title }}</span>]
+        <span class="forum-topic-indic">[<span class="forum-topic-title"> {{ msg.topic.title }} </span>]
         </span>
     </header>
     {% block text %}
@@ -15,12 +25,4 @@
 </div> {# class="entry" #}
 {% endfor %}
 
-{% endblock %}
-
-{% block forum_footer %}
-{% include 'forum/news-pages.html' %}
-{% endblock %}
-
-{% block forum_header %}
-{% include 'forum/news-pages.html' %}
 {% endblock %}

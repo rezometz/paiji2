@@ -1,0 +1,3 @@
+<div {% if msg == message %}id="forum-message-text"{% elif msg == question %}id="forum-question-text"{% endif %} class="well well-sm forum-text">
+    {{ msg.text|urlize|linebreaks }}
+</div>

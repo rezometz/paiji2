@@ -1,9 +1,17 @@
 {% extends 'forum/message_detail.html' %}
+
 {% block answer_form %}
-<form action="{% url 'forum:answer' msg.pk %}" method="post">
+
+<form id="forum-answer" action="{% url 'forum:answer' msg.pk %}" method="post">
+
 {% csrf_token %}
+
 {% include 'forum/form.html' %}
-<input type="submit" value="Publier la réponse" />
+
+<button class="btn btn-primary btn-block" type="submit"/>
+    publier la réponse
+</button>
+
 </form>
 {% endblock %}
 

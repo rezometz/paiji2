@@ -1,21 +1,64 @@
 {% extends 'home/layout_three_columns.html' %}
 {% load static %}
 
+{% block title %}Forum{% endblock %}
+
 {% block style %}
   <link rel="stylesheet" type="text/css" href="{% static "forum/style.css" %}"/>
 {% endblock %}
 
 {% block content %}
-<div class="well module">
-<h1>Forum</h1>
-<nav class="forum-nav">
-<ul class="forum-ul">
-    <li><a href="{% url 'forum:topic-list' %}">Tous les topics</a></li>
-    <li><a href="{% url 'forum:recent-list' %}">Messages récemment publiés</a></li>
-    <li><a href="{% url 'forum:new' %}">Ouvrir un nouveau topic</a></li>
+
+<div class="row">
+    <div class="col-md-5">
+        <h3>
+            Forum
+            <span class="forum-action">
+                <a href="{% url 'forum:new' %}">
+                <i class="fa fa-plus"></i>
+                </a>
+            </span>
+        </h3>
+    </div>
+</div>{# row #}
+
+<nav class="navbar navbar-default">
+<ul class="nav nav-tabs nav-justified">
+    <li class="{% block class-recent %}{% endblock %}">
+        <a href="{% url 'forum:recent-list' %}">
+            <span class="glyphicon glyphicon-time"></span>
+            messages récents
+        </a>
+    </li>
+    <li class="{% block class-topics %}{% endblock %}">
+        <a href="{% url 'forum:topic-list' %}">
+            <span class="glyphicon glyphicon-list"></span>
+            liste des topics
+        </a>
+    </li>
+    <li class="{% block class-new %}{% endblock %}">
+        <a href="{% url 'forum:new' %}">
+            <span class="glyphicon glyphicon-pencil"></span>
+            ouvrir un topic
+        </a>
+    </li>
 </ul>
-<header id="forum-header">{% block forum_header %}{% endblock %}</header>
-<section id="forum-content">{% block forum_content %}{% endblock %}</section>
-<footer id="forum-footer">{% block forum_footer %}{% endblock %}</footer>
+</nav>
+
+<div class="well">
+    <div class="row">
+        <div class="centered pagination-container">
+            {% block pagination-up %}{% endblock %}
+        </div>
+    </div>
+
+    {% block forum-content %}{% endblock %}
+
+    <div class="row">
+        <div class="centered pagination-container">
+            {% block pagination-bottom %}{% endblock %}
+        </div>
+    </div>
 </div>
+
 {% endblock %}

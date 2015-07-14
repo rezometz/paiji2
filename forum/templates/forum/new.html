@@ -1,9 +1,18 @@
-{% extends 'forum/index.html' %}
+{% extends 'forum/base.html' %}
 
-{% block forum_content %}
+{% block class-new %}active{% endblock %}
+
+{% block forum-content %}
+
 <form action="{% url 'forum:new' %}" method="post">
+
 {% csrf_token %}
+
 {% include 'forum/form.html' %}
-<input type="submit" value="Publier le message" />
+
+<button class="btn btn-primary btn-block" type="submit"/>
+    Publier le message
+</button>
+
 </form>
 {% endblock %}
