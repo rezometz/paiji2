@@ -7,7 +7,7 @@
 <nav class="navbar navbar-default">
 <ul class="nav nav-pills nav-justified">
     <li {% if not prev_topic %}class="disabled"{% endif %}>
-        <a href={% if prev_topic %}"{% url 'forum:message' prev_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
+        <a {% if prev_topic %}href="{% url 'forum:message' prev_topic.pk %}#forum-message"{% endif %}>
         <span class="glyphicon glyphicon-arrow-left"></span>
         topic
         </a>
@@ -35,7 +35,7 @@
     </li>
     {% endcomment %}
     <li {% if not next_topic %}class="disabled"{% endif %}>
-        <a href={% if next_topic %}"{% url 'forum:message' next_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
+        <a {% if next_topic %}href="{% url 'forum:message' next_topic.pk %}#forum-message"{% endif %}>
         topic
         <span class="glyphicon glyphicon-arrow-right"></span>
         </a>

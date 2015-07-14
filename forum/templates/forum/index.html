@@ -23,12 +23,12 @@
         <nav class="navbar-forum-message">
         <ul class="nav nav-justified nav-forum-message">
             <li {% if not up %} class="disabled"{% endif %}>
-                <a href={% if up %}"{% url 'forum:message' up.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <a {% if up %}href="{% url 'forum:message' up.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-chevron-up"></span>
                 </a>
             </li>
             <li {% if not prev %} class="disabled"{% endif %}>
-                <a href={% if prev %}"{% url 'forum:message' prev.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <a {% if prev %}href="{% url 'forum:message' prev.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-step-backward"></span>
                 </a>
             </li>
@@ -38,12 +38,12 @@
                 </a>
             </li>
             <li {% if not next %} class="disabled"{% endif %}>
-                <a href={% if next %}"{% url 'forum:message' next.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <a {% if next %}href="{% url 'forum:message' next.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-step-forward"></span>
                 </a>
             </li>
             <li {% if not down %} class="disabled"{% endif %}>
-                <a href={% if down %}"{% url 'forum:message' down.pk %}#forum-message"{% else %}"#"{% endif %}>
+                <a {% if down %}href="{% url 'forum:message' down.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-chevron-down"></span>
                 </a>
             </li>
