@@ -1,6 +1,8 @@
 {% load static %}
 
+
 {{ form.non_field_errors }}
+
 <div class="forum-icon-selector">
     {{ form.icon.errors }}
     {% for radio in form.icon %}
@@ -12,8 +14,17 @@
 </div>
 
 {{ form.title.errors }}
-<p>{{ form.title.label_tag }}{{ form.title }}</p>
+
+<div class="input-group">
+<span class="input-group-addon">titre</span>
+{{ form.title }}
+</div>
 
 {{ form.text.errors }}
-<p>{{ form.text.label_tag}}{{ form.text }}</p>
+
+<div class="input-group">
+<span class="input-group-addon">texte</span>
+{{ form.text }}
+</div>
+
 
