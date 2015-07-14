@@ -13,38 +13,27 @@
     display: inline-block;
 }
 
-//.icon-selector input[type="radio"] {
-//    display: none;
-//}
-
-section.forum-text, #message_h, #question_h{
-    background-color: #DBFFEB;
-}
-
-section.forum-text, header.forum-topic, header.forum-entry {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-header.forum-topic {
-    margin-top: 1em;
-}
-
 a.forum-message-title {
     font-weight: bold;
-}
-
-.forum-ul , .forum-pages , .forum-topic-nav , .forum-time-nav , .forum-logic-nav  {
-    text-align: center;
-}
-
-.forum-ul li, .forum-pages li, .forum-topic-nav li, .forum-time-nav li, .forum-logic-nav li {
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 5px;
 }
 
 a.forum-message-title:visited {
     font-weight: bold;
     color: #FFC121;
+}
+
+.forum-text {
+    margin-bottom: 0px;
+}
+
+#forum-question-text {
+    background-color: #FFE3F4;
+}
+
+#forum-message-text {
+    background-color: #DBFFEB;
+}
+
+.topic-entry {
+    margin-top: 1em;
 }

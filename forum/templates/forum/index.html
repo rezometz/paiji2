@@ -16,7 +16,7 @@
 {% block forum-top-nav %}{% endblock %}
 
 {% for msg, padding in object_list %}
-<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="forum-entry" style="margin-left: {{ padding }}px;">
+<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ padding }}px;">
     {% include 'forum/subheader.html' %}
     {% block text %}{% endblock %}
 </div>
