@@ -6,3 +6,9 @@
 <span class="text-muted"><small> par </small></span>
 <span class="forum-author" title="{{ msg.author.first_name }} {{ msg.author.last_name }}"><b>{{ msg.author }}</b></span>
 <span class="text-muted"><small> il y a {{ msg.pub_date|timesince }}</small></span>
+<a href="{% url 'forum:answer' msg.pk %}#forum-answer">
+    <small>
+    répondre
+    <span class="glyphicon glyphicon-pencil"></span>
+    </small>
+</a>

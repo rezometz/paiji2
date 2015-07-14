@@ -46,11 +46,5 @@
 {% endblock %}
 
 {% block text %}
-        <section {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class="forum-text">
-        {{ msg.text|urlize|linebreaks }}
-        </section>
-        <div class="forum-ans">
-            <a href="{% url 'forum:answer' msg.pk %}#forum-answer">répondre</a>
-        </div>
-        {% block answer_form %}{% endblock %}
+    {% include 'forum/text_message.html' %}
 {% endblock %}

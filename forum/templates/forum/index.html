@@ -16,12 +16,10 @@
 {% block forum-top-nav %}{% endblock %}
 
 {% for msg, padding in object_list %}
-<div class ="forum-entry" style="margin-left: {{ padding }}px;">
-    <header class="{% if msg.is_topic %}forum-topic{% else %}forum-entry{% endif %}" {% block header_id %}{% endblock %}>
+<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="forum-entry" style="margin-left: {{ padding }}px;">
     {% include 'forum/subheader.html' %}
-    </header>
     {% block text %}{% endblock %}
-</div> {# class="entry" #}
+</div>
 {% endfor %}
 
 {% block forum-bottom-nav %}{% endblock %}
