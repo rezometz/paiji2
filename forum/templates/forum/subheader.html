@@ -1,6 +1,6 @@
 {% load static %}
 <img class="forum-icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
-<a class="forum-message-title" href={% block msgurl %}"{% url 'forum:message' msg.pk %}"{% endblock %} title="[{{ msg.lectures }} lecture{{ msg.lectures|pluralize }}]">
+<a class="forum-message-title" href={% block msgurl %}"{% url 'forum:message' msg.pk %}#forum-message"{% endblock %} title="[{{ msg.lectures }} lecture{{ msg.lectures|pluralize }}]">
     {{ msg.title }}
 </a>
 <span class="text-muted"><small> par </small></span>

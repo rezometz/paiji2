@@ -7,30 +7,31 @@
 <nav class="navbar navbar-default">
 <ul class="nav nav-pills nav-justified">
     <li {% if not prev_topic %}class="disabled"{% endif %}>
-        <a href={% if prev_topic %}"{% url 'forum:message' prev_topic.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if prev_topic %}"{% url 'forum:message' prev_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-left"></span>
         topic
         </a>
     </li>
         <li {% if not up %} class="disabled"{% endif %}>
-        <a href={% if up %}"{% url 'forum:message' up.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if up %}"{% url 'forum:message' up.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-up"></span>
         précédent
         </a>
     </li>
     <li>
-        <a href="{% url 'forum:topic' message.pk %}">
-        tout dérouler
+        <a href="{% url 'forum:topic' message.pk %}#forum-message">
+        <span class="glyphicon glyphicon-fullscreen"></span>
+        tout lire
         </a>
     </li>
     <li {% if not down %} class="disabled"{% endif %}>
-        <a href={% if down %}"{% url 'forum:message' down.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if down %}"{% url 'forum:message' down.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-down"></span>
         suivant
         </a>
     </li>
     <li {% if not next_topic %}class="disabled"{% endif %}>
-        <a href={% if next_topic %}"{% url 'forum:message' next_topic.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if next_topic %}"{% url 'forum:message' next_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
         topic
         <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -46,7 +47,7 @@
         {{ msg.text|urlize|linebreaks }}
         </section>
         <div class="forum-ans">
-            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+            <a href="{% url 'forum:answer' msg.pk %}">répondre</a>
         </div>
         {% block answer_form %}{% endblock %}
     {% elif msg == question %}
@@ -54,7 +55,7 @@
         {{ msg.text|urlize|linebreaks }}
         </section>
         <div class="forum-ans">
-            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+            <a href="{% url 'forum:answer' msg.pk %}#forum-answer">répondre</a>
         </div>
     {% endif  %}
 {% endblock %}

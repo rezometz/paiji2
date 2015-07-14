@@ -7,7 +7,7 @@
 <nav class="navbar navbar-default">
 <ul class="nav nav-pills nav-justified">
     <li {% if not prev_topic %}class="disabled"{% endif %}>
-        <a href={% if prev_topic %}"{% url 'forum:topic' prev_topic.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if prev_topic %}"{% url 'forum:topic' prev_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
         <span class="glyphicon glyphicon-chevron-left"></span>
         topic
         </a>
@@ -21,7 +21,8 @@
     </li>
     {% endcomment %}
     <li>
-        <a href="{% url 'forum:message' message.pk %}">
+        <a href="{% url 'forum:message' message.pk %}#forum-message">
+        <span class="glyphicon glyphicon-sort"></span>
         enrouler
         </a>
     </li>
@@ -34,7 +35,7 @@
     </li>
     {% endcomment %}
     <li {% if not next_topic %}class="disabled"{% endif %}>
-        <a href={% if next_topic %}"{% url 'forum:topic' next_topic.pk %}"{% else %}"#"{% endif %}>
+        <a href={% if next_topic %}"{% url 'forum:topic' next_topic.pk %}#forum-message"{% else %}"#"{% endif %}>
         topic
         <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -45,11 +46,11 @@
 {% endblock %}
 
 {% block text %}
-        <section id="forum-message" class="forum-text">
+        <section {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class="forum-text">
         {{ msg.text|urlize|linebreaks }}
         </section>
         <div class="forum-ans">
-            <a href={% url 'forum:answer' msg.pk %}>répondre</a>
+            <a href="{% url 'forum:answer' msg.pk %}#forum-answer">répondre</a>
         </div>
         {% block answer_form %}{% endblock %}
 {% endblock %}
