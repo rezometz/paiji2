@@ -28,7 +28,7 @@ class MessageListView(generic.ListView):
 
 class MessageCreateView(generic.CreateView):
     model = Message
-    fields = ('group', 'title', 'content')
+    fields = ('group', 'title', 'content', 'public')
 
     def get_form(self, form_class):
         form = super(MessageCreateView, self).get_form(form_class)
@@ -55,7 +55,7 @@ class MessageCreateView(generic.CreateView):
 
 class MessageEditView(generic.UpdateView):
     model = Message
-    fields = ('group', 'title', 'content')
+    fields = ('group', 'title', 'content', 'public')
 
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """

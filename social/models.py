@@ -103,6 +103,11 @@ class Message(models.Model):
     title = models.CharField(max_length=140, blank=False)
     content = models.TextField(blank=False)
 
+    public = models.BooleanField(
+        default=False,
+        verbose_name='visible par des non-inscrits'
+    )
+
     IMPORTANCE_LEVEL = (
         (0, 'Normal'),
         (1, 'Priority'),
