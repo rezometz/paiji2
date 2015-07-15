@@ -20,11 +20,23 @@ class MessageListView(generic.ListView):
     template_name = 'home/index.html'
 
     def get_queryset(self):
-        return super(MessageListView, self).get_queryset().order_by(
-            '-pubDate'
-        ).select_related(
-            'author'
-        )
+        if self.request.user.is_authenticated():
+            return super(MessageListView, self).get_queryset(
+            ).order_by(
+                '-pubDate'
+            ).select_related(
+                'author'
+            )
+        else:
+            return super(MessageListView, self).get_queryset(
+            ).filter(
+                public=True
+            ).order_by(
+                '-pubDate'
+            ).select_related(
+                'author'
+            )
+            
 
 class MessageCreateView(generic.CreateView):
     model = Message
