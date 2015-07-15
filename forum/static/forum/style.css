@@ -14,12 +14,15 @@
 }
 
 a.forum-message-title {
-    font-weight: bold;
+    color: #FF2F00;
 }
 
 a.forum-message-title:visited {
-    font-weight: bold;
-    color: #FFC121;
+    color: #000;
+}
+
+a.forum-message-title:hover {
+    color: #FFF;
 }
 
 .forum-text {

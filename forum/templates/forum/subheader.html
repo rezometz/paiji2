@@ -3,11 +3,7 @@
     <img class="forum-icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
     {{ msg.title }}
 </a>
-<span class="text-muted"><small> par </small></span>
-<span class="forum-author" title="{{ msg.author.first_name }} {{ msg.author.last_name }}"><b>{{ msg.author }}</b></span>
-<span class="text-muted"><small> il y a {{ msg.pub_date|timesince }}</small></span>
-<a href="{% url 'forum:answer' msg.pk %}#forum-answer">
-    <small>
-    rép.
-    </small>
+<a class="forum-author" href="{% url 'forum:message' msg.pk %}#forum-message" title="{{ msg.author.first_name }} {{ msg.author.last_name }} ({{ msg.author }})">
+    {{ msg.author.first_name }}
 </a>
+<span class="text-muted"><small> il y a {{ msg.pub_date|timesince }}</small></span>

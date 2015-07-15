@@ -4,8 +4,8 @@
 
 {% block forum-top-nav %}
 
-<nav class="navbar navbar-default">
-<ul class="nav nav-pills nav-justified">
+<nav class="navbar navbar-default navbar-detail">
+<ul class="nav nav-pills nav-justified nav-detail">
     <li {% if not prev_topic %}class="disabled"{% endif %}>
         <a {% if prev_topic %}href="{% url 'forum:message' prev_topic.pk %}#forum-message"{% endif %}>
         <span class="glyphicon glyphicon-arrow-left"></span>

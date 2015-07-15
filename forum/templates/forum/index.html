@@ -32,11 +32,13 @@
                 <span class="glyphicon glyphicon-step-backward"></span>
                 </a>
             </li>
+            {% comment %}
             <li>
                 <a href="{% url 'forum:answer' msg.pk %}#forum-answer">
                 <span class="glyphicon glyphicon-pencil"></span>
                 </a>
             </li>
+            {% endcomment %}
             <li {% if not next %} class="disabled"{% endif %}>
                 <a {% if next %}href="{% url 'forum:message' next.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-step-forward"></span>
