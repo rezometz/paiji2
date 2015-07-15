@@ -15,4 +15,4 @@ def update_icons_db():
         except:
             pass
 
-update_icons_db()
+#update_icons_db()
