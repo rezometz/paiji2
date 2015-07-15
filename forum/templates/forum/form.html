@@ -1,30 +1,28 @@
 {% load static %}
+{% load bootstrap3 %}
+{% load i18n %}
 
 
-{{ form.non_field_errors }}
+<div class="form-group">
 
-<div class="forum-icon-selector">
-    {{ form.icon.errors }}
-    {% for radio in form.icon %}
-        {{ radio.tag }}
-        <label for="{{ radio.id_for_label }}">
-        <img class="icon" src="{% static radio.choice_label %}" alt="{{ radio.choice_label }}"/> 
-        </label>
-    {% endfor %}
-</div>
+    {{ form.non_field_errors }}
 
-{{ form.title.errors }}
+    <div class="forum-icon-selector">
+        {{ form.icon.errors }}
+        {% for radio in form.icon %}
+            {{ radio.tag }}
+            <label for="{{ radio.id_for_label }}">
+            <img class="icon" src="{% static radio.choice_label %}" alt="{{ radio.choice_label }}"/> 
+            </label>
+        {% endfor %}
+    </div>
 
-<div class="input-group">
-<span class="input-group-addon">titre</span>
-{{ form.title }}
-</div>
+    <label for="title">{% trans 'Titre' %}</label>
+    {% bootstrap_field form.title show_label=False %}
 
-{{ form.text.errors }}
+    <label for="text">{% trans 'Corps du message' %}</label>
+    {% bootstrap_field form.text show_label=False %}
 
-<div class="input-group">
-<span class="input-group-addon">texte</span>
-{{ form.text }}
 </div>
 
 
