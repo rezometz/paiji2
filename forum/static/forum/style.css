@@ -14,7 +14,9 @@
 }
 
 a.forum-message-title {
-    color: #FF2F00;
+    font-size: 1.11em;
+    color: #A80D05;
+    font-weight: bold;
 }
 
 a.forum-message-title:visited {
