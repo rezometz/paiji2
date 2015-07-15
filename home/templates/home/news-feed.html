@@ -51,7 +51,15 @@
                 <a href="{% url 'newsfeed-edit' item.id %}"><i class="fa fa-pencil"></i></a>
                 <a href="{% url 'newsfeed-delete' item.id %}"><i class="fa fa-trash-o"></i></a></span>
         	{% endif %}
-            <h4 class="message-title">{{ item.title }}</h4>
+            <h4 class="message-title">{{ item.title }}
+            {% if request.user.is_authenticated %}
+                {% if item.public %}
+                <span class="label label-success">public</span>
+                {% else %}
+                <span class="label label-warning">interne</span>
+                {% endif %}
+            {% endif %}
+            </h4>
             <p class="text-muted"><a href=
             {% if request.user.is_authenticated %}
             "mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.title|add:'"'|urlencode }}"
