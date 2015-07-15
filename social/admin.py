@@ -10,7 +10,7 @@ class BureauAdmin(admin.ModelAdmin):
     ordering = ('-createdDate', )
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'author', 'group', 'title', 'pubDate', 'importance')
+    list_display = ('id', 'author', 'group', 'title', 'public', 'pubDate', 'importance')
     ordering = ('-pubDate', )
 
 class CommentAdmin(admin.ModelAdmin):
