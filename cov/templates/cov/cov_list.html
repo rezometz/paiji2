@@ -9,11 +9,14 @@
 {% block content %}
 
     <div class="well">
+
         <a class="btn btn-primary btn-block text-center" href="{% url 'cov-add' %}">
             <span class="glyphicon glyphicon-plus"></span>
             {% trans "Proposer un covoiturage" %}
         </a>
+
         <h3>{% trans 'Liste des derniers covoiturages' %}</h3>
+
         <ul class="list-unstyled">
             {% for cov in covs %}
             {% if not cov.isGood %}
@@ -28,7 +31,6 @@
                     </span>
                     {{ cov.notes }}<br/>
                     <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
-                </li>
             {% else %}
             <li class="cov-item">
                 <span class="begin-time">
@@ -46,11 +48,18 @@
                 </span>
                 {{ cov.notes }}<br/>
                 <span class="text-muted"><small>il y a {{ cov.posted_at|timesince }}</small></span>
-            </li>
             {% endif %}
 
-
+            {% if cov.author == request.user %}
+                <div class="pull-right">
+                    <a href="{% url 'cov-edit' cov.id %}"><i class="fa fa-pencil"></i></a>
+                    <a href="{% url 'cov-delete' cov.id %}"><i class="fa fa-trash-o"></i></a>
+                </div>
+            {% endif %}
+            
+            </li>
             <hr>
+
             {% endfor %}
         </ul>
 
