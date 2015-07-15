@@ -3,14 +3,6 @@
 
 {% block class-recent %}active{% endblock %}
 
-{% block pagination-bottom %}
-{% include 'forum/news-pagination.html' %}
-{% endblock %}
-
-{% block pagination-up %}
-{% include 'forum/news-pagination.html' %}
-{% endblock %}
-
 {% block forum-content %}
 
 {% for msg in object_list %}

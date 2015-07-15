@@ -1,5 +1,6 @@
 {% extends 'home/layout_three_columns.html' %}
 {% load static %}
+{% load bootstrap3 %}
 
 {% block title %}Forum{% endblock %}
 
@@ -15,7 +16,7 @@
             Forum
             <span class="forum-action">
                 <a href="{% url 'forum:new' %}">
-                <i class="fa fa-plus"></i>
+                    <i class="fa fa-plus"></i>
                 </a>
             </span>
         </h3>
@@ -23,42 +24,48 @@
 </div>{# row #}
 
 <nav class="navbar navbar-default navbar-forum">
-<ul class="nav nav-tabs nav-justified nav-forum">
-    <li class="{% block class-recent %}{% endblock %}">
-        <a href="{% url 'forum:recent-list' %}">
-            <span class="glyphicon glyphicon-time"></span>
-            messages récents
-        </a>
-    </li>
-    <li class="{% block class-topics %}{% endblock %}">
-        <a href="{% url 'forum:topic-list' %}">
-            <span class="glyphicon glyphicon-list"></span>
-            liste des topics
-        </a>
-    </li>
-    <li class="{% block class-new %}{% endblock %}">
-        <a href="{% url 'forum:new' %}">
-            <span class="glyphicon glyphicon-pencil"></span>
-            ouvrir un topic
-        </a>
-    </li>
-</ul>
+    <ul class="nav nav-tabs nav-justified nav-forum">
+        <li class="{% block class-recent %}{% endblock %}">
+            <a href="{% url 'forum:recent-list' %}">
+                <span class="glyphicon glyphicon-time"></span>
+                messages récents
+            </a>
+        </li>
+        <li class="{% block class-topics %}{% endblock %}">
+            <a href="{% url 'forum:topic-list' %}">
+                <span class="glyphicon glyphicon-list"></span>
+                liste des topics
+            </a>
+        </li>
+        <li class="{% block class-new %}{% endblock %}">
+            <a href="{% url 'forum:new' %}">
+                <span class="glyphicon glyphicon-pencil"></span>
+                ouvrir un topic
+            </a>
+        </li>
+    </ul>
 </nav>
 
 <div class="well">
+
+    {% if is_paginated %}
     <div class="row">
         <div class="centered pagination-container">
-            {% block pagination-up %}{% endblock %}
+            {% bootstrap_pagination page_obj %}
         </div>
     </div>
+    {% endif %}
 
     {% block forum-content %}{% endblock %}
 
+    {% if is_paginated %}
     <div class="row">
         <div class="centered pagination-container">
-            {% block pagination-bottom %}{% endblock %}
+            {% bootstrap_pagination page_obj %}
         </div>
     </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}
