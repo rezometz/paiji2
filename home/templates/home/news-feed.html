@@ -76,3 +76,31 @@
     {% display_comment_area on_message=item nb=20 %}
 </div>
 {% endfor %}
+
+<div class="row">
+    <div class="col centered pagination-container">
+    	<ul class="pagination pagination-sm centered">
+			<li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
+			{% if page_obj.has_previous %}
+			<a href="{% url 'index' page=page_obj.previous_page_number %}">
+				{% else %}
+				<a href="#">
+					{% endif %}
+					&laquo;
+				</a>
+			</li>
+			<li class="disabled"><a href="#">...</a></li>
+			<li class="active"><a href="#">{{ page_obj.number }}</a></li>
+			<li class="disabled"><a href="#">...</a></li>
+			<li{% if not page_obj.has_next %} class="disabled"{% endif %}>
+			{% if page_obj.has_next %}
+			<a href="{% url 'index' page=page_obj.next_page_number %}">
+				{% else %}
+				<a href="#">
+					{% endif %}
+					&raquo;
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
