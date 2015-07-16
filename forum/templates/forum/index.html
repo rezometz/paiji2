@@ -7,6 +7,10 @@
 
 {% block forum-top-nav %}{% endblock %}
 
+{% if button %}
+{% include 'forum/buttons.html' %}
+{% endif %}
+
 {% for msg, padding in object_list %}
 <div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ padding }}px;">
     {% include 'forum/subheader.html' %}
@@ -15,12 +19,12 @@
         <nav class="navbar-forum-message">
         <ul class="nav nav-justified nav-forum-message">
             <li {% if not up %} class="disabled"{% endif %}>
-                <a {% if up %}href="{% url 'forum:message' up.pk %}#forum-message"{% endif %}>
+                <a {% if up %}href="{% url url_name up.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-chevron-up"></span>
                 </a>
             </li>
             <li {% if not prev %} class="disabled"{% endif %}>
-                <a {% if prev %}href="{% url 'forum:message' prev.pk %}#forum-message"{% endif %}>
+                <a {% if prev %}href="{% url url_name prev.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-step-backward"></span>
                 </a>
             </li>
@@ -32,12 +36,12 @@
             </li>
             {% endcomment %}
             <li {% if not next %} class="disabled"{% endif %}>
-                <a {% if next %}href="{% url 'forum:message' next.pk %}#forum-message"{% endif %}>
+                <a {% if next %}href="{% url url_name next.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-step-forward"></span>
                 </a>
             </li>
             <li {% if not down %} class="disabled"{% endif %}>
-                <a {% if down %}href="{% url 'forum:message' down.pk %}#forum-message"{% endif %}>
+                <a {% if down %}href="{% url url_name down.pk %}#forum-message"{% endif %}>
                 <span class="glyphicon glyphicon-chevron-down"></span>
                 </a>
             </li>

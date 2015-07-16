@@ -26,7 +26,7 @@ urlpatterns = [
     ),
     url(
         '^message/(?P<pk>[0-9]+)$',
-        login_required(views.message_view),
+        login_required(views.MessageView.as_view()),
         name='message',
     ),
     url(
@@ -37,12 +37,17 @@ urlpatterns = [
     url(
         '^topic/(?P<pk>[0-9]+)$',
         #login_required(views.TopicView.as_view()),
-        login_required(views.topic_view),
+        login_required(views.TopicView.as_view()),
         name='topic',
     ),
     url(
         '^new$',
         login_required(views.AnswerCreate.as_view()),
         name='new',
+    ),
+    url(
+        '^expand$',
+        login_required(views.ChangeExpandPref.as_view()),
+        name='expand',
     ),
 ]
