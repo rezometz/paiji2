@@ -14,7 +14,13 @@ title="[{{ msg.readers.count }} lecture{{ msg.readers.count|pluralize }}]">
     {% if not msg.is_read %}
     <span class="label label-sm label-success">non lu</span>
     {% endif %}
-    <a class="forum-author" href="{% url 'forum:message' msg.pk %}#forum-message" title="{{ msg.author.first_name }} {{ msg.author.last_name }} ({{ msg.author }})">
+    <a class="forum-author"
+    {% if expand %}
+    href="{% url 'forum:topic' msg.pk %}#forum-message"
+    {% else %}
+    href="{% url 'forum:message' msg.pk %}#forum-message"
+    {% endif %}
+    title="{{ msg.author.first_name }} {{ msg.author.last_name }} ({{ msg.author }})">
         {{ msg.author.first_name }}
     </a>
     <span class="text-muted">il y a {{ msg.pub_date|timesince }}</span>
