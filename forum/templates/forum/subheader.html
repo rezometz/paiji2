@@ -6,7 +6,7 @@ href="{% url 'forum:topic' msg.pk %}#forum-message"
 {% else %}
 href="{% url 'forum:message' msg.pk %}#forum-message"
 {% endif %}
-title="[{{ msg.lectures }} lecture{{ msg.lectures|pluralize }}]">
+title="[{{ msg.readers.count }} lecture{{ msg.readers.count|pluralize }}]">
     <img class="forum-icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
     {{ msg.title }}
 </a>
