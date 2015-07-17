@@ -11,8 +11,8 @@
 {% include 'forum/buttons.html' %}
 {% endif %}
 
-{% for msg, padding in object_list %}
-<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ padding }}px;">
+{% for msg  in object_list %}
+<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ msg.padding }}px;">
     {% include 'forum/subheader.html' %}
     {% block text %}{% endblock %}
     {% if msg == message %}

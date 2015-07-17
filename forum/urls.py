@@ -10,19 +10,14 @@ urlpatterns = [
         name='topic-list',
     ),
     url(
-        r'^page/(?P<page>[0-9]+)/$',
-        login_required(views.TopicListView.as_view()),
-        name='topic-page',
-    ),
-    url(
         r'^recent/$',
         login_required(views.NewMessagesView.as_view()),
         name='recent-list',
     ),
     url(
-        r'^recent/page/(?P<page>[0-9]+)$',
-        login_required(views.NewMessagesView.as_view()),
-        name='recent-page',
+        r'^unread/$',
+        login_required(views.UnreadMessagesView.as_view()),
+        name='unread',
     ),
     url(
         '^message/(?P<pk>[0-9]+)$',

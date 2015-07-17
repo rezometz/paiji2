@@ -10,17 +10,15 @@ from django.forms import ModelForm, RadioSelect, ModelChoiceField, TextInput, Te
 
 PADDING = 30
 
-def _depth_browse(arg):
+def _depth_browse(arg, user):
     L = []
     for answer in arg:
+        answer.padding = PADDING * answer.level()
+        answer.is_read = user in answer.readers.all()
         L.append(answer)
         if not answer.is_leaf():
-            L += _depth_browse(answer.answers.all())
+            L += _depth_browse(answer.answers.all(), user)
     return L
-
-
-def _with_padding(L):
-    return zip(L, [PADDING * obj.level() for obj in L])
 
 
 class TopicListView(ListView):
@@ -31,7 +29,7 @@ class TopicListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TopicListView, self).get_context_data(**kwargs)
-        context['object_list'] = _with_padding(_depth_browse(context['object_list']))
+        context['object_list'] = _depth_browse(context['object_list'], self.request.user)
         context['expand'] = self.request.session.get('expand', True)
         context['button'] = True
         return context
@@ -45,11 +43,20 @@ class NewMessagesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
+        for msg in context['object_list']:
+            msg.is_read = self.request.user in msg.readers.all()
         context['expand'] = self.request.session.get('expand', True)
         return context
 
+class UnreadMessagesView(NewMessagesView):
 
-def _get_message_context(pk):
+    template_name = 'forum/unread_messages.html'
+
+    def get_queryset(self):
+        return Message.objects.exclude(readers__pk=self.request.user.pk).order_by('-pub_date')
+
+
+def _get_message_context(pk, user):
     message = get_object_or_404(Message, pk=pk)
 
     # previous and next topics
@@ -67,8 +74,7 @@ def _get_message_context(pk):
     question = message.question
 
     # message list
-    L = _depth_browse([topic])
-    object_list = _with_padding(L)
+    L = _depth_browse([topic], user)
 
     # lower and upper messages
     i = L.index(message)
@@ -100,7 +106,7 @@ def _get_message_context(pk):
         prev = None
 
     context = dict(
-        object_list=object_list,
+        object_list=L,
         message=message,
         question=question,
         next_topic=next_topic,
@@ -119,17 +125,25 @@ class MessageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MessageView, self).get_context_data(**kwargs)
-        context = _get_message_context(self.kwargs['pk'])
+        context = _get_message_context(self.kwargs['pk'], self.request.user)
+        context['message'].readers.add(self.request.user)
+        context['message'].save()
         context['url_name'] = 'forum:message'
         return context
 
 
-class TopicView(MessageView):
+class TopicView(TemplateView):
 
     template_name = 'forum/topic.html'
 
     def get_context_data(self, **kwargs):
-        context = super(TopicView, self).get_context_data(**kwargs)
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context = _get_message_context(self.kwargs['pk'], self.request.user)
+        for msg in context['object_list']:
+            if not self.request.user in msg.readers.all():
+                msg.readers.add(self.request.user)
+                msg.is_read = False # to display the label
+                msg.save()
         context['url_name'] = 'forum:topic'
         return context
 
@@ -177,7 +191,7 @@ class AnswerCreate(CreateView):
         context = super(AnswerCreate, self).get_context_data(**kwargs)
         try:
             # real answer
-            context.update(_get_message_context(self.kwargs['pk']))
+            context.update(_get_message_context(self.kwargs['pk'], self.request.user))
         except:
             # new topic
             pass
@@ -188,6 +202,8 @@ class AnswerCreate(CreateView):
         return context
 
     def get_success_url(self):
+        self.object.readers.add(self.request.user)
+        self.object.save()
         if self.request.session.get('expand', True):
             return reverse('forum:topic', args=[self.object.pk]) + "#forum-message"
         else:
@@ -197,16 +213,15 @@ class AnswerCreate(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.pub_date = timezone.now()
-        form.instance.lectures = 1
         try:
             # real answer
             form.instance.question = Message.objects.get(pk=self.kwargs['pk'])
         except:
             # new topic
             form.instance.question = None
-        #form.instance.icon = MessageIcon.objects.all()[0]
         return super(AnswerCreate, self).form_valid(form)
         
+
 class ChangeExpandPref(RedirectView):
 
     permanent = False

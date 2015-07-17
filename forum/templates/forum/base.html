@@ -28,19 +28,25 @@
         <li class="{% block class-recent %}{% endblock %}">
             <a href="{% url 'forum:recent-list' %}">
                 <span class="glyphicon glyphicon-time"></span>
-                messages récents
+                récents
+            </a>
+        </li>
+        <li class="{% block class-unread %}{% endblock %}">
+            <a href="{% url 'forum:unread' %}">
+                <span class="glyphicon glyphicon-eye-close"></span>
+                non lus
             </a>
         </li>
         <li class="{% block class-topics %}{% endblock %}">
             <a href="{% url 'forum:topic-list' %}">
                 <span class="glyphicon glyphicon-list"></span>
-                liste des topics
+                topics
             </a>
         </li>
         <li class="{% block class-new %}{% endblock %}">
             <a href="{% url 'forum:new' %}">
                 <span class="glyphicon glyphicon-pencil"></span>
-                ouvrir un topic
+                nouveau
             </a>
         </li>
     </ul>

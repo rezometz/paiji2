@@ -35,9 +35,11 @@ class Message(models.Model):
         default=timezone.now
     )
 
-    lectures = models.IntegerField(
-        'nombre de lectures',
-        default=1,
+    readers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='read_messages',
+        null=True,
+        blank=True,
     )
 
     question = models.ForeignKey(

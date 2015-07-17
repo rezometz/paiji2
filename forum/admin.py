@@ -9,7 +9,7 @@ class AnswersInline(admin.TabularInline):
 class MessageAdmin(admin.ModelAdmin):
     inlines = [AnswersInline]
     list_display = ('title', 'icon', 'author',\
-                    'pub_date', 'lectures',\
+                    'pub_date',\
                     'is_topic', 'topic', 'level',\
                     'question', 'is_leaf',\
                     'answers_nb', 'childs_nb',\
