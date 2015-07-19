@@ -1,60 +1,11 @@
-{% extends "forum/base.html" %}
-{% load static %}
+{% extends 'forum/all.html' %}
 
 {% block class-topics %}active{% endblock %}
+{% block class-unread %}{% endblock %}
+{% block class-recent %}{% endblock %}
+{% block class-new %}{% endblock %}
 
-{% block forum-content %}
-
-{% block forum-top-nav %}{% endblock %}
-
-{% if button %}
-{% include 'forum/buttons.html' %}
-{% endif %}
-
-{% for msg  in object_list %}
-<div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry" style="margin-left: {{ msg.padding }}px;">
-    {% include 'forum/subheader.html' %}
-    {% block text %}{% endblock %}
-    {% if msg == message %}
-        <nav class="navbar-forum-message">
-        <ul class="nav nav-justified nav-forum-message">
-            <li {% if not up %} class="disabled"{% endif %}>
-                <a {% if up %}href="{% url url_name up.pk %}#forum-message"{% endif %}>
-                <span class="glyphicon glyphicon-chevron-up"></span>
-                </a>
-            </li>
-            <li {% if not prev %} class="disabled"{% endif %}>
-                <a {% if prev %}href="{% url url_name prev.pk %}#forum-message"{% endif %}>
-                <span class="glyphicon glyphicon-step-backward"></span>
-                </a>
-            </li>
-            {% comment %}
-            <li>
-                <a href="{% url 'forum:answer' msg.pk %}#forum-answer">
-                <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </li>
-            {% endcomment %}
-            <li {% if not next %} class="disabled"{% endif %}>
-                <a {% if next %}href="{% url url_name next.pk %}#forum-message"{% endif %}>
-                <span class="glyphicon glyphicon-step-forward"></span>
-                </a>
-            </li>
-            <li {% if not down %} class="disabled"{% endif %}>
-                <a {% if down %}href="{% url url_name down.pk %}#forum-message"{% endif %}>
-                <span class="glyphicon glyphicon-chevron-down"></span>
-                </a>
-            </li>
-        </ul>
-        </nav>
-        {% if msg == message %}
-            {% block answer_form %}{% endblock %}
-        {% endif %}
-    {% endif %}
-</div>
-{% endfor %}
-
-{% block forum-bottom-nav %}{% endblock %}
-
+{% block forum-top-nav %}
 {% endblock %}
 
+{% block text %}{% endblock %}

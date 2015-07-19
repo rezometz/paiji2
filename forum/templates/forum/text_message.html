@@ -1,9 +1,0 @@
-<div {% if msg == message %}id="forum-message-text"{% elif msg == question %}id="forum-question-text"{% endif %} class="well well-sm forum-text">
-    <a class="pull-right" href="{% url 'forum:answer' msg.pk %}#forum-answer">
-    <small>
-    <span class="glyphicon glyphicon-pencil"></span>
-    répondre
-    </small>
-    </a>
-    {{ msg.text|urlize|linebreaks }}
-</div>

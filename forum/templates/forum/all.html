@@ -1,0 +1,97 @@
+{% extends "forum/base.html" %}
+{% load static %}
+
+{% block forum-top-nav %}
+
+<nav class="navbar navbar-default">
+    <ul class="nav nav-pills nav-justified">
+        <li {% if not prev_topic %}class="disabled"{% endif %}>
+            <a {% if prev_topic %}href="{% url 'forum:message' prev_topic.pk %}#forum-message"{% endif %}>
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            topic
+            </a>
+        <li {% if not next_topic %}class="disabled"{% endif %}>
+            <a {% if next_topic %}href="{% url 'forum:message' next_topic.pk %}#forum-message"{% endif %}>
+            topic
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+{% endblock %}
+
+
+
+
+{% block forum-content %}
+
+{% for msg  in object_list %}
+
+    {% block message-title %}
+
+    <div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} {% block entry-class %}class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry"{% endblock %} {% block padding %}style="margin-left: {{ msg.padding }}px;"{% endblock %}>
+        <a class="forum-message-title"
+        href="{% url 'forum:message' msg.pk %}#forum-message"
+        title="[{{ msg.readers.count }} lecture{{ msg.readers.count|pluralize }}]">
+            <img class="forum-icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
+            {{ msg.title }}
+        </a>
+        <small> 
+            {% if not msg.is_read %}
+            <span class="label label-sm label-success">non lu</span>
+            {% endif %}
+            <a class="forum-author"
+            {% if expand %}
+            href="{% url 'forum:topic' msg.pk %}#forum-message"
+            {% else %}
+            href="{% url 'forum:message' msg.pk %}#forum-message"
+            {% endif %}
+            title="{{ msg.author.first_name }} {{ msg.author.last_name }} ({{ msg.author }})">
+                {{ msg.author.first_name }}
+            </a>
+            <span class="text-muted">il y a {{ msg.pub_date|timesince }}</span>
+        </small>
+
+    {% endblock %}
+
+    {% block text %}
+
+    <div {% if msg == message %}id="forum-message-text"{% elif msg == question %}id="forum-question-text"{% endif %} class="well well-sm forum-text">
+        <a class="pull-right" href="{% url 'forum:answer' msg.pk %}#forum-answer">
+        <small>
+        <span class="glyphicon glyphicon-pencil"></span>
+        répondre
+        </small>
+        </a>
+        {{ msg.text|urlize|linebreaks }}
+    </div>
+
+    {% endblock %}
+
+    {% if msg == message %}
+
+    {% block form %}
+    
+        <form id="forum-answer" action="{% url 'forum:answer' msg.pk %}" method="post">
+
+        {% csrf_token %}
+
+        {% include 'forum/form.html' %}
+
+        <button class="btn btn-primary btn-block" type="submit"/>
+            publier la réponse
+        </button>
+
+        </form>
+            
+    {% endblock %}
+
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
