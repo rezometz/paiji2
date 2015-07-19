@@ -1,5 +1,6 @@
 {% extends "forum/base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block forum-top-nav %}
 
@@ -51,7 +52,13 @@
             </a>
             <span class="text-muted">il y a {{ msg.pub_date|timesince }}</span>
         </small>
+
+        {% block topic-name %}
+        <span class="text-muted"> [topic : </span><span class="forum-message-title">{{ msg.topic }}</a><span class="text-muted"> ]</span>
+        {% endblock %}
+
     {% endblock %}
+
 
     {% block text %}
 
@@ -88,6 +95,10 @@
     {% endif %}
 
 </div>
+
+{% empty %}
+    
+    <span class="label label-default">{% trans 'aucun message' %}</span>
 
 {% endfor %}
 
