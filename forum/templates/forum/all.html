@@ -31,13 +31,12 @@
     {% block message-title %}
 
     <div {% if msg == message %}id="forum-message"{% elif msg == question %}id="forum-question"{% endif %} {% block entry-class %}class ="{%if msg.is_topic %}topic-entry {% endif %}forum-entry"{% endblock %} {% block padding %}style="margin-left: {{ msg.padding }}px;"{% endblock %}>
-        <a class="forum-message-title"
-        href="{% url 'forum:message' msg.pk %}#forum-message"
-        title="[{{ msg.readers.count }} lecture{{ msg.readers.count|pluralize }}]">
+        <a class="forum-message-title" href="{% url 'forum:message' msg.pk %}#forum-message">
             <img class="forum-icon" src="{% static msg.icon.url %}" alt="{{ msg.icon.name }}"/>
             {{ msg.title }}
         </a>
         <small> 
+            <span class="label label-default label-sm" title="{{ msg.readers.count }} lecture{{ msg.readers.count|pluralize }}">{{ msg.readers.count }}</span>
             {% if not msg.is_read %}
             <span class="label label-sm label-success">non lu</span>
             {% endif %}
@@ -52,7 +51,6 @@
             </a>
             <span class="text-muted">il y a {{ msg.pub_date|timesince }}</span>
         </small>
-
     {% endblock %}
 
     {% block text %}
