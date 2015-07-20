@@ -1,3 +1,4 @@
 git+http://github.com/rezometz/django-backbone-calendar
 git+http://github.com/rezometz/django-graphos
 git+http://github.com/rezometz/django-modular-blocks
+git+http://github.com/rezometz/django-paiji-forum
