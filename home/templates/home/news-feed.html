@@ -73,9 +73,7 @@
             "{% url 'sign-in' %}"
             {% endif %} 
             ><i class="glyphicon glyphicon-envelope"></i> {{ item.author.first_name }} </a>
-            {% blocktrans with group=item.group TimeSince=item.pubDate|timesince %}
-            for {{ group }}, {{ TimeSince }} ago
-            {% endblocktrans %}
+            {% blocktrans with group=item.group TimeSince=item.pubDate|timesince %}for {{ group }}, {{ TimeSince }} ago{% endblocktrans %}
             </p>
         </div>
     </div>
