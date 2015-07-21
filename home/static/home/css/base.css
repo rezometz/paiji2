@@ -128,3 +128,8 @@ hr {
 .disabled-eq {
     background-color: #e67e22;
 }
+
+.languages {
+    color: #FFF;
+	background-color: #27ae60;
+}

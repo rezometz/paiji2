@@ -42,29 +42,48 @@
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
+                    <div class="col-md-2 pull-left">
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        {# <label class="label label-default" for="language">language</label> #}
+                        <input  name="next" type="hidden" value="{{ redirect_to }}" />
+                        <select class="languages" name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input class="languages" type="submit" value="go"/>
+                    </form>
+                    </div>
+                    <div class="col-md-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
                     {% if request.user.id_rezo %}
                     {% cache 30 rezo-quotas request.user.id_rezo %}
-                    <div class="col-sm-3 quota-field-normal">
+                    <div class="col-md-2 quota-field-normal">
                         {{ request.user.get_rezo.quotas.up_restant|filesizeformat }}
                         <i class="glyphicon glyphicon-upload"></i>
                     </div>
-                    <div class="col-sm-3 quota-field-normal">
+                    <div class="col-md-2 quota-field-normal">
                         {{ request.user.get_rezo.quotas.down_restant|filesizeformat }}
                         <i class="glyphicon glyphicon-download"></i>
                     </div>
                     {% endcache %}
-                    <div class="col-sm-2">
+                    <div class="col-md-1">
                         <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
                             {% trans 'Déconnexion' %}
                         </a>
                     </div>
                     {% else %}
-                    <div class="col-sm-8">
+                    <div class="col-md-3">
                         <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connexion' %}</a>
                         <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'S&#39;enregistrer' %}</a>
                     </div>
                     {% endif %}
+
+
                     {% if request.user.cotisation_warning %}
                         <div class="col-sm-12 quota-field-normal">
                             <div class="pull-left cotisation-warning">

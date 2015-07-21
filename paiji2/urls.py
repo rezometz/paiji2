@@ -11,8 +11,7 @@ modules.autodiscover()
 
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^rezo/', include('rezo.urls')),
 
@@ -26,7 +25,7 @@ urlpatterns = patterns('',
     
     url(r'^forum/', include('forum.urls', namespace='forum')),
 
-    (r'^tinymce/', include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += modules.get_patterns()

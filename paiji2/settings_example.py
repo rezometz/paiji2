@@ -26,15 +26,6 @@ IP_AUTH_GROUPS = {
     # 'school': ['192.168.0.0/16', '10.8.0.0/16', ],
 }
 
-INSTALLED_APPS = INSTALLED_APPS + (
-#    'debug_toolbar',
-)
-
-
-MIDDLEWARE_CLASSES = global_settings.MIDDLEWARE_CLASSES + (
-    #'home.middleware.IpAuthGroupMiddleware',
-)
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
