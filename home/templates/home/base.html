@@ -33,9 +33,9 @@
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
-            {% blocktrans %}Votre page est vide, vous pouvez y ajouter des modules (covoiturage, shoutbox, météo, etc.) en utilisant le lien suivant : {% endblocktrans %}
+            {% trans 'Your page is empty, you can add modules (carpool, shoutbox, weather, etc.) with the following link :' %}
             <br />
-            <a href="{% url 'modular-change' %}">{% trans 'Personnaliser ma page' %}</a>
+            <a href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a>
             </p>
         </div>
         {% endif %}
@@ -73,23 +73,23 @@
                     {% endcache %}
                     <div class="col-md-1">
                         <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
-                            {% trans 'Déconnexion' %}
+                            {% trans 'logout' %}
                         </a>
                     </div>
                     {% else %}
                     <div class="col-md-3">
-                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'Connexion' %}</a>
-                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'S&#39;enregistrer' %}</a>
+                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'login' %}</a>
+                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'sign in' %}</a>
                     </div>
                     {% endif %}
-
 
                     {% if request.user.cotisation_warning %}
                         <div class="col-sm-12 quota-field-normal">
                             <div class="pull-left cotisation-warning">
-                            {% block trans %}
-                                /!\ Votre cotisation expire le {{ request.user.expire_on|date:"d/m/Y" }}
-                            {% endblock %}
+                            <span class="glyphicon glyphicon-fire"></span>
+                            {% blocktrans with date=request.user.expire_on|date:"d/m/Y" %}
+                                Your due expires on {{ date }} !
+                            {% endblocktrans %}
                             </div>
                         </div>
                     {% endif %}
@@ -99,7 +99,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">{% trans 'Toggle navigation' %}</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -117,7 +117,7 @@
                     <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                         <i class="glyphicon glyphicon-user"></i>
-                        {% trans 'Mes groupes' %}
+                        {% trans 'My groups' %}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -133,20 +133,20 @@
                     <li>
                         <a href="{% url 'cov-list' %}">
                         <span class="glyphicon glyphicon-road"></span>
-                        COV
+                        {% trans 'COV' %}
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'forum:topic-list' %}">
                             <span class="glyphicon glyphicon-list"></span>
-                            Forum
+                            {% trans 'Forum' %}
                         </a>
                     </li>
                     {% if request.user.is_authenticated %}
                     <li>
                     <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
                         <div class="form-group">
-                            <input type="text" name="query" class="form-control" placeholder="{% trans 'Chercher sur les FTP' %}">
+                            <input type="text" name="query" class="form-control" placeholder="{% trans 'FTP search' %}">
                         </div>
                     </form>
                     </li>
@@ -159,7 +159,7 @@
                         <li><a href="http://noodle.rez">Polardator</a></li>
                         <li class="divider"></li>
                         {% endif %}
-                        <li><a href="{% url 'bulletin-board' %}">Shoutbox</a></li>
+                        <li><a href="{% url 'bulletin-board' %}">{% trans 'Shoutbox' %}</a></li>
                     </ul>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -178,18 +178,18 @@
                         <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
                         <li><a href="https://moodle.supelec.fr/">Moodle</a></li>
                         <li><a href="http://sogo.supelec.fr/">Webmail (sogo)</a></li>
-                        <li><a href="https://ntnoe.metz.supelec.fr/ical/index.php">{% trans 'Télécharger son emploi du temps en ical' %}</a></li>
+                        <li><a href="https://ntnoe.metz.supelec.fr/ical/index.php">{% trans 'ical timetable download' %}</a></li>
                     </ul>
                     </li>
                     <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {% if request.user.is_authenticated %}
-                        <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">{% trans 'Inscription des groupes' %}</a></li>
+                        <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">{% trans 'groups registration' %}</a></li>
                         <li><a href="https://rezo.rez/">rezo.rez</a></li>
                         {% endif %}
-                        <li><a href="{% url 'account' %}">{% trans 'Quotas & équipements rézotés' %}</a></li>
-                        <li><a href="http://wiki.rezometz.org/">wiki rezo</a></li>
+                        <li><a href="{% url 'account' %}">{% trans 'Quotas & registered equipment' %}</a></li>
+                        <li><a href="http://wiki.rezometz.org/">{% trans 'wiki rezo' %}</a></li>
                     </ul>
                     </li>
                 </ul>
@@ -211,10 +211,10 @@
                     <p>Copyright &copy; Rézo, Supélec Metz, {% now "Y" %}</p>
                 </div>
                 <div class="col-lg-3">
-                    <p><a href="{% url 'modular-change' %}">{% trans 'Personnaliser ma page' %}</a></p>
+                    <p><a href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="pull-right">{% trans 'bugs ou suggestions : ' %} <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>
+                    <p class="pull-right">{% trans 'bugs or suggestions : ' %} <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>
                 </div>
             </div>
             </footer>
