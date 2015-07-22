@@ -7,7 +7,7 @@
 {% block content %}
 <div class="well">
     <h3>{% trans 'Do you really want to delete this carpool ?' %}</h3>
-    <div>'{{ object.notes }}'</div>
+    <p>'{{ object.notes }}'</p>
 
     <form action="" method="post" role="form">
         {% csrf_token %}
@@ -15,7 +15,7 @@
         <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
 
         {% buttons %}
-            <button type="submit" class="btn btn-danger pull-right">
+            <button type="submit" class="btn btn-danger btn-block">
                 {% trans 'Delete' %}
             </button>
         {% endbuttons %}

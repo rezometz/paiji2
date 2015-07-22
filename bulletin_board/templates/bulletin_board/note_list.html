@@ -5,41 +5,43 @@
 {% load i18n %}
 {% load bootstrap3 %}
 
-{% block title%}Shoutbox{% endblock %}
+{% block title%}{% trans 'Shoutbox' %}{% endblock %}
 
 {% block content %}
-    <div class="well">
-        <h3>Archives</h3>
-        <div class="pagination-container">
-        {% bootstrap_pagination page_obj %}
-        </div>
+<div class="well">
 
-<form action="{% url 'bulletin-add' %}" method="post">
-    {% csrf_token %}
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="glyphicon glyphicon-envelope"></i>
-            {{ request.user.first_name }}
-        </span>
-        {% bootstrap_field form.message show_label=False %}
-        <input type="hidden" value="{{ request.path }}" name="next" />
+    <h3>{% trans 'Shoutbox' %} — {% trans 'Records' %}</h3>
+
+    <div class="pagination-container">
+    {% bootstrap_pagination page_obj %}
     </div>
-    <br />
-    {% buttons %}
-    <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
-    {% endbuttons %}
-    <div class="clearfix"></div>
-</form>
+
+    <form action="{% url 'bulletin-add' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-envelope"></i>
+                {{ request.user.first_name }}
+            </span>
+            {% bootstrap_field form.message show_label=False %}
+            <input type="hidden" value="{{ request.path }}" name="next" />
+        </div>
+        <br />
+        {% buttons %}
+        <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
+        {% endbuttons %}
+        <div class="clearfix"></div>
+    </form>
 
         <ul class="list-unstyled">
             {% for note in notes %}
             <li>
             <span class="begin-time">
-                <a href="mailto:{{ note.author.email }}?subject={{ '[Paiji2] Concernant "'|add:note.message|add:'"'|urlencode }}"
-                    title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                    {{ note.author.first_name }}
-                </a>
+            <a href="mailto:{{ note.author.email }}?subject=[Paiji2][{% trans 'Shoutbox' %}] {% trans 'About' %}{{' : "'|add:note.message|add:'"'|urlencode }}"
+                title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
+                <i class="glyphicon glyphicon-envelope"></i>
+                {{ note.author.first_name }}
+            </a>
             {% if note.author == request.user %}
                 <span class="pull-right">
                     <a href="{% url 'bulletin-edit' note.id %}"><i class="fa fa-pencil"></i></a>
@@ -47,7 +49,9 @@
             {% endif %}
             </span>
             {{ note.message|urlize }}<br />
-            <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
+            <span class="text-muted"><small>
+            {% blocktrans with TimeSince=note.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}
+            </small></span>
             </li>
             <hr>
             {% endfor %}

@@ -6,17 +6,17 @@
 
 {% block title %}
     {% if form.instance and form.instance.pk %}
-        {% trans 'Éditer un message' %}
+        {% trans 'Edit a message' %}
     {% else %}
-        {% trans 'Poster un message' %}
+        {% trans 'Publish a message' %}
     {% endif %}
 {% endblock %}
 {% block content %}
 <div class="well">
     {% if form.instance and form.instance.pk %}
-    <h3>{% trans 'Éditer un message' %}</h3>
+    <h3>{% trans 'Edit a message' %}</h3>
     {% else %}
-    <h3>{% trans 'Poster un message' %}</h3>
+    <h3>{% trans 'Publish a message' %}</h3>
     {% endif %}
 
     <form action="{{ request.get_full_path }}" method="post">
@@ -31,11 +31,11 @@
         <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
         <br />
         {% buttons %}
-        <button type="submit" class="btn btn-success pull-right">
+        <button type="submit" class="btn btn-success btn-block">
             {% if form.instance and form.instance.pk %}
-                Mettre à jour
+                {% trans 'Update' %}
             {% else %}
-                Ajouter
+                {% trans 'Publish' %}
             {% endif %}
         </button>
         {% endbuttons %}

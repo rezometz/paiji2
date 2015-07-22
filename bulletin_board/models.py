@@ -9,8 +9,8 @@ from django.contrib.auth import get_user_model
 class Note(models.Model):
 
     class Meta:
-        verbose_name = _('Note')
-        verbose_name_plural = _('Notes')
+        verbose_name = _('note')
+        verbose_name_plural = _('notes')
         ordering = ('-posted_at', )
     
     author = models.ForeignKey(
