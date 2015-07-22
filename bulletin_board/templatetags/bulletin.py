@@ -1,7 +1,6 @@
 import re
 
 from django import template
-from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
 from ..models import Note
@@ -25,7 +24,7 @@ def display_bulletin_board(context, nb=5):
 def urlize2(text):
     url_regex = re.compile(r'((ftp|https?)://\S*)')
     def replacement(matchobj):
-        return _('<a href="{link}">[link]</a>').format(
+        return ('<a href="{link}">[link]</a>').format(
             link=matchobj.group(0),
         )
     return re.sub(url_regex, replacement, text)
