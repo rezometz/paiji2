@@ -2,11 +2,11 @@
 {% load bootstrap3 %}
 {% load i18n %}
 
-{% block title %}{% blocktrans %}Confirmation de suppression d'un covoiturage{% endblocktrans %}{% endblock %}
+{% block title %}{% trans 'Carpool deletion confirmation' %}{% endblock %}
 
 {% block content %}
 <div class="well">
-    <h3>{% trans 'Voulez-vous vraiment supprimer ce covoiturage ?' %}</h3>
+    <h3>{% trans 'Do you really want to delete this carpool ?' %}</h3>
     <div>'{{ object.notes }}'</div>
 
     <form action="" method="post" role="form">
@@ -16,7 +16,7 @@
 
         {% buttons %}
             <button type="submit" class="btn btn-danger pull-right">
-                {% trans 'Supprimer' %}
+                {% trans 'Delete' %}
             </button>
         {% endbuttons %}
         <div class="clearfix"></div>

@@ -5,47 +5,58 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext as _
 
-# Create your models here.
 class Covoiturage(models.Model):
-	"""model for Covoiturage"""
 
-	author = models.ForeignKey(
+    class Meta:
+        verbose_name = _('carpool')
+        verbose_name_plural = _('carpools')
+        ordering = ('-posted_at', )
+
+    author = models.ForeignKey(
         get_user_model(),
+        verbose_name=_('author'),
         related_name='covs',
     )
 
-	ANNONCE_TYPE = (
-        (0, 'Propose'),
-        (1, 'Cherche'),
-    )
-	annonce_type = models.IntegerField(choices=ANNONCE_TYPE, blank=False)
-
-	good_until = models.DateTimeField(
-		'Annonce reste valable jusqu`à la date ci-dessous',
-		default = timezone.now()+timedelta(days=3))
-
-	posted_at = models.DateTimeField(
-        'Posted at',
+    ANNONCE_TYPE = (
+        (0, _('Offer')),
+        (1, _('Search')),
     )
 
-	notes = models.CharField(
-		max_length=150)
+    annonce_type = models.IntegerField(
+        _('advert type'),
+        choices=ANNONCE_TYPE,
+        blank=False,
+    )
 
-	def __unicode__(self):
-		rep = self.author.first_name + self.author.last_name
-		rep += ' propose ' if self.ANNONCE_TYPE == 0 else ' cherche '
-		rep += self.notes
-		return rep
+    good_until = models.DateTimeField(
+        _('advert validity deadline'),
+        default = timezone.now()+timedelta(days=3),
+    )
 
-	def isGood(self):
-		return self.good_until > timezone.now()
+    posted_at = models.DateTimeField(
+        _('publication date'),
+    )
 
-	def save(self, *args, **kwargs):
-		if self.pk is None:
-			self.posted_at = timezone.now()
+    notes = models.CharField(
+        _('description'),
+        max_length=150,
+    )
 
-		super(Covoiturage, self).save(*args, **kwargs)
+    def __unicode__(self):
+        rep = self.author.first_name + self.author.last_name
+        rep += ' '+_('offer')+' ' if self.ANNONCE_TYPE == 0 else ' '+_('search')+' '
+        rep += self.notes
+        return rep
 
-	class Meta:
-		ordering = ('-posted_at', )
+    def isGood(self):
+        return self.good_until > timezone.now()
+    isGood.short_description = _('still current ?')
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.posted_at = timezone.now()
+        super(Covoiturage, self).save(*args, **kwargs)
+

@@ -37,14 +37,13 @@ class CovCreateView(generic.CreateView):
         cov = form.save(commit=False)
         cov.author = self.request.user
         cov.save()
-
         return super(CovCreateView, self).form_valid(form)
 
     def get_success_url(self):
         messages.success(
-            self.request, _(
-            'Your request has been saved successfully :P'
-        ))
+            self.request,
+            _('Your request has been saved successfully :P')
+        )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
@@ -57,15 +56,14 @@ class CovEditView(generic.UpdateView):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
+            return HttpResponseNotFound("<h1>{% trans 'Rezo is not hacked. You don\'t have the permission xD' %}</h1>")
         return super(CovEditView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         messages.success(
-            self.request, _(
-            'Your cov has been updated, '
-            'it will be refreshed in a moment'
-        ))
+            self.request,
+            _('Your carpool has been updated, it will be refreshed in a moment'),
+        )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
@@ -75,14 +73,13 @@ class CovDeleteView(generic.DeleteView):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return HttpResponseNotFound('<h1>Rezo is not hacked. You don\'t have the permission xD</h1>')
+            return HttpResponseNotFound("<h1>{% trans 'Rezo is not hacked. You don\'t have the permission xD' %}</h1>")
         return super(CovDeleteView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         messages.success(
-            self.request, _(
-            'Your cov has been removed, '
-            'it will be refreshed in a moment'
-        ))
+            self.request,
+            _('Your carpool has been removed, it will be refreshed in a moment'),
+        )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')

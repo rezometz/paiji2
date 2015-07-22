@@ -5,36 +5,36 @@
 
 {% block title %}
     {% if form.instance and form.instance.pk %}
-        {% trans 'Modifier un covoiturage' %}
+        {% trans 'Edit a carpool' %}
     {% else %}
-        {% trans 'Proposer/chercher un covoiturage' %}
+        {% trans 'Offer/search a carpool' %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <div class="well">
         {% if form.instance and form.instance.pk %}
-            <h3>{% trans 'Modifier un covoiturage' %}</h3>
+            <h3>{% trans 'Edit a carpool' %}</h3>
         {% else %}
-            <h3>{% trans 'Proposer/chercher un covoiturage' %}</h3>
+            <h3>{% trans 'Offer/search a carpool' %}</h3>
         {% endif %}
 
         <form action="{{ request.get_full_path }}" method="post" role="form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="annonceur">{% trans 'Annonceur' %}</label>
+                <label for="annonceur">{% trans 'Announcer' %}</label>
                 <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
             </div>
 
             <div class="form-group">
-                <label for="annonce_type">{% blocktrans %}Type d'annonce{% endblocktrans %}</label>
+                <label for="annonce_type">{% trans 'Advert type' %}</label>
                 {% bootstrap_field form.annonce_type show_label=False %}
 
-                <label for="good_until">{% trans 'Heure de départ' %}</label>
+                <label for="good_until">{% trans 'Departure time' %}</label>
                 {% bootstrap_field form.good_until show_label=False %}
 
-                <label for="annonceur">{% trans 'Précisions' %}</label>
-                <p class="help-block">Ex: Metz-Paris-Compiègne, vendredi vers 17h, 3 Places au PAPS à 15€/trajet, retour le dimanche vers 18h</p>
+                <label for="annonceur">{% trans 'Notes' %}</label>
+                <p class="help-block">{% trans 'Ex: Metz-Paris-Compiègne, on Friday around 5pm, 3 places 15 €, back on Sunday at 6pm' %}</p>
                 {% bootstrap_field form.notes show_label=False %}
             </div>
 
@@ -43,9 +43,9 @@
             {% buttons %}
                 <button type="submit" class="btn btn-success pull-right">
                     {% if form.instance and form.instance.pk %}
-                        {% trans 'Mettre à jour' %}
+                        {% trans 'Update' %}
                     {% else %}
-                        {% trans 'Ajouter' %}
+                        {% trans 'Publish' %}
                     {% endif %}
                 </button>
             {% endbuttons %}

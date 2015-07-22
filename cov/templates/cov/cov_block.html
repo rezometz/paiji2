@@ -5,14 +5,15 @@
 <div class="row text-center">
     {% if request.user.is_authenticated %}
         <div class="col-sm-6">
-            <a href="{% url 'cov-add' %}">
-                {% trans 'Proposer' %}
+            <a class="btn btn-sm btn-default" href="{% url 'cov-add' %}">
+                {% trans 'Add a carpool' %}
             </a>
         </div>
     {% endif %}
     <div class="col-sm-6">
-        <a href="{% url 'cov-list' %}">
-            {% trans 'Archives' %}
+        <a class="btn btn-sm btn-default" href="{% url 'cov-list' %}">
+            {# Translators: Archives #}
+            {% trans 'Records' %}
         </a>
     </div>
 </div>
@@ -28,17 +29,27 @@
         {% endif %}
 
         <span>
-            <a href="mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.notes|add:'"'|urlencode }}"><i class="glyphicon glyphicon-envelope"></i> {{ item.author.first_name }} </a>
+            <a href="mailto:{{ item.author.email }}?subject=[Paiji2][{% trans 'Carpool' %}] {% trans 'About' %}{{ ' : "'|add:item.notes|add:'"'|urlencode }}">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ item.author.first_name }}
+            </a>
 
             {% if item.annonce_type == 0 %}
-                <span class="label label-success">{{ item.get_annonce_type_display }} {{ item.good_until|date:'H:i, jS F' }}</span>
+                <span class="label label-success">
+                {% trans 'Offer' %}
+                </span>
             {% else %}
-                <span class="label label-danger">{{ item.get_annonce_type_display }} {{ item.good_until|date:'H:i, jS F' }}</span>
+                <span class="label label-danger">
+                {% trans 'Search' %}
+                </span>
             {% endif %}
+                <span class="label label-primary">
+                {{ item.good_until|date:'DATETIME_FORMAT' }}
+                </span>
             {{ item.notes|readmore:10 }}
         </span>
 
-            <span class="text-muted"><small>il y a {{ item.posted_at|timesince }}</small></span>
+            <span class="text-muted"><small>{% blocktrans with TimeSince=item.posted_at|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small></span>
         </li>
     {% endfor %}
 </ul>
