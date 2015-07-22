@@ -1,7 +1,7 @@
 import re
 
 from django import template
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
 from ..models import Note

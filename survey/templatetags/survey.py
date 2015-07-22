@@ -1,6 +1,6 @@
 from django import template
 from django.db.models import Count
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 from graphos.renderers import morris
 from graphos.sources.model import ModelDataSource

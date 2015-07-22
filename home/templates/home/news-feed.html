@@ -68,7 +68,7 @@
             </h4>
             <p class="text-muted"><a href=
             {% if request.user.is_authenticated %}
-            {% blocktrans with email=item.author.email subject='"'|add:item.title|add:'"'|urlencode %}"mailto:{{ email }}?subject=[Paiji2] About : {{ subject }}"{% endblocktrans %}
+            "mailto:{{ item.author.email }}?subject=[Paiji2] {% trans 'About' %}{{ ' : "'|add:item.title|add:'"'|urlencode }}"
             {% else %}
             "{% url 'sign-in' %}"
             {% endif %} 
