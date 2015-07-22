@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load bootstrap3 %}
 
-{% block title %}Sign-in{% endblock %}
+{% block title %}{% trans 'Sign-in' %}{% endblock %}
 
 {% block content %}
 <div class="well">
@@ -12,10 +12,10 @@
         {% bootstrap_form form %}
         {% buttons %}
         <a href="{% url 'password-reset' %}" class="btn btn-warning">
-            {% trans 'J&#39;ai oublié mon mot de passe' %}
+            {% trans "I've forgotten my password" %}
         </a>
         <button type="submit" class="btn btn-success pull-right">
-            {% trans 'Connexion' %}
+            {% trans 'login' %}
         </button>
         {% endbuttons %}
         <div class="clearfix"></div>

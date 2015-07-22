@@ -1,41 +1,31 @@
 {% extends "home/layout_three_columns.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Récupération de compte' %}{% endblock %}
+{% block title %}{{ _('account claiming')|title }}{% endblock %}
 
 {% block content %}
     <div class="well">
-        <h2>Compte Rézo</h2>
+        <h2>{{ _('Rezo account')|title }}</h2>
         <p>
-		{% blocktrans %}
-			Cette page va vous servir à récupérer une interface
-			de gestion pour votre compte Rézo si vous en possédez un.
-		{% endblocktrans %}
+        {% trans 'This page will enable you to receive a management system interface for your Rezo account if you have one.' %}
         <br />
-        {% blocktrans %}
-        Si jamais vous rencontrez le moindre souci durant la
-        récupération de votre compte, merci de nous envoyez un mail
-        à l'adresse suivante :
-        {% endblocktrans %}<br />
+        {% trans 'If you must face the smaller trouble during your account reclamation, please send us an email to the following address :' %}
         &nbsp;&nbsp;&nbsp;
-        <a href="mailto:paiji@metz.supelec.fr">paiji@metz.supelec.fr</a>.
+        <a href="mailto:paiji-dev@rezometz.org">paiji-dev@rezometz.org</a>.
         </p>
         {% if utilisateur != None %}
         <p>
-        {% blocktrans %}Il semble que vous soyez le propriétaire du compte de l'utilisateur :{% endblocktrans %}
+        {% trans 'You seem to possess the following account :' %}
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ utilisateur.prenom }} {{ utilisateur.nom }}</b>
         </p>
         <p class="alert alert-danger">
-        <b>{% trans 'Ce n&#39;est pas mon compte' %} : </b> {% trans 'contactez-nous.' %}
+        <b>{% trans 'This is not my account' %} : </b> {% trans 'contact us' %}
         </p>
-        <h3>{% trans 'Je suis bien propriétaire du compte' %}</h3>
+        <h3>{% trans "I am the account's proprietary" %}</h3>
         {% if not email_verifie %}
         <p class="alert alert-danger">
-			{% blocktrans %}
-            Votre adresse mail (prenom.nom@metz.supelec.fr par défaut) n'est pas encore vérifiée auprès du Rézo!
-            Demandez au Rézo de vous envoyer un nouveau lien de confirmation.
-            {% endblocktrans %}
+        {% trans 'Your email address (firstname.lastname@supelec.fr by default) is not checked yet by the Rezo ! Ask the Rezo to send you a new confirmation link.' %}
         </p>
         {% elif account_registered %}
         <p class="alert alert-danger">
@@ -43,28 +33,24 @@
         </p>
         {% else %}
         <p>
-			{% blocktrans %}
-            En confirmant le lien ci-dessous, un email vous sera envoyé vous
-            permettant de récupérer votre compte.
-            {% endblocktrans %}
+        {% trans 'By clicking on the following link, an email will be sent to you enabling you te retrieve your account' %}
         </p>
         <form action="{{ request.get_full_path }}" method="post">
             {% csrf_token %}
             <fieldset>
-                <legend>Confirmation</legend>
+                <legend>{{ _('confirmation')|title }}</legend>
             <p class="alert alert-info">
-            En cliquant sur le bouton suivant, je certifie sur l'honneur être le
-            possesseur du compte Rézo attribué à {{ utilisateur.prenom }} {{ utilisateur.nom }}.
+            {% blocktrans with FirstName=utilisateur.prenom LastName=utilisateur.nom %}By clicking on the following link, I assure to be the propriatary of the Rezo account of {{ FirstName }} {{ LastName }}.{% endblocktrans %}
             <p>
             <button type="submit" class="btn btn-info pull-right">
-                Confirmer
+            {{ _('confirm')|title }}
             </button>
         </fieldset>
         </form>
         {% endif %}
         {% else %}
         <p class="alert alert-danger">
-        Nous sommes désolés, mais il ne semble pas exister de correspondance.
+        {% trans 'We are sorry but there seems to be no match' %}
         </p>
         {% endif %}
     </div>

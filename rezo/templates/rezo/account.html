@@ -1,50 +1,51 @@
 {% extends "home/layout_three_columns.html" %}
 
-{% block title %}Info Account{% endblock %}
+{% load i18n %}
+{% load cache %}
+
+{% block title %}{{ _('account info')|title }}{% endblock %}
 
 {% block content %}
-{% load cache %}
-{% load i18n %}
-{% cache 60 'rezo-user-account' user.pk %}
+{% cache 10 'rezo-user-account' user.pk %}
     <div class="well">
-        <h3>Quotas</h3>
+        <h3>{% trans 'Quotas' %}</h3>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Entrant</th>
-                    <th>Sortant</th>
+                    <th>{{ _('download')|title }}</th>
+                    <th>{{ _('upload')|title }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th>Restant d'hier</th>
+                    <th>{{ _("yesterday's remaining")|title }}</th>
                     <td>{{ request.user.get_rezo.quotas.restant_veille_in|filesizeformat }}</td>
                     <td>{{ request.user.get_rezo.quotas.restant_veille_out|filesizeformat }}</td>
                 </tr>
                 <tr>
-                    <th>Consommation du jour</th>
+                    <th>{{ _("today's usage")|title }}</th>
                     <td>{{ request.user.get_rezo.quotas.conso_in|filesizeformat }}</td>
                     <td>{{ request.user.get_rezo.quotas.conso_out|filesizeformat }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Quota restant</th>
+                    <th>{{ _("remaining quota")|title }}</th>
                     <th>{{ request.user.get_rezo.quotas.down_restant|filesizeformat }}</th>
                     <th>{{ request.user.get_rezo.quotas.up_restant|filesizeformat }}</th>
                 </tr>
             </tfoot>
         </table>
 
-        <h3>Équipements rézotés</h3>
+        <h3>{{ _('registered equipment')|title }}</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>{% trans 'État' %}</th>
-                    <th>{% trans 'Type' %}</th>
+                    <th>{{ _('state')|title }}</th>
+                    <th>{{ _('type')|title }}</th>
                     <th>IP</th>
-                    <th>{% trans 'Adresses MAC' %}</th>
+                    <th>{{ _('MAC adresses')|title }}</th>
                     <th>DNS</th>
                 </tr>
             </thead>
@@ -52,9 +53,9 @@
                 {% for equipement in request.user.get_rezo.equipements.all %}
                 <tr>
                     {% if equipement.etat == 'STATE_ACTIVE' %}
-                        <td>{% trans 'Activé' %}</td>
+                        <td>{{ _('enabled')|title }}</td>
                     {% else %}
-                        <td>{% trans 'Désactivé' %}</td>
+                        <td>{{  _('disabled')|title }}</td>
                     {% endif %}
                     <td>{{ equipement.type_equip }}</td>
                     <td>{{ equipement.ip }}</td>
@@ -69,22 +70,22 @@
             </tbody>
         </table>
         
-        <h3>Cotisation</h3>
+        <h3>{{ _('due')|title }}</h3>
         <table class="table table-striped">
             <thead>
                <tr>
                     <th></th>
-                    <th>Date</th>
+                    <th>{{ _('date')|title }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Expiration</td>
-                    <td>{{ request.user.expire_on|date:"l j F Y" }}</td>
+                    <td>{{ _('expiration')|title }}</td>
+                    <td>{{ request.user.expire_on|date:"DATE_FORMAT" }}</td>
                 <tr>
             </tbody>
         </table>
-        Si ces informations sont incorrectes, ou si tu as des équipements non enregistrés, merci de les faire enregistrer auprès du Rézo.
-    </div>
+        {% trans 'If these informations are false, or if you have unregistered equipment, please contact the Rezo.' %}
+        </div>
 {% endcache %}
 {% endblock %}

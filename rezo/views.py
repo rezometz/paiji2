@@ -14,6 +14,7 @@ from django.contrib.auth import get_user_model, login, authenticate
 from .models import Equipement, Utilisateur, AccountRecovery
 from .forms import ConfirmForm, UserCreationForm, UserAuthenticationForm
 
+from django.utils.translation import ugettext as _
 
 def create_hash(chain):
     hash = hashlib.sha256()
@@ -79,7 +80,7 @@ class AccountClaimView(generic.FormView):
             email=self.utilisateur.emailverifie,
         )
 
-        content = 'Veuillez suivre le lien :\n  {url}\n'.format(
+        content = _('Please follow the link :')+'\n  {url}\n'.format(
             url=self.request.build_absolute_uri(
                 reverse('account-claim-confirm', kwargs={
                     'code': self.hash,
@@ -88,7 +89,7 @@ class AccountClaimView(generic.FormView):
             ),
         )
         send_mail(
-            '[Paiji2] Recuperation de votre compte',
+            '[Paiji2]'+_('Account retrieval'),
             content,
             'paiji@metz.supelec.fr',
             [self.utilisateur.emailverifie, ],
@@ -113,7 +114,7 @@ class AccountClaimConfirmView(generic.CreateView):
                 email=self.kwargs.get('email'),
             )
         except AccountRecovery.DoesNotExist:
-            messages.error(self.request, 'Lien de confirmation invalide')
+            messages.error(self.request, _('Unvalid confirmation link.'))
             return redirect(reverse('claim-account'))
 
         self.utilisateur = Utilisateur.objects.using('rezo').get(
