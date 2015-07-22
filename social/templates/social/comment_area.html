@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap3 i18n %}
 
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
@@ -14,7 +14,7 @@
             {{ comment.author.first_name }}
        		</a>
             : {{ comment.content|urlize }}
-    		<span class="text-muted"><small>il y a {{ comment.pubDate|timesince }}</small></span>
+    		<span class="text-muted"><small>{% blocktrans with TimeSince=comment.pubDate|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small></span>
 		</li>
 		<hr>
 	{% endfor %}

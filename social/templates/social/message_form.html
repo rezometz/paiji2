@@ -11,16 +11,16 @@
     {% if form.instance and form.instance.pk %}
     {% trans 'Edit article' %}
     {% else %}
-    {% trans 'Propose article' %}
+    {% trans 'Write article' %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <div class="well">
         {% if form.instance and form.instance.pk %}
-        <h3>{% trans 'Modification de l’article' %}</h3>
+        <h3>{% trans 'Edit article' %}</h3>
         {% else %}
-        <h3>{% trans 'Rédaction d’un article' %}</h3>
+        <h3>{% trans 'Write article' %}</h3>
         {% endif %}
 
 
@@ -28,21 +28,21 @@
         <form action="{{ request.get_full_path }}" method="post" role="form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="annonceur">{% trans 'Rédacteur' %}</label>
+                <label for="annonceur">{% trans 'Author' %}</label>
                 <p>{{ request.user.first_name }} ({{ request.user.email }})</p>
             </div>
 
             <div class="form-group">
-                <label for="group">{% trans 'Groupe' %}</label>
+                <label for="group">{% trans 'Group' %}</label>
                 {% bootstrap_field form.group show_label=False %}
 
-                <label for="title">{% trans 'Titre' %}</label>
+                <label for="title">{% trans 'Title' %}</label>
                 {% bootstrap_field form.title show_label=False %}
 
-                <label for="title">{% trans 'Options de visibilité du message' %}</label>
+                <label for="title">{% trans 'Visibility option' %}</label>
                 {% bootstrap_field form.public show_label=False %}
 
-                <label for="content">{% trans 'Corps du message' %}</label>
+                <label for="content">{% trans 'Content' %}</label>
                 {% bootstrap_field form.content show_label=False %}
             </div>
 
@@ -51,9 +51,9 @@
             {% buttons %}
                 <button type="submit" class="btn btn-success pull-right">
                     {% if form.instance and form.instance.pk %}
-                        {% trans 'Enregistrer' %}
+                        {% trans 'Save' %}
                     {% else %}
-                        {% trans 'Publier' %}
+                        {% trans 'Publish' %}
                     {% endif %}
                 </button>
             {% endbuttons %}
@@ -61,7 +61,7 @@
         </form>
         {% else %}
 
-        {% trans 'You are not registered as a staff of a group (association/club/listes), please contact rezo or the bureau of your group to register you as a staff.' %}
+        {% trans 'You are not registered as a staff of a group (association/club/list), please contact rezo or the bureau of your group to register you as a staff.' %}
 
         {% endif %}
     </div>

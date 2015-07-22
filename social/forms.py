@@ -1,12 +1,14 @@
 from django import forms
+from django.utils.translation import ugettext as _
 
 from .models import Message, Comment
 
 
 class CommentForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
-        self.fields['content'].label = "Ecrire un commentaire..."
+        self.fields['content'].label = _('Write a comment...')
 
     class Meta:
         model = Comment

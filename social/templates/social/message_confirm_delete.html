@@ -1,11 +1,11 @@
 {% extends "home/layout_three_columns.html" %}
 {% load bootstrap3 %}
 
-{% block title %}Confirm deleting a news{% endblock %}
+{% block title %}{% trans 'Confirm deleting a piece of news' %}{% endblock %}
 
 {% block content %}
 <div class="well">
-    <h3>Vous allez supprimer cette news ?</h3>
+    <h3>{% 'You want to delete this piece of news ?' %}</h3>
     <div><strong>{{ object.title|safe }}</strong></div>
     <br>
     <div><em>{{ object.content|safe }}</em></div>
@@ -16,7 +16,7 @@
 
         {% buttons %}
             <button type="submit" class="btn btn-danger pull-right">
-                Supprimer
+            {% trans 'delete' %}
             </button>
         {% endbuttons %}
         <div class="clearfix"></div>

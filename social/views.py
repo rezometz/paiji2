@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.core.urlresolvers import reverse
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
@@ -58,9 +58,10 @@ class MessageCreateView(generic.CreateView):
         return super(MessageCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        messages.success(self.request, _(
-            'Your request has been saved successfully :P'
-        ))
+        messages.success(
+            self.request, 
+            _('Your request has been saved successfully :P'),
+        )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
@@ -74,8 +75,9 @@ class MessageEditView(generic.UpdateView):
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>Rezo is not hacked."
-                "You don't have the permission xD</h1>"
+                "<h1>\
+                {% trans 'Rezo is not hacked. You don\'t have the permission xD' %}\
+                </h1>"
             )
         return super(MessageEditView, self).dispatch(request, *args, **kwargs)
 
@@ -88,10 +90,10 @@ class MessageEditView(generic.UpdateView):
         return form
 
     def get_success_url(self):
-        messages.success(self.request, _(
-            'Your Message has been updated, '
-            'it will be refreshed in a moment'
-        ))
+        messages.success(
+            self.request,
+            _('Your Message has been updated, it will be refreshed in a moment'),
+        )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
 
@@ -104,17 +106,17 @@ class MessageDeleteView(generic.DeleteView):
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>Rezo is not hacked."
-                "You don\'t have the permission xD</h1>"
+                "<h1>\
+                {% trans 'Rezo is not hacked. You don\'t have the permission xD' %}\
+                </h1>"
             )
         return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         messages.success(
-            self.request, _(
-            'Your Message has been removed, '
-            'it will be refreshed in a moment'
-        ))
+            self.request,
+            _('Your Message has been removed, it will be refreshed in a moment'),
+        )
         success_url = self.request.POST.get('next')
 
         return success_url if success_url != '' else reverse('index')
@@ -132,9 +134,10 @@ class CommentCreateView(generic.CreateView):
         return super(CommentCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        messages.success(self.request,  _(
-            "Your comment has been successfully saved."
-        ))
+        messages.success(
+            self.request,
+            _("Your comment has been successfully saved."),
+        )
         return reverse('index')
 
 
