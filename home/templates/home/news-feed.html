@@ -16,12 +16,11 @@
 		</h3>
     </div>
 
-    {% comment %}
     <div class="col-md-4 pagination-container">
     	<ul class="pagination pagination-sm pull-right">
 			<li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
 			{% if page_obj.has_previous %}
-			<a href="{% url 'index' page=page_obj.previous_page_number %}">
+			<a href="{% url 'index' %}?page={{ page_obj.previous_page_number }}">
 				{% else %}
 				<a href="#">
 					{% endif %}
@@ -33,7 +32,7 @@
 			<li class="disabled"><a href="#">...</a></li>
 			<li{% if not page_obj.has_next %} class="disabled"{% endif %}>
 			{% if page_obj.has_next %}
-			<a href="{% url 'index' page=page_obj.next_page_number %}">
+			<a href="{% url 'index' %}?page={{ page_obj.next_page_number }}">
 				{% else %}
 				<a href="#">
 					{% endif %}
@@ -42,8 +41,6 @@
 			</li>
 		</ul>
 	</div>
-    {% endcomment %}
-    {% bootstrap_pagination page_obj %}
 </div>
 
 
