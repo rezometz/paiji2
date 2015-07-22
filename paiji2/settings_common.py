@@ -75,7 +75,7 @@ LANGUAGE_CODE = 'fr'
 LANGUAGES = (
     ('fr', 'french'),
     ('en', 'english'),
-    ('de', 'german'),
+    #('de', 'german'),
 )
 
 TIME_ZONE = 'Europe/Paris'

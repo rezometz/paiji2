@@ -8,9 +8,4 @@ urlpatterns = patterns('',
     	MessageListView.as_view(),
     	name='index'
     ),
-    url(
-        r'^(?P<page>\d+)?$',
-        MessageListView.as_view(),
-        name="index",
-    ),
 )

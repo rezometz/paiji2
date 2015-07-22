@@ -1,6 +1,6 @@
 {% extends "home/layout_three_columns.html" %}
 {# load staticfiles #}
-{% load i18n %}
+{% load i18n bootstrap3 %}
 
 {# block style #}<!-- <link rel="stylesheet" type="text/css" href="{# static 'cov/css/cov.css' #}" /> -->{# endblock #}
 
@@ -64,6 +64,7 @@
         </ul>
 
 
+        {% comment %}
         <div class="pagination-container">
         <ul class="pagination pagination-sm">
             <li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
@@ -88,6 +89,10 @@
                 </a>
             </li>
         </ul>
+        </div>
+        {% endcomment %}
+        <div class="pagination-container">
+        {% bootstrap_pagination page_obj %}
         </div>
     </div>
 {% endblock %}
