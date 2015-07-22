@@ -33,7 +33,7 @@
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
-            {% trans 'Your page is empty, you can add modules (carpool, shoutbox, weather, etc.) with the following link :' %}
+            {% trans 'Your page is empty, you can add modules (carpooling, shoutbox, weather, etc.) with the following link :' %}
             <br />
             <a href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a>
             </p>
@@ -131,7 +131,7 @@
                     <li>
                         <a href="{% url 'cov-list' %}">
                         <span class="glyphicon glyphicon-road"></span>
-                        {% trans 'Car pool' %}
+                        {% trans 'Carpooling' %}
                         </a>
                     </li>
                     <li>

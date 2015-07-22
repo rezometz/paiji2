@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-21 22:56+0200\n"
+"POT-Creation-Date: 2015-07-22 11:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,8 @@ msgstr "OK"
 
 #: templates/home/base.html:36
 msgid ""
-"Your page is empty, you can add modules (carpool, shoutbox, weather, etc.) "
-"with the following link :"
+"Your page is empty, you can add modules (carpooling, shoutbox, weather, "
+"etc.) with the following link :"
 msgstr ""
 "Votre page est vide, vous pouvez ajouter des modules (covoiturage, gueuloir, "
 "météo, etc.) avec le lien suivant :"
@@ -48,11 +48,11 @@ msgstr "personnaliser ma page"
 
 #: templates/home/base.html:76
 msgid "logout"
-msgstr "déconnection"
+msgstr "déconnexion"
 
 #: templates/home/base.html:81
 msgid "login"
-msgstr "connection"
+msgstr "connexion"
 
 #: templates/home/base.html:82
 msgid "sign in"
@@ -72,8 +72,8 @@ msgid "My groups"
 msgstr "Mes groupes"
 
 #: templates/home/base.html:134
-msgid "Car pool"
-msgstr "COV"
+msgid "Carpooling"
+msgstr "Covoit’"
 
 #: templates/home/base.html:140
 msgid "Forum"
@@ -116,6 +116,5 @@ msgid "News"
 msgstr "Nouvelles"
 
 #: templates/home/news-feed.html:77
-#, python-format
 msgid "for %(group)s, %(TimeSince)s ago"
 msgstr "pour %(group)s, il y a %(TimeSince)s"
