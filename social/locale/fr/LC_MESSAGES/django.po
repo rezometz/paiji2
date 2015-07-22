@@ -1,0 +1,281 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-22 14:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: feeds.py:10
+msgid "Social Latest Entries"
+msgstr "Dernières nouvelles"
+
+#: feeds.py:12
+msgid "Latest entries from all the workgroups"
+msgstr "Dernières nouvelle de tous les groupes"
+
+#: forms.py:11
+msgid "Write a comment..."
+msgstr "Écrire un commentaire"
+
+#: models.py:16 models.py:190
+msgid "post type"
+msgstr "type de poste"
+
+#: models.py:17
+msgid "post types"
+msgstr "types de poste"
+
+#: models.py:20 models.py:184
+msgid "description"
+msgstr "description"
+
+#: models.py:32
+msgid "group category"
+msgstr "catégorie de groupe"
+
+#: models.py:33
+msgid "group categories"
+msgstr "catégories de groupe"
+
+#: models.py:36 models.py:52
+msgid "name"
+msgstr "nome"
+
+#: models.py:48 models.py:133 models.py:236
+msgid "group"
+msgstr "groupe"
+
+#: models.py:49
+msgid "groups"
+msgstr "groupes"
+
+#: models.py:63
+msgid "category"
+msgstr "catégorie"
+
+#: models.py:67
+msgid "creation date"
+msgstr "date de création"
+
+#: models.py:73
+msgid "deletion date"
+msgstr "date de suppression"
+
+#: models.py:80
+msgid "logo"
+msgstr "logo"
+
+#: models.py:86
+msgid "newsfeed"
+msgstr "flux de nouvelles"
+
+#: models.py:92
+msgid "calendar"
+msgstr "calendrier"
+
+#: models.py:114 models.py:179
+msgid "Bureau"
+msgstr "Bureau"
+
+#: models.py:115
+msgid "Bureaux"
+msgstr "Bureaux"
+
+#: models.py:120
+msgid "tenure beginning date"
+msgstr "date de début de mandat"
+
+#: models.py:126
+msgid "tenure end date"
+msgstr "date de fin de mandat"
+
+#: models.py:142
+msgid "Does it exist ?"
+msgstr "Existe-t-il ?"
+
+#: models.py:146
+msgid "Is it current ?"
+msgstr "Est-il en exercice ?"
+
+#: models.py:151
+msgid ""
+"Another current Bureau exists already,            update its tenure end date "
+"(endDate)            before setting a new Bureau"
+msgstr ""
+"Un autre Bureau en exercice existe déjà, mettez à jour sa date de fin de mandat "
+"(endDate) avant de déclarer un nouveau Bureau."
+
+#: models.py:167
+msgid "post"
+msgstr "poste"
+
+#: models.py:168
+msgid "posts"
+msgstr "postes"
+
+#: models.py:173
+msgid "user"
+msgstr "utilisateur"
+
+#: models.py:198 models.py:270
+msgid "message"
+msgstr "message"
+
+#: models.py:199
+msgid "messages"
+msgstr "messages"
+
+#: models.py:204 models.py:264
+msgid "author"
+msgstr "auteur"
+
+#: models.py:209 models.py:275
+msgid "publication date"
+msgstr "date de publication"
+
+#: models.py:214
+msgid "title"
+msgstr "titre"
+
+#: models.py:220 models.py:280
+msgid "content"
+msgstr "corps du message"
+
+#: models.py:225
+msgid "readable by unregistered visitors"
+msgstr "visible par des visiteurs non-inscrits"
+
+#: models.py:230
+msgid "Normal"
+msgstr "Normal"
+
+#: models.py:231
+msgid "Priority"
+msgstr "Priorité"
+
+#: models.py:240
+msgid "importance level"
+msgstr "niveau d’importance"
+
+#: models.py:258
+msgid "comment"
+msgstr "commentaire"
+
+#: models.py:259
+msgid "comments"
+msgstr "commentaires"
+
+#: views.py:63
+msgid "Your request has been saved successfully :P"
+msgstr "Votre demande a bien été enregistrée :P"
+
+#: views.py:95
+msgid "Your Message has been updated, it will be refreshed in a moment"
+msgstr "Votre message a été mis à jour, ce sera pris en compte bientôt"
+
+#: views.py:118
+msgid "Your Message has been removed, it will be refreshed in a moment"
+msgstr "Votre message a été supprimé, ce sera pris en compte bientôt"
+
+#: views.py:139
+msgid "Your comment has been successfully saved."
+msgstr "Votre commentaire a bien été enregistré"
+
+#: templates/social/comment_area.html:17
+#, python-format
+msgid "%(TimeSince)s ago"
+msgstr "il y a %(TimeSince)s"
+
+#: templates/social/group_base.html:13
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: templates/social/group_base.html:16 templates/social/news_list.html:5
+msgid "News"
+msgstr "Nouvelles"
+
+#: templates/social/group_base.html:19
+msgid "Mailing lists"
+msgstr "Listes de courriels"
+
+#: templates/social/group_base.html:19
+msgid "coming soon"
+msgstr "à venir bientôt"
+
+#: templates/social/group_base.html:22 templates/social/member_list.html:5
+msgid "Members"
+msgstr "Membres"
+
+#: templates/social/group_detail.html:6
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/social/group_detail.html:17
+msgid "Download iCalendar file (.ics)"
+msgstr "Télécharger le fichier iCalendar (.ics)"
+
+#: templates/social/message_confirm_delete.html:4
+msgid "Confirm deleting a piece of news"
+msgstr "Confirmation de suppression d’une nouvelle"
+
+#: templates/social/message_confirm_delete.html:19
+msgid "delete"
+msgstr "supprimer"
+
+#: templates/social/message_form.html:12 templates/social/message_form.html:21
+msgid "Edit article"
+msgstr "Modifier un article"
+
+#: templates/social/message_form.html:14 templates/social/message_form.html:23
+msgid "Write article"
+msgstr "Rédiger un article"
+
+#: templates/social/message_form.html:31
+msgid "Author"
+msgstr "Rédacteur"
+
+#: templates/social/message_form.html:36
+msgid "Group"
+msgstr "Groupe"
+
+#: templates/social/message_form.html:39
+msgid "Title"
+msgstr "Titre"
+
+#: templates/social/message_form.html:42
+msgid "Visibility option"
+msgstr "Option de visibilité"
+
+#: templates/social/message_form.html:45
+msgid "Content"
+msgstr "Corps du message"
+
+#: templates/social/message_form.html:54
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/social/message_form.html:56
+msgid "Publish"
+msgstr "Publier"
+
+#: templates/social/message_form.html:64
+msgid ""
+"You are not registered as a staff of a group (association/club/list), please "
+"contact rezo or the bureau of your group to register you as a staff."
+msgstr ""
+"Vous n'êtes pas enregistré en tant que représentant d’un groupe (associaton/club/liste), "
+"vous pouvez contacter le Rézo ou le Bureau de votre groupe pour vous enregistrer."
+
