@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 11:54+0200\n"
+"POT-Creation-Date: 2015-07-22 15:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,6 +114,18 @@ msgstr "Accueil"
 #: templates/home/news-feed.html:8
 msgid "News"
 msgstr "Nouvelles"
+
+#: templates/home/news-feed.html:64
+msgid "public"
+msgstr "public"
+
+#: templates/home/news-feed.html:66
+msgid "internal"
+msgstr "interne"
+
+#: templates/home/news-feed.html:72
+msgid "\"mailto:%(email)s?subject=[Paiji2] About : %(subject)s\""
+msgstr "\"mailto:%(email)s?subject=[Paiji2] À propos de : %(subject)s\""
 
 #: templates/home/news-feed.html:77
 msgid "for %(group)s, %(TimeSince)s ago"

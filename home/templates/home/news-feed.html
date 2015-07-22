@@ -60,15 +60,15 @@
             <h4 class="message-title">{{ item.title }}
             {% if request.user.is_authenticated %}
                 {% if item.public %}
-                <span class="label label-success">public</span>
+                <span class="label label-success">{% trans 'public' %}</span>
                 {% else %}
-                <span class="label label-warning">interne</span>
+                <span class="label label-warning">{% trans 'internal' %}</span>
                 {% endif %}
             {% endif %}
             </h4>
             <p class="text-muted"><a href=
             {% if request.user.is_authenticated %}
-            "mailto:{{ item.author.email }}?subject={{ '[Paiji2] Concernant "'|add:item.title|add:'"'|urlencode }}"
+            {% blocktrans with email=item.author.email subject='"'|add:item.title|add:'"'|urlencode %}"mailto:{{ email }}?subject=[Paiji2] About : {{ subject }}"{% endblocktrans %}
             {% else %}
             "{% url 'sign-in' %}"
             {% endif %} 
