@@ -35,6 +35,7 @@ class Alert(models.Model):
     )
     author = models.ForeignKey(
         get_user_model(),
+        verbose_name=_('author'),
     )
     posted_at = models.DateTimeField(
         _('Alert date'),
