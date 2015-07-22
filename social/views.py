@@ -75,9 +75,7 @@ class MessageEditView(generic.UpdateView):
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>\
-                {% trans 'Rezo is not hacked. You don\'t have the permission xD' %}\
-                </h1>"
+                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
             )
         return super(MessageEditView, self).dispatch(request, *args, **kwargs)
 
@@ -106,9 +104,7 @@ class MessageDeleteView(generic.DeleteView):
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>\
-                {% trans 'Rezo is not hacked. You don\'t have the permission xD' %}\
-                </h1>"
+                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
             )
         return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
 

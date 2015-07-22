@@ -56,7 +56,9 @@ class CovEditView(generic.UpdateView):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return HttpResponseNotFound("<h1>{% trans 'Rezo is not hacked. You don\'t have the permission xD' %}</h1>")
+            return HttpResponseNotFound(
+                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
+            )
         return super(CovEditView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
@@ -73,7 +75,9 @@ class CovDeleteView(generic.DeleteView):
         """ Making sure that only authors can update Covs """
         obj = self.get_object()
         if obj.author != self.request.user:
-            return HttpResponseNotFound("<h1>{% trans 'Rezo is not hacked. You don\'t have the permission xD' %}</h1>")
+            return HttpResponseNotFound(
+                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
+            )
         return super(CovDeleteView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):

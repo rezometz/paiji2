@@ -12,11 +12,6 @@ urlpatterns = patterns('',
         name="bulletin-board",
     ),
     url(
-        r'^board/(?P<page>\d+)$',
-        login_required(NoteListView.as_view()),
-        name="bulletin-board",
-    ),
-    url(
         r'board/add$',
         login_required(NoteCreateView.as_view()),
         name="bulletin-add",

@@ -2,13 +2,35 @@
 
 {% load cache %}
 {% load bulletin %}
+{% load i18n %}
+{% load bootstrap3 %}
 
 {% block title%}Shoutbox{% endblock %}
 
 {% block content %}
-{% cache 60 bulletin-board page_obj.number %}
     <div class="well">
         <h3>Archives</h3>
+        <div class="pagination-container">
+        {% bootstrap_pagination page_obj %}
+        </div>
+
+<form action="{% url 'bulletin-add' %}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            {{ request.user.first_name }}
+        </span>
+        {% bootstrap_field form.message show_label=False %}
+        <input type="hidden" value="{{ request.path }}" name="next" />
+    </div>
+    <br />
+    {% buttons %}
+    <button type="submit" style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" class="btn btn-success pull-right"/>
+    {% endbuttons %}
+    <div class="clearfix"></div>
+</form>
+
         <ul class="list-unstyled">
             {% for note in notes %}
             <li>
@@ -18,8 +40,13 @@
                     <i class="glyphicon glyphicon-envelope"></i>
                     {{ note.author.first_name }}
                 </a>
+            {% if note.author == request.user %}
+                <span class="pull-right">
+                    <a href="{% url 'bulletin-edit' note.id %}"><i class="fa fa-pencil"></i></a>
+                    <a href="{% url 'bulletin-delete' note.id %}"><i class="fa fa-trash-o"></i></a></span>
+            {% endif %}
             </span>
-            {{ note.message|urlize2 }}<br />
+            {{ note.message|urlize }}<br />
             <span class="text-muted"><small>il y a {{ note.posted_at|timesince }}</small></span>
             </li>
             <hr>
@@ -27,30 +54,7 @@
         </ul>
 
         <div class="pagination-container">
-        <ul class="pagination pagination-sm">
-            <li{% if not page_obj.has_previous %} class="disabled"{% endif %}>
-                {% if page_obj.has_previous %}
-                <a href="{% url 'bulletin-board' page=page_obj.previous_page_number %}">
-                {% else %}
-                <a href="#">
-                {% endif %}
-                    &laquo;
-                </a>
-            </li>
-            <li class="disabled"><a href="#">...</a></li>
-            <li class="active"><a href="#">{{ page_obj.number }}</a></li>
-            <li class="disabled"><a href="#">...</a></li>
-            <li{% if not page_obj.has_next %} class="disabled"{% endif %}>
-                {% if page_obj.has_next %}
-                <a href="{% url 'bulletin-board' page=page_obj.next_page_number %}">
-                {% else %}
-                <a href="#">
-                {% endif %}
-                    &raquo;
-                </a>
-            </li>
-        </ul>
+        {% bootstrap_pagination page_obj %}
         </div>
     </div>
-{% endcache %}
 {% endblock %}
