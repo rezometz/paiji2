@@ -41,7 +41,7 @@
             <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="next" />
             <br />
             {% buttons %}
-                <button type="submit" class="btn btn-success pull-right">
+                <button type="submit" class="btn btn-primary btn-block text-center">
                     {% if form.instance and form.instance.pk %}
                         {% trans 'Update' %}
                     {% else %}
