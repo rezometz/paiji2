@@ -1,7 +1,7 @@
 {% load readmore %}
 {% load i18n %}
 
-<h3>{% trans 'Covoiturage' %}</h3>
+<h3>{% trans 'Carpool' %}</h3>
 <div class="row text-center">
     {% if request.user.is_authenticated %}
         <div class="col-sm-6">
@@ -36,11 +36,11 @@
 
             {% if item.annonce_type == 0 %}
                 <span class="label label-success">
-                {% trans 'Offer' %}
+                {% trans 'Offer' context "1st p sg" %}
                 </span>
             {% else %}
                 <span class="label label-danger">
-                {% trans 'Search' %}
+                {% trans 'Search' context "1st p sg" %}
                 </span>
             {% endif %}
                 <span class="label label-primary">

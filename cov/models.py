@@ -6,6 +6,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
+from django.utils.translation import pgettext
 
 class Covoiturage(models.Model):
 
@@ -21,8 +22,8 @@ class Covoiturage(models.Model):
     )
 
     ANNONCE_TYPE = (
-        (0, _('Offer')),
-        (1, _('Search')),
+        (0, pgettext('1st p sg','Offer')),
+        (1, pgettext('1st p sg','Search')),
     )
 
     annonce_type = models.IntegerField(

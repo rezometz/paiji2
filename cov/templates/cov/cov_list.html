@@ -28,11 +28,11 @@
                     </span>
                     {% if cov.annonce_type == 0 %}
                         <span class="label label-default">
-                        {% trans 'Offer' %}
+                        {% trans 'Offer' context "1st p sg" %}
                         </span>
                     {% else %}
                         <span class="label label-default">
-                        {% trans 'Search' %}
+                        {% trans 'Search' context "1st p sg" %}
                         </span>
                     {% endif %}
                         <span class="label label-default">
@@ -50,11 +50,11 @@
                 </a>
                 {% if cov.annonce_type == 0 %}
                     <span class="label label-success">
-                    {% trans 'Offer' %}
+                    {% trans 'Offer' context "1st p sg" %}
                     </span>
                 {% else %}
                     <span class="label label-danger">
-                    {% trans 'Search' %}
+                    {% trans 'Search' context "1st p sg" %}
                     </span>
                 {% endif %}
                     <span class="label label-primary">
