@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 14:30+0200\n"
+"POT-Creation-Date: 2015-07-22 17:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,8 +115,8 @@ msgid ""
 "Another current Bureau exists already,            update its tenure end date "
 "(endDate)            before setting a new Bureau"
 msgstr ""
-"Un autre Bureau en exercice existe déjà, mettez à jour sa date de fin de mandat "
-"(endDate) avant de déclarer un nouveau Bureau."
+"Un autre Bureau en exercice existe déjà, mettez à jour sa date de fin de "
+"mandat (endDate) avant de déclarer un nouveau Bureau."
 
 #: models.py:167
 msgid "post"
@@ -193,6 +193,10 @@ msgstr "Votre message a été supprimé, ce sera pris en compte bientôt"
 #: views.py:139
 msgid "Your comment has been successfully saved."
 msgstr "Votre commentaire a bien été enregistré"
+
+#: templates/social/comment_area.html:8
+msgid "About"
+msgstr "À propos de"
 
 #: templates/social/comment_area.html:17
 #, python-format
@@ -276,6 +280,6 @@ msgid ""
 "You are not registered as a staff of a group (association/club/list), please "
 "contact rezo or the bureau of your group to register you as a staff."
 msgstr ""
-"Vous n'êtes pas enregistré en tant que représentant d’un groupe (associaton/club/liste), "
-"vous pouvez contacter le Rézo ou le Bureau de votre groupe pour vous enregistrer."
-
+"Vous n'êtes pas enregistré en tant que représentant d’un groupe (associaton/"
+"club/liste), vous pouvez contacter le Rézo ou le Bureau de votre groupe pour "
+"vous enregistrer."

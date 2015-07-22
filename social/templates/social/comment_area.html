@@ -5,7 +5,7 @@
 		<li>
     		<a href=
             {% if request.user.is_authenticated %}
-            "mailto:{{ comment.author.email }}?subject={{ '[Paiji2] Concernant "'|add:comment.content|add:'"'|urlencode }}"
+            "mailto:{{ comment.author.email }}?subject=[Paiji2] {% trans 'About' %}{{ ' : "'|add:comment.content|add:'"'|urlencode }}"
             {% else %}
             "{% url 'sign-in' %}"
             {% endif %}
