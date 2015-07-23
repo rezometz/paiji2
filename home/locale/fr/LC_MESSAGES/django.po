@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 17:19+0200\n"
+"POT-Creation-Date: 2015-07-23 10:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,20 +115,19 @@ msgstr "Accueil"
 msgid "News"
 msgstr "Nouvelles"
 
-#: templates/home/news-feed.html:64
+#: templates/home/news-feed.html:60
 msgid "public"
 msgstr "public"
 
-#: templates/home/news-feed.html:66
+#: templates/home/news-feed.html:62
 msgid "internal"
 msgstr "interne"
 
-#: templates/home/news-feed.html:72
+#: templates/home/news-feed.html:68
 msgid "About"
 msgstr "À propos de"
 
-#: templates/home/news-feed.html:77
+#: templates/home/news-feed.html:73
 #, python-format
 msgid "for %(group)s, %(TimeSince)s ago"
 msgstr "pour %(group)s, il y a %(TimeSince)s"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-22 17:25+0200\n"
+"POT-Creation-Date: 2015-07-23 10:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,15 +182,19 @@ msgstr "commentaires"
 msgid "Your request has been saved successfully :P"
 msgstr "Votre demande a bien été enregistrée :P"
 
-#: views.py:95
+#: views.py:78 views.py:107
+msgid "Rezo is not hacked. You don't have the permission xD"
+msgstr "Le Rézo n’est pas piraté. Tu n’as pas le droit xD"
+
+#: views.py:93
 msgid "Your Message has been updated, it will be refreshed in a moment"
 msgstr "Votre message a été mis à jour, ce sera pris en compte bientôt"
 
-#: views.py:118
+#: views.py:114
 msgid "Your Message has been removed, it will be refreshed in a moment"
 msgstr "Votre message a été supprimé, ce sera pris en compte bientôt"
 
-#: views.py:139
+#: views.py:135
 msgid "Your comment has been successfully saved."
 msgstr "Votre commentaire a bien été enregistré"
 

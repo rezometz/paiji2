@@ -44,7 +44,7 @@ msgstr "Votre message a bien été rajouté, il sera bientôt affiché"
 
 #: views.py:53 views.py:70
 msgid "Rezo is not hacked. You don't have the permission xD"
-msgstr "Le Rézo n’est as piraté, tu n’as pas le droitt xP"
+msgstr "Le Rézo n’est pas piraté, tu n’as pas le droit xP"
 
 #: views.py:59
 msgid "Your note has been updated, it will be refreshed in a moment"
