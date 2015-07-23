@@ -5,6 +5,7 @@ from django.contrib import admin
 from modular_blocks import modules
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 admin.autodiscover()
 modules.autodiscover()
@@ -12,6 +13,8 @@ modules.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^i18n/', include('django.conf.urls.i18n')),
+)\
++ i18n_patterns('',
 
     url(r'^rezo/', include('rezo.urls')),
 
@@ -26,6 +29,5 @@ urlpatterns = patterns('',
     url(r'^forum/', include('forum.urls', namespace='forum')),
 
     url(r'^tinymce/', include('tinymce.urls')),
-)
-
-urlpatterns += modules.get_patterns()
+)\
++ modules.get_i18n_patterns()
