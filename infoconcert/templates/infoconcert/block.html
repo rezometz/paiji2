@@ -1,11 +1,12 @@
-<h3>Prochains concerts</h3>
+{% load i18n %}
+<h3>{% trans 'Upcoming concerts' %}</h3>
 <ul class="list-unstyled">
     {% for event in events %}
         <li>
             <span class="label label-{{ event.label }}">{{ event.type }}</span>
             <span class="label label-danger">
             {% if event.is_free %}
-                Free
+                {{ _('free')|title }}
             {% else %}
                 {{ event.cost }}
             {% endif %}
@@ -14,7 +15,10 @@
             <br />
             <small>{{ event.organization.name }}
             <span class="text-muted" title="{{ event.date|date }}">
-                {{ event.date|date:'l' }}, dans {{ event.date|timeuntil }}
+            {{ event.date|date:"DATETIME_FORMAT" }}
+            {% comment %}
+                {{ event.date|date:'l' }}, in {{ event.date|timeuntil }}
+            {% endcomment %}
             </span>
             </small>
 
