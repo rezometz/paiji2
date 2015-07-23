@@ -19,13 +19,13 @@ urlpatterns = patterns('',
 
     url(r'^', include('home.urls'), name='home'),
 
+    url(r'^admin', include(admin.site.urls)),
+
     url(r'^calendar/', include('backbone_calendar.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    
     url(r'^forum/', include('forum.urls', namespace='forum')),
 
     url(r'^tinymce/', include('tinymce.urls')),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
 
 urlpatterns += modules.get_patterns()
