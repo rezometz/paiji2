@@ -79,6 +79,8 @@ LANGUAGES = (
     #('de', 'german'),
 )
 
+# https://stackoverflow.com/questions/12946830/how-to-add-new-languages-into-django-my-language-uyghur-or-uighur-is-not-su
+
 EXTRA_LANG_INFO = {
     'la': {
         'bidi': True, # right-to-left
