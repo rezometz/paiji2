@@ -44,7 +44,7 @@
                 </span>
             {% endif %}
                 <span class="label label-primary">
-                {{ item.good_until|date:'DATETIME_FORMAT' }}
+                {{ item.good_until|date:'SHORT_DATETIME_FORMAT' }}
                 </span>
             {{ item.notes|readmore:10 }}
         </span>
