@@ -2,8 +2,11 @@
 {% load cache %}
 {% load i18n %}
 {% load get_ftps %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ LANGUAGE_CODE }}">
 
     <head>
         <meta charset="utf-8">
@@ -25,6 +28,11 @@
         <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
         <script src="{% static 'raphael/raphael-min.js' %}"></script>
         <script src="{% static 'morris.js/morris.min.js' %}"></script>
+
+        <!-- TRANSLATIONS -->
+        {% for language in languages %}{% if not language.code == LANGUAGE_CODE %}
+        <link rel="alternate" hreflang="{{ language.code }}" href="/{{ language.code }}{{ request.get_full_path|slice:'3:' }}"/>
+        {% endif %}{% endfor %}
     </head>
 
     <body>
@@ -42,26 +50,16 @@
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2 pull-left">
-                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                        {# <label class="label label-default" for="language">language</label> #}
-                        <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
-                        {% comment %}
-                        "|slice:'3:'" :  to remove 'en/' or 'fr/' from i18n_patterns
-                        if i18n_patterns is not used, use value="{{ redirect_to }}"
-                        {% endcomment %}
-                        <select class="languages" name="language">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                                    {{ language.name_local }} ({{ language.code }})
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <input class="languages" type="submit" value="go"/>
-                    </form>
+                    <div class="col-md-2">
+                        <div class="label label-default">language</div>
+                        {% for language in languages %}
+                            <form class="btn-group btn-group-xs" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                              <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+                              {% comment %} why "slice: '3:'" ? for i18n_patterns is used {% endcomment %}
+                              <input name="language" type="hidden" value="{{ language.code }}" />
+                              <input class="btn btn-sm {% if language.code == LANGUAGE_CODE %}btn-success{% else %}btn-default{% endif %}" type="submit" value="{{ language.code }}" />
+                            </form>
+                        {% endfor %}
                     </div>
                     <div class="col-md-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
                     {% if request.user.id_rezo %}
