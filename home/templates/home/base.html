@@ -45,7 +45,11 @@
                     <div class="col-md-2 pull-left">
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         {# <label class="label label-default" for="language">language</label> #}
-                        <input  name="next" type="hidden" value="{{ redirect_to }}" />
+                        <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+                        {% comment %}
+                        "|slice:'3:'" :  to remove 'en/' or 'fr/' from i18n_patterns
+                        if i18n_patterns is not used, use value="{{ redirect_to }}"
+                        {% endcomment %}
                         <select class="languages" name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
