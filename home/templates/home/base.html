@@ -57,7 +57,7 @@
                               <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
                               {% comment %} why "slice: '3:'" ? for i18n_patterns is used {% endcomment %}
                               <input name="language" type="hidden" value="{{ language.code }}" />
-                              <input class="btn btn-sm {% if language.code == LANGUAGE_CODE %}btn-success{% else %}btn-default{% endif %}" type="submit" value="{{ language.code }}" />
+                              <input title="{{ language.name_local }} ({{ language.name }})" class="btn btn-xs {% if language.code == LANGUAGE_CODE %}btn-success disabled{% else %}btn-default{% endif %}" type="submit" value="{{ language.code }}" />
                             </form>
                         {% endfor %}
                     </div>
