@@ -39,18 +39,24 @@ class PollManager(models.Manager):
             ).latest()
 
 
-
 class Poll(models.Model):
+
+    class Meta:
+        verbose_name = _('poll')
+        verbose_name_plural = _('polls')
+        get_latest_by = 'end'
+        ordering = ('-end', )
+
     title = models.CharField(
-        _('Title'),
+        _('title'),
         max_length=255,
     )
     beginning = models.DateTimeField(
-        _('Beginning'),
+        _('beginning'),
         default=now,
     )
     end = models.DateTimeField(
-        _('End'),
+        _('end'),
     )
 
     objects = PollManager()
@@ -63,20 +69,23 @@ class Poll(models.Model):
             return self.choices.get(votes__user=user)
         except Choice.DoesNotExist:
             return None
-
-    class Meta:
-        get_latest_by = 'end'
-        ordering = ('-end', )
+    vote_for.short_description = _('vote for ?')
 
 
 class Choice(models.Model):
+    
+    class Meta:
+        verbose_name = _('choice')
+        verbose_name_plural = _('choices')
+
     poll = models.ForeignKey(
         Poll,
-        verbose_name=_('Poll'),
+        verbose_name=_('poll'),
         related_name='choices',
     )
+
     value = models.CharField(
-        _('Value'),
+        _('value'),
         max_length=255,
     )
 
@@ -88,18 +97,23 @@ class Choice(models.Model):
 
 
 class Vote(models.Model):
-    choice = models.ForeignKey(
-        Choice,
-        verbose_name=_('Choice'),
-        related_name='votes',
-    )
-    user = models.ForeignKey(
-        get_user_model(),
-        verbose_name=_('User'),
-        related_name='votes',
-    )
 
     class Meta:
+        verbose_name = _('vote')
+        verbose_name_plural = _('votes')
         unique_together = (
             ('user', 'choice', ),
         )
+
+    choice = models.ForeignKey(
+        Choice,
+        verbose_name=_('choice'),
+        related_name='votes',
+    )
+
+    user = models.ForeignKey(
+        get_user_model(),
+        verbose_name=_('user'),
+        related_name='votes',
+    )
+

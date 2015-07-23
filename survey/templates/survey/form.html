@@ -3,24 +3,26 @@
 {% load i18n %}
 
 {% if no_poll %}
-{% trans 'Pas de sondage en cours' %}
+{% trans 'No current survey' %}
 {% else %}
-    <h3>{% blocktrans %}Sondage : {{ poll }}{% endblocktrans %}</h3>
+    <h3>{% blocktrans %}{{ poll }} survey{% endblocktrans %}</h3>
 
     {% if has_voted %}
         {% display_poll_chart poll=poll %}
-        {% blocktrans with votes_count=poll.votes_count %}{{ votes_count }} personnes ont déjà voté{% endblocktrans %}
+        <p>
+        {% blocktrans count votes_count=poll.votes_count %}A person has already voted.{% plural %}{{ votes_count }} people have already voted.{% endblocktrans %}
+        </p>
     {% else %}
         <form method="post" action="{% url 'survey-vote' %}">
             {% csrf_token %}
             {% bootstrap_field form.choice show_label=False %}
             {% buttons %}
-                <input type="submit" value="{% trans 'Voter' %}" class="btn btn-primary" />
+                <input type="submit" value="{% trans 'Vote' context 'verb' %}" class="btn btn-primary btn-block" />
             {% endbuttons %}
         </form>
     {% endif %}
 
 {% endif %}
-<p>
-<a href="{% url 'survey-list' %}">{% trans 'Anciens sondages' %}</a>
-</p>
+<div class="text-center">
+<a class="btn btn-default" href="{% url 'survey-list' %}">{% trans 'previous surveys' %}</a>
+</div>

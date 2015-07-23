@@ -23,13 +23,14 @@ class SurveyVoteView(generic.CreateView):
         return super(SurveyVoteView, self).form_valid(form)
 
     def get_success_url(self):
-        messages.success(self.request,  _(
-            "Your vote has been successfully saved."
-        ))
-        return reverse('index')
-
+        messages.success(
+            self.request,
+            _("Your vote has been successfully saved."),
+        )
+        next = self.request.META.get('HTTP_REFERER', None) or reverse('index')
+        return next
 
 class SurveyListView(generic.ListView):
     model = Poll
-    paginate_by = 10
+    paginate_by = 8
     context_object_name = 'polls'

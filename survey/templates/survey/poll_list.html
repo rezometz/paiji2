@@ -4,12 +4,16 @@
 {% load bootstrap3 %}
 
 {% block title %}
-{% trans 'Anciens sondages' %}
+{% trans 'Previous surveys' %}
 {% endblock %}
 
 {% block content %}
     <div class="well">
+
+        <div class="pagination-container">
         {% bootstrap_pagination page_obj %}
+        </div>
+
         {% for poll in polls %}
         <h3>{{ poll }}</h3>
         <div class="row">
@@ -17,7 +21,7 @@
                 {% display_poll_chart poll=poll choices='choices' %}
             </div>
             <div class="col-md-6">
-                <h4>{% trans 'Resultats' %}</h4>
+                <h4>{{ _('Results')|title }}</h4>
                 <ul class="list-group">
                     {% for choice in choices|dictsortreversed:'nb_votes' %}
                     <li class="list-group-item">
@@ -32,7 +36,11 @@
         <hr />
         {% endif %}
         {% endfor %}
+
+        <div class="pagination-container">
         {% bootstrap_pagination page_obj %}
+        </div>
+
     </div>
 
 {% endblock %}
