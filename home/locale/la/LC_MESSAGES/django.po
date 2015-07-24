@@ -77,7 +77,7 @@ msgstr "Co-raedaticus"
 
 #: templates/home/base.html:140
 msgid "Forum"
-msgstr "Forum"
+msgstr "Disputationes"
 
 #: templates/home/base.html:147
 msgid "FTP search"
@@ -97,7 +97,7 @@ msgstr "circuli consignatio"
 
 #: templates/home/base.html:189
 msgid "Quotas & registered equipment"
-msgstr "Portiones & consignata armora"
+msgstr "Portiones consignataque armora"
 
 #: templates/home/base.html:190
 msgid "rezo wiki"
