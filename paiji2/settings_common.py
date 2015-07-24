@@ -75,7 +75,7 @@ LANGUAGE_CODE = 'fr'
 LANGUAGES = (
     ('fr', 'french'),
     ('en', 'english'),
-    ('la', 'latine'),
+    #('la', 'latine'),
     #('de', 'german'),
 )
 

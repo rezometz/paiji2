@@ -1,11 +1,12 @@
 {% extends "home/layout_three_columns.html" %}
 {% load bootstrap3 %}
+{% load i18n %}
 
 {% block title %}{% trans 'Confirm deleting a piece of news' %}{% endblock %}
 
 {% block content %}
 <div class="well">
-    <h3>{% 'You want to delete this piece of news ?' %}</h3>
+    <h3>{% trans 'You want to delete this piece of news ?' %}</h3>
     <div><strong>{{ object.title|safe }}</strong></div>
     <br>
     <div><em>{{ object.content|safe }}</em></div>
