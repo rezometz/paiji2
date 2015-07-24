@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-23 10:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: <luc.absil@supelec.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/backbone_calendar/calendar_view_common.html:18
+msgid "Add event"
+msgstr "Adde eventum"
+
+#: templates/backbone_calendar/calendar_view_common.html:18
+msgid "Edit event"
+msgstr "Muta eventum"
+
+#: templates/backbone_calendar/calendar_view_common.html:27
+msgid "Close"
+msgstr "Claude"
+
+#: templates/backbone_calendar/calendar_view_common.html:28
+msgid "OK"
+msgstr "Ita"
+
+#: templates/home/base.html:36
+msgid ""
+"Your page is empty, you can add modules (carpooling, shoutbox, weather, "
+"etc.) with the following link :"
+msgstr ""
+"Pagina tua vacua est. Modulos addere potes (co-raedaticus, tempestas, etc.) "
+"cum hoc vinculo :"
+
+#: templates/home/base.html:38 templates/home/base.html.py:212
+msgid "personalize my page"
+msgstr "Facere paginam meam proprior"
+
+#: templates/home/base.html:76
+msgid "logout"
+msgstr "abconectere"
+
+#: templates/home/base.html:81
+msgid "login"
+msgstr "conectere"
+
+#: templates/home/base.html:82
+msgid "sign in"
+msgstr "nomen scribere"
+
+#: templates/home/base.html:90
+#, python-format
+msgid "Your due expires on %(date)s !"
+msgstr "Collatio tua finem capit post %(date)s !"
+
+#: templates/home/base.html:100
+msgid "Toggle navigation"
+msgstr "Muta navigationem"
+
+#: templates/home/base.html:118
+msgid "My groups"
+msgstr "Circuli mei"
+
+#: templates/home/base.html:134
+msgid "Carpooling"
+msgstr "Co-raedaticus"
+
+#: templates/home/base.html:140
+msgid "Forum"
+msgstr "Forum"
+
+#: templates/home/base.html:147
+msgid "FTP search"
+msgstr "Conquire in FTP"
+
+#: templates/home/base.html:160
+msgid "Shoutbox"
+msgstr "Contentiones"
+
+#: templates/home/base.html:179
+msgid "Download my timetable in ical"
+msgstr "Extrahe comentarium meum in ical"
+
+#: templates/home/base.html:186
+msgid "groups registration"
+msgstr "circuli consignatio"
+
+#: templates/home/base.html:189
+msgid "Quotas & registered equipment"
+msgstr "Portiones & consignata armora"
+
+#: templates/home/base.html:190
+msgid "rezo wiki"
+msgstr "rezo wiki"
+
+#: templates/home/base.html:215
+msgid "bugs or suggestions : "
+msgstr "errora aut impulsus :"
+
+#: templates/home/index.html:4
+msgid "Home"
+msgstr "Receptio"
+
+#: templates/home/news-feed.html:8
+msgid "News"
+msgstr "Fama"
+
+#: templates/home/news-feed.html:60
+msgid "public"
+msgstr "communis"
+
+#: templates/home/news-feed.html:62
+msgid "internal"
+msgstr "interior"
+
+#: templates/home/news-feed.html:68
+msgid "About"
+msgstr "De paiji"
+
+#: templates/home/news-feed.html:73
+#, python-format
+msgid "for %(group)s, %(TimeSince)s ago"
+msgstr "pro %(group)s, abhinc %(TimeSince)s"

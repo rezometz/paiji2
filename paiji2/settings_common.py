@@ -75,8 +75,29 @@ LANGUAGE_CODE = 'fr'
 LANGUAGES = (
     ('fr', 'french'),
     ('en', 'english'),
+    ('la', 'latin'),
     #('de', 'german'),
 )
+
+# https://stackoverflow.com/questions/12946830/how-to-add-new-languages-into-django-my-language-uyghur-or-uighur-is-not-su
+
+EXTRA_LANG_INFO = {
+    'la': {
+        'bidi': True, # right-to-left
+        'code': 'la',
+        'name': 'Latin',
+        'name_local': u'Latin', #unicode codepoints here
+    },
+}
+
+### Add custom languages not provided by Django (latin)
+import django.conf.locale
+from django.conf import global_settings
+LANG_INFO = dict(django.conf.locale.LANG_INFO.items() + EXTRA_LANG_INFO.items())
+django.conf.locale.LANG_INFO = LANG_INFO
+
+### Languages using BiDi (right-to-left) layout
+global_settings.LANGUAGES = global_settings.LANGUAGES + (("la",'latin'),)
 
 TIME_ZONE = 'Europe/Paris'
 
