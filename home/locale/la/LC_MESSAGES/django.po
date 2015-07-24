@@ -20,15 +20,15 @@ msgstr ""
 
 #: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Add event"
-msgstr "Adde eventum"
+msgstr "Eventum creare"
 
 #: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Edit event"
-msgstr "Muta eventum"
+msgstr "Eventum recensere"
 
 #: templates/backbone_calendar/calendar_view_common.html:27
 msgid "Close"
-msgstr "Claude"
+msgstr "Concludere"
 
 #: templates/backbone_calendar/calendar_view_common.html:28
 msgid "OK"
@@ -48,15 +48,15 @@ msgstr "Facere paginam meam proprior"
 
 #: templates/home/base.html:76
 msgid "logout"
-msgstr "abconectere"
+msgstr "conventum concludere"
 
 #: templates/home/base.html:81
 msgid "login"
-msgstr "conectere"
+msgstr "conventum aperire"
 
 #: templates/home/base.html:82
 msgid "sign in"
-msgstr "nomen scribere"
+msgstr "conventum creare"
 
 #: templates/home/base.html:90
 #, python-format
@@ -65,7 +65,7 @@ msgstr "Collatio tua finem capit post %(date)s !"
 
 #: templates/home/base.html:100
 msgid "Toggle navigation"
-msgstr "Muta navigationem"
+msgstr "Navigationem mutare"
 
 #: templates/home/base.html:118
 msgid "My groups"
@@ -81,7 +81,7 @@ msgstr "Forum"
 
 #: templates/home/base.html:147
 msgid "FTP search"
-msgstr "Conquire in FTP"
+msgstr "Quaerere in FTP"
 
 #: templates/home/base.html:160
 msgid "Shoutbox"
@@ -113,7 +113,7 @@ msgstr "Receptio"
 
 #: templates/home/news-feed.html:8
 msgid "News"
-msgstr "Fama"
+msgstr "Nuntii"
 
 #: templates/home/news-feed.html:60
 msgid "public"
