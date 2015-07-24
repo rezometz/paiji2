@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-24 20:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/backbone_calendar/calendar_view_common.html:18
+msgid "Add event"
+msgstr "Ereignis einfügen"
+
+#: templates/backbone_calendar/calendar_view_common.html:18
+msgid "Edit event"
+msgstr "Ereignis bearbeiten"
+
+#: templates/backbone_calendar/calendar_view_common.html:27
+msgid "Close"
+msgstr "Schließen"
+
+#: templates/backbone_calendar/calendar_view_common.html:28
+msgid "OK"
+msgstr "richtig"
+
+#: templates/home/base.html:44
+msgid ""
+"Your page is empty, you can add modules (carpooling, shoutbox, weather, "
+"etc.) with the following link :"
+msgstr "Ihre Seite ist leer, Sie können Module (Fahrgemeinschaft, Schreikasten, Wetter usw.) "
+"mit dem nachfolgenden Link hinzufügen."
+
+#: templates/home/base.html:46 templates/home/base.html.py:215
+msgid "personalize my page"
+msgstr "meine Seite personalisieren"
+
+#: templates/home/base.html:79
+msgid "logout"
+msgstr "Abmelden"
+
+#: templates/home/base.html:84
+msgid "login"
+msgstr "Anmelden"
+
+#: templates/home/base.html:85
+msgid "sign in"
+msgstr "Registrieren"
+
+#: templates/home/base.html:93
+#, python-format
+msgid "Your due expires on %(date)s !"
+msgstr "Ihre Beitrag laüft am %(date)s ab !"
+
+#: templates/home/base.html:103
+msgid "Toggle navigation"
+msgstr "Navigation umschalten"
+
+#: templates/home/base.html:121
+msgid "My groups"
+msgstr "Meine Gruppen"
+
+#: templates/home/base.html:137
+msgid "Carpooling"
+msgstr "Fahrgemeinschaft"
+
+#: templates/home/base.html:143
+msgid "Forum"
+msgstr "Forum"
+
+#: templates/home/base.html:150
+msgid "FTP search"
+msgstr "Suchen in den FTP"
+
+#: templates/home/base.html:163
+msgid "Shoutbox"
+msgstr "Schreikasten"
+
+#: templates/home/base.html:182
+msgid "Download my timetable in ical"
+msgstr ""
+
+#: templates/home/base.html:189
+msgid "groups registration"
+msgstr ""
+
+#: templates/home/base.html:192
+msgid "Quotas & registered equipment"
+msgstr ""
+
+#: templates/home/base.html:193
+msgid "rezo wiki"
+msgstr ""
+
+#: templates/home/base.html:218
+msgid "bugs or suggestions : "
+msgstr ""
+
+#: templates/home/index.html:4
+msgid "Home"
+msgstr ""
+
+#: templates/home/news-feed.html:8
+msgid "News"
+msgstr ""
+
+#: templates/home/news-feed.html:60
+msgid "public"
+msgstr ""
+
+#: templates/home/news-feed.html:62
+msgid "internal"
+msgstr ""
+
+#: templates/home/news-feed.html:68
+msgid "About"
+msgstr ""
+
+#: templates/home/news-feed.html:73
+#, python-format
+msgid "for %(group)s, %(TimeSince)s ago"
+msgstr ""
