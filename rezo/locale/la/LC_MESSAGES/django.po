@@ -1,0 +1,243 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-24 10:48+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:83
+msgid "Please follow the link :"
+msgstr ""
+
+#: views.py:92
+msgid "Account retrieval"
+msgstr "rationem postulare"
+
+#: views.py:117
+msgid "Unvalid confirmation link."
+msgstr ""
+
+#: templates/rezo/account.html:6
+msgid "account info"
+msgstr "conventi nuntii"
+
+#: templates/rezo/account.html:11
+msgid "Quotas"
+msgstr ""
+
+#: templates/rezo/account.html:16
+msgid "download"
+msgstr ""
+
+#: templates/rezo/account.html:17
+msgid "upload"
+msgstr ""
+
+#: templates/rezo/account.html:22
+msgid "yesterday's remaining"
+msgstr ""
+
+#: templates/rezo/account.html:27
+msgid "today's usage"
+msgstr ""
+
+#: templates/rezo/account.html:34
+msgid "remaining quota"
+msgstr ""
+
+#: templates/rezo/account.html:41
+msgid "registered equipment"
+msgstr ""
+
+#: templates/rezo/account.html:45
+msgid "state"
+msgstr ""
+
+#: templates/rezo/account.html:46
+msgid "type"
+msgstr ""
+
+#: templates/rezo/account.html:48
+msgid "MAC adresses"
+msgstr ""
+
+#: templates/rezo/account.html:56
+msgid "enabled"
+msgstr ""
+
+#: templates/rezo/account.html:58
+msgid "disabled"
+msgstr ""
+
+#: templates/rezo/account.html:73
+msgid "due"
+msgstr ""
+
+#: templates/rezo/account.html:78
+msgid "date"
+msgstr "dies"
+
+#: templates/rezo/account.html:83
+msgid "expiration"
+msgstr "extinctio"
+
+#: templates/rezo/account.html:88
+msgid ""
+"If these informations are false, or if you have unregistered equipment, "
+"please contact the Rezo."
+msgstr ""
+
+#: templates/rezo/account_claim_confirm.html:9
+msgid ""
+"You're going to create a Paiji2 account, the following informations will be "
+"imported from your Rezo account :"
+msgstr ""
+
+#: templates/rezo/account_claim_confirm.html:12
+msgid "first name"
+msgstr "praenomen"
+
+#: templates/rezo/account_claim_confirm.html:14
+msgid "last name"
+msgstr "nomen"
+
+#: templates/rezo/account_claim_confirm.html:16
+msgid "email"
+msgstr "inscriptio electronica"
+
+#: templates/rezo/account_claim_confirm.html:25
+msgid "validate"
+msgstr "adfirmare"
+
+#: templates/rezo/claim_account.html:4
+msgid "account claiming"
+msgstr "rationem postulare"
+
+#: templates/rezo/claim_account.html:8
+msgid "Rezo account"
+msgstr "Rezo ratio"
+
+#: templates/rezo/claim_account.html:10
+msgid ""
+"This page will enable you to receive a management system interface for your "
+"Rezo account if you have one."
+msgstr ""
+
+#: templates/rezo/claim_account.html:12
+msgid ""
+"If you must face the smaller trouble during your account reclamation, please "
+"send us an email to the following address :"
+msgstr ""
+
+#: templates/rezo/claim_account.html:18
+msgid "You seem to possess the following account :"
+msgstr ""
+
+#: templates/rezo/claim_account.html:23
+msgid "This is not my account"
+msgstr "Haec est non ratio mea"
+
+#: templates/rezo/claim_account.html:23
+msgid "contact us"
+msgstr ""
+
+#: templates/rezo/claim_account.html:25
+msgid "I am the account's proprietary"
+msgstr "Haec ratio est mea proprietas"
+
+#: templates/rezo/claim_account.html:28
+msgid ""
+"Your email address (firstname.lastname@supelec.fr by default) is not checked "
+"yet by the Rezo ! Ask the Rezo to send you a new confirmation link."
+msgstr ""
+
+#: templates/rezo/claim_account.html:32
+msgid "Votre compte a déjà été enregistré."
+msgstr ""
+
+#: templates/rezo/claim_account.html:36
+msgid ""
+"By clicking on the following link, an email will be sent to you enabling you "
+"te retrieve your account"
+msgstr ""
+
+#: templates/rezo/claim_account.html:41
+msgid "confirmation"
+msgstr "adfirmatio"
+
+#: templates/rezo/claim_account.html:43
+#, python-format
+msgid ""
+"By clicking on the following link, I assure to be the propriatary of the "
+"Rezo account of %(FirstName)s %(LastName)s."
+msgstr ""
+
+#: templates/rezo/claim_account.html:46
+msgid "confirm"
+msgstr "adfirmare"
+
+#: templates/rezo/claim_account.html:53
+msgid "We are sorry but there seems to be no match"
+msgstr ""
+
+#: templates/rezo/sign_in.html:6
+msgid "Sign-in"
+msgstr "Conventum creare"
+
+#: templates/rezo/sign_in.html:15
+msgid "I've forgotten my password"
+msgstr ""
+
+#: templates/rezo/sign_in.html:18
+msgid "login"
+msgstr "conventum aperire"
+
+#: templates/rezo/user/password_change.html:6
+#: templates/rezo/user/password_change.html:11
+msgid "password change"
+msgstr "tesseram mutare"
+
+#: templates/rezo/user/password_change.html:16
+msgid "save"
+msgstr "servare"
+
+#: templates/rezo/user/password_reset.html:6
+#: templates/rezo/user/password_reset_confirm.html:6
+msgid "reset password"
+msgstr "tesseram resolvere"
+
+#: templates/rezo/user/password_reset.html:10
+#: templates/rezo/user/password_reset_confirm.html:10
+msgid "Reset your password"
+msgstr "tuam tesseram resolvere"
+
+#: templates/rezo/user/password_reset.html:12
+msgid ""
+"Enter the email address linked to your account in order to reset your "
+"password"
+msgstr ""
+
+#: templates/rezo/user/password_reset.html:18
+#: templates/rezo/user/password_reset_confirm.html:15
+msgid "reset"
+msgstr "resolvere"
+
+#: templates/rezo/user/password_reset_done.html:6
+msgid "Email sent"
+msgstr "Electronicus nuntius missus"
+
+#: templates/rezo/user/password_reset_done.html:11
+msgid "An email has been sent with further instructions."
+msgstr ""

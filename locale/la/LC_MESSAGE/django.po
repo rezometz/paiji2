@@ -1237,7 +1237,7 @@ msgid "The two password fields didn't match."
 msgstr "Les deux mots de passe ne correspondent pas."
 
 msgid "Password"
-msgstr "Mot de passe"
+msgstr "Tessera"
 
 msgid "Password confirmation"
 msgstr "Confirmation du mot de passe"
@@ -1350,7 +1350,7 @@ msgid "Specific permissions for this user."
 msgstr "Permissions spécifiques à cet utilisateur."
 
 msgid "username"
-msgstr "nom d'utilisateur"
+msgstr "nomen usoris"
 
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
