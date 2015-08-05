@@ -100,6 +100,6 @@ urlpatterns = patterns(
     url(
         r'^(?P<username>[\w-]+)/profile$',
         UserDetailView.as_view(),
-        name='profile',
+        name='user-profile',
     ),
 )

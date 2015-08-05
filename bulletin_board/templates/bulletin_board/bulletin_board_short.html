@@ -27,9 +27,8 @@
     {% for note in notes %}
     <li>
     <div class="begin-time">
-        <a href="mailto:{{ note.author.email }}?subject=[Paiji2][{% trans 'Shoutbox' %}] {% trans 'About' %}{{' : "'|add:note.message|add:'"'|urlencode }}"
+        <a href="{% url 'user-profile' username=note.author.username %}"
             title="{{ note.author.first_name }} {{ note.author.last_name }} ({{ note.author }})">
-            <i class="glyphicon glyphicon-envelope"></i>
             {{ note.author.first_name }}
         </a>
         {% if note.author == request.user %}
