@@ -43,6 +43,9 @@ class MettisFetcher(object):
         except socket.timeout:
             print "mettis fetcher timed out"
             return None
+        except urllib2.URLError:
+            print "Url failed: internet connection?"
+            return None
 
         schedule = content.find('', {'id': 'horaires'})
 
