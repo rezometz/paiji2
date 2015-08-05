@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 from calendar import monthrange
 
 from django.db import models
+from django.utils.timezone import now
 
 #class Bannissements(models.Model):
 #    id = models.IntegerField(primary_key=True)
@@ -83,6 +84,9 @@ class Ecole(models.Model):
     nom = models.TextField(db_column='nomEcole')
     description = models.TextField(db_column='descriptionEcole')
     rezotable = models.CharField(max_length=1)
+
+    def __unicode__(self):
+        return unicode(self.nom)
 
     class Meta:
         managed = False
@@ -283,39 +287,39 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
                 pk=self.id_rezo,
             )
         except:
-            return None
-    
+            return 'Could not fetch rezo profile'
+
     @cached_property
     def expire_on(self):
         end_date = datetime.min
-        
+
         payments = Paiements.objects.using('rezo').select_related(
                 'paiements'
             ).filter(
                 user=self.id_rezo
             )
-        
+
         unit_price = 0
+        virt_amount = 0
         for payment in payments:
             # date at which the payment has been made
             pay_day = datetime.fromtimestamp(payment.timestamp)
-            
+
             if pay_day > end_date:
                 end_date = pay_day
-            
-            virt_amount = 0
-            
+
+
             # Starting from 01/08/2014, the number of paying months goes
             # from 10 to 8
             if pay_day > datetime(2014,8,1):
                 yearly_paying_months = 8
             else:
                 yearly_paying_months = 10
-            
+
             for vent in payment.paiements_ventilations.all():
                 if(not unit_price):
                     unit_price = vent.prixunitaire
-                
+
                 if vent.affectation == "COTISATION":
                     while vent.montant > 0:
                         if vent.montant >= yearly_paying_months * unit_price:
@@ -324,18 +328,24 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
                         else:
                             virt_amount += vent.montant
                             vent.montant = 0
-        
+
         unit_price = float(unit_price)
         virt_amount = float(virt_amount)
-        
-        days = int(365.25/12 * (virt_amount / unit_price))
-        
+
+        if virt_amount == 0:
+            days = 0
+        else:
+            days = int(365.25/12 * (virt_amount / unit_price))
+
         return end_date + timedelta(days)
-    
+
     @cached_property
     def cotisation_warning(self):
-        return self.expire_on() > datetime.today() - datetime.timedelta(day=15)
-    
+        try:
+            return self.expire_on() > datetime.today() - datetime.timedelta(day=15)
+        except:
+            return True
+
     @cached_property
     def get_related_groups(self):
         posts = self.post.all()
@@ -343,7 +353,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         for post in posts:
             groups.append(post.bureau.group)
         return groups
-            
+
     def get_absolute_url(self):
         return reverse('index')
 
