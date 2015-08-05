@@ -1,5 +1,7 @@
-import urllib
+import urllib2
 import dateutil.parser
+import socket
+
 from bs4 import BeautifulSoup
 
 
@@ -11,7 +13,14 @@ class InfoConcertFetcher(object):
     }
 
     def __init__(self):
-        self.content = BeautifulSoup(urllib.urlopen(self.url).read())
+        try:
+            self.content = BeautifulSoup(urllib2.urlopen(self.url, timeout=0.5).read())
+        except socket.timeout:
+            print "Infoconcert timeout"
+            self.content = None
+        except urllib2.URLError:
+            print "Infoconcert no internet access?"
+            self.content = None
 
     def get_events(self, filter_free=False):
         for event in self.content.findAll('', {'itemtype': 'http://data-vocabulary.org/Event', }):
@@ -20,7 +29,7 @@ class InfoConcertFetcher(object):
             cost = event.find('', {'class': 'price'});
             if cost is None:
                 continue
-            
+
             if not filter_free or free:
                 yield {
                     'type': etype,
