@@ -155,11 +155,26 @@
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rez <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {% if request.user.is_authenticated %}
-                        <li><a href="http://integrator.rez">Integrators</a></li>
-                        <li><a href="http://noodle.rez">Polardator</a></li>
+                        <li>
+                            <a href="http://integrator.rez">
+                                <i class="fa fa-users"></i>
+                                Integrators
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://noodle.rez">
+                                <i class="fa fa-book"></i>
+                                Polardator
+                            </a>
+                        </li>
                         <li class="divider"></li>
                         {% endif %}
-                        <li><a href="{% url 'bulletin-board' %}">{% trans 'Shoutbox' %}</a></li>
+                        <li>
+                            <a href="{% url 'bulletin-board' %}">
+                                <i class="fa fa-bullhorn"></i>
+                                {% trans 'Shoutbox' %}
+                            </a>
+                        </li>
                     </ul>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -173,12 +188,42 @@
                     <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supélec <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">ENT (legacy)</a></li>
-                        <li><a href="https://ent-reloaded.supelec.fr">ENT (reloaded)</a></li>
-                        <li><a href="http://ntnoe.metz.supelec.fr/">NTNOE</a></li>
-                        <li><a href="https://moodle.supelec.fr/">Moodle</a></li>
-                        <li><a href="http://sogo.supelec.fr/">Webmail (sogo)</a></li>
-                        <li><a href="https://ntnoe.metz.supelec.fr/ical/index.php">{% trans 'Download my timetable in ical' %}</a></li>
+                        <li>
+                            <a href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">
+                                <i class="fa fa-university"></i>
+                                ENT (legacy)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://ent-reloaded.supelec.fr">
+                                <i class="fa fa-university"></i>
+                                ENT (reloaded)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://ntnoe.metz.supelec.fr/">
+                                <i class="fa fa-university"></i>
+                                NTNOE
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://moodle.supelec.fr/">
+                                <i class="fa fa-graduation-cap"></i>
+                                Moodle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://sogo.supelec.fr/">
+                                <i class="fa fa-envelope"></i>
+                                Webmail (sogo)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://ntnoe.metz.supelec.fr/ical/index.php">
+                                <i class="fa fa-calendar"></i>
+                                {% trans 'Timetable (iCal)' %}
+                            </a>
+                        </li>
                     </ul>
                     </li>
                     <li class="dropdown">
