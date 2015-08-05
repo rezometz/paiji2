@@ -35,6 +35,7 @@ INSTALLED_APPS = (
         'backbone_calendar',
         'paiji2_weather',
         'paiji2_infoconcert',
+        'paiji2_survey',
         'cov',
         'modular_blocks',
         'bulletin_board',
@@ -44,7 +45,6 @@ INSTALLED_APPS = (
         'south',
         'bootstrap3',
         'rezo',
-        'survey',
         'social',
         'mettis',
  )
