@@ -1,0 +1,59 @@
+{% extends "home/layout_three_columns.html" %}
+
+{% load gravatar %}
+{% load cache %}
+{% load i18n %}
+
+{% block title %}{{ profile }}{% endblock %}
+
+{% block content %}
+<div class="well">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                {% gravatar user.email 150 %}
+            </div>
+            <div class="col-lg-9">
+                <dl class="dl-horizontal">
+                    <dt>{% trans 'First name' %}</dt>
+                    <dd>{{ profile.first_name }}</dd>
+                    <dt>{% trans 'Last name' %}</dt>
+                    <dd>{{ profile.last_name }}</dd>
+                    <dt>{% trans 'Email' %}</dt>
+                    <dd>
+                    <a href="mailto:{{ profile.email }}" title+"{% trans 'Send mail' %}">
+                        <i class="fa fa-envelope"></i>
+                        {{ profile.email }}
+                    </a>
+                    </dd>
+                    <dt>{% trans 'School' %}</dt>
+                    <dd>{{ profile.get_rezo.ecole }}</dd>
+                    <dt>{% trans 'Class' %}</dt>
+                    <dd>{{ profile.get_rezo.precisionecole }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="title">
+                    <i class="fa fa-people"></i>
+                    {% trans 'Associations & Groups' %}
+                </h2>
+                <table class="table">
+                    {% for post in profile.posts.all %}
+                    <tr>
+                        <td>{{ post.bureau }}</td>
+                        <td>{{ post.postType }}</td>
+                        <td>{{ post.bureau.createdDate|date:"F Y" }}</td>
+                        <td>{{ post.bureau.endDate|date:"F Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

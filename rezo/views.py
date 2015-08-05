@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login, authenticate
 
-from .models import Equipement, Utilisateur, AccountRecovery
+from .models import Equipement, Utilisateur, AccountRecovery, User
 from .forms import ConfirmForm, UserCreationForm, UserAuthenticationForm
 
 from django.utils.translation import ugettext as _
@@ -30,9 +30,9 @@ class AccountClaimView(generic.FormView):
         super(AccountClaimView, self).get_form(*args, **kwargs)
 
         equipements = Equipement.objects.using('rezo').filter(
-            ip=self.request.META.get('REMOTE_ADDR'),
+            #ip=self.request.META.get('REMOTE_ADDR'),
             timestampdesactivationdefinitive='0',
-            # ip='10.69.8.114',
+            ip='10.69.8.127',
         ).exclude(
             utilisateur__etat='STATE_ARCHIVE',
         )
@@ -168,6 +168,17 @@ class SignInView(generic.FormView):
         except:
             return reverse('index')
         return url
+
+
+class UserDetailView(generic.DetailView):
+    model = User
+    template_name = 'rezo/user/detail.html'
+    context_object_name = 'profile'
+
+    def get_object(self, *args, **kwargs):
+        return self.model.objects.get(
+            username=self.kwargs.get('username', None),
+        )
 
 
 class RezoAccountView(generic.TemplateView):

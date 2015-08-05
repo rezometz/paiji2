@@ -9,8 +9,13 @@ from django.contrib.auth.views import (
 )
 from .forms import EmailValidationOnForgotPassword
 
-from .views import AccountClaimView, AccountClaimConfirmView, \
-    SignInView, RezoAccountView
+from .views import (
+    AccountClaimView,
+    AccountClaimConfirmView,
+    SignInView,
+    RezoAccountView,
+    UserDetailView,
+)
 
 
 urlpatterns = patterns(
@@ -90,5 +95,11 @@ urlpatterns = patterns(
         'post_change_redirect': reverse_lazy('account'),
         },
         name="password-change",
+    ),
+
+    url(
+        r'^(?P<username>[\w-]+)/profile$',
+        UserDetailView.as_view(),
+        name='profile',
     ),
 )
