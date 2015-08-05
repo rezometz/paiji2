@@ -171,7 +171,7 @@ class Post(models.Model):
     utilisateur = models.ForeignKey(
         get_user_model(),
         verbose_name=_('user'),
-        related_name='post',
+        related_name='posts',
     )
 
     bureau = models.ForeignKey(

@@ -19,10 +19,6 @@ class CommentAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'bureau', 'utilisateur', 'postType')
-    def get_form(self, request, obj=None, **kwargs):
-        form = super(PostAdmin, self).get_form(request, obj, **kwargs)
-        form.base_fields['bureau'].queryset = form.base_fields['bureau'].queryset.filter(endDate = None)
-        return form
 
 admin.site.register(PostType)
 admin.site.register(GroupCategory)
