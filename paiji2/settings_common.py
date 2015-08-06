@@ -33,13 +33,16 @@ INSTALLED_APPS = (
         'home',
         'homepage_alert',
         'backbone_calendar',
+
+        # paiji2 apps
         'paiji2_weather',
         'paiji2_infoconcert',
         'paiji2_survey',
         'paiji2_carpooling',
         'paiji2_mettis',
+        'paiji2_shoutbox',
+
         'modular_blocks',
-        'bulletin_board',
         'djangobower',
         'forum',
         #        'debug_toolbar',
