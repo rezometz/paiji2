@@ -36,7 +36,7 @@ INSTALLED_APPS = (
         'paiji2_weather',
         'paiji2_infoconcert',
         'paiji2_survey',
-        'cov',
+        'paiji2_carpooling',
         'modular_blocks',
         'bulletin_board',
         'djangobower',
