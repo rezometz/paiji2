@@ -1,0 +1,41 @@
+{% load i18n %}
+
+<h3>
+    {% trans 'My Account' %}
+</h3>
+
+{% if request.user.id_rezo %}
+<div class="row">
+    <div class="col-lg-6">
+        {{ request.user.get_rezo.quotas.up_restant|filesizeformat }}
+        <i class="glyphicon glyphicon-upload"></i>
+    </div>
+    <div class="col-lg-6">
+        {{ request.user.get_rezo.quotas.down_restant|filesizeformat }}
+        <i class="glyphicon glyphicon-download"></i>
+    </div>
+</div>
+{% endif %}
+
+<hr />
+
+<div class="row">
+    <div class="col-lg-12">
+        IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})
+    </div>
+</div>
+
+<hr />
+
+{% if request.user.cotisation_warning %}
+<p class="alert alert-danger">
+        <span class="glyphicon glyphicon-fire"></span>
+        {% blocktrans with date=request.user.expire_on|date:"d/m/Y" %}Your due expires on {{ date }} !{% endblocktrans %}
+</p>
+{% endif %}
+
+{% if request.user.id_rezo %}
+<a href="{% url 'account' %}">
+    {% trans 'Account' %}
+</a>
+{% endif %}

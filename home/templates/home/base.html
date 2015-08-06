@@ -61,18 +61,7 @@
                             </form>
                         {% endfor %}
                     </div>
-                    <div class="col-md-4">IP: {{ request.META.REMOTE_ADDR }} ({{ request.user }})</div>
-                    {% if request.user.id_rezo %}
-                    {% cache 30 rezo-quotas request.user.id_rezo %}
-                    <div class="col-md-2 quota-field-normal">
-                        {{ request.user.get_rezo.quotas.up_restant|filesizeformat }}
-                        <i class="glyphicon glyphicon-upload"></i>
-                    </div>
-                    <div class="col-md-2 quota-field-normal">
-                        {{ request.user.get_rezo.quotas.down_restant|filesizeformat }}
-                        <i class="glyphicon glyphicon-download"></i>
-                    </div>
-                    {% endcache %}
+                    {% if user.is_authenticated %}
                     <div class="col-md-1">
                         <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
                             {% trans 'logout' %}
@@ -85,14 +74,6 @@
                     </div>
                     {% endif %}
 
-                    {% if request.user.cotisation_warning %}
-                        <div class="col-sm-12 quota-field-normal">
-                            <div class="pull-left cotisation-warning">
-                            <span class="glyphicon glyphicon-fire"></span>
-                            {% blocktrans with date=request.user.expire_on|date:"d/m/Y" %}Your due expires on {{ date }} !{% endblocktrans %}
-                            </div>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
