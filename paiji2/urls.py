@@ -29,5 +29,7 @@ urlpatterns = patterns('',
     url(r'^forum/', include('forum.urls', namespace='forum')),
 
     url(r'^tinymce/', include('tinymce.urls')),
+
+    url(r'carpooling/', include('paiji2_carpooling.urls')),
 )\
 + modules.get_i18n_patterns()
