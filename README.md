@@ -1,4 +1,7 @@
 # paiji2
+[![Build Status](https://travis-ci.org/rezometz/paiji2.svg?branch=master)(https://travis-ci.org/rezometz/paiji2)
+[![Code Climate](https://codeclimate.com/github/rezometz/paiji2/badges/gpa.svg)](https://codeclimate.com/github/rezometz/paiji2)
+[![Coverage Status](https://coveralls.io/repos/rezometz/paiji2/badge.svg?branch=master&service=github)](https://coveralls.io/github/rezometz/paiji2?branch=master)
 
 ## Install guidelines
 
