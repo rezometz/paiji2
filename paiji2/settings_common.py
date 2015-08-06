@@ -37,6 +37,7 @@ INSTALLED_APPS = (
         'paiji2_infoconcert',
         'paiji2_survey',
         'paiji2_carpooling',
+        'paiji2_mettis',
         'modular_blocks',
         'bulletin_board',
         'djangobower',
@@ -46,7 +47,6 @@ INSTALLED_APPS = (
         'bootstrap3',
         'rezo',
         'social',
-        'mettis',
  )
 
 MIDDLEWARE_CLASSES = (
