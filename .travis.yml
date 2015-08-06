@@ -11,12 +11,10 @@ install:
   - pip install pep8 --use-mirrors
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install coveralls
-  - pip install -q -e . --use-mirrors
 before_script:
   - "pep8 --exclude=migrations paiji2"
   - pyflakes -x W paiji2
 script:
   - coverage run --source=paiji2 manage.py test
-  - python setup.py test
 after_success:
   - coveralls
