@@ -12,7 +12,7 @@ install:
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install coveralls
 before_script:
-  - "pep8 --exclude=migrations paiji2"
+  - "pep8 --exclude=migrations social rezo home"
   - pyflakes -x W paiji2
 script:
   - coverage run --source=paiji2 manage.py test
