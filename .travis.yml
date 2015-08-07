@@ -8,6 +8,7 @@ env:
 install:
   - pip install -q Django==$DJANGO --use-mirrors
   - pip install -r requirements/prod.txt --use-mirrors
+  - pip install -r requirements/dev.txt --use-mirrors
   - pip install pep8 --use-mirrors
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install coveralls
