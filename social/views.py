@@ -20,23 +20,12 @@ class MessageListView(generic.ListView):
     template_name = 'home/index.html'
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
-            return super(MessageListView, self).get_queryset(
-            ).order_by(
-                '-pubDate'
-            ).select_related(
-                'author'
-            )
-        else:
-            return super(MessageListView, self).get_queryset(
-            ).filter(
-                public=True
-            ).order_by(
-                '-pubDate'
-            ).select_related(
-                'author'
-            )
-            
+        qs = super(MessageListView, self).get_queryset()
+        if not self.request.user.is_authenticated():
+            qs = qs.filter(public=True)
+
+        return qs.order_by('-pubDate').select_related('author')
+
 
 class MessageCreateView(generic.CreateView):
     model = Message
@@ -51,15 +40,12 @@ class MessageCreateView(generic.CreateView):
         return form
 
     def form_valid(self, form):
-        message = form.save(commit=False)
-        message.author = self.request.user
-        message.save()
-
+        form.instance.author = self.request.user
         return super(MessageCreateView, self).form_valid(form)
 
     def get_success_url(self):
         messages.success(
-            self.request, 
+            self.request,
             _('Your request has been saved successfully :P'),
         )
         success_url = self.request.POST.get('next')
@@ -69,13 +55,16 @@ class MessageCreateView(generic.CreateView):
 class MessageEditView(generic.UpdateView):
     model = Message
     fields = ('group', 'title', 'content', 'public')
+    message_update = _(
+        'Your Message has been updated, it will be refreshed in a moment'
+    )
 
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
+                _('Rezo is not hacked. You don\'t have the permission xD')
             )
         return super(MessageEditView, self).dispatch(request, *args, **kwargs)
 
@@ -90,7 +79,7 @@ class MessageEditView(generic.UpdateView):
     def get_success_url(self):
         messages.success(
             self.request,
-            _('Your Message has been updated, it will be refreshed in a moment'),
+            self.message_update,
         )
         success_url = self.request.POST.get('next')
         return success_url if success_url != '' else reverse('index')
@@ -98,23 +87,27 @@ class MessageEditView(generic.UpdateView):
 
 class MessageDeleteView(generic.DeleteView):
     model = Message
+    message_delete = _(
+        'Your Message has been removed, it will be refreshed in a moment'
+    )
 
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """
         obj = self.get_object()
         if obj.author != self.request.user:
             return HttpResponseNotFound(
-                "<h1>"+_('Rezo is not hacked. You don\'t have the permission xD')+"</h1>"
+                _('Rezo is not hacked. You don\'t have the permission xD')
             )
-        return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
+        return super(MessageDeleteView, self).dispatch(
+            request, *args, **kwargs
+        )
 
     def get_success_url(self):
         messages.success(
             self.request,
-            _('Your Message has been removed, it will be refreshed in a moment'),
+            self.message_delete,
         )
         success_url = self.request.POST.get('next')
-
         return success_url if success_url != '' else reverse('index')
 
 
@@ -123,13 +116,16 @@ class CommentCreateView(generic.CreateView):
     form_class = CommentForm
 
     def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.author=self.request.user
-        comment.message=Message.objects.get(id=self.kwargs['on_message'])
-        comment.pubDate=timezone.now()
+        # TODO: it should check that the message exists before
+        #       showing the form
+        message = Message.objects.get(id=self.kwargs['on_message'])
+        form.instance.author = self.request.user
+        form.instance.message = message
+        # TODO use auto_now_add=True
+        form.instance.pubDate = timezone.now()
         return super(CommentCreateView, self).form_valid(form)
 
-    def get_success_url(self):
+    ef get_success_url(self):
         messages.success(
             self.request,
             _("Your comment has been successfully saved."),
@@ -140,6 +136,8 @@ class CommentCreateView(generic.CreateView):
 class GroupView(generic.DetailView):
     model = Group
 
+
+# TODO; factorize group retrieving
 class GroupNewsView(generic.ListView):
     model = Message
     template_name = 'social/news_list.html'
@@ -174,7 +172,6 @@ class GroupMembersView(generic.ListView):
     def dispatch(self, *args, **kwargs):
         self.group = get_object_or_404(Group, slug=kwargs['slug'])
         return super(GroupMembersView, self).dispatch(*args, **kwargs)
-
 
     def get_queryset(self):
         qs = super(GroupMembersView, self).get_queryset()

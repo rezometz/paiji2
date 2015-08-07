@@ -9,50 +9,42 @@ from django.utils.translation import ugettext as _
 from backbone_calendar.models import Calendar
 
 
-# President, Vice-President, Respo Com etc
 class PostType(models.Model):
-
-    class Meta:
-        verbose_name = _('post type')
-        verbose_name_plural = _('post types')
-
     description = models.CharField(
         _('description'),
-        max_length = 50,
+        max_length=50,
         blank=False,
     )
 
     def __unicode__(self):
         return self.description
 
-# group de type assos/club/listeBDE/listePipo etc
-class GroupCategory(models.Model):
-
     class Meta:
-        verbose_name = _('group category')
-        verbose_name_plural = _('group categories')
+        verbose_name = _('post type')
+        verbose_name_plural = _('post types')
 
+
+class GroupCategory(models.Model):
     name = models.CharField(
         _('name'),
-        max_length = 50,
-        unique = True,
+        max_length=50,
+        unique=True,
     )
 
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = _('group category')
+        verbose_name_plural = _('group categories')
+
 
 class Group(models.Model):
-
-    class Meta:
-        verbose_name = _('group')
-        verbose_name_plural = _('groups')
-
     name = models.CharField(
         _('name'),
-        max_length = 50,
-        unique = True,
-        blank = False
+        max_length=50,
+        unique=True,
+        blank=False
     )
 
     slug = models.SlugField()
@@ -65,26 +57,25 @@ class Group(models.Model):
 
     createdOn = models.DateTimeField(
         _('creation date'),
-        null = False,
-        blank = False,
+        null=False,
+        blank=False,
     )
 
     deletedOn = models.DateTimeField(
         _('deletion date'),
-        null = True,
-        blank = True,
+        null=True,
+        blank=True,
     )
-
 
     logo = models.ImageField(
         _('logo'),
-        upload_to = 'groups/logo',
+        upload_to='groups/logo',
         null=True,
     )
 
     newsfeed = models.URLField(
         _('newsfeed'),
-        blank = True,
+        blank=True,
     )
 
     calendar = models.OneToOneField(
@@ -107,24 +98,20 @@ class Group(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = _('group')
+        verbose_name_plural = _('groups')
+
 
 class Bureau(models.Model):
-
-    class Meta:
-        verbose_name = _('Bureau')
-        verbose_name_plural = _('Bureaux')
-        ordering = ('group__category', 'group__name', '-createdDate')
-
-    # debut de mandat
     createdDate = models.DateTimeField(
         _('tenure beginning date'),
-        null = False,
+        null=False,
     )
 
-    # fin du mandat null si mandat en cours
     endDate = models.DateTimeField(
         _('tenure end date'),
-        null = True,
+        null=True,
         blank=True,
     )
 
@@ -136,8 +123,12 @@ class Bureau(models.Model):
     )
 
     def currentBureauExist(self):
-        if self.endDate == None:
-            return Bureau.objects.filter(group=self.group, endDate=None).count() > 0
+        if self.endDate is None:
+            nb_boards = Bureau.objects.filter(
+                group=self.group,
+                endDate=None,
+            ).count()
+            return nb_boards > 0
         return False
     currentBureauExist.short_description = _('Does it exist ?')
 
@@ -147,10 +138,11 @@ class Bureau(models.Model):
 
     def clean(self):
         if self.currentBureauExist():
-            raise ValidationError(_(\
-            'Another current Bureau exists already,\
-            update its tenure end date (endDate)\
-            before setting a new Bureau'))
+            raise ValidationError(_(
+                """Another current Bureau exists already, """
+                """update its tenure end date (endDate) """
+                """before setting a new Bureau."""
+            ))
 
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -160,14 +152,13 @@ class Bureau(models.Model):
     def __unicode__(self):
         return self.group.name
 
+    class Meta:
+        verbose_name = _('Bureau')
+        verbose_name_plural = _('Bureaux')
+        ordering = ('group__category', 'group__name', '-createdDate')
+
 
 class Post(models.Model):
-
-    class Meta:
-        verbose_name = _('post')
-        verbose_name_plural = _('posts')
-        unique_together = ('bureau', 'postType',)
-
     utilisateur = models.ForeignKey(
         get_user_model(),
         verbose_name=_('user'),
@@ -191,14 +182,13 @@ class Post(models.Model):
         null=False,
     )
 
+    class Meta:
+        verbose_name = _('post')
+        verbose_name_plural = _('posts')
+        unique_together = ('bureau', 'postType',)
+
 
 class Message(models.Model):
-
-    class Meta:
-        verbose_name = _('message')
-        verbose_name_plural = _('messages')
-        ordering = ('group__name', '-pubDate', )
-
     author = models.ForeignKey(
         get_user_model(),
         verbose_name=_('author'),
@@ -207,7 +197,7 @@ class Message(models.Model):
 
     pubDate = models.DateTimeField(
         _('publication date'),
-        null = False,
+        null=False,
     )
 
     title = models.CharField(
@@ -238,9 +228,9 @@ class Message(models.Model):
 
     importance = models.IntegerField(
         _('importance level'),
-        choices = IMPORTANCE_LEVEL,
-        blank = False,
-        default = 0,
+        choices=IMPORTANCE_LEVEL,
+        blank=False,
+        default=0,
     )
 
     def save(self, *args, **kwargs):
@@ -251,14 +241,13 @@ class Message(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('message')
+        verbose_name_plural = _('messages')
+        ordering = ('group__name', '-pubDate', )
+
 
 class Comment(models.Model):
-
-    class Meta:
-        verbose_name = _('comment')
-        verbose_name_plural = _('comments')
-        ordering = ('message', '-pubDate', )
-
     author = models.ForeignKey(
         get_user_model(),
         verbose_name=_('author'),
@@ -281,3 +270,8 @@ class Comment(models.Model):
         max_length=140,
         blank=False,
     )
+
+    class Meta:
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
+        ordering = ('message', '-pubDate', )

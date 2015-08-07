@@ -12,11 +12,13 @@ register = template.Library()
     takes_context=True,
 )
 def display_comment_area(context, on_message, nb=5):
+    comments = Comment.objects.select_related('author').filter(
+        message=on_message
+    ).order_by('pubDate')[:nb]
+
     return {
         'request': context['request'],
-        'comments': Comment.objects.select_related('author').filter(
-        		message = on_message
-        	).order_by('pubDate')[:nb],
+        'comments': comments,
         'on_message': on_message,
         'form': CommentForm(),
     }

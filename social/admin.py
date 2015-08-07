@@ -1,24 +1,57 @@
 from django.contrib import admin
 
 from social.models import *
-# Register your models here.
+
+
 class GroupAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'category', 'createdOn', 'deletedOn', 'logo', 'newsfeed')
+    list_display = (
+        'name',
+        'category',
+        'createdOn',
+        'deletedOn',
+        'logo',
+        'newsfeed',
+    )
+
 
 class BureauAdmin(admin.ModelAdmin):
-    list_display = ('id', 'group', 'createdDate', 'endDate')
+    list_display = (
+        'group',
+        'createdDate',
+        'endDate',
+    )
     ordering = ('-createdDate', )
 
+
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'author', 'group', 'title', 'public', 'pubDate', 'importance')
+    list_display = (
+        'author',
+        'group',
+        'title',
+        'public',
+        'pubDate',
+        'importance',
+    )
     ordering = ('-pubDate', )
 
+
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'message', 'author', 'pubDate', 'content')
+    list_display = (
+        'message',
+        'author',
+        'pubDate',
+        'content',
+    )
     ordering = ('message', '-pubDate', )
 
+
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'bureau', 'utilisateur', 'postType')
+    list_display = (
+        'bureau',
+        'utilisateur',
+        'postType',
+    )
+
 
 admin.site.register(PostType)
 admin.site.register(GroupCategory)
