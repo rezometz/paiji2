@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.contrib import messages
+from django.http import HttpResponseNotfound
 from django.contrib.auth import get_user_model
 
 from tinymce.widgets import TinyMCE
