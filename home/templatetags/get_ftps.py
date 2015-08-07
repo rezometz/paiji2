@@ -1,11 +1,14 @@
+import urllib2
+
+from bs4 import BeautifulSoup
+
 from django import template
 from django.core.cache import get_cache
 from django.conf import settings
 
-from bs4 import BeautifulSoup
-import urllib2
 
 register = template.Library()
+
 
 def fetchFTPs():
     ftps = []
@@ -16,11 +19,12 @@ def fetchFTPs():
             ftps.append({
                 'name': ftp.text,
                 'link': ftp.get('href')
-                })
-    except urllib2.URLError:	#Porygon not available
+            })
+    except urllib2.URLError:
         pass
 
     return ftps
+
 
 @register.inclusion_tag('home/ftps_list.html')
 def get_ftps():

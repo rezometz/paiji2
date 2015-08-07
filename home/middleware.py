@@ -1,12 +1,14 @@
 from iptools import IpRangeList
 
 from django.conf import settings
-
+from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
+
 groups = {}
 users = {}
+
 
 class IpAuthGroupMiddleware(object):
     def __init__(self):
@@ -33,11 +35,9 @@ class IpAuthGroupMiddleware(object):
                     request.user = users[groupname]
 
 
-from django.db import models
 class UserAuthGroupMixin(models.Model):
-    
     def is_authenticated(self):
-        return not self in users.itervalues()
+        return self not in users.itervalues()
 
     class Meta:
         abstract = True
