@@ -7,6 +7,7 @@ from django.contrib.auth.views import (
     password_reset_confirm,
     password_change,
 )
+
 from .forms import EmailValidationOnForgotPassword
 
 from .views import (
@@ -18,10 +19,7 @@ from .views import (
 )
 
 
-urlpatterns = patterns(
-    '',  # Prefix
-
-
+urlpatterns = [
     url(
         r'^account/claim$',
         AccountClaimView.as_view(),
@@ -80,19 +78,20 @@ urlpatterns = patterns(
         r'^password/reset/confirm/(?P<uidb64>[\w\d]+)/(?P<token>[\d\w-]+)$',
         password_reset_confirm,
         {
-        'template_name': 'rezo/user/password_reset_confirm.html',
-        'post_reset_redirect': reverse_lazy('sign-in'),
+            'template_name': 'rezo/user/password_reset_confirm.html',
+            'post_reset_redirect': reverse_lazy('sign-in'),
         },
         name="password_reset_confirm",
     ),
 
-    url(r'password/change$',
+    url(
+        r'password/change$',
         login_required(
             password_change
-            ),
+        ),
         {
-        'template_name': 'rezo/user/password_change.html',
-        'post_change_redirect': reverse_lazy('account'),
+            'template_name': 'rezo/user/password_change.html',
+            'post_change_redirect': reverse_lazy('account'),
         },
         name="password-change",
     ),
@@ -102,4 +101,4 @@ urlpatterns = patterns(
         UserDetailView.as_view(),
         name='user-profile',
     ),
-)
+]

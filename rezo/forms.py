@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import auth
+
 from .models import AccountRecovery, User
 
 
@@ -29,10 +30,19 @@ class UserCreationForm(auth.forms.UserCreationForm):
 class UserAuthenticationForm(auth.forms.AuthenticationForm):
     pass
 
+
 class EmailValidationOnForgotPassword(auth.forms.PasswordResetForm):
+    message = _(
+        "There is no user registered with the specified email address!"
+    )
+
     def clean_email(self):
         email = self.cleaned_data['email']
-        if not User.objects.filter(email__iexact=email, is_active=True).exists():
-            raise forms.ValidationError("There is no user registered with the specified email address!")
+        exists_email = User.objects.filter(
+            email__iexact=email,
+            is_active=True,
+        ).exists()
+        if not exists_email:
+            raise forms.ValidationError(self.message)
 
         return email

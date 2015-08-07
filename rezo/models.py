@@ -16,74 +16,90 @@ from calendar import monthrange
 
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import AbstractUser
+from django.utils.functional import cached_property
+from django.core.urlresolvers import reverse
 
-#class Bannissements(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    utilisateur_id = models.IntegerField()
-#    rezoteur_id = models.IntegerField()
-#    timestampdebut = models.IntegerField(db_column='timestampDebut')
-#    timestampfin = models.IntegerField(db_column='timestampFin')
-#    typeraison = models.CharField(db_column='typeRaison', max_length=10)
-#    raison = models.TextField()
-#    class Meta:
-#        managed = False
-#        db_table = 'bannissements'
+from modular_blocks.models import TwoModularColumnsMixin
+
+from home.middleware import UserAuthGroupMixin
+
+
+# class Bannissements(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     utilisateur_id = models.IntegerField()
+#     rezoteur_id = models.IntegerField()
+#     timestampdebut = models.IntegerField(db_column='timestampDebut')
+#     timestampfin = models.IntegerField(db_column='timestampFin')
+#     typeraison = models.CharField(db_column='typeRaison', max_length=10)
+#     raison = models.TextField()
+#     class Meta:
+#         managed = False
+#         db_table = 'bannissements'
 #
-#class Banques(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    nom = models.TextField()
-#    class Meta:
-#        managed = False
-#        db_table = 'banques'
+# class Banques(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     nom = models.TextField()
+#     class Meta:
+#         managed = False
+#         db_table = 'banques'
 #
-#class Blocs(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    nom = models.TextField()
-#    description = models.TextField()
-#    ipdebut = models.CharField(db_column='ipDebut', max_length=15)
-#    ipfin = models.CharField(db_column='ipFin', max_length=15)
-#    alloueesparpaijiadmin = models.CharField(
-#        db_column='alloueesParPaijiAdmin', max_length=1
-#   )
-#    class Meta:
-#        managed = False
-#        db_table = 'blocs'
+# class Blocs(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     nom = models.TextField()
+#     description = models.TextField()
+#     ipdebut = models.CharField(db_column='ipDebut', max_length=15)
+#     ipfin = models.CharField(db_column='ipFin', max_length=15)
+#     alloueesparpaijiadmin = models.CharField(
+#         db_column='alloueesParPaijiAdmin', max_length=1
+#    )
+#     class Meta:
+#         managed = False
+#         db_table = 'blocs'
 #
-#class Documents(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    nomdocument = models.TextField(db_column='nomDocument')
-#    descriptiondocument = models.TextField(db_column='descriptionDocument')
-#    class Meta:
-#        managed = False
-#        db_table = 'documents'
+# class Documents(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     nomdocument = models.TextField(db_column='nomDocument')
+#     descriptiondocument = models.TextField(db_column='descriptionDocument')
+#     class Meta:
+#         managed = False
+#         db_table = 'documents'
 #
-#class DocumentsEcoles(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    document_id = models.IntegerField()
-#    ecole_id = models.IntegerField()
-#    commentaires = models.TextField()
-#    class Meta:
-#        managed = False
-#        db_table = 'documents_ecoles'
+# class DocumentsEcoles(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     document_id = models.IntegerField()
+#     ecole_id = models.IntegerField()
+#     commentaires = models.TextField()
+#     class Meta:
+#         managed = False
+#         db_table = 'documents_ecoles'
 #
-#class DocumentsUtilisateurs(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    document_id = models.IntegerField()
-#    utilisateur_id = models.IntegerField()
-#    rezoteur_id = models.IntegerField()
-#    timestamp = models.IntegerField()
-#    secrpointage = models.IntegerField(db_column='secrPointage')
-#    class Meta:
-#        managed = False
-#        db_table = 'documents_utilisateurs'
+# class DocumentsUtilisateurs(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     document_id = models.IntegerField()
+#     utilisateur_id = models.IntegerField()
+#     rezoteur_id = models.IntegerField()
+#     timestamp = models.IntegerField()
+#     secrpointage = models.IntegerField(db_column='secrPointage')
+#     class Meta:
+#         managed = False
+#         db_table = 'documents_utilisateurs'
 #
 
 
 class Ecole(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nom = models.TextField(db_column='nomEcole')
-    description = models.TextField(db_column='descriptionEcole')
-    rezotable = models.CharField(max_length=1)
+    id = models.IntegerField(
+        primary_key=True,
+    )
+    nom = models.TextField(
+        db_column='nomEcole',
+    )
+    description = models.TextField(
+        db_column='descriptionEcole',
+    )
+    rezotable = models.CharField(
+        max_length=1,
+    )
 
     def __unicode__(self):
         return unicode(self.nom)
@@ -92,50 +108,50 @@ class Ecole(models.Model):
         managed = False
         db_table = 'ecoles'
 
-#class Events(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    utilisateur_id = models.IntegerField()
-#    rezoteur_id = models.IntegerField()
-#    timestamp = models.IntegerField()
-#    commentaires = models.TextField()
-#    class Meta:
-#        managed = False
-#        db_table = 'events'
+# class Events(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     utilisateur_id = models.IntegerField()
+#     rezoteur_id = models.IntegerField()
+#     timestamp = models.IntegerField()
+#     commentaires = models.TextField()
+#     class Meta:
+#         managed = False
+#         db_table = 'events'
 #
 #
 #
-#class Rezoswitches(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    equipement_id = models.IntegerField()
-#    nombreport = models.IntegerField(db_column='nombrePort')
-#    infos = models.TextField()
-#    localisation = models.CharField(max_length=100)
-#    class Meta:
-#        managed = False
-#        db_table = 'rezoswitches'
+# class Rezoswitches(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     equipement_id = models.IntegerField()
+#     nombreport = models.IntegerField(db_column='nombrePort')
+#     infos = models.TextField()
+#     localisation = models.CharField(max_length=100)
+#     class Meta:
+#         managed = False
+#         db_table = 'rezoswitches'
 #
-#class Rezoteurs(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    utilisateur_id = models.IntegerField()
-#    login = models.TextField()
-#    password = models.TextField()
-#    droits = models.CharField(max_length=2)
-#    actif = models.CharField(max_length=1)
-#    class Meta:
-#        managed = False
-#        db_table = 'rezoteurs'
+# class Rezoteurs(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     utilisateur_id = models.IntegerField()
+#     login = models.TextField()
+#     password = models.TextField()
+#     droits = models.CharField(max_length=2)
+#     actif = models.CharField(max_length=1)
+#     class Meta:
+#         managed = False
+#         db_table = 'rezoteurs'
 #
-#class Topologies(models.Model):
-#    id = models.IntegerField(primary_key=True)
-#    rezoswitch_id = models.IntegerField()
-#    port = models.IntegerField()
-#    type = models.CharField(max_length=7)
-#    nom = models.CharField(max_length=50)
-#    idswitchconnecte = models.IntegerField(db_column='idSwitchConnecte')
-#    equipement_id = models.IntegerField()
-#    class Meta:
-#        managed = False
-#        db_table = 'topologies'
+# class Topologies(models.Model):
+#     id = models.IntegerField(primary_key=True)
+#     rezoswitch_id = models.IntegerField()
+#     port = models.IntegerField()
+#     type = models.CharField(max_length=7)
+#     nom = models.CharField(max_length=50)
+#     idswitchconnecte = models.IntegerField(db_column='idSwitchConnecte')
+#     equipement_id = models.IntegerField()
+#     class Meta:
+#         managed = False
+#         db_table = 'topologies'
 
 
 class Utilisateur(models.Model):
@@ -239,16 +255,23 @@ class AccountRecovery(models.Model):
 
 class Paiements(models.Model):
     id = models.IntegerField(primary_key=True)
-    user = models.ForeignKey(Utilisateur, to_field='id',
-        db_column='utilisateur_id', related_name='paiements',
+    user = models.ForeignKey(
+        Utilisateur,
+        to_field='id',
+        db_column='utilisateur_id',
+        related_name='paiements',
     )
     rezoteur_id = models.IntegerField()
     timestamp = models.IntegerField()
-    moyenpaiement = models.CharField(db_column='moyenPaiement', max_length=7)
+    moyenpaiement = models.CharField(
+        db_column='moyenPaiement',
+        max_length=7,
+    )
     banque_id = models.IntegerField()
     chknumero = models.IntegerField(db_column='chkNumero')
     trezpointage = models.IntegerField(db_column='trezPointage')
     commentaires = models.TextField()
+
     class Meta:
         managed = False
         db_table = 'paiements'
@@ -256,25 +279,21 @@ class Paiements(models.Model):
 
 class PaiementsVentilations(models.Model):
     id = models.IntegerField(primary_key=True)
-    paiement_id = models.ForeignKey(Paiements, to_field='id',
-        db_column='paiement_id', related_name='paiements_ventilations',
+    paiement_id = models.ForeignKey(
+        Paiements,
+        to_field='id',
+        db_column='paiement_id',
+        related_name='paiements_ventilations',
     )
     montant = models.DecimalField(max_digits=10, decimal_places=2)
     prixunitaire = models.DecimalField(
        db_column='prixUnitaire', max_digits=10, decimal_places=2
     )
     affectation = models.CharField(max_length=10)
+
     class Meta:
         managed = False
         db_table = 'paiements_ventilations'
-
-from django.contrib.auth.models import AbstractUser
-from django.utils.functional import cached_property
-from django.core.urlresolvers import reverse
-
-from modular_blocks.models import TwoModularColumnsMixin
-
-from home.middleware import UserAuthGroupMixin
 
 
 class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
@@ -283,9 +302,9 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     @cached_property
     def get_rezo(self):
         try:
-            return Utilisateur.objects.using('rezo').select_related('quotas').get(
+            return Utilisateur.objects.using('rezo').get(
                 pk=self.id_rezo,
-            )
+            ).select_related('quotas')
         except:
             return 'Could not fetch rezo profile'
 
@@ -308,10 +327,9 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
             if pay_day > end_date:
                 end_date = pay_day
 
-
             # Starting from 01/08/2014, the number of paying months goes
             # from 10 to 8
-            if pay_day > datetime(2014,8,1):
+            if pay_day > datetime(2014, 8, 1):
                 yearly_paying_months = 8
             else:
                 yearly_paying_months = 10
@@ -342,7 +360,8 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     @cached_property
     def cotisation_warning(self):
         try:
-            return self.expire_on() > datetime.today() - datetime.timedelta(day=15)
+            date_start_alert = datetime.today() - datetime.timedelta(day=15)
+            return self.expire_on() > date_start_alert
         except:
             return True
 
@@ -358,10 +377,13 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         return reverse('index')
 
     def save(self, *args, **kwargs):
+        # TODO should be initialized with settings values
+        sidebar_left = [u'survey-form', u'calendar-events', u'cov']
+        sidebar_right = [u'weather', u'bulletin-board', u'infoconcert']
         if len(self.sidebar_left) == 0:
-            self.sidebar_left = [u'survey-form', u'calendar-events', u'cov']
+            self.sidebar_left = sidebar_left
         if len(self.sidebar_right) == 0:
-            self.sidebar_right = [u'weather', u'bulletin-board', u'infoconcert']
+            self.sidebar_right = sidebar_right
         return super(User, self).save(*args, **kwargs)
 
     class Meta:

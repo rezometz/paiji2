@@ -16,6 +16,7 @@ from .forms import ConfirmForm, UserCreationForm, UserAuthenticationForm
 
 from django.utils.translation import ugettext as _
 
+
 def create_hash(chain):
     hash = hashlib.sha256()
     hash.update(chain)
@@ -30,7 +31,7 @@ class AccountClaimView(generic.FormView):
         super(AccountClaimView, self).get_form(*args, **kwargs)
 
         equipements = Equipement.objects.using('rezo').filter(
-            #ip=self.request.META.get('REMOTE_ADDR'),
+            # ip=self.request.META.get('REMOTE_ADDR'),
             timestampdesactivationdefinitive='0',
             ip='10.69.8.127',
         ).exclude(
@@ -133,7 +134,6 @@ class AccountClaimConfirmView(generic.CreateView):
         return cd
 
     def form_valid(self, form):
-        #response =
         self.object = form.save(commit=False)
 
         self.object.first_name = self.utilisateur.prenom
