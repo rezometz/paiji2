@@ -125,7 +125,7 @@ class CommentCreateView(generic.CreateView):
         form.instance.pubDate = timezone.now()
         return super(CommentCreateView, self).form_valid(form)
 
-    ef get_success_url(self):
+    def get_success_url(self):
         messages.success(
             self.request,
             _("Your comment has been successfully saved."),
