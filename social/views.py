@@ -61,7 +61,9 @@ class OwnershipMessageCheck(object):
             return HttpResponseNotFound(
                 _('Rezo is not hacked. You don\'t have the permission xD')
             )
-        return super(OwnershipMessageCheck, self).dispatch(request, *args, **kwargs)
+        return super(OwnershipMessageCheck, self).dispatch(
+            request, *args, **kwargs
+        )
 
 
 class MessageEditView(OwnershipMessageCheck, generic.UpdateView):
