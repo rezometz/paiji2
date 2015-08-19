@@ -57,6 +57,7 @@ class Group(models.Model):
 
     createdOn = models.DateTimeField(
         _('creation date'),
+        auto_now_add=True,
         null=False,
         blank=False,
     )
@@ -85,11 +86,6 @@ class Group(models.Model):
         null=True,
     )
 
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.createdOn = timezone.now()
-        super(Group, self).save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('workgroup-view', kwargs={
             'slug': self.slug,
@@ -106,6 +102,7 @@ class Group(models.Model):
 class Bureau(models.Model):
     createdDate = models.DateTimeField(
         _('tenure beginning date'),
+        auto_now_add=True,
         null=False,
     )
 
@@ -143,11 +140,6 @@ class Bureau(models.Model):
                 """update its tenure end date (endDate) """
                 """before setting a new Bureau."""
             ))
-
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.createdDate = timezone.now()
-        super(Bureau, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.group.name
@@ -197,6 +189,7 @@ class Message(models.Model):
 
     pubDate = models.DateTimeField(
         _('publication date'),
+        auto_now_add=true,
         null=False,
     )
 
@@ -232,11 +225,6 @@ class Message(models.Model):
         blank=False,
         default=0,
     )
-
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.pubDate = timezone.now()
-        super(Message, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.title
