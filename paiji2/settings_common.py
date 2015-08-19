@@ -46,7 +46,6 @@ INSTALLED_APPS = (
         'djangobower',
         'forum',
         #        'debug_toolbar',
-        'south',
         'bootstrap3',
         'rezo',
         'social',

@@ -2,11 +2,18 @@ from django.db import models
 
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from backbone_calendar.models import Calendar
+
+
+try:
+    User = get_user_model()
+except:
+    User = settings.AUTH_USER_MODEL
 
 
 class PostType(models.Model):
@@ -152,7 +159,7 @@ class Bureau(models.Model):
 
 class Post(models.Model):
     utilisateur = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=_('user'),
         related_name='posts',
     )
@@ -182,7 +189,7 @@ class Post(models.Model):
 
 class Message(models.Model):
     author = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=_('author'),
         related_name='message',
     )
@@ -237,7 +244,7 @@ class Message(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=_('author'),
         related_name='comment',
     )

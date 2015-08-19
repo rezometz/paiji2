@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 from django.utils.translation import ugettext as _
 from django.utils.timezone import now
@@ -9,6 +10,11 @@ from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 
 from . import CACHE_KEY
+
+try:
+    User = get_user_model()
+except:
+    User = settings.AUTH_USER_MODEL
 
 
 class Alert(models.Model):
@@ -34,7 +40,7 @@ class Alert(models.Model):
         choices=TYPE_CHOICES,
     )
     author = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name=_('author'),
     )
     posted_at = models.DateTimeField(
