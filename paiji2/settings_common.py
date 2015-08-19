@@ -99,6 +99,9 @@ django.conf.locale.LANG_INFO.update(LATINE_LANG_INFO)
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'home', 'locale'),
+    os.path.join(BASE_DIR, 'homepage_alert', 'locale'),
+    os.path.join(BASE_DIR, 'social', 'locale'),
+    os.path.join(BASE_DIR, 'rezo', 'locale'),
 )
 
 
