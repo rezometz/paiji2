@@ -62,8 +62,8 @@ Further explanations will be given to deploy it in production mode later
 
 # Modules
 
-| Name | Repository | Travis | CodeClimate | Coveralls |
-| ---- |----------- | ------ | ----------- | --------- |
+| Name | Travis | CodeClimate | Coveralls |
+| ---- | ------ | ----------- | --------- |
 | [paiji2](http://github.com/rezometz/paiji2) | [![Build Status](https://travis-ci.org/rezometz/paiji2.svg?branch=master)](https://travis-ci.org/rezometz/paiji2) | [![Code Climate](https://codeclimate.com/github/rezometz/paiji2/badges/gpa.svg)](https://codeclimate.com/github/rezometz/paiji2) | [![Coverage Status](https://coveralls.io/repos/rezometz/paiji2/badge.svg?branch=master&service=github)](https://coveralls.io/github/rezometz/paiji2?branch=master) |
 | [shoutbox](http://github.com/rezometz/django-paiji2-shoutbox) | [![Build Status](https://travis-ci.org/rezometz/django-paiji2-shoutbox.svg?branch=master)](https://travis-ci.org/rezometz/django-paiji2-shoutbox) | [![Code Climate](https://codeclimate.com/github/rezometz/django-paiji2-shoutbox/badges/gpa.svg)](https://codeclimate.com/github/rezometz/django-paiji2-shoutbox) | [![Coverage Status](https://coveralls.io/repos/rezometz/django-paiji2-shoutbox/badge.svg?branch=master&service=github)](https://coveralls.io/github/rezometz/django-paiji2-shoutbox?branch=master) |
 | [carpooling](http://github.com/rezometz/django-paiji2-carpooling) | [![Build Status](https://travis-ci.org/rezometz/django-paiji2-carpooling.svg?branch=master)](https://travis-ci.org/rezometz/django-paiji2-carpooling) | [![Code Climate](https://codeclimate.com/github/rezometz/django-paiji2-carpooling/badges/gpa.svg)](https://codeclimate.com/github/rezometz/django-paiji2-carpooling) | [![Coverage Status](https://coveralls.io/repos/rezometz/django-paiji2-carpooling/badge.svg?branch=master&service=github)](https://coveralls.io/github/rezometz/django-paiji2-carpooling?branch=master) |
