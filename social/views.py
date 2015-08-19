@@ -53,13 +53,7 @@ class MessageCreateView(generic.CreateView):
         return success_url if success_url != '' else reverse('index')
 
 
-class MessageEditView(generic.UpdateView):
-    model = Message
-    fields = ('group', 'title', 'content', 'public')
-    message_update = _(
-        'Your Message has been updated, it will be refreshed in a moment'
-    )
-
+class OwnershipMessageCheck(object):
     def dispatch(self, request, *args, **kwargs):
         """ Making sure that only authors can update Messages """
         obj = self.get_object()
@@ -67,7 +61,15 @@ class MessageEditView(generic.UpdateView):
             return HttpResponseNotFound(
                 _('Rezo is not hacked. You don\'t have the permission xD')
             )
-        return super(MessageEditView, self).dispatch(request, *args, **kwargs)
+        return super(OwnershipMessageCheck, self).dispatch(request, *args, **kwargs)
+
+
+class MessageEditView(OwnershipMessageCheck, generic.UpdateView):
+    model = Message
+    fields = ('group', 'title', 'content', 'public')
+    message_update = _(
+        'Your Message has been updated, it will be refreshed in a moment'
+    )
 
     def get_form(self, form_class):
         form = super(MessageEditView, self).get_form(form_class)
@@ -86,22 +88,11 @@ class MessageEditView(generic.UpdateView):
         return success_url if success_url != '' else reverse('index')
 
 
-class MessageDeleteView(generic.DeleteView):
+class MessageDeleteView(OwnershipMessageCheck, generic.DeleteView):
     model = Message
     message_delete = _(
         'Your Message has been removed, it will be refreshed in a moment'
     )
-
-    def dispatch(self, request, *args, **kwargs):
-        """ Making sure that only authors can update Messages """
-        obj = self.get_object()
-        if obj.author != self.request.user:
-            return HttpResponseNotFound(
-                _('Rezo is not hacked. You don\'t have the permission xD')
-            )
-        return super(MessageDeleteView, self).dispatch(
-            request, *args, **kwargs
-        )
 
     def get_success_url(self):
         messages.success(

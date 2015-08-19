@@ -189,7 +189,7 @@ class Message(models.Model):
 
     pubDate = models.DateTimeField(
         _('publication date'),
-        auto_now_add=true,
+        auto_now_add=True,
         null=False,
     )
 
