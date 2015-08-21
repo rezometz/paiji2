@@ -41,10 +41,10 @@ INSTALLED_APPS = (
         'paiji2_carpooling',
         'paiji2_mettis',
         'paiji2_shoutbox',
+        'paiji2_forum',
 
         'modular_blocks',
         'djangobower',
-        'forum',
         #        'debug_toolbar',
         'bootstrap3',
         'rezo',

@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
     url(r'^calendar/', include('backbone_calendar.urls')),
 
-    url(r'^forum/', include('forum.urls', namespace='forum')),
+    url(r'^forum/', include('paiji2_forum.urls', namespace='forum')),
 
     url(r'^tinymce/', include('tinymce.urls')),
 
