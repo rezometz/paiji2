@@ -1,180 +1,141 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+from django.conf import settings
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'PostType'
-        db.create_table(u'social_posttype', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=50)),
-        ))
-        db.send_create_signal(u'social', ['PostType'])
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('backbone_calendar', '__first__'),
+    ]
 
-        # Adding model 'GroupCategory'
-        db.create_table(u'social_groupcategory', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50)),
-        ))
-        db.send_create_signal(u'social', ['GroupCategory'])
-
-        # Adding model 'Group'
-        db.create_table(u'social_group', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=50)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.GroupCategory'])),
-            ('createdOn', self.gf('django.db.models.fields.DateTimeField')()),
-            ('deletedOn', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
-            ('logo', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
-            ('newsfeed', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-        ))
-        db.send_create_signal(u'social', ['Group'])
-
-        # Adding model 'Bureau'
-        db.create_table(u'social_bureau', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('createdDate', self.gf('django.db.models.fields.DateTimeField')()),
-            ('endDate', self.gf('django.db.models.fields.DateTimeField')(null=True)),
-            ('group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.Group'])),
-        ))
-        db.send_create_signal(u'social', ['Bureau'])
-
-        # Adding model 'Post'
-        db.create_table(u'social_post', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('utilisateur', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['rezo.User'])),
-            ('bureau', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.Bureau'])),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('postType', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.PostType'])),
-        ))
-        db.send_create_signal(u'social', ['Post'])
-
-        # Adding unique constraint on 'Post', fields ['bureau', 'postType']
-        db.create_unique(u'social_post', ['bureau_id', 'postType_id'])
-
-        # Adding model 'Message'
-        db.create_table(u'social_message', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('pubDate', self.gf('django.db.models.fields.DateTimeField')()),
-            ('title', self.gf('django.db.models.fields.TextField')(max_length=140)),
-            ('content', self.gf('django.db.models.fields.TextField')()),
-            ('group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['social.Group'])),
-            ('importance', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal(u'social', ['Message'])
-
-
-    def backwards(self, orm):
-        # Removing unique constraint on 'Post', fields ['bureau', 'postType']
-        db.delete_unique(u'social_post', ['bureau_id', 'postType_id'])
-
-        # Deleting model 'PostType'
-        db.delete_table(u'social_posttype')
-
-        # Deleting model 'GroupCategory'
-        db.delete_table(u'social_groupcategory')
-
-        # Deleting model 'Group'
-        db.delete_table(u'social_group')
-
-        # Deleting model 'Bureau'
-        db.delete_table(u'social_bureau')
-
-        # Deleting model 'Post'
-        db.delete_table(u'social_post')
-
-        # Deleting model 'Message'
-        db.delete_table(u'social_message')
-
-
-    models = {
-        u'auth.group': {
-            'Meta': {'object_name': 'Group'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
-        },
-        u'auth.permission': {
-            'Meta': {'ordering': "(u'content_type__app_label', u'content_type__model', u'codename')", 'unique_together': "((u'content_type', u'codename'),)", 'object_name': 'Permission'},
-            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-        },
-        u'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
-            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        },
-        u'rezo.user': {
-            'Meta': {'object_name': 'User'},
-            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'id_rezo': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0', 'null': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'sidebar_left': ('modular_blocks.fields.ListTextField', [], {}),
-            'sidebar_right': ('modular_blocks.fields.ListTextField', [], {}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-        },
-        u'social.bureau': {
-            'Meta': {'ordering': "('group__type', 'group__name', '-createdDate')", 'object_name': 'Bureau'},
-            'createdDate': ('django.db.models.fields.DateTimeField', [], {}),
-            'endDate': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
-            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.Group']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
-        u'social.group': {
-            'Meta': {'object_name': 'Group'},
-            'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.GroupCategory']"}),
-            'createdOn': ('django.db.models.fields.DateTimeField', [], {}),
-            'deletedOn': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'}),
-            'newsfeed': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
-        },
-        u'social.groupcategory': {
-            'Meta': {'object_name': 'GroupCategory'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50'})
-        },
-        u'social.message': {
-            'Meta': {'ordering': "('group__name', '-pubDate')", 'object_name': 'Message'},
-            'content': ('django.db.models.fields.TextField', [], {}),
-            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.Group']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'importance': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'pubDate': ('django.db.models.fields.DateTimeField', [], {}),
-            'title': ('django.db.models.fields.TextField', [], {'max_length': '140'})
-        },
-        u'social.post': {
-            'Meta': {'unique_together': "(('bureau', 'postType'),)", 'object_name': 'Post'},
-            'bureau': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.Bureau']"}),
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'postType': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['social.PostType']"}),
-            'utilisateur': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['rezo.User']"})
-        },
-        u'social.posttype': {
-            'Meta': {'object_name': 'PostType'},
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        }
-    }
-
-    complete_apps = ['social']
+    operations = [
+        migrations.CreateModel(
+            name='Bureau',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('createdDate', models.DateTimeField(auto_now_add=True, verbose_name='date de d\xe9but de mandat')),
+                ('endDate', models.DateTimeField(null=True, verbose_name='date de fin de mandat', blank=True)),
+            ],
+            options={
+                'ordering': ('group__category', 'group__name', '-createdDate'),
+                'verbose_name': 'Bureau',
+                'verbose_name_plural': 'Bureaux',
+            },
+        ),
+        migrations.CreateModel(
+            name='Comment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('pubDate', models.DateTimeField(verbose_name='date de publication')),
+                ('content', models.CharField(max_length=140, verbose_name='corps du message')),
+                ('author', models.ForeignKey(related_name='comment', verbose_name='auteur', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ('message', '-pubDate'),
+                'verbose_name': 'commentaire',
+                'verbose_name_plural': 'commentaires',
+            },
+        ),
+        migrations.CreateModel(
+            name='Group',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(unique=True, max_length=50, verbose_name='nome')),
+                ('slug', models.SlugField()),
+                ('createdOn', models.DateTimeField(auto_now_add=True, verbose_name='date de cr\xe9ation')),
+                ('deletedOn', models.DateTimeField(null=True, verbose_name='date de suppression', blank=True)),
+                ('logo', models.ImageField(upload_to=b'groups/logo', null=True, verbose_name='logo')),
+                ('newsfeed', models.URLField(verbose_name='flux de nouvelles', blank=True)),
+                ('calendar', models.OneToOneField(related_name='group', null=True, verbose_name='calendrier', to='backbone_calendar.Calendar')),
+            ],
+            options={
+                'verbose_name': 'groupe',
+                'verbose_name_plural': 'groupes',
+            },
+        ),
+        migrations.CreateModel(
+            name='GroupCategory',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(unique=True, max_length=50, verbose_name='nome')),
+            ],
+            options={
+                'verbose_name': 'cat\xe9gorie de groupe',
+                'verbose_name_plural': 'cat\xe9gories de groupe',
+            },
+        ),
+        migrations.CreateModel(
+            name='Message',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('pubDate', models.DateTimeField(auto_now_add=True, verbose_name='date de publication')),
+                ('title', models.CharField(max_length=140, verbose_name='titre')),
+                ('content', models.TextField(verbose_name='corps du message')),
+                ('public', models.BooleanField(default=False, verbose_name='visible par des visiteurs non-inscrits')),
+                ('importance', models.IntegerField(default=0, verbose_name='niveau d\u2019importance', choices=[(0, 'Normal'), (1, 'Priorit\xe9')])),
+                ('author', models.ForeignKey(related_name='message', verbose_name='auteur', to=settings.AUTH_USER_MODEL)),
+                ('group', models.ForeignKey(verbose_name='groupe', to='social.Group')),
+            ],
+            options={
+                'ordering': ('group__name', '-pubDate'),
+                'verbose_name': 'message',
+                'verbose_name_plural': 'messages',
+            },
+        ),
+        migrations.CreateModel(
+            name='Post',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('description', models.TextField(verbose_name='description', blank=True)),
+                ('bureau', models.ForeignKey(related_name='members', verbose_name='Bureau', to='social.Bureau')),
+            ],
+            options={
+                'verbose_name': 'poste',
+                'verbose_name_plural': 'postes',
+            },
+        ),
+        migrations.CreateModel(
+            name='PostType',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('description', models.CharField(max_length=50, verbose_name='description')),
+            ],
+            options={
+                'verbose_name': 'type de poste',
+                'verbose_name_plural': 'types de poste',
+            },
+        ),
+        migrations.AddField(
+            model_name='post',
+            name='postType',
+            field=models.ForeignKey(verbose_name='type de poste', to='social.PostType'),
+        ),
+        migrations.AddField(
+            model_name='post',
+            name='utilisateur',
+            field=models.ForeignKey(related_name='posts', verbose_name='utilisateur', to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
+            model_name='group',
+            name='category',
+            field=models.ForeignKey(verbose_name='cat\xe9gorie', to='social.GroupCategory'),
+        ),
+        migrations.AddField(
+            model_name='comment',
+            name='message',
+            field=models.ForeignKey(related_name='comment', verbose_name='message', to='social.Message'),
+        ),
+        migrations.AddField(
+            model_name='bureau',
+            name='group',
+            field=models.ForeignKey(related_name='bureaus', verbose_name='groupe', to='social.Group'),
+        ),
+        migrations.AlterUniqueTogether(
+            name='post',
+            unique_together=set([('bureau', 'postType')]),
+        ),
+    ]

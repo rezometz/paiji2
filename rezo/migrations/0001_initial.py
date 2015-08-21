@@ -90,23 +90,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Quotas',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('restant_veille_in', models.BigIntegerField()),
-                ('restant_veille_out', models.BigIntegerField()),
-                ('conso_in', models.BigIntegerField()),
-                ('conso_out', models.BigIntegerField()),
-                ('web_in', models.BigIntegerField()),
-                ('web_out', models.BigIntegerField()),
-                ('warning', models.CharField(max_length=10)),
-            ],
-            options={
-                'db_table': 'quotas',
-                'managed': False,
-            },
-        ),
-        migrations.CreateModel(
             name='Utilisateur',
             fields=[
                 ('id', models.IntegerField(serialize=False, primary_key=True)),
@@ -165,5 +148,22 @@ class Migration(migrations.Migration):
                 ('code', models.CharField(max_length=120)),
                 ('email', models.EmailField(max_length=254)),
             ],
+        ),
+        migrations.CreateModel(
+            name='Quotas',
+            fields=[
+                ('utilisateur', models.OneToOneField(related_name='quotas', primary_key=True, db_column='id', serialize=False, to='rezo.Utilisateur')),
+                ('restant_veille_in', models.BigIntegerField()),
+                ('restant_veille_out', models.BigIntegerField()),
+                ('conso_in', models.BigIntegerField()),
+                ('conso_out', models.BigIntegerField()),
+                ('web_in', models.BigIntegerField()),
+                ('web_out', models.BigIntegerField()),
+                ('warning', models.CharField(max_length=10)),
+            ],
+            options={
+                'db_table': 'quotas',
+                'managed': False,
+            },
         ),
     ]
