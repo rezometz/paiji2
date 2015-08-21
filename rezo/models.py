@@ -183,7 +183,7 @@ class Utilisateur(models.Model):
 class Quotas(models.Model):
     utilisateur = models.OneToOneField(
         Utilisateur, to_field='id', unique=True,
-        db_column='id', related_name="quotas",
+        db_column='quotas_id', related_name="quotas",
     )
     restant_veille_in = models.BigIntegerField()
     restant_veille_out = models.BigIntegerField()
