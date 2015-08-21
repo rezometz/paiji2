@@ -372,7 +372,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     @cached_property
     def get_related_groups(self):
-        posts = self.post.all()
+        posts = self.posts.all()
         groups = []
         for post in posts:
             groups.append(post.bureau.group)
