@@ -182,8 +182,11 @@ class Utilisateur(models.Model):
 
 class Quotas(models.Model):
     utilisateur = models.OneToOneField(
-        Utilisateur, to_field='id', unique=True,
-        db_column='quotas_id', related_name="quotas",
+        Utilisateur,
+        db_column='id',
+        to_field='id',
+        primary_key=True,
+        related_name="quotas",
     )
     restant_veille_in = models.BigIntegerField()
     restant_veille_out = models.BigIntegerField()
@@ -312,9 +315,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     def expire_on(self):
         end_date = datetime.min
 
-        payments = Paiements.objects.using('rezo').select_related(
-                'paiements'
-            ).filter(
+        payments = Paiements.objects.using('rezo').filter(
                 user=self.id_rezo
             )
 
