@@ -305,9 +305,13 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     @cached_property
     def get_rezo(self):
         try:
-            return Utilisateur.objects.using('rezo').get(
+            return Utilisateur.objects.using(
+                'rezo',
+                ).select_related(
+                'quotas',
+                ).get(
                 pk=self.id_rezo,
-            ).select_related('quotas')
+            )
         except:
             return 'Could not fetch rezo profile'
 
@@ -368,7 +372,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     @cached_property
     def get_related_groups(self):
-        posts = self.post.all()
+        posts = self.posts.all()
         groups = []
         for post in posts:
             groups.append(post.bureau.group)

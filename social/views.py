@@ -169,7 +169,7 @@ class GroupMembersView(generic.ListView):
 
     def get_queryset(self):
         qs = super(GroupMembersView, self).get_queryset()
-        qs = qs.filter(post__bureau__group=self.group)
+        qs = qs.filter(posts__bureau__group=self.group)
         return qs
 
     def get_context_data(self):
