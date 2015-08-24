@@ -2,6 +2,7 @@ import hashlib
 import uuid
 from datetime import datetime
 
+from django.conf import settings
 from django.views import generic
 from django.shortcuts import redirect
 
@@ -30,10 +31,15 @@ class AccountClaimView(generic.FormView):
     def get_form(self, *args, **kwargs):
         super(AccountClaimView, self).get_form(*args, **kwargs)
 
+        try:
+            # Use the settings if defined
+            client_ip = settings.ACCOUNT_CLAIM_CLIENT_IP
+        except:
+            client_ip = self.request.META.get('REMOTE_ADDR')
+
         equipements = Equipement.objects.using('rezo').filter(
-            # ip=self.request.META.get('REMOTE_ADDR'),
+            ip=client_ip,
             timestampdesactivationdefinitive='0',
-            ip='10.69.8.127',
         ).exclude(
             utilisateur__etat='STATE_ARCHIVE',
         )
