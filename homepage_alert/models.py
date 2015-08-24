@@ -59,5 +59,3 @@ class Alert(models.Model):
         if self.end_date > now():
             key = make_template_fragment_key(CACHE_KEY)
             cache.delete(key)
-
-
