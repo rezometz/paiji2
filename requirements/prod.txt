@@ -1,21 +1,21 @@
-Django==1.6
+Django>=1.8
 django-suit==0.2.8
-django-graphos
 Pillow==2.4.0
 django-bootstrap3==6.1.0
-South==0.8.4
 sqlparse==0.1.11
 wsgiref==0.1.2
 MySQL-python==1.2.5
 beautifulsoup4==4.3.2
 python-dateutil==2.2
 django-gravatar2==1.3.0
-git+https://github.com/rezometz/django-modular-blocks
-git+https://github.com/rezometz/django-backbone-calendar
-git+https://github.com/rezometz/django-paiji2-survey
-git+https://github.com/rezometz/django-paiji2-shoutbox
-git+https://github.com/rezometz/django-paiji2-mettis
-git+https://github.com/rezometz/django-paiji2-infoconcert
-git+https://github.com/rezometz/django-paiji2-weather
-git+https://github.com/rezometz/django-paiji2-carpooling
-git+https://github.com/rezometz/django-paiji2-forum
+# prefer installing from local git repo mirrors
+# git+https://github.com/rezometz/django-graphos
+# git+https://github.com/rezometz/django-modular-blocks
+# git+https://github.com/rezometz/django-backbone-calendar
+# git+https://github.com/rezometz/django-paiji2-survey
+# git+https://github.com/rezometz/django-paiji2-shoutbox
+# git+https://github.com/rezometz/django-paiji2-mettis
+# git+https://github.com/rezometz/django-paiji2-infoconcert
+# git+https://github.com/rezometz/django-paiji2-weather
+# git+https://github.com/rezometz/django-paiji2-carpooling
+# git+https://github.com/rezometz/django-paiji2-forum
