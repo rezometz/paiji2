@@ -3,18 +3,21 @@ python:
   - "2.7"
 env:
   - DJANGO=1.6
-  - DJANGO=1.7
   - DJANGO=1.8
+  - DJANGO=1.8.4
 install:
-  - pip install -q Django==$DJANGO --use-mirrors
-  - pip install -r requirements/prod.txt --use-mirrors
-  - pip install -r requirements/dev.txt --use-mirrors
-  - pip install pep8 --use-mirrors
+  - pip install -U pip
+  - pip install -q Django==$DJANGO
+  - pip install -r requirements/prod.txt
+  - pip install -r requirements/dev.txt
+  - pip install -r requirements/repo.txt
+  - pip install pep8
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install coveralls
+  - pip uninstall South -y
   - cp paiji2/settings_example.py paiji2/settings.py
 before_script:
-  - "pep8 --exclude=migrations social rezo home"
+  - "pep8 --exclude=migrations social rezo home homepage_alert"
   - pyflakes -x W paiji2 social rezo home homepage_alert
 script:
   - coverage run --source=paiji2,home,homepage_alert,social,rezo manage.py test 

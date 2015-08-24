@@ -42,6 +42,7 @@ INSTALLED_APPS = (
         'paiji2_mettis',
         'paiji2_shoutbox',
         'paiji2_forum',
+        'mptt',
 
         'modular_blocks',
         'djangobower',
