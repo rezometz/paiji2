@@ -1,0 +1,11 @@
+# prefer installing from local git repo mirrors
+git+https://github.com/rezometz/django-graphos
+git+https://github.com/rezometz/django-modular-blocks
+git+https://github.com/rezometz/django-backbone-calendar
+git+https://github.com/rezometz/django-paiji2-survey
+git+https://github.com/rezometz/django-paiji2-shoutbox
+git+https://github.com/rezometz/django-paiji2-mettis
+git+https://github.com/rezometz/django-paiji2-infoconcert
+git+https://github.com/rezometz/django-paiji2-weather
+git+https://github.com/rezometz/django-paiji2-carpooling
+git+https://github.com/rezometz/django-paiji2-forum

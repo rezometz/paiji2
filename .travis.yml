@@ -9,13 +9,14 @@ install:
   - pip install -q Django==$DJANGO --use-mirrors
   - pip install -r requirements/prod.txt --use-mirrors
   - pip install -r requirements/dev.txt --use-mirrors
+  - pip install -r requirements/repo.txt --use-mirrors
   - pip install pep8 --use-mirrors
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install coveralls
   - cp paiji2/settings_example.py paiji2/settings.py
 before_script:
-  - "pep8 --exclude=migrations social rezo home"
-  - pyflakes -x W paiji2 social rezo home
+  - "pep8 --exclude=migrations social rezo home homepage_alert"
+  - pyflakes -x W paiji2 social rezo home homepage_alert
 script:
   - coverage run --source=paiji2 manage.py test
 after_success:
