@@ -212,10 +212,12 @@
                     <ul class="dropdown-menu">
                         {% if request.user.is_authenticated %}
                         <li><a href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">{% trans 'groups registration' %}</a></li>
-                        <li><a href="https://rezo.rez/">rezo.rez</a></li>
+                        <li><a href="http://rezo.rez/">rezo.rez</a></li>
+                        <li><a href="http://monitoring.rez/">monitoring.rez</a></li>
                         {% endif %}
                         <li><a href="{% url 'account' %}">{% trans 'Quotas & registered equipment' %}</a></li>
                         <li><a href="http://wiki.rezometz.org/">{% trans 'rezo wiki' %}</a></li>
+                        <li><a href="http://sympa.rezometz.org/">Sympa</a></li>
                     </ul>
                     </li>
                 </ul>
