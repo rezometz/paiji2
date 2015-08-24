@@ -39,3 +39,4 @@ DATABASES = {
 # Admins
 ADMINS = (('Paiji developers', 'paiji-dev@rezometz.org'))
 
+STATIC_ROOT = os.path.join(BASE_DIR, '/static')
