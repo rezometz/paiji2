@@ -1,5 +1,4 @@
 PyYAML==3.11
-South==0.8.4
 django-backbone==0.3.1
 django-bootstrap3==6.1.0
 django-bower==5.0.1
