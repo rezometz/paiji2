@@ -15,8 +15,8 @@ install:
   - cp paiji2/settings_example.py paiji2/settings.py
 before_script:
   - "pep8 --exclude=migrations social rezo home"
-  - pyflakes -x W paiji2 social rezo home
+  - pyflakes -x W paiji2 social rezo home homepage_alert
 script:
-  - coverage run --source=paiji2 manage.py test
+  - coverage run --source=paiji2,home,homepage_alert,social,rezo manage.py test 
 after_success:
   - coveralls
