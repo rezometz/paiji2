@@ -386,7 +386,6 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         if self.sidebar_left is None or len(self.sidebar_left) == 0:
             try:
                 self.sidebar_left = settings.SIDEBAR_LEFT
-                print(settings.SIDEBAR_LEFT)
             except:
                 self.sidebar_left = [u'survey-form', u'cov', ]
         if self.sidebar_right is None or len(self.sidebar_right) == 0:
