@@ -4,11 +4,13 @@ from modular_blocks.fields import ListTextField
 
 from .models import User
 
-class TextListInput(forms.TextInput):
+
 # widget for the admin editing
 # of sidebar_left and sidebar_right
+class TextListInput(forms.TextInput):
     def _format_value(self, value):
         return ','.join(value)
+
 
 class UserAdmin(admin.ModelAdmin):
     formfield_overrides = {
