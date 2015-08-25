@@ -184,5 +184,19 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
 
+# modular blocks - rezo user model initialisation
+SIDEBAR_LEFT = [
+    u'bulletin-board',
+    u'weather',
+]
+SIDEBAR_RIGHT = [
+    u'rezo-account',
+    u'cov',
+    u'survey-form',
+]
+
+# paiji2_mettis
 METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
+
+
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'

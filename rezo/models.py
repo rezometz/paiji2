@@ -19,6 +19,7 @@ from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 from modular_blocks.models import TwoModularColumnsMixin
 
@@ -382,13 +383,17 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
         return reverse('index')
 
     def save(self, *args, **kwargs):
-        # TODO should be initialized with settings values
-        sidebar_left = [u'survey-form', u'calendar-events', u'cov']
-        sidebar_right = [u'weather', u'bulletin-board', u'infoconcert']
-        if len(self.sidebar_left) == 0:
-            self.sidebar_left = sidebar_left
-        if len(self.sidebar_right) == 0:
-            self.sidebar_right = sidebar_right
+        if self.sidebar_left is None or len(self.sidebar_left) == 0:
+            try:
+                self.sidebar_left = settings.SIDEBAR_LEFT
+                print(settings.SIDEBAR_LEFT)
+            except:
+                self.sidebar_left = [u'survey-form', u'cov', ]
+        if self.sidebar_right is None or len(self.sidebar_right) == 0:
+            try:
+                self.sidebar_right = settings.SIDEBAR_RIGHT
+            except:
+                self.sidebar_right = [u'rezo-account', u'bulletin-board', ]
         return super(User, self).save(*args, **kwargs)
 
     class Meta:
