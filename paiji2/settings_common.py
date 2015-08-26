@@ -46,7 +46,6 @@ INSTALLED_APPS = (
 
         'modular_blocks',
         'djangobower',
-        #        'debug_toolbar',
         'bootstrap3',
         'rezo',
         'social',
