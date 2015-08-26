@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-24 18:22+0200\n"
+"POT-Creation-Date: 2015-08-27 00:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,33 +211,57 @@ msgstr "J’ai oublié mon mot de passe"
 msgid "login"
 msgstr "connexion"
 
-#: templates/rezo/user/detail.html:18
-msgid "First name"
-msgstr "prénom"
-
 #: templates/rezo/user/detail.html:20
-msgid "Last name"
-msgstr "nom de famille"
+msgid "Pseudonym"
+msgstr "Pseudonyme"
 
 #: templates/rezo/user/detail.html:22
-msgid "Email"
-msgstr "courriel"
+msgid "First name"
+msgstr "Prénom"
 
 #: templates/rezo/user/detail.html:24
-msgid "Send mail"
-msgstr "envoyer un courriel"
+msgid "Last name"
+msgstr "Nom de famille"
 
-#: templates/rezo/user/detail.html:29
+#: templates/rezo/user/detail.html:26
+msgid "Email"
+msgstr "Courriel"
+
+#: templates/rezo/user/detail.html:28
+msgid "Send mail"
+msgstr "Envoyer un courriel"
+
+#: templates/rezo/user/detail.html:34
 msgid "School"
 msgstr "École"
 
-#: templates/rezo/user/detail.html:31
+#: templates/rezo/user/detail.html:36
 msgid "Class"
 msgstr "Classe"
 
 #: templates/rezo/user/detail.html:40
+msgid "Room"
+msgstr "Chambre"
+
+#: templates/rezo/user/detail.html:51
 msgid "Associations & Groups"
 msgstr "Groupes et Associations"
+
+#: templates/rezo/user/detail.html:56
+msgid "bureau"
+msgstr "bureau"
+
+#: templates/rezo/user/detail.html:57
+msgid "post"
+msgstr "poste"
+
+#: templates/rezo/user/detail.html:58
+msgid "beginning"
+msgstr "début"
+
+#: templates/rezo/user/detail.html:59
+msgid "end"
+msgstr "fin"
 
 #: templates/rezo/user/password_change.html:6
 #: templates/rezo/user/password_change.html:11
@@ -281,7 +305,7 @@ msgstr "Un courriel vous a été envoyé avec plus d’informations."
 
 #: templates/rezo/user/summary.html:4
 msgid "My Account"
-msgstr "compte Rézo"
+msgstr "Compte Rézo"
 
 #: templates/rezo/user/summary.html:33
 #, python-format
@@ -290,7 +314,7 @@ msgstr "Ta cotisation expire le %(date)s !"
 
 #: templates/rezo/user/summary.html:39
 msgid "Account"
-msgstr "info sur le compte"
+msgstr "Mon Compte"
 
 #: views.py:90
 msgid "Please follow the link :"
