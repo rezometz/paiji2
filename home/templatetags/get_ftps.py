@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from django import template
 from django.core.cache import get_cache
 from django.conf import settings
+from socket import timeout
 
 
 register = template.Library()
@@ -21,6 +22,9 @@ def fetchFTPs():
                 'link': ftp.get('href')
             })
     except urllib2.URLError:
+        pass
+    except timeout:
+        print("fetchFTPS: timeout")
         pass
 
     return ftps
