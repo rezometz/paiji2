@@ -8,7 +8,6 @@ install:
   - pip install -U pip
   - pip install -q Django==$DJANGO
   - pip install -r requirements/prod.txt -U
-  - pip install -r requirements/dev.txt -U
   - pip install -r requirements/repo.txt -U
   - pip install pep8 -U
   - pip install pyflakes -U
