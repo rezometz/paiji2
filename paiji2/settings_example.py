@@ -47,7 +47,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 # irc links in the navbar
 IRC = {
     'enabled': True,
-    'public': True,
+    'public': True,
     'nickname': 'Yseult',
     'irclc_url': 'irc.lc',
     'servers': (
@@ -60,7 +60,7 @@ IRC = {
         #     ),
         # },
         {
-            'name':'Debian',
+            'name': 'Debian',
             'url': 'irc.debian.org',
             'channels': (
                 'debian',
