@@ -66,7 +66,7 @@ IRC = {
                 'debian',
                 'xen',
             ),
-        }
+        },
         {
             'name': 'Freenode',
             'url': 'irc.freenode.net',
