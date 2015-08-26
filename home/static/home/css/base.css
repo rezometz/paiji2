@@ -29,6 +29,14 @@ a:not(.logo):hover {
 	text-decoration: none;
 }
 
+a.gravatar:hover {
+    opacity: 0.6;
+}
+
+a.gravatar:hover img {
+    transform: scale(0.9,0.9);
+}
+
 #quota-bar {
 	width: 100%;
 	text-align: center;
