@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 from django.conf import global_settings
+import django.conf.locale
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -78,8 +79,8 @@ LANGUAGE_CODE = 'fr'
 LANGUAGES = (
     ('fr', 'french'),
     ('en', 'english'),
-    #('la', 'latine'),
-    #('de', 'german'),
+    # ('la', 'latine'),
+    # ('de', 'german'),
 )
 
 # adds latine language
@@ -92,7 +93,6 @@ LATINE_LANG_INFO = {
     },
 }
 
-import django.conf.locale
 django.conf.locale.LANG_INFO.update(LATINE_LANG_INFO)
 
 LOCALE_PATHS = (
@@ -158,19 +158,27 @@ SUIT_CONFIG = {
         }
 
 TINYMCE_DEFAULT_CONFIG = {
-        'plugins': 'advimage,advlink,table,searchreplace,contextmenu,template,paste,save,autosave,media',
-        'mode':'exact',
+        'plugins': 'advimage,advlink,table,\
+            searchreplace,contextmenu,template,paste,save,autosave,media',
+        'mode': 'exact',
         'theme': 'advanced',
         'cleanup_on_startup': True,
         'custom_undo_redo_levels': 10,
-        #Theme options
-        'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontsizeselect",
-        'theme_advanced_buttons2' : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,forecolor",
-        'theme_advanced_buttons3' : "tablecontrols,|,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr",
-        'theme_advanced_toolbar_location' : "top",
-        'theme_advanced_statusbar_location' : "bottom",
-
-        'gecko_spellcheck' : True,
+        # Theme options
+        'theme_advanced_buttons1': "bold,italic,underline,strikethrough,|,\
+            justifyleft,justifycenter,justifyright,justifyfull,|,\
+            styleselect,formatselect,fontsizeselect",
+        'theme_advanced_buttons2': "bullist,numlist,|,\
+            outdent,indent,blockquote,|,\
+            undo,redo,|,\
+            link,unlink,anchor,image,cleanup,help,code,|,\
+            forecolor",
+        'theme_advanced_buttons3': "tablecontrols,|,\
+            removeformat,visualaid,|,\
+            sub,sup,|,charmap,emotions,iespell,media,advhr",
+        'theme_advanced_toolbar_location': "top",
+        'theme_advanced_statusbar_location': "bottom",
+        'gecko_spellcheck': True,
         }
 
 PASSWORD_HASHERS = (
@@ -195,7 +203,15 @@ SIDEBAR_RIGHT = [
 ]
 
 # paiji2_mettis
-METTIS_STOPS = [{'line': 'LIGNE B', 'direction':'CITE U', 'from_stop':'GRAHAM BELL', 'url_1':'999', 'url_2':'CITE+U%7C999', 'url_3': 21366}]
-
+METTIS_STOPS = [
+    {
+        'line': 'LIGNE B',
+        'direction': 'CITE U',
+        'from_stop': 'GRAHAM BELL',
+        'url_1': '999',
+        'url_2': 'CITE+U%7C999',
+        'url_3': 21366,
+    }
+]
 
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
