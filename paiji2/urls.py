@@ -11,25 +11,17 @@ admin.autodiscover()
 modules.autodiscover()
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^i18n/', include('django.conf.urls.i18n')),
-)\
-+ i18n_patterns('',
-
+) + i18n_patterns(
+    '',
     url(r'^rezo/', include('rezo.urls')),
-
     url(r'^social/', include('social.urls')),
-
     url(r'^', include('home.urls'), name='home'),
-
     url(r'^admin', include(admin.site.urls)),
-
     url(r'^calendar/', include('backbone_calendar.urls')),
-
     url(r'^forum/', include('paiji2_forum.urls', namespace='forum')),
-
     url(r'^tinymce/', include('tinymce.urls')),
-
     url(r'carpooling/', include('paiji2_carpooling.urls')),
-)\
-+ modules.get_i18n_patterns()
+) + modules.get_i18n_patterns()
