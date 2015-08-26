@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
-from .models import Message, Comment
+from .models import Comment  # ,Message
 
 
 class CommentForm(forms.ModelForm):

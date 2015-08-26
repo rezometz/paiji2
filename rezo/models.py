@@ -12,10 +12,10 @@
 # into your database.
 from __future__ import unicode_literals
 from datetime import datetime, timedelta
-from calendar import monthrange
+# from calendar import monthrange
 
 from django.db import models
-from django.utils.timezone import now
+# from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
 from django.core.urlresolvers import reverse

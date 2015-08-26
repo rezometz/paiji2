@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login, authenticate
+from django.contrib.auth import get_user_model, login  # , authenticate
 
 from .models import Equipement, Utilisateur, AccountRecovery, User
 from .forms import ConfirmForm, UserCreationForm, UserAuthenticationForm

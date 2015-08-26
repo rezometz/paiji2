@@ -1,6 +1,6 @@
 from django import template
 
-from ..models import Comment, Message
+from ..models import Comment  # , Message
 from ..forms import CommentForm
 
 

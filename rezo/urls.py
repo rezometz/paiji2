@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url  # , patterns
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views import generic

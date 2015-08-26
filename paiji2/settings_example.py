@@ -6,7 +6,7 @@ except ImportError:
     print "Your installation is improperly configured."
     exit()
 
-from django.conf import global_settings
+# from django.conf import global_settings
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/

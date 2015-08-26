@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from social.models import *
+from social import models
 
 
 class GroupAdmin(admin.ModelAdmin):
@@ -53,10 +53,10 @@ class PostAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(PostType)
-admin.site.register(GroupCategory)
-admin.site.register(Group, GroupAdmin)
-admin.site.register(Bureau, BureauAdmin)
-admin.site.register(Post, PostAdmin)
-admin.site.register(Message, MessageAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(models.PostType)
+admin.site.register(models.GroupCategory)
+admin.site.register(models.Group, GroupAdmin)
+admin.site.register(models.Bureau, BureauAdmin)
+admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.Message, MessageAdmin)
+admin.site.register(models.Comment, CommentAdmin)

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import auth
 from django.utils.translation import ugettext_lazy as _
 
-from .models import AccountRecovery, User
+from .models import User  # , AccountRecovery
 
 
 class ConfirmForm(forms.Form):
