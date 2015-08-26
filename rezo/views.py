@@ -4,7 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.views import generic
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -182,9 +182,7 @@ class UserDetailView(generic.DetailView):
     context_object_name = 'profile'
 
     def get_object(self, *args, **kwargs):
-        return self.model.objects.get(
-            username=self.kwargs.get('username', None),
-        )
+        return get_object_or_404(self.model, username=self.kwargs['username'])
 
 
 class RezoAccountView(generic.TemplateView):

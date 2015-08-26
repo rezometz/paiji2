@@ -20,6 +20,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.functional import cached_property
 from django.core.urlresolvers import reverse
 from django.conf import settings
+# from django.utils.translation import ugettext as _
 
 from modular_blocks.models import TwoModularColumnsMixin
 
@@ -142,17 +143,20 @@ class Ecole(models.Model):
 #         managed = False
 #         db_table = 'rezoteurs'
 #
-# class Topologies(models.Model):
-#     id = models.IntegerField(primary_key=True)
-#     rezoswitch_id = models.IntegerField()
-#     port = models.IntegerField()
-#     type = models.CharField(max_length=7)
-#     nom = models.CharField(max_length=50)
-#     idswitchconnecte = models.IntegerField(db_column='idSwitchConnecte')
-#     equipement_id = models.IntegerField()
-#     class Meta:
-#         managed = False
-#         db_table = 'topologies'
+
+
+class Topologies(models.Model):
+    id = models.IntegerField(primary_key=True)
+    rezoswitch_id = models.IntegerField()
+    port = models.IntegerField()
+    type = models.CharField(max_length=7)
+    nom = models.CharField(max_length=50)
+    idswitchconnecte = models.IntegerField(db_column='idSwitchConnecte')
+    equipement_id = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'topologies'
 
 
 class Utilisateur(models.Model):
@@ -161,7 +165,8 @@ class Utilisateur(models.Model):
     precisionecole = models.TextField(db_column='precisionEcole')
     nom = models.TextField()
     prenom = models.TextField()
-    topology_id = models.IntegerField(blank=True, null=True)
+    # topology_id = models.IntegerField(blank=True, null=True)
+    topology = models.ForeignKey(Topologies, db_column='topology_id')
     email = models.TextField()
     emailverifie = models.TextField(db_column='emailVerifie')
     borne_id = models.IntegerField()
@@ -314,7 +319,16 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
                 pk=self.id_rezo,
             )
         except:
-            return 'Could not fetch rezo profile'
+            print('Could not fetch rezo profile')
+            return None
+
+    @cached_property
+    def get_room(self):
+        try:
+            return self.get_rezo.topology.nom
+        except:
+            print('unable to contact the database')
+            return None
 
     @cached_property
     def expire_on(self):
