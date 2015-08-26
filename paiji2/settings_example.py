@@ -11,6 +11,9 @@ except ImportError:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
+
+# INSTALLED_APPS += ('debug_toolbar',)
+
 SECRET_KEY = 'mysecretkey'
 
 DEBUG = True
