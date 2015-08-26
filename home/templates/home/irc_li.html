@@ -1,0 +1,30 @@
+{% load i18n %}
+{% if irc and irc.enabled %}
+    {% if irc.public or user.is_authenticated %}
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                    <span class="glyphicon glyphicon-send"></span> {% trans 'Chat' %}
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+        {% for server in irc.servers %}
+            <li>
+                <a>
+                    <span class="glyphicon glyphicon-globe"></span> <b>{{ server.name }}</b>
+                </a>
+            </li>
+            {% for channel in server.channels %}
+            <li>
+                <a
+                    target="_blank"
+                    href="http://{{ irc.irclc_url }}/{{ server.url }}/{{ channel }}/{% if user.is_authenticated %}{{ user }}{% else %}{{ irc.nickname }}{% endif %}"
+                >
+                    <span class="glyphicon glyphicon-flash"></span> {{ channel }}
+                </a>
+            </li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+{% endif %}

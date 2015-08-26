@@ -43,3 +43,38 @@ DATABASES = {
 ADMINS = (('Paiji developers', 'paiji-dev@rezometz.org'))
 
 STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+
+# irc links in the navbar
+IRC = {
+    'enabled': True,
+    'public': True,
+    'nickname': 'Yseult',
+    'irclc_url': 'irc.lc',
+    'servers': (
+        # {
+        #     'name': 'Name',
+        #     'url': 'server_url.domain',
+        #     'channel': (
+        #         'channel1',
+        #         'channel2'
+        #     ),
+        # },
+        {
+            'name':'Debian',
+            'url': 'irc.debian.org',
+            'channels': (
+                'debian',
+                'xen',
+            ),
+        }
+        {
+            'name': 'Freenode',
+            'url': 'irc.freenode.net',
+            'channels': (
+                'freenode',
+                'ubuntu',
+                'debian',
+            ),
+        },
+    ),
+}
