@@ -18,6 +18,7 @@ git+https://github.com/rezometz/django-backbone-calendar
 
 ## paiji2 apps ##
 
+git+https://github.com/rezometz/django-paiji2-utils
 git+https://github.com/rezometz/django-paiji2-shoutbox
 git+https://github.com/rezometz/django-paiji2-mettis
 git+https://github.com/rezometz/django-paiji2-infoconcert

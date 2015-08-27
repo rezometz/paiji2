@@ -44,6 +44,7 @@ INSTALLED_APPS = (
         'paiji2_shoutbox',
         'paiji2_forum',
         'mptt',
+        'paiji2_utils',
 
         'modular_blocks',
         'djangobower',
@@ -217,8 +218,8 @@ METTIS_STOPS = [
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
 
 
-# used by the rezo and paiji2_* apps
-# to define the profile_url template tag
+# used by paiji_utils
+# to define some template tags
 def PROFILE_URL(user):
     return reverse(
         'user-profile',
