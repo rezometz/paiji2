@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 10:07+0200\n"
+"POT-Creation-Date: 2015-08-27 19:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Fermer"
 msgid "OK"
 msgstr "OK"
 
-#: templates/home/base.html:36
+#: templates/home/base.html:45
 msgid ""
 "Your page is empty, you can add modules (carpooling, shoutbox, weather, "
 "etc.) with the following link :"
@@ -42,68 +42,63 @@ msgstr ""
 "Votre page est vide, vous pouvez ajouter des modules (covoiturage, gueuloir, "
 "météo, etc.) avec le lien suivant :"
 
-#: templates/home/base.html:38 templates/home/base.html.py:212
+#: templates/home/base.html:47 templates/home/base.html.py:245
 msgid "personalize my page"
 msgstr "personnaliser ma page"
 
-#: templates/home/base.html:76
+#: templates/home/base.html:69
 msgid "logout"
 msgstr "déconnexion"
 
-#: templates/home/base.html:81
+#: templates/home/base.html:74
 msgid "login"
 msgstr "connexion"
 
-#: templates/home/base.html:82
+#: templates/home/base.html:75
 msgid "sign in"
 msgstr "s’enregistrer"
 
-#: templates/home/base.html:90
-#, python-format
-msgid "Your due expires on %(date)s !"
-msgstr "Votre cotisation expire le %(date)s !"
-
-#: templates/home/base.html:100
+#: templates/home/base.html:85
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
-#: templates/home/base.html:118
+#: templates/home/base.html:103
 msgid "My groups"
 msgstr "Mes groupes"
 
-#: templates/home/base.html:134
+#: templates/home/base.html:119
 msgid "Carpooling"
 msgstr "Covoit’"
 
-#: templates/home/base.html:140
+#: templates/home/base.html:125
 msgid "Forum"
 msgstr "Forum"
 
-#: templates/home/base.html:147
+#: templates/home/base.html:133
 msgid "FTP search"
 msgstr "Rechercher sur les FTP"
 
-#: templates/home/base.html:160
+#: templates/home/base.html:159
 msgid "Shoutbox"
 msgstr "Gueuloir"
 
-#: templates/home/base.html:179
-msgid "Download my timetable in ical"
-msgstr "Télécharger mon emploi du temps en ical"
+#: templates/home/base.html:208
+msgid "Timetable (iCal)"
+msgstr "Emploi du temps (iCal)"
 
-#: templates/home/base.html:186
+#: templates/home/base.html:217
 msgid "groups registration"
 msgstr "enregistrement des groupes"
 
-#: templates/home/base.html:189
+#: templates/home/base.html:221
 msgid "Quotas & registered equipment"
 msgstr "Quotas & équipements rézotés"
 
-#: templates/home/base.html:190
+#: templates/home/base.html:222
 msgid "rezo wiki"
 msgstr "wiki Rézo"
 
-#: templates/home/base.html:215
+#: templates/home/base.html:248
 msgid "bugs or suggestions : "
 msgstr "bogues ou suggestions :"
 
@@ -111,23 +106,34 @@ msgstr "bogues ou suggestions :"
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/home/news-feed.html:8
+#: templates/home/irc_li.html:6
+msgid "Chat"
+msgstr "Chat"
+
+#: templates/home/news-feed.html:9
 msgid "News"
 msgstr "Nouvelles"
 
-#: templates/home/news-feed.html:60
+#: templates/home/news-feed.html:66
 msgid "public"
 msgstr "public"
 
-#: templates/home/news-feed.html:62
+#: templates/home/news-feed.html:68
 msgid "internal"
 msgstr "interne"
 
-#: templates/home/news-feed.html:68
-msgid "About"
-msgstr "À propos de"
+#: templates/home/news-feed.html:74
+msgid "for"
+msgstr "pour"
 
-#: templates/home/news-feed.html:73
-#, python-format
-msgid "for %(group)s, %(TimeSince)s ago"
-msgstr "pour %(group)s, il y a %(TimeSince)s"
+#~ msgid "Your due expires on %(date)s !"
+#~ msgstr "Votre cotisation expire le %(date)s !"
+
+#~ msgid "Download my timetable in ical"
+#~ msgstr "Télécharger mon emploi du temps en ical"
+
+#~ msgid "About"
+#~ msgstr "À propos de"
+
+#~ msgid "for %(group)s, %(TimeSince)s ago"
+#~ msgstr "pour %(group)s, il y a %(TimeSince)s"
