@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 from django.conf import global_settings
 import django.conf.locale
-
+from django.core.urlresolvers import reverse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -215,3 +215,14 @@ METTIS_STOPS = [
 ]
 
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
+
+
+# used by the rezo and paiji2_* apps
+# to define the profile_url template tag
+def PROFILE_URL(user):
+    return reverse(
+        'user-profile',
+        kwargs={
+            'username': user.username,
+        },
+    )
