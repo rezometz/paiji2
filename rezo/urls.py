@@ -97,7 +97,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^(?P<username>[\w-]+)/profile$',
+        r'^(?P<pk>[0-9]+)/profile$',
         login_required(UserDetailView.as_view()),
         name='user-profile',
     ),

@@ -224,6 +224,6 @@ def PROFILE_URL(user):
     return reverse(
         'user-profile',
         kwargs={
-            'username': user.username,
+            'pk': user.pk,
         },
     )

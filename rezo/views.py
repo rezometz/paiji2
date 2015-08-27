@@ -182,7 +182,7 @@ class UserDetailView(generic.DetailView):
     context_object_name = 'profile'
 
     def get_object(self, *args, **kwargs):
-        return get_object_or_404(self.model, username=self.kwargs['username'])
+        return get_object_or_404(self.model, pk=self.kwargs['pk'])
 
 
 class RezoAccountView(generic.TemplateView):
