@@ -1,6 +1,7 @@
 {% extends 'social/group_base.html' %}
 
 {% load i18n %}
+{% load profile %}
 
 {% block title %}{% trans 'Members' %}{% endblock %}
 
@@ -21,7 +22,7 @@
             {% for member in members %}
         <tr>
             <td>
-                {{ member.utilisateur }}
+                {% profile_link member.utilisateur %}
                 <small class="text-muted">{{ member.postType }}</small>
             </td>
         </tr>

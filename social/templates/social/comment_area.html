@@ -1,22 +1,30 @@
-{% load bootstrap3 i18n %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load profile %}
 
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
 		<li>
-    		<a href=
             {% if request.user.is_authenticated %}
-            "mailto:{{ comment.author.email }}?subject=[Paiji2] {% trans 'About' %}{{ ' : "'|add:comment.content|add:'"'|urlencode }}"
+                {% profile_link comment.author %}
+                <div class="pull-right">
+                    {% with subject='[social] '|add:_('About')|add:' : "'|add:comment.content|add:'"' %}
+                    {% mail_link comment.author '' subject %}
+                    {% endwith %}
+                </div>
             {% else %}
-            "{% url 'sign-in' %}"
+                <a href="{% url 'sign-in' %}">{{ comment.author.first_name }}</a>
             {% endif %}
-            title="{{ comment.author.first_name }} {{ comment.author.last_name }} ({{ comment.author }})">
-            <i class="glyphicon glyphicon-envelope"></i>
-            {{ comment.author.first_name }}
-       		</a>
+
             : {{ comment.content|urlize }}
-    		<span class="text-muted"><small>{% blocktrans with TimeSince=comment.pubDate|timesince %}{{ TimeSince }} ago{% endblocktrans %}</small></span>
-		</li>
-		<hr>
+
+    		<span class="text-muted">
+                <small>
+                    {% blocktrans with TimeSince=comment.pubDate|timesince %}{{ TimeSince }} ago{% endblocktrans %}
+                </small>
+            </span>
+        </li>
+		<hr/>
 	{% endfor %}
 
 	{% if request.user.is_authenticated and comments|length < 20 %}

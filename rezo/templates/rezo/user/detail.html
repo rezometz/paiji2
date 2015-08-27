@@ -61,7 +61,7 @@
                     </thead>
                     {% for post in profile.posts.all %}
                     <tr>
-                        <td>{{ post.bureau }}</td>
+                        <td><a href={% url 'workgroup-view' post.bureau.group.slug %}>{{ post.bureau }}</a></td>
                         <td>{{ post.postType }}</td>
                         <td>{{ post.bureau.createdDate|date:"F Y" }}</td>
                         <td>{{ post.bureau.endDate|date:"F Y" }}</td>
