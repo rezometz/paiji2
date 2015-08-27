@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 19:35+0200\n"
+"POT-Creation-Date: 2015-08-27 22:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,6 +267,10 @@ msgstr "début"
 msgid "end"
 msgstr "fin"
 
+#: templates/rezo/user/detail.html:77
+msgid "see the rezo account"
+msgstr "voir le compte rézo"
+
 #: templates/rezo/user/password_change.html:6
 #: templates/rezo/user/password_change.html:11
 msgid "password change"
@@ -316,7 +320,7 @@ msgstr "Compte Rézo"
 msgid "Your due expires on %(date)s !"
 msgstr "Ta cotisation expire le %(date)s !"
 
-#: templates/rezo/user/summary.html:39
+#: templates/rezo/user/summary.html:40
 msgid "Account"
 msgstr "Mon Compte"
 

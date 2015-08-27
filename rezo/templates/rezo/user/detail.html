@@ -44,32 +44,39 @@
             </div>
         </div>
         {% if profile.posts.all %}
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="title">
-                    <i class="fa fa-people"></i>
-                    {% trans 'Associations & Groups' %}
-                </h2>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>{% trans 'bureau' %}</th>
-                        <th>{% trans 'post' %}</th>
-                        <th>{% trans 'beginning' %}</th>
-                        <th>{% trans 'end' %}</th>
-                    </tr>
-                    </thead>
-                    {% for post in profile.posts.all %}
-                    <tr>
-                        <td><a href={% url 'workgroup-view' post.bureau.group.slug %}>{{ post.bureau }}</a></td>
-                        <td>{{ post.postType }}</td>
-                        <td>{{ post.bureau.createdDate|date:"F Y" }}</td>
-                        <td>{{ post.bureau.endDate|date:"F Y" }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="title">
+                        <i class="fa fa-people"></i>
+                        {% trans 'Associations & Groups' %}
+                    </h2>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'bureau' %}</th>
+                            <th>{% trans 'post' %}</th>
+                            <th>{% trans 'beginning' %}</th>
+                            <th>{% trans 'end' %}</th>
+                        </tr>
+                        </thead>
+                        {% for post in profile.posts.all %}
+                        <tr>
+                            <td><a href={% url 'workgroup-view' post.bureau.group.slug %}>{{ post.bureau }}</a></td>
+                            <td>{{ post.postType }}</td>
+                            <td>{{ post.bureau.createdDate|date:"F Y" }}</td>
+                            <td>{{ post.bureau.endDate|date:"F Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
-        </div>
+        {% endif %}
+        {% if user == profile %}
+            <div class="text-center">
+                <a class="btn btn-primary btn-block" href="{% url 'account' %}">
+                    {% trans 'see the rezo account' %}
+                </a>
+            </div>
         {% endif %}
     </div>
 </div>

@@ -35,7 +35,9 @@
 {% endif %}
 
 {% if request.user.id_rezo %}
-<a href="{% url 'account' %}">
-    {% trans 'Account' %}
-</a>
+<div class="text-center">
+    <a class="btn btn-default" href="{% url 'account' %}">
+        {% trans 'Account' %}
+    </a>
+</div>
 {% endif %}
