@@ -5,15 +5,14 @@
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
 		<li>
+            {% profile_link comment.author %}
+
             {% if request.user.is_authenticated %}
-                {% profile_link comment.author %}
                 <div class="pull-right">
                     {% with subject='[social] '|add:_('About')|add:' : "'|add:comment.content|add:'"' %}
                     {% mail_link comment.author '' subject %}
                     {% endwith %}
                 </div>
-            {% else %}
-                <a href="{% url 'sign-in' %}">{{ comment.author.first_name }}</a>
             {% endif %}
 
             : {{ comment.content|urlize }}
