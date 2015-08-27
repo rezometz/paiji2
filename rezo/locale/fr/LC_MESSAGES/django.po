@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 00:30+0200\n"
+"POT-Creation-Date: 2015-08-27 19:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,6 +92,10 @@ msgid ""
 msgstr ""
 "Si ces informations sont fausses ou si vous avez de l’équipement non "
 "enregistré, prière de contacter le Rézo."
+
+#: templates/rezo/account_claim_confirm.html:4
+msgid "account reclaim"
+msgstr "demande de compte"
 
 #: templates/rezo/account_claim_confirm.html:9
 msgid ""
