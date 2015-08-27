@@ -71,7 +71,7 @@
             </h4>
             <p class="text-muted">
             {% profile_link item.author %}
-            {% trans 'for' %} <a href="{% url 'workgroup-view' item.group.slug %}">{{ item.group }}</a>
+            {% trans 'for' %} <a href="{% url 'workgroup-view' item.group.slug %}">{{ item.group }}</a>{% blocktrans with TimeSince=item.pubDate|timesince %} {{ TimeSince }} ago{% endblocktrans %}.
             </p>
         </div>
     </div>
