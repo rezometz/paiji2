@@ -14,7 +14,11 @@ modules.autodiscover()
 
 
 urlpatterns = [
-    url(r'^i18n/confirm-language/(?P<code>[\w-]+)$', confirm_language, name="set_language"),
+    url(
+        r'^i18n/confirm-language/(?P<code>[\w-]+)$',
+        confirm_language,
+        name="set_language",
+    ),
 ] + i18n_patterns(
     '',
     url(r'^rezo/', include('rezo.urls')),

@@ -28,7 +28,9 @@
         Are you sure that you want to switch to {{ language }}?
         {% endblocktrans %}
         </p>
-
+        <p> {# if you don’t speak french, german or latine... #}
+        Are you sure that you want to switch to {{ language.1 }}?
+        </p>
         <input type="submit" class="btn btn-primary" value="{{ _('Confirm') }}" />
 
     </form>

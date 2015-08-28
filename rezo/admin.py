@@ -18,7 +18,6 @@ class ListInput(forms.CheckboxSelectMultiple):
         kwargs['choices'] = blocks
         super(ListInput, self).__init__(**kwargs)
 
-
     def _format_value(self, value):
         return ','.join(value)
 
