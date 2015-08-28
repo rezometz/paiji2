@@ -44,8 +44,11 @@
                Are you sure that you want to switch to {{ new_language.name }}?
         </p>
         {% endif %}
-        <input type="submit" class="btn btn-primary" value="{{ _('Confirm') }}" />
-
+        <input type="submit" class="btn btn-primary"
+             value="{% language new_language.code %}{% trans 'Confirm' %} — {% endlanguage %}
+                    {% trans 'Confirm' %}
+                    {% if LANGUAGE_CODE != 'en' and new_language.code != 'en' %} — Confirm{% endif %}
+                    " />
     </form>
 </div>
 {% endblock %}
