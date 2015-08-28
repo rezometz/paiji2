@@ -2,6 +2,7 @@
 
 
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 
 {% block title %}{{ _('Switch language') }}{% endblock %}
@@ -12,25 +13,37 @@
     <form method="post" action="{{ request.get_full_path }}">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}" />
-        <input type="hidden" name="language" value="{{ language.0 }}" />
+        <input type="hidden" name="language" value="{{ new_language.code }}" />
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-lg-offset-5">
                         <div class="flag-wrapper">
-                    <div class="img-thumbnail flag flag-icon-background flag-icon-{% if language.0 == 'en' %}gb{% else %}{{ language.0 }}{% endif %}">
+                    <div class="img-thumbnail flag flag-icon-background flag-icon-{% if new_language.code == 'en' %}gb{% else %}{{ new_language.code }}{% endif %}">
                     </div>
                         </div>
                 </div>
             </div>
         </div>
         <p>
-        {% blocktrans with language=language.1 %}
-        Are you sure that you want to switch to {{ language }}?
-        {% endblocktrans %}
+        {# in the wished language #}
+            {% language new_language.code %}
+            {% blocktrans with language=new_language.name_local %}
+            Are you sure that you want to switch to {{ language }}?
+            {% endblocktrans %}
+            {% endlanguage %}
         </p>
-        <p> {# if you don’t speak french, german or latine... #}
-        Are you sure that you want to switch to {{ language.1 }}?
+        <p>
+        {# in the current language #}
+            {% blocktrans with language=new_language.name_local|add:' ('|add:new_language.name|add:')' %}
+            Are you sure that you want to switch to {{ language }}?
+            {% endblocktrans %}
         </p>
+        {# in english #}
+        {% if LANGUAGE_CODE != 'en' and new_language.code != 'en' %}
+        <p>
+               Are you sure that you want to switch to {{ new_language.name }}?
+        </p>
+        {% endif %}
         <input type="submit" class="btn btn-primary" value="{{ _('Confirm') }}" />
 
     </form>
