@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load get_ftps %}
 {% load irc_li %}
+{% load profile %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
@@ -51,28 +52,33 @@
         <div id="quota-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="label label-default">language</div>
+                    <div class="col-md-4 pull-left">
+                        <div class="pull-left auth-button sign-in">language</div>
                         {% for language in languages %}
-                            <form class="btn-group btn-group-xs" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <form class="pull-left btn-group btn-group-xs" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                               <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
                               {% comment %} why "slice: '3:'" ? for i18n_patterns is used {% endcomment %}
                               <input name="language" type="hidden" value="{{ language.code }}" />
-                              <input title="{{ language.name_local }} ({{ language.name }})" class="btn btn-xs {% if language.code == LANGUAGE_CODE %}btn-success disabled{% else %}btn-default{% endif %}" type="submit" value="{{ language.code }}" />
+                              <input title="{{ language.name_local }} ({{ language.name }})" class="btn btn-xs auth-button {% if language.code == LANGUAGE_CODE %}sign-out disabled{% else %}sign-in{% endif %}" type="submit" value="{{ language.code }}" />
                             </form>
                         {% endfor %}
                     </div>
                     {% if user.is_authenticated %}
-                    <div class="col-md-1">
-                        <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
-                            {% trans 'logout' %}
-                        </a>
-                    </div>
+                        <div class="col-md-4 text-center">
+                            <a href="{% profile_url user %}" class="btn btn-xs btn-primary">
+                                {{ user.first_name }} ({{ user.username }})
+                            </a>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
+                                {% trans 'logout' %}
+                            </a>
+                        </div>
                     {% else %}
-                    <div class="col-md-3">
-                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'login' %}</a>
-                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'sign in' %}</a>
-                    </div>
+                        <div class="col-md-8 pull-right">
+                            <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'login' %}</a>
+                            <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'sign in' %}</a>
+                        </div>
                     {% endif %}
 
                 </div>
@@ -237,11 +243,22 @@
             <footer>
             <hr>
             <div class="row">
-                <div class="col-lg-5">
-                    <p>Copyright &copy; Rézo, Supélec Metz, {% now "Y" %}</p>
+                <div class="col-lg-4">
+                    <small>
+                    <div class="pull-left">
+                        <a class="logo" type="_blank" href="http://www.gnu.org/licenses/agpl-3.0.html">
+                            <img src="{% static 'home/images/agpl.png' %}" alt="Affero GPL v3">
+                        </a>
+                        <p>
+                            <a type="_blank" href="https://github.com/rezometz/paiji2">
+                                Website code :
+                            </a> Copyright &copy; 2014-{% now "Y" %} Rézo, Supélec Metz - Paiji Developers
+                        </p>
+                    </div>
+                    </small>
                 </div>
-                <div class="col-lg-3">
-                    <p><a href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a></p>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default" href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a></p>
                 </div>
                 <div class="col-lg-4">
                     <p class="pull-right">{% trans 'bugs or suggestions : ' %} <a href="mailto:{{ admin_email }}">{{ admin_email }}</a></p>

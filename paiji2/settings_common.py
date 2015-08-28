@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 from django.conf import global_settings
 import django.conf.locale
-
+from django.core.urlresolvers import reverse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -44,6 +44,7 @@ INSTALLED_APPS = (
         'paiji2_shoutbox',
         'paiji2_forum',
         'mptt',
+        'paiji2_utils',
 
         'modular_blocks',
         'djangobower',
@@ -215,3 +216,14 @@ METTIS_STOPS = [
 ]
 
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
+
+
+# used by paiji_utils
+# to define some template tags
+def PROFILE_URL(user):
+    return reverse(
+        'user-profile',
+        kwargs={
+            'pk': user.pk,
+        },
+    )
