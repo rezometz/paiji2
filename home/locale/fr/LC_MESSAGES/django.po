@@ -134,11 +134,11 @@ msgstr " il y a %(TimeSince)s"
 
 #: home/templates/navbar.html:181
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: home/templates/navbar.html:188
 msgid "Sign out"
-msgstr ""
+msgstr "Déconnexion"
 
 #~ msgid "Your due expires on %(date)s !"
 #~ msgstr "Votre cotisation expire le %(date)s !"
