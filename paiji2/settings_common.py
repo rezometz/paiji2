@@ -132,6 +132,7 @@ BOWER_INSTALLED_APPS = (
     'morris.js',
     'weather-icons',
     'jquery-ui',
+    'flag-icon-css',
 )
 
 KEY_CACHE_WEATHER = 'paiji2_weather_data'
@@ -217,6 +218,9 @@ METTIS_STOPS = [
 
 ADMIN_EMAIL = 'paiji-dev@rezometz.org'
 
+TEMPLATE_DIRS = global_settings.TEMPLATE_DIRS + (
+    os.path.join(BASE_DIR, 'paiji2', 'templates'),
+)
 
 # used by paiji_utils
 # to define some template tags

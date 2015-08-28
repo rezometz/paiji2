@@ -1,0 +1,215 @@
+{% load profile %}
+{% load gravatar %}
+{% load staticfiles %}
+{% load irc_li %}
+{% load get_ftps %}
+<header>
+    <nav class="navbar navbar" role="navigation" id="header">
+        {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
+        <div class="alert alert-head alert-info">
+            <p class="text-center">
+            {{ _('Your page is empty, you can add modules (carpooling, shoutbox, weather, etc.) with the following link :') }}
+            <br />
+            <a href="{% url 'modular-change' %}">{{ _('personalize my page') }}</a>
+            </p>
+        </div>
+        {% endif %}
+        <div id="quota-bar">
+            <div class="container">
+                <div class="row">
+                    {% if not user.is_authenticated %}
+                    <div class="col-md-8 pull-right">
+                        <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">
+                            {{ _('login') }}
+                        </a>
+                        <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">
+                            {{ _('sign in') }}
+                        </a>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">{{ _('Toggle navigation') }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'home/images/paiji.png' %}" height="40" />
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                {% if request.user.is_authenticated and request.user.get_related_groups %}
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            <i class="glyphicon glyphicon-user"></i>
+                            {{ _('My groups') }}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for group in request.user.get_related_groups %}
+                            <li><a href="{{ group.get_absolute_url }}">{{ group }}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                    </li>
+                </ul>
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{% url 'carpool-list' %}">
+                            <span class="glyphicon glyphicon-road"></span>
+                            {{ _('Carpooling') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'forum:topic-list' %}">
+                            <span class="glyphicon glyphicon-list"></span>
+                            {{ _('Forum') }}
+                        </a>
+                    </li>
+                    {% irc_li %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rez <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% if request.user.is_authenticated %}
+                            <li>
+                                <a target="_blank" href="http://integrator.rez">
+                                    <i class="fa fa-users"></i>
+                                    Integrators
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://noodle.rez">
+                                    <i class="fa fa-book"></i>
+                                    Polardator
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            {% endif %}
+                            <li>
+                                <a href="{% url 'message-list' %}">
+                                    <i class="fa fa-bullhorn"></i>
+                                    {{ _('Shoutbox') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">FTP <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% get_ftps %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supélec <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a target="_blank" href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">
+                                    <i class="fa fa-university"></i>
+                                    ENT (legacy)
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://ent-reloaded.supelec.fr">
+                                    <i class="fa fa-university"></i>
+                                    ENT (reloaded)
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://ntnoe.metz.supelec.fr/">
+                                    <i class="fa fa-university"></i>
+                                    NTNOE
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://moodle.supelec.fr/">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    Moodle
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://sogo.supelec.fr/">
+                                    <i class="fa fa-envelope"></i>
+                                    Webmail (sogo)
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://ntnoe.metz.supelec.fr/ical/index.php">
+                                    <i class="fa fa-calendar"></i>
+                                    {{ _('Timetable (iCal)') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% if request.user.is_authenticated %}
+                            <li><a target="_blank" href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">{{ _('groups registration') }}</a></li>
+                            <li><a target="_blank" href="http://rezo.rez/">rezo.rez</a></li>
+                            <li><a target="_blank" href="http://monitoring.rez/">monitoring.rez</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'account' %}">{{ _('Quotas & registered equipment') }}</a></li>
+                            <li><a target="_blank" href="http://wiki.rezometz.org/">{{ _('rezo wiki') }}</a></li>
+                            <li><a target="_blank" href="http://sympa.rezometz.org/">Sympa</a></li>
+                        </ul>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            <img src="{% gravatar_url user.email 20 %}" height="20" width="20"
+                                                                                    class="img-rounded" />
+                            {{ user }} 
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% profile_url user %}">
+                                    <i class="fa fa-gears"></i>
+                                    {{ _('Profile') }}
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <i class="fa fa-sign-out"></i>
+                                    {{ _('Sign out') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            <i class="flag-icon flag-icon-{% if LANGUAGE_CODE == 'en' %}gb{% else %}{{ LANGUAGE_CODE }}{% endif %}"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                        {% for language in languages %}
+                        {% if language.code != LANGUAGE_CODE %}
+                            <li>
+                                <a href="{% url 'set_language' code=language.code %}?next={{ request.get_full_path|slice:'3:' }}">
+                                    <i class="flag-icon flag-icon-{% if language.code == 'en' %}gb{% else %}{{ language.code }}{% endif %}"></i>
+                                    {{ language.name_local }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

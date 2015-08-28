@@ -1,0 +1,36 @@
+{% extends 'home/layout_three_columns.html' %}
+
+
+{% load i18n %}
+
+
+{% block title %}{{ _('Switch language') }}{% endblock %}
+
+
+{% block content %}
+<div class="well text-center">
+    <form method="post" action="{{ request.get_full_path }}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" name="language" value="{{ language.0 }}" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                        <div class="flag-wrapper">
+                    <div class="img-thumbnail flag flag-icon-background flag-icon-{% if language.0 == 'en' %}gb{% else %}{{ language.0 }}{% endif %}">
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <p>
+        {% blocktrans with language=language.1 %}
+        Are you sure that you want to switch to {{ language }}?
+        {% endblocktrans %}
+        </p>
+
+        <input type="submit" class="btn btn-primary" value="{{ _('Confirm') }}" />
+
+    </form>
+</div>
+{% endblock %}

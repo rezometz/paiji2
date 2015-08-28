@@ -1,9 +1,6 @@
 {% load staticfiles %}
 {% load cache %}
 {% load i18n %}
-{% load get_ftps %}
-{% load irc_li %}
-{% load profile %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% get_language_info_list for LANGUAGES as languages %}
@@ -23,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'components-font-awesome/css/font-awesome.min.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'morris.js/morris.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'flag-icon-css/css/flag-icon.min.css' %}" />
 
         <!-- CUSTOM -->
         <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}" />
@@ -38,203 +36,7 @@
     </head>
 
     <body>
-        <header>
-        <nav class="navbar navbar" role="navigation" id="header">
-        {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
-        <div class="alert alert-head alert-info">
-            <p class="text-center">
-            {% trans 'Your page is empty, you can add modules (carpooling, shoutbox, weather, etc.) with the following link :' %}
-            <br />
-            <a href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a>
-            </p>
-        </div>
-        {% endif %}
-        <div id="quota-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 pull-left">
-                        <div class="pull-left auth-button sign-in">language</div>
-                        {% for language in languages %}
-                            <form class="pull-left btn-group btn-group-xs" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                              <input  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
-                              {% comment %} why "slice: '3:'" ? for i18n_patterns is used {% endcomment %}
-                              <input name="language" type="hidden" value="{{ language.code }}" />
-                              <input title="{{ language.name_local }} ({{ language.name }})" class="btn btn-xs auth-button {% if language.code == LANGUAGE_CODE %}sign-out disabled{% else %}sign-in{% endif %}" type="submit" value="{{ language.code }}" />
-                            </form>
-                        {% endfor %}
-                    </div>
-                    {% if user.is_authenticated %}
-                        <div class="col-md-4 text-center">
-                            <a href="{% profile_url user %}" class="btn btn-xs btn-primary">
-                                {{ user.first_name }} ({{ user.username }})
-                            </a>
-                        </div>
-                        <div class="col-md-4 pull-right">
-                            <a href="{% url 'logout' %}" class="auth-button sign-out pull-right">
-                                {% trans 'logout' %}
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="col-md-8 pull-right">
-                            <a href="{% url 'sign-in' %}" class="auth-button sign-in pull-right">{% trans 'login' %}</a>
-                            <a href="{% url 'account-claim' %}" class="auth-button sign-in pull-right">{% trans 'sign in' %}</a>
-                        </div>
-                    {% endif %}
-
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">{% trans 'Toggle navigation' %}</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="navbar-brand logo-nav logo" href="{% url 'index' %}">
-                    <img id="icon" src="{% static 'home/images/paiji.png' %}">
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                {% if request.user.is_authenticated and request.user.get_related_groups %}
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                        <i class="glyphicon glyphicon-user"></i>
-                        {% trans 'My groups' %}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for group in request.user.get_related_groups %}
-                        <li><a href="{{ group.get_absolute_url }}">{{ group }}</a></li>
-                        {% endfor %}
-                    </ul>
-
-                    </li>
-                </ul>
-                {% endif %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{% url 'carpool-list' %}">
-                        <span class="glyphicon glyphicon-road"></span>
-                        {% trans 'Carpooling' %}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'forum:topic-list' %}">
-                            <span class="glyphicon glyphicon-list"></span>
-                            {% trans 'Forum' %}
-                        </a>
-                    </li>
-                    {% irc_li %}
-                    {% if request.user.is_authenticated %}
-                    <li>
-                    <form class="navbar-form navbar-left" action="http://porygon.rez/search?" method="get" role="search">
-                        <div class="form-group">
-                            <input type="text" name="query" class="form-control" placeholder="{% trans 'FTP search' %}">
-                        </div>
-                    </form>
-                    </li>
-                    {% endif %}
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rez <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        {% if request.user.is_authenticated %}
-                        <li>
-                            <a target="_blank" href="http://integrator.rez">
-                                <i class="fa fa-users"></i>
-                                Integrators
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://noodle.rez">
-                                <i class="fa fa-book"></i>
-                                Polardator
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        {% endif %}
-                        <li>
-                            <a href="{% url 'message-list' %}">
-                                <i class="fa fa-bullhorn"></i>
-                                {% trans 'Shoutbox' %}
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
-                    {% if request.user.is_authenticated %}
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">FTP <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        {% get_ftps %}
-                    </ul>
-                    </li>
-                    {% endif %}
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supélec <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a target="_blank" href="http://portail-appliweb.supelec.fr:81/ENT/Default.aspx">
-                                <i class="fa fa-university"></i>
-                                ENT (legacy)
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://ent-reloaded.supelec.fr">
-                                <i class="fa fa-university"></i>
-                                ENT (reloaded)
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://ntnoe.metz.supelec.fr/">
-                                <i class="fa fa-university"></i>
-                                NTNOE
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://moodle.supelec.fr/">
-                                <i class="fa fa-graduation-cap"></i>
-                                Moodle
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://sogo.supelec.fr/">
-                                <i class="fa fa-envelope"></i>
-                                Webmail (sogo)
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://ntnoe.metz.supelec.fr/ical/index.php">
-                                <i class="fa fa-calendar"></i>
-                                {% trans 'Timetable (iCal)' %}
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rézo <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        {% if request.user.is_authenticated %}
-                        <li><a target="_blank" href="https://docs.google.com/forms/d/1WDKFqZHrQSHRJWGtCoCylqPmNzTSPJu0R_pCAw8QsDs/viewform?usp=send_form">{% trans 'groups registration' %}</a></li>
-                        <li><a target="_blank" href="http://rezo.rez/">rezo.rez</a></li>
-                        <li><a target="_blank" href="http://monitoring.rez/">monitoring.rez</a></li>
-                        {% endif %}
-                        <li><a href="{% url 'account' %}">{% trans 'Quotas & registered equipment' %}</a></li>
-                        <li><a target="_blank" href="http://wiki.rezometz.org/">{% trans 'rezo wiki' %}</a></li>
-                        <li><a target="_blank" href="http://sympa.rezometz.org/">Sympa</a></li>
-                    </ul>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        </nav>
-        </header>
-
+        {% include 'navbar.html' %}
         <div id="main" class="container clearfix">
             {% block layout %}{% endblock %}
         </div>
