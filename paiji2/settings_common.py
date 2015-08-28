@@ -16,8 +16,28 @@ from django.core.urlresolvers import reverse
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# URLs
+
+ROOT_URLCONF = 'paiji2.urls'
 
 LOGIN_URL = 'sign-in'
+
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+REDIRECT_URL = '/'
+
+
+# used by paiji_utils
+# to define some template tags
+def PROFILE_URL(user):
+    return reverse(
+        'user-profile',
+        kwargs={
+            'pk': user.pk,
+        },
+    )
 
 # Application definition
 INSTALLED_APPS = (
@@ -68,8 +88,6 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
         'rezo.context_processors.get_admin_email',
         )
 
-ROOT_URLCONF = 'paiji2.urls'
-
 WSGI_APPLICATION = 'paiji2.wsgi.application'
 
 # Internationalization
@@ -104,7 +122,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'rezo', 'locale'),
 )
 
-
 TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
@@ -122,9 +139,6 @@ STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + (
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
 
 BOWER_INSTALLED_APPS = (
     'bootstrap',
@@ -221,13 +235,3 @@ ADMIN_EMAIL = 'paiji-dev@rezometz.org'
 TEMPLATE_DIRS = global_settings.TEMPLATE_DIRS + (
     os.path.join(BASE_DIR, 'paiji2', 'templates'),
 )
-
-# used by paiji_utils
-# to define some template tags
-def PROFILE_URL(user):
-    return reverse(
-        'user-profile',
-        kwargs={
-            'pk': user.pk,
-        },
-    )
