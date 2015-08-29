@@ -4,7 +4,9 @@
 
 <ul class="list-unstyled comments">
 	{% for comment in comments %}
+
 		<li>
+
             {% profile_link comment.author %}
 
             {% if request.user.is_authenticated %}
@@ -22,8 +24,13 @@
                     {% blocktrans with TimeSince=comment.pubDate|timesince %}{{ TimeSince }} ago{% endblocktrans %}
                 </small>
             </span>
+
         </li>
-		<hr/>
+
+        <li>
+            <hr/>
+        </li>
+
 	{% endfor %}
 
 	{% if request.user.is_authenticated and comments|length < 20 %}
