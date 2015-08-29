@@ -4,7 +4,7 @@
 {% load irc_li %}
 {% load get_ftps %}
 <header>
-    <nav class="navbar navbar" role="navigation" id="header">
+    <nav class="navbar" role="navigation" id="header">
         {% if request.user and request.user.sidebar_right|length == 0 and request.user.sidebar_left|length == 0 %}
         <div class="alert alert-head alert-info">
             <p class="text-center">
