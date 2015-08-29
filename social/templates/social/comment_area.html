@@ -34,13 +34,15 @@
 	{% endfor %}
 
 	{% if request.user.is_authenticated and comments|length < 20 %}
-	<form method="post" action="{% url 'comment-add' on_message.id %}">
-		{% csrf_token %}
-		{% bootstrap_field form.content show_label=False %}
-		{% buttons %}
-            <input style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" type="submit" value="Sent" class="btn btn-success" />
-        {% endbuttons %}
-        <div class="clearfix"></div>
-	</form>
-	{% endif %}
+        <li>
+            <form method="post" action="{% url 'comment-add' on_message.id %}">
+                {% csrf_token %}
+                {% bootstrap_field form.content show_label=False %}
+                {% buttons %}
+                    <input style="display:none; position: absolute; left: -9999px; width: 1px; height: 1px;" type="submit" value="Sent" class="btn btn-success" />
+                {% endbuttons %}
+                <div class="clearfix"></div>
+            </form>
+        </li>
+    {% endif %}
 </ul>
