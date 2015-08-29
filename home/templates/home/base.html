@@ -46,18 +46,18 @@
             <hr>
             <div class="row">
                 <div class="col-lg-4">
-                    <small>
                     <div class="pull-left">
-                        <a class="logo" type="_blank" href="http://www.gnu.org/licenses/agpl-3.0.html">
-                            <img src="{% static 'home/images/agpl.png' %}" alt="Affero GPL v3">
-                        </a>
                         <p>
-                            <a type="_blank" href="https://github.com/rezometz/paiji2">
-                                Website code :
-                            </a> Copyright &copy; 2014-{% now "Y" %} Rézo, Supélec Metz - Paiji Developers
+                            <a class="logo" target="_blank" href="http://www.gnu.org/licenses/agpl-3.0.html">
+                                <img src="{% static 'home/images/agpl.png' %}" alt="Affero GPL v3">
+                            </a>
+                            <small>
+                                <a target="_blank" href="https://github.com/rezometz/paiji2">
+                                    Website code :
+                                </a> Copyright &copy; 2014-{% now "Y" %} Rézo, Supélec Metz - Paiji Developers
+                            </small>
                         </p>
                     </div>
-                    </small>
                 </div>
                 <div class="col-lg-4 text-center">
                     <a class="btn btn-default" href="{% url 'modular-change' %}">{% trans 'personalize my page' %}</a>
