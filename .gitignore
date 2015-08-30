@@ -1,7 +1,5 @@
 .DS_Store
-*.pyc
-settings_dev.py
-**/*.mo
+*.log
 
 # Vim files
 *.swp
@@ -10,3 +8,11 @@ db.sqlite3
 node-v*
 components/
 node_modules/
+
+# django
+validation_errors/*
+*/migrations/*.py
+**/*.mo
+*.pyc
+settings_dev.py
+groups/*
