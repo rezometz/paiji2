@@ -11,8 +11,6 @@ node_modules/
 
 # django
 validation_errors/*
-*/migrations/*.py
 **/*.mo
 *.pyc
-settings_dev.py
 groups/*
