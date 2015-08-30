@@ -42,7 +42,7 @@ DATABASES = {
 # Admins
 ADMINS = (('Paiji developers', 'paiji-dev@rezometz.org'))
 
-STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # irc links in the navbar
 IRC = {
