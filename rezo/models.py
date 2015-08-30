@@ -332,50 +332,60 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     @cached_property
     def expire_on(self):
-        end_date = datetime.min
+        try:
 
-        payments = Paiements.objects.using('rezo').filter(
-                user=self.id_rezo
-            )
+            end_date = datetime.min
 
-        unit_price = 0
-        virt_amount = 0
-        for payment in payments:
-            # date at which the payment has been made
-            pay_day = datetime.fromtimestamp(payment.timestamp)
+            payments = Paiements.objects.using('rezo').filter(
+                    user=self.id_rezo
+                )
 
-            if pay_day > end_date:
-                end_date = pay_day
+            unit_price = 0
+            virt_amount = 0
+            for payment in payments:
+                # date at which the payment has been made
+                pay_day = datetime.fromtimestamp(payment.timestamp)
 
-            # Starting from 01/08/2014, the number of paying months goes
-            # from 10 to 8
-            if pay_day > datetime(2014, 8, 1):
-                yearly_paying_months = 8
+                if pay_day > end_date:
+                    end_date = pay_day
+
+                # Starting from 01/08/2014, the number of paying months goes
+                # from 10 to 8
+                if pay_day > datetime(2014, 8, 1):
+                    yearly_paying_months = 8
+                else:
+                    yearly_paying_months = 10
+
+                for vent in payment.paiements_ventilations.all():
+                    if(not unit_price):
+                        unit_price = vent.prixunitaire
+
+                    if vent.affectation == "COTISATION":
+                        while vent.montant > 0:
+                            if vent.montant >=\
+                                     yearly_paying_months * unit_price:
+
+                                virt_amount += 12 * unit_price
+                                vent.montant -= yearly_paying_months *\
+                                    unit_price
+                            else:
+                                virt_amount += vent.montant
+                                vent.montant = 0
+
+            unit_price = float(unit_price)
+            virt_amount = float(virt_amount)
+
+            if virt_amount == 0:
+                days = 0
             else:
-                yearly_paying_months = 10
+                days = int(365.25/12 * (virt_amount / unit_price))
 
-            for vent in payment.paiements_ventilations.all():
-                if(not unit_price):
-                    unit_price = vent.prixunitaire
+            return end_date + timedelta(days)
 
-                if vent.affectation == "COTISATION":
-                    while vent.montant > 0:
-                        if vent.montant >= yearly_paying_months * unit_price:
-                            virt_amount += 12 * unit_price
-                            vent.montant -= yearly_paying_months * unit_price
-                        else:
-                            virt_amount += vent.montant
-                            vent.montant = 0
+        except:
 
-        unit_price = float(unit_price)
-        virt_amount = float(virt_amount)
-
-        if virt_amount == 0:
-            days = 0
-        else:
-            days = int(365.25/12 * (virt_amount / unit_price))
-
-        return end_date + timedelta(days)
+            print('Could not fetch rezo profile')
+            return None
 
     @cached_property
     def cotisation_warning(self):
