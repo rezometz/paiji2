@@ -1,4 +1,4 @@
-## example settings for the dev server ##
+# example settings for the dev server #
 
 # Import common settings from settings_common.py
 try:
@@ -22,8 +22,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
-
-
 
 SECRET_KEY = 'mysecretkey'
 
