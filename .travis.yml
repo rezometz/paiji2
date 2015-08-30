@@ -14,8 +14,8 @@ install:
   - pip install pyflakes -U
   - pip install coveralls -U
 before_script:
-  - pep8 --exclude=migrations paiji2 social rezo home homepage_alert
-  - pyflakes social rezo home homepage_alert
+  - pep8 --exclude=migrations paiji2 rezo home homepage_alert
+  - pyflakes rezo home homepage_alert
 script:
   - coverage run --source=paiji2,home,homepage_alert,rezo testmanage.py test
 after_success:
