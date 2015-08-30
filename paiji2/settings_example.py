@@ -1,3 +1,5 @@
+## example settings for the dev server ##
+
 # Import common settings from settings_common.py
 try:
     from settings_common import *
@@ -6,13 +8,22 @@ except ImportError:
     print "Your installation is improperly configured."
     exit()
 
-# from django.conf import global_settings
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
 
 # INSTALLED_APPS += ('debug_toolbar',)
+
+# URLs
+
+ROOT_URLCONF = 'paiji2.dev_urls'  # to serve media files
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+
 
 SECRET_KEY = 'mysecretkey'
 
@@ -41,8 +52,6 @@ DATABASES = {
 
 # Admins
 ADMINS = (('Paiji developers', 'paiji-dev@rezometz.org'))
-
-STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 
 # irc links in the navbar
 IRC = {
