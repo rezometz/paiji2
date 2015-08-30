@@ -78,3 +78,12 @@ IRC = {
         },
     ),
 }
+
+HTMLVALIDATOR_ENABLED = True
+HTMLVALIDATOR_FAILFAST = True
+HTMLVALIDATOR_DUMPDIR = os.path.join(BASE_DIR, 'validation_errors')
+HTMLVALIDATOR_VNU_URL = 'https://validator.nu/'
+
+# testing when the test server is running
+if HTMLVALIDATOR_ENABLED:
+    MIDDLEWARE_CLASSES += ("htmlvalidator.middleware.HTMLValidator",)

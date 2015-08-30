@@ -1,2 +1,3 @@
 # debug
 django-debug-toolbar>=1.3
+git+https://github.com/peterbe/django-html-validator

@@ -7,16 +7,18 @@ env:
 install:
   - pip install -U pip
   - pip install -q Django==$DJANGO
+  - pip install -r requirements/dev.txt -U
   - pip install -r requirements/prod.txt -U
   - pip install -r requirements/repo.txt -U
   - pip install pep8 -U
   - pip install pyflakes -U
   - pip install coveralls -U
-  - cp paiji2/settings_example.py paiji2/settings.py
 before_script:
-  - "pep8 --exclude=migrations paiji2 social rezo home homepage_alert"
+  - pep8 --exclude=migrations paiji2 social rezo home homepage_alert
   - pyflakes social rezo home homepage_alert
 script:
-  - coverage run --source=paiji2,home,homepage_alert,social,rezo manage.py test 
+  - coverage run --source=paiji2,home,homepage_alert,social,rezo testmanage.py test
 after_success:
   - coveralls
+after_failure:
+  - cat validation_errors/*
