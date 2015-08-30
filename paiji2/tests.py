@@ -4,6 +4,7 @@ from django.conf import settings
 from modular_blocks import modules
 from htmlvalidator.client import ValidatingClient
 from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
 
 
 User = get_user_model()
@@ -21,12 +22,12 @@ class PaijiTests(TestCase):
 
         self.alice = User.objects.create_user(
             'ermentrude',
-            password='ermentrude_passwd',
+            password='ermentrude_passwordd',
         )
 
         self.sigefroid = User.objects.create_user(
             'sigefroid',
-            password='sigefroid_passwd',
+            password='sigefroid_password',
             sidebar_left=[name for name, _ in modules.blocks.items()],
             sidebar_right=None,
         )
@@ -35,6 +36,9 @@ class PaijiTests(TestCase):
 
         response = self.client.get('/')
         self.assertEqual(response.status_code, 302)
+
+        response = self.client.get(response['Location'])
+        self.assertEqual(response.status_code, 200)
 
         for code in dict(settings.LANGUAGES):
             response = self.client.get('/' + code + '/')
@@ -62,3 +66,27 @@ class PaijiTests(TestCase):
         )
 
         self.test_lang_homepage()
+
+    def test_account(self):
+
+        self.client.logout()
+
+        # account url without lang
+        response = self.client.get(reverse('account'))
+        self.assertEqual(response.status_code, 302)
+
+        # sign-in url without lang
+        response = self.client.get(response['Location'])
+        self.assertEqual(response.status_code, 302)
+
+        # sign-in url with lang
+        response = self.client.get(response['Location'])
+        self.assertEqual(response.status_code, 200)
+
+        self.client.login(
+            username='sigefroid',
+            password='sigefroid_password',
+        )
+
+        response = self.client.get(reverse('account'))
+        self.assertEqual(response.status_code, 200)
