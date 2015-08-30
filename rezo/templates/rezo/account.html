@@ -19,19 +19,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>{{ _("yesterday's remaining")|title }}</th>
+                    <th>{{ _("yesterday's remaining") }}</th>
                     <td>{{ request.user.get_rezo.quotas.restant_veille_in|filesizeformat }}</td>
                     <td>{{ request.user.get_rezo.quotas.restant_veille_out|filesizeformat }}</td>
                 </tr>
                 <tr>
-                    <th>{{ _("today's usage")|title }}</th>
+                    <th>{{ _("today's usage") }}</th>
                     <td>{{ request.user.get_rezo.quotas.conso_in|filesizeformat }}</td>
                     <td>{{ request.user.get_rezo.quotas.conso_out|filesizeformat }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th>{{ _("remaining quota")|title }}</th>
+                    <th>{{ _("remaining quota") }}</th>
                     <th>{{ request.user.get_rezo.quotas.down_restant|filesizeformat }}</th>
                     <th>{{ request.user.get_rezo.quotas.up_restant|filesizeformat }}</th>
                 </tr>
@@ -65,11 +65,11 @@
                     {% endfor %}
                     </td>
                     <td>{{ equipement.dnsrez }}</td>
-                <tr>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
-        
+
         <h3>{{ _('due')|title }}</h3>
         <table class="table table-striped">
             <thead>
@@ -80,9 +80,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ _('expiration')|title }}</td>
+                    <th>{{ _('expiration')|title }}</th>
                     <td>{{ request.user.expire_on|date:"DATE_FORMAT" }}</td>
-                <tr>
+                </tr>
             </tbody>
         </table>
         {% trans 'If these informations are false, or if you have unregistered equipment, please contact the Rezo.' %}
