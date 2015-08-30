@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ROOT_URLCONF = 'paiji2.urls'
 
-LOGIN_URL = 'sign-in'
+LOGIN_URL = '/rezo/sign-in'
 
 STATIC_URL = '/static/'
 
