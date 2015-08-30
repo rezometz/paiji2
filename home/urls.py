@@ -1,7 +1,7 @@
 from django.conf.urls import url  # , patterns
 # from django.contrib.auth.decorators import login_required
 
-from social.views import MessageListView
+from paiji2_social.views import MessageListView
 
 
 urlpatterns = [

@@ -22,7 +22,7 @@ urlpatterns = [
 ] + i18n_patterns(
     '',
     url(r'^rezo/', include('rezo.urls')),
-    url(r'^social/', include('social.urls')),
+    url(r'^social/', include('paiji2_social.urls')),
     url(r'^', include('home.urls'), name='home'),
     url(r'^admin', include(admin.site.urls)),
     url(r'^calendar/', include('backbone_calendar.urls')),

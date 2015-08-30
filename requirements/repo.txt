@@ -25,3 +25,4 @@ git+https://github.com/rezometz/django-paiji2-infoconcert
 git+https://github.com/rezometz/django-paiji2-weather
 git+https://github.com/rezometz/django-paiji2-carpooling
 git+https://github.com/rezometz/django-paiji2-forum
+git+https://github.com/rezometz/django-paiji2-social

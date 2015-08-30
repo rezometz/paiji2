@@ -65,12 +65,12 @@ INSTALLED_APPS = (
         'paiji2_forum',
         'mptt',
         'paiji2_utils',
+        'paiji2_social',
 
         'modular_blocks',
         'djangobower',
         'bootstrap3',
         'rezo',
-        'social',
  )
 
 MIDDLEWARE_CLASSES = (
@@ -118,7 +118,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'home', 'locale'),
     os.path.join(BASE_DIR, 'homepage_alert', 'locale'),
-    os.path.join(BASE_DIR, 'social', 'locale'),
     os.path.join(BASE_DIR, 'rezo', 'locale'),
 )
 
@@ -165,11 +164,11 @@ SUIT_CONFIG = {
         'MENU_ICONS': {
             'sites': 'icon-leaf',
             'auth': 'icon-lock',
-            'backbone_calendar': 'icon-calendar',
-            'cov': 'icon-road',
             'homepage_alert': 'icon-exclamation-sign',
-            'social': 'icon-user',
-            'survey': 'icon-tasks',
+            'paiji2_carpooling': 'icon-road',
+            'paiji2_social': 'icon-user',
+            'backbone_calendar': 'icon-calendar',
+            'paiji2_survey': 'icon-tasks',
             }
         }
 
