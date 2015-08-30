@@ -22,7 +22,7 @@ class PaijiTests(TestCase):
 
         self.alice = User.objects.create_user(
             'ermentrude',
-            password='ermentrude_passwordd',
+            password='ermentrude_password',
         )
 
         self.sigefroid = User.objects.create_user(
