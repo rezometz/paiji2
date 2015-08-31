@@ -23,8 +23,18 @@ urlpatterns = [
     ),
 ] + i18n_patterns(
     '',
+
     # url(r'^', include('home.urls'), name='home'),
-    url(r'^$', RedirectView.as_view(url='social/'), name='home'),
+
+    url(
+        r'^$',
+        RedirectView.as_view(
+            url='social/',
+            permanent=False,
+        ),
+        name='home',
+    ),
+
     url(r'^social/', include('paiji2_social.urls')),
     url(r'^rezo/', include('rezo.urls')),
     url(r'^shoutbox/', include('paiji2_shoutbox.urls')),

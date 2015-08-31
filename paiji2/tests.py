@@ -34,14 +34,22 @@ class PaijiTests(TestCase):
 
     def test_lang_homepage(self):
 
+        # without lang
         response = self.client.get('/')
         self.assertEqual(response.status_code, 302)
 
+        # redirected to "/fr/" or ...
+        response = self.client.get(response['Location'])
+        self.assertEqual(response.status_code, 302)
+
+        # redirected to "/fr/social/" or...
         response = self.client.get(response['Location'])
         self.assertEqual(response.status_code, 200)
 
         for code in dict(settings.LANGUAGES):
             response = self.client.get('/' + code + '/')
+            self.assertEqual(response.status_code, 302)
+            response = self.client.get(response['Location'])
             self.assertEqual(response.status_code, 200)
 
         response = self.client.get('/es/')
