@@ -1,13 +1,15 @@
-from django.conf.urls import url  # , patterns
+# from django.conf.urls import url  # , patterns
 # from django.contrib.auth.decorators import login_required
 
-from paiji2_social.views import MessageListView
+# ### moved to paiji_social.urls ###
 
-
-urlpatterns = [
-    url(
-        r'^$',
-        MessageListView.as_view(),
-        name='index',
-    ),
-]
+# from paiji2_social.views import MessageListView
+#
+#
+# urlpatterns = [
+#     url(
+#         r'^$',
+#         MessageListView.as_view(),
+#         name='index',
+#     ),
+# ]
