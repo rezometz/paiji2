@@ -409,22 +409,26 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     def save(self, *args, **kwargs):
         # can't have an empty sidebar...
         if self.sidebar_left is None or len(self.sidebar_left) == 0:
-            try:
-                assert(isinstance(settings.SIDEBAR_LEFT, list))
-                for i in settings.SIDEBAR_LEFT:
-                    assert(isinstance(i, unicode))
-                self.sidebar_left = settings.SIDEBAR_LEFT
-            except:
+            if not isinstance(settings.SIDEBAR_LEFT, list):
                 self.sidebar_left = [u'survey-form', u'cov', ]
+            elif (
+                False in
+                [ isinstance(i, unicode) for i in settings.SIDEBAR_LEFT ]
+            ):
+                self.sidebar_left = [u'survey-form', u'cov', ]
+            else:
+                self.sidebar_left = settings.SIDEBAR_LEFT
 
         if self.sidebar_right is None or len(self.sidebar_right) == 0:
-            try:
-                assert(isinstance(settings.SIDEBAR_RIGHT, list))
-                for i in settings.SIDEBAR_RIGHT:
-                    assert(isinstance(i, unicode))
-                self.sidebar_right = settings.SIDEBAR_RIGHT
-            except:
+            if not isinstance(settings.SIDEBAR_RIGHT, list):
                 self.sidebar_right = [u'rezo-account', u'bulletin-board', ]
+            elif (
+                False in
+                [ isinstance(i, unicode) for i in settings.SIDEBAR_RIGHT ]
+            ):
+                self.sidebar_right = [u'rezo-account', u'bulletin-board', ]
+            else:
+                self.sidebar_right = settings.SIDEBAR_RIGHT
 
         return super(User, self).save(*args, **kwargs)
 

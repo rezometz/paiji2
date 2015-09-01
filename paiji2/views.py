@@ -10,11 +10,12 @@ def confirm_language(request, code):
     if request.method == 'POST':
         return set_language(request)
 
-    try:
-        assert(check_for_language(code))
-        assert(code in dict(settings.LANGUAGES))
+    if (
+        check_for_language(code) and
+        code in dict(settings.LANGUAGES)
+    ):
         new_language = get_language_info(code)
-    except:
+    else:
         return redirect(settings.REDIRECT_URL)
 
     next_page = request.GET.get('next', settings.REDIRECT_URL)
