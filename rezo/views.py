@@ -122,7 +122,7 @@ class AccountClaimConfirmView(generic.CreateView):
             )
         except AccountRecovery.DoesNotExist:
             messages.error(self.request, _('Unvalid confirmation link.'))
-            return redirect(reverse('claim-account'))
+            return redirect(reverse('account-claim'))
 
         self.utilisateur = Utilisateur.objects.using('rezo').get(
             pk=self.account.id_rezo,
