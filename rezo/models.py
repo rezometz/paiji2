@@ -413,7 +413,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
                 self.sidebar_left = [u'survey-form', u'cov', ]
             elif (
                 False in
-                [ isinstance(i, unicode) for i in settings.SIDEBAR_LEFT ]
+                [isinstance(i, unicode) for i in settings.SIDEBAR_LEFT]
             ):
                 self.sidebar_left = [u'survey-form', u'cov', ]
             else:
@@ -424,7 +424,7 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
                 self.sidebar_right = [u'rezo-account', u'bulletin-board', ]
             elif (
                 False in
-                [ isinstance(i, unicode) for i in settings.SIDEBAR_RIGHT ]
+                [isinstance(i, unicode) for i in settings.SIDEBAR_RIGHT]
             ):
                 self.sidebar_right = [u'rezo-account', u'bulletin-board', ]
             else:
