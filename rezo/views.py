@@ -113,8 +113,7 @@ class AccountClaimConfirmView(generic.CreateView):
     model = get_user_model()
     template_name = 'rezo/account_claim_confirm.html'
 
-    def get_form(self, *args, **kwargs):
-
+    def dispatch(self, *args, **kwargs):
         try:
             self.account = AccountRecovery.objects.get(
                 code=self.kwargs.get('code'),
@@ -128,7 +127,7 @@ class AccountClaimConfirmView(generic.CreateView):
             pk=self.account.id_rezo,
         )
 
-        return super(AccountClaimConfirmView, self).get_form(*args, **kwargs)
+        return super(AccountClaimConfirmView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         cd = super(AccountClaimConfirmView, self).get_context_data(
