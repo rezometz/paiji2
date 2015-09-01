@@ -3,6 +3,7 @@
 {% load gravatar %}
 {% load cache %}
 {% load i18n %}
+{% load bootstrap3 %}
 
 {% block title %}{{ profile }}{% endblock %}
 
@@ -73,9 +74,14 @@
         {% endif %}
         {% if user == profile %}
             <div class="text-center">
+                {% buttons %}
                 <a class="btn btn-primary btn-block" href="{% url 'account' %}">
                     {% trans 'see the rezo account' %}
                 </a>
+                <a class="btn btn-danger btn-block" href="{% url 'password-change' %}">
+                    {% trans 'change the password' %}
+                </a>
+                {% endbuttons %}
             </div>
         {% endif %}
     </div>
