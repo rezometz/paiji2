@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export WHO_I_MUST_BE='lgd'
 export VIRTUALENV_DIR='/home/lgd/.virtualenvs/paiji'
 export REPOS_DIR='/home/lgd/dev/paiji-dep'
 
