@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+settings.sh
 
 # Vim files
 *.swp
