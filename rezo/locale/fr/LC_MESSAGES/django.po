@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 22:12+0200\n"
+"POT-Creation-Date: 2015-09-02 13:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,68 +215,72 @@ msgstr "J’ai oublié mon mot de passe"
 msgid "login"
 msgstr "connexion"
 
-#: templates/rezo/user/detail.html:20
+#: templates/rezo/user/detail.html:21
 msgid "Pseudonym"
 msgstr "Pseudonyme"
 
-#: templates/rezo/user/detail.html:22
+#: templates/rezo/user/detail.html:23
 msgid "First name"
 msgstr "Prénom"
 
-#: templates/rezo/user/detail.html:24
+#: templates/rezo/user/detail.html:25
 msgid "Last name"
 msgstr "Nom de famille"
 
-#: templates/rezo/user/detail.html:26
+#: templates/rezo/user/detail.html:27
 msgid "Email"
 msgstr "Courriel"
 
-#: templates/rezo/user/detail.html:28
+#: templates/rezo/user/detail.html:29
 msgid "Send mail"
 msgstr "Envoyer un courriel"
 
-#: templates/rezo/user/detail.html:34
+#: templates/rezo/user/detail.html:35
 msgid "School"
 msgstr "École"
 
-#: templates/rezo/user/detail.html:36
+#: templates/rezo/user/detail.html:37
 msgid "Class"
 msgstr "Classe"
 
-#: templates/rezo/user/detail.html:40
+#: templates/rezo/user/detail.html:41
 msgid "Room"
 msgstr "Chambre"
 
-#: templates/rezo/user/detail.html:51
+#: templates/rezo/user/detail.html:52
 msgid "Associations & Groups"
 msgstr "Groupes et Associations"
 
-#: templates/rezo/user/detail.html:56
+#: templates/rezo/user/detail.html:57
 msgid "bureau"
 msgstr "bureau"
 
-#: templates/rezo/user/detail.html:57
+#: templates/rezo/user/detail.html:58
 msgid "post"
 msgstr "poste"
 
-#: templates/rezo/user/detail.html:58
+#: templates/rezo/user/detail.html:59
 msgid "beginning"
 msgstr "début"
 
-#: templates/rezo/user/detail.html:59
+#: templates/rezo/user/detail.html:60
 msgid "end"
 msgstr "fin"
 
-#: templates/rezo/user/detail.html:77
+#: templates/rezo/user/detail.html:79
 msgid "see the rezo account"
 msgstr "voir le compte rézo"
+
+#: templates/rezo/user/detail.html:82
+msgid "change the password"
+msgstr "changer le mot de passe"
 
 #: templates/rezo/user/password_change.html:6
 #: templates/rezo/user/password_change.html:11
 msgid "password change"
 msgstr "changement de mot de passe"
 
-#: templates/rezo/user/password_change.html:16
+#: templates/rezo/user/password_change.html:17
 msgid "save"
 msgstr "enregistrer"
 
@@ -332,6 +336,6 @@ msgstr "Prière de suivre le lien suivant :"
 msgid "Account retrieval"
 msgstr "Récupération de compte"
 
-#: views.py:124
+#: views.py:123
 msgid "Unvalid confirmation link."
 msgstr "Lien de confirmation invalide"
