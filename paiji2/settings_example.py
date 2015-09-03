@@ -94,3 +94,11 @@ HTMLVALIDATOR_VNU_URL = 'https://validator.nu/'
 # testing when the test server is running
 if HTMLVALIDATOR_ENABLED:
     MIDDLEWARE_CLASSES += ("htmlvalidator.middleware.HTMLValidator",)
+
+# email conf
+EMAIL_HOST = 'smtp.myserver.net'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'me@myserver.net'  # important
+EMAIL_HOST_USER = 'me'
+EMAIL_HOST_PASSWORD = 'alibaba'
+EMAIL_USE_TLS = True
