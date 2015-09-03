@@ -44,6 +44,7 @@ class UserAdmin(admin.ModelAdmin):
         'id_rezo',
     )
 
+
 class AccountRecoveryAdmin(admin.ModelAdmin):
     list_display = (
         'id_rezo',
