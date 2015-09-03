@@ -4,7 +4,7 @@ from django import forms
 from modular_blocks import modules
 from modular_blocks.fields import ListTextField
 
-from .models import User
+from .models import User, AccountRecovery
 
 
 # widget for the admin editing
@@ -33,15 +33,31 @@ class UserAdmin(admin.ModelAdmin):
         'first_name',
         'last_name',
         'email',
-        'sidebar_left',
-        'sidebar_right',
+        'id_rezo',
+        'get_room',
     )
     search_fields = (
         'username',
         'first_name',
         'last_name',
         'email',
+        'id_rezo',
+    )
+
+class AccountRecoveryAdmin(admin.ModelAdmin):
+    list_display = (
+        'id_rezo',
+        'date',
+        'code',
+        'email',
+    )
+    search_fields = (
+        'id_rezo',
+        'date',
+        'code',
+        'email',
     )
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(AccountRecovery, AccountRecoveryAdmin)
