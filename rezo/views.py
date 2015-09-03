@@ -98,7 +98,7 @@ class AccountClaimView(generic.FormView):
         send_mail(
             '[Paiji2]'+_('Account retrieval'),
             content,
-            'paiji@metz.supelec.fr',
+            settings.DEFAULT_FROM_EMAIL,
             [self.utilisateur.emailverifie, ],
         )
 
