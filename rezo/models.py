@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*- #
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -322,6 +323,12 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
             print('Could not fetch rezo profile')
             return None
 
+    room = models.CharField(
+        null=True,
+        default=None,
+        max_length=50,
+    )
+
     @cached_property
     def get_room(self):
         try:
@@ -434,3 +441,13 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
     class Meta:
         ordering = ('username', )
+
+
+def update_user_rooms():
+    print('updating user rooms…')
+    users = User.objects.all()
+    for user in users:
+        got_room = user.get_room
+        if got_room is not None:
+            user.room = got_room
+            user.save()

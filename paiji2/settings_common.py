@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*- #
 """
 Django settings for paiji2 project.
 
@@ -11,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 from django.conf import global_settings
 import django.conf.locale
 from django.core.urlresolvers import reverse
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -234,3 +236,6 @@ ADMIN_EMAIL = 'paiji-dev@rezometz.org'
 TEMPLATE_DIRS = global_settings.TEMPLATE_DIRS + (
     os.path.join(BASE_DIR, 'paiji2', 'templates'),
 )
+
+# paiji2_social
+MIN_ROOM_UPDATE_DELTA = timedelta(days=3)
