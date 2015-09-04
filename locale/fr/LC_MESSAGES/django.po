@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-28 19:49+0200\n"
+"POT-Creation-Date: 2015-09-04 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,7 @@ msgstr "Changer de langue"
 
 #: paiji2/templates/paiji2/confirm_language.html:30
 #: paiji2/templates/paiji2/confirm_language.html:37
+#, python-format
 msgid ""
 "\n"
 "            Are you sure that you want to switch to %(language)s?\n"
@@ -33,6 +34,7 @@ msgstr ""
 "        Voulez-vous vraiment que le site soit en %(language)s ?\n"
 "        "
 
-#: paiji2/templates/paiji2/confirm_language.html:47
+#: paiji2/templates/paiji2/confirm_language.html:48
+#: paiji2/templates/paiji2/confirm_language.html:49
 msgid "Confirm"
 msgstr "Confirmer"

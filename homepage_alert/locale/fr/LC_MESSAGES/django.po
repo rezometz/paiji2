@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 10:08+0200\n"
+"POT-Creation-Date: 2015-09-04 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:20
+#: homepage_alert/models.py:26
 msgid "Information+"
 msgstr "Information+"
 
-#: models.py:21
+#: homepage_alert/models.py:27
 msgid "Information"
 msgstr "Information"
 
-#: models.py:22
+#: homepage_alert/models.py:28
 msgid "Attention"
 msgstr "Attention"
 
-#: models.py:23
+#: homepage_alert/models.py:29
 msgid "Attention+"
 msgstr "Attention+"
 
-#: models.py:26
+#: homepage_alert/models.py:32
 msgid "Title"
 msgstr "Titre"
 
-#: models.py:30
+#: homepage_alert/models.py:36
 msgid "Description"
 msgstr "Description"
 
-#: models.py:33
+#: homepage_alert/models.py:39
 msgid "Type"
 msgstr "Type"
 
-#: models.py:38
+#: homepage_alert/models.py:44
 msgid "author"
 msgstr "auteur"
 
-#: models.py:41
+#: homepage_alert/models.py:47
 msgid "Alert date"
 msgstr "Date de l’alerte"
 
-#: models.py:45
+#: homepage_alert/models.py:51
 msgid "End date"
 msgstr "Date de fin"

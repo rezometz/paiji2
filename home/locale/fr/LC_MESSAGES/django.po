@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-28 19:49+0200\n"
+"POT-Creation-Date: 2015-09-04 19:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,32 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:18
+#: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Add event"
 msgstr "Ajouter un évènement"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:18
+#: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Edit event"
 msgstr "Modifier un évènement"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:27
+#: templates/backbone_calendar/calendar_view_common.html:27
 msgid "Close"
 msgstr "Fermer"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:28
+#: templates/backbone_calendar/calendar_view_common.html:28
 msgid "OK"
 msgstr "OK"
 
-#: home/templates/home/base.html:63 home/templates/home/base_old.html:48
-#: home/templates/home/base_old.html:262 home/templates/navbar.html:13
+#: templates/home/base.html:63 templates/navbar.html:14
 msgid "personalize my page"
 msgstr "personnaliser ma page"
 
-#: home/templates/home/base.html:66 home/templates/home/base_old.html:265
+#: templates/home/base.html:66
 msgid "bugs or suggestions : "
 msgstr "bogues ou suggestions :"
 
-#: home/templates/home/base_old.html:46 home/templates/navbar.html:11
+#: templates/home/irc_li.html:6
+msgid "Chat"
+msgstr "Chat"
+
+#: templates/navbar.html:12
 msgid ""
 "Your page is empty, you can add modules (carpooling, shoutbox, weather, "
 "etc.) with the following link :"
@@ -51,94 +54,85 @@ msgstr ""
 "Votre page est vide, vous pouvez ajouter des modules (covoiturage, gueuloir, "
 "météo, etc.) avec le lien suivant :"
 
-#: home/templates/home/base_old.html:75
-msgid "logout"
-msgstr "déconnexion"
-
-#: home/templates/home/base_old.html:80 home/templates/navbar.html:23
+#: templates/navbar.html:24
 msgid "login"
 msgstr "connexion"
 
-#: home/templates/home/base_old.html:81 home/templates/navbar.html:26
+#: templates/navbar.html:27
 msgid "sign in"
 msgstr "s’enregistrer"
 
-#: home/templates/home/base_old.html:91 home/templates/navbar.html:37
+#: templates/navbar.html:38
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
-#: home/templates/home/base_old.html:109 home/templates/navbar.html:55
+#: templates/navbar.html:56
 msgid "My groups"
 msgstr "Mes groupes"
 
-#: home/templates/home/base_old.html:125 home/templates/navbar.html:71
+#: templates/navbar.html:72
 msgid "Carpooling"
 msgstr "Covoit’"
 
-#: home/templates/home/base_old.html:131 home/templates/navbar.html:77
+#: templates/navbar.html:78
 msgid "Forum"
 msgstr "Forum"
 
-#: home/templates/home/base_old.html:139
-msgid "FTP search"
-msgstr "Rechercher sur les FTP"
+#: templates/navbar.html:84
+msgid "Directory"
+msgstr "Répertoire"
 
-#: home/templates/home/base_old.html:165 home/templates/navbar.html:102
+#: templates/navbar.html:109
 msgid "Shoutbox"
 msgstr "Gueuloir"
 
-#: home/templates/home/base_old.html:214 home/templates/navbar.html:151
+#: templates/navbar.html:158
 msgid "Timetable (iCal)"
 msgstr "Emploi du temps (iCal)"
 
-#: home/templates/home/base_old.html:223 home/templates/navbar.html:160
+#: templates/navbar.html:167
 msgid "groups registration"
 msgstr "enregistrement des groupes"
 
-#: home/templates/home/base_old.html:227 home/templates/navbar.html:164
+#: templates/navbar.html:171
 msgid "Quotas & registered equipment"
 msgstr "Quotas & équipements rézotés"
 
-#: home/templates/home/base_old.html:228 home/templates/navbar.html:165
+#: templates/navbar.html:172
 msgid "rezo wiki"
 msgstr "wiki Rézo"
 
-#: home/templates/home/index.html:4
-msgid "Home"
-msgstr "Accueil"
-
-#: home/templates/home/irc_li.html:6
-msgid "Chat"
-msgstr "Chat"
-
-#: home/templates/home/news-feed.html:9
-msgid "News"
-msgstr "Nouvelles"
-
-#: home/templates/home/news-feed.html:66
-msgid "public"
-msgstr "public"
-
-#: home/templates/home/news-feed.html:68
-msgid "internal"
-msgstr "interne"
-
-#: home/templates/home/news-feed.html:74
-msgid "for"
-msgstr "pour"
-
-#: home/templates/home/news-feed.html:74
-#, python-format
-msgid " %(TimeSince)s ago"
-msgstr " il y a %(TimeSince)s"
-
-#: home/templates/navbar.html:181
+#: templates/navbar.html:188
 msgid "Profile"
 msgstr "Profil"
 
-#: home/templates/navbar.html:188
+#: templates/navbar.html:195
 msgid "Sign out"
 msgstr "Déconnexion"
+
+#~ msgid "logout"
+#~ msgstr "déconnexion"
+
+#~ msgid "FTP search"
+#~ msgstr "Rechercher sur les FTP"
+
+#~ msgid "Home"
+#~ msgstr "Accueil"
+
+#~ msgid "News"
+#~ msgstr "Nouvelles"
+
+#~ msgid "public"
+#~ msgstr "public"
+
+#~ msgid "internal"
+#~ msgstr "interne"
+
+#~ msgid "for"
+#~ msgstr "pour"
+
+#~ msgid " %(TimeSince)s ago"
+#~ msgstr " il y a %(TimeSince)s"
 
 #~ msgid "Your due expires on %(date)s !"
 #~ msgstr "Votre cotisation expire le %(date)s !"

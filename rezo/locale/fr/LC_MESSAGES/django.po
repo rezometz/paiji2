@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-02 13:35+0200\n"
+"POT-Creation-Date: 2015-09-04 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:37
+#: rezo/forms.py:37
 msgid "There is no user registered with the specified email address!"
 msgstr "Il n’y a pas d’utilisateur enregistré avec cette adresse de courriel !"
 
-#: templates/rezo/account.html:6
+#: rezo/templates/rezo/account.html:6
 msgid "account info"
 msgstr "info sur le compte"
 
-#: templates/rezo/account.html:11
+#: rezo/templates/rezo/account.html:11
 msgid "Quotas"
 msgstr "Quotas"
 
-#: templates/rezo/account.html:16
+#: rezo/templates/rezo/account.html:16
 msgid "download"
 msgstr "entrant"
 
-#: templates/rezo/account.html:17
+#: rezo/templates/rezo/account.html:17
 msgid "upload"
 msgstr "sortant"
 
-#: templates/rezo/account.html:22
+#: rezo/templates/rezo/account.html:22
 msgid "yesterday's remaining"
 msgstr "reste d’hier"
 
-#: templates/rezo/account.html:27
+#: rezo/templates/rezo/account.html:27
 msgid "today's usage"
 msgstr "utilisation d’aujourd’hui"
 
-#: templates/rezo/account.html:34
+#: rezo/templates/rezo/account.html:34
 msgid "remaining quota"
 msgstr "quota restant"
 
-#: templates/rezo/account.html:41
+#: rezo/templates/rezo/account.html:41
 msgid "registered equipment"
 msgstr "équipement enregistré"
 
-#: templates/rezo/account.html:45
+#: rezo/templates/rezo/account.html:45
 msgid "state"
 msgstr "état"
 
-#: templates/rezo/account.html:46
+#: rezo/templates/rezo/account.html:46
 msgid "type"
 msgstr "type"
 
-#: templates/rezo/account.html:48
+#: rezo/templates/rezo/account.html:48
 msgid "MAC adresses"
 msgstr "adresse MAC"
 
-#: templates/rezo/account.html:56
+#: rezo/templates/rezo/account.html:56
 msgid "enabled"
 msgstr "activé"
 
-#: templates/rezo/account.html:58
+#: rezo/templates/rezo/account.html:58
 msgid "disabled"
 msgstr "désactivé"
 
-#: templates/rezo/account.html:73
+#: rezo/templates/rezo/account.html:73
 msgid "due"
 msgstr "cotisation"
 
-#: templates/rezo/account.html:78
+#: rezo/templates/rezo/account.html:78
 msgid "date"
 msgstr "date"
 
-#: templates/rezo/account.html:83
+#: rezo/templates/rezo/account.html:83
 msgid "expiration"
 msgstr "expiration"
 
-#: templates/rezo/account.html:88
+#: rezo/templates/rezo/account.html:88
 msgid ""
 "If these informations are false, or if you have unregistered equipment, "
 "please contact the Rezo."
@@ -93,11 +93,11 @@ msgstr ""
 "Si ces informations sont fausses ou si vous avez de l’équipement non "
 "enregistré, prière de contacter le Rézo."
 
-#: templates/rezo/account_claim_confirm.html:4
+#: rezo/templates/rezo/account_claim_confirm.html:4
 msgid "account reclaim"
 msgstr "demande de compte"
 
-#: templates/rezo/account_claim_confirm.html:9
+#: rezo/templates/rezo/account_claim_confirm.html:9
 msgid ""
 "You're going to create a Paiji2 account, the following informations will be "
 "imported from your Rezo account :"
@@ -105,31 +105,31 @@ msgstr ""
 "Un compte Paiji2 va vous être créé, les informations suivantes vont être "
 "importées depuis votre compte Rézo :"
 
-#: templates/rezo/account_claim_confirm.html:12
+#: rezo/templates/rezo/account_claim_confirm.html:12
 msgid "first name"
 msgstr "prénom"
 
-#: templates/rezo/account_claim_confirm.html:14
+#: rezo/templates/rezo/account_claim_confirm.html:14
 msgid "last name"
 msgstr "nom de famille"
 
-#: templates/rezo/account_claim_confirm.html:16
+#: rezo/templates/rezo/account_claim_confirm.html:16
 msgid "email"
 msgstr "courriel"
 
-#: templates/rezo/account_claim_confirm.html:25
+#: rezo/templates/rezo/account_claim_confirm.html:25
 msgid "validate"
 msgstr "valider"
 
-#: templates/rezo/claim_account.html:4
+#: rezo/templates/rezo/claim_account.html:4
 msgid "account claiming"
 msgstr "récupération de compte"
 
-#: templates/rezo/claim_account.html:8
+#: rezo/templates/rezo/claim_account.html:8
 msgid "Rezo account"
 msgstr "compte Rézo"
 
-#: templates/rezo/claim_account.html:10
+#: rezo/templates/rezo/claim_account.html:10
 msgid ""
 "This page will enable you to receive a management system interface for your "
 "Rezo account if you have one."
@@ -137,7 +137,7 @@ msgstr ""
 "Cette page va vous permettre de recevoir une interface de gestion pour votre "
 "compte Rézo si vous en avez un."
 
-#: templates/rezo/claim_account.html:12
+#: rezo/templates/rezo/claim_account.html:12
 msgid ""
 "If you must face the smaller trouble during your account reclamation, please "
 "send us an email to the following address :"
@@ -145,23 +145,23 @@ msgstr ""
 "Si vous deviez avoir le moindre problème pendant la récupération de votre "
 "compte, n’hésitez pas à nous envoyer un courriel à l’adresse suivante :"
 
-#: templates/rezo/claim_account.html:18
+#: rezo/templates/rezo/claim_account.html:18
 msgid "You seem to possess the following account :"
 msgstr "Il semble que vous possédiez le compte suivant :"
 
-#: templates/rezo/claim_account.html:23
+#: rezo/templates/rezo/claim_account.html:23
 msgid "This is not my account"
 msgstr "Ce n’est pas mon compte"
 
-#: templates/rezo/claim_account.html:23
+#: rezo/templates/rezo/claim_account.html:23
 msgid "contact us"
 msgstr "contactez nous"
 
-#: templates/rezo/claim_account.html:25
+#: rezo/templates/rezo/claim_account.html:25
 msgid "I am the account's proprietary"
 msgstr "Je suis le propriétaire de ce compte"
 
-#: templates/rezo/claim_account.html:28
+#: rezo/templates/rezo/claim_account.html:28
 msgid ""
 "Your email address (firstname.lastname@supelec.fr by default) is not checked "
 "yet by the Rezo ! Ask the Rezo to send you a new confirmation link."
@@ -170,11 +170,11 @@ msgstr ""
 "encore vérifié par le Rézo ! Demandez au Rézo de vous envoyer un nouveau "
 "lien de confirmation."
 
-#: templates/rezo/claim_account.html:32
+#: rezo/templates/rezo/claim_account.html:32
 msgid "Votre compte a déjà été enregistré."
 msgstr "Votre compte a déjà été enregistré."
 
-#: templates/rezo/claim_account.html:36
+#: rezo/templates/rezo/claim_account.html:36
 msgid ""
 "By clicking on the following link, an email will be sent to you enabling you "
 "te retrieve your account"
@@ -182,11 +182,11 @@ msgstr ""
 "En cliquant sur le lien suivant, un courriel va vous être envoyé qui vous "
 "permettra de récupérer votre compte"
 
-#: templates/rezo/claim_account.html:41
+#: rezo/templates/rezo/claim_account.html:41
 msgid "confirmation"
 msgstr "confirmation"
 
-#: templates/rezo/claim_account.html:43
+#: rezo/templates/rezo/claim_account.html:43
 #, python-format
 msgid ""
 "By clicking on the following link, I assure to be the propriatary of the "
@@ -195,106 +195,106 @@ msgstr ""
 "En cliquant sur le lien suivant, je certifie sur l’honneur être le "
 "propriétaire du compte Rézo de %(FirstName)s %(LastName)s."
 
-#: templates/rezo/claim_account.html:46
+#: rezo/templates/rezo/claim_account.html:46
 msgid "confirm"
 msgstr "confirmer"
 
-#: templates/rezo/claim_account.html:53
+#: rezo/templates/rezo/claim_account.html:53
 msgid "We are sorry but there seems to be no match"
 msgstr "Nous sommes désolé mais il ne semble pas y avoir de concordance."
 
-#: templates/rezo/sign_in.html:6
+#: rezo/templates/rezo/sign_in.html:6
 msgid "Sign-in"
 msgstr "S’enregistrer"
 
-#: templates/rezo/sign_in.html:15
+#: rezo/templates/rezo/sign_in.html:15
 msgid "I've forgotten my password"
 msgstr "J’ai oublié mon mot de passe"
 
-#: templates/rezo/sign_in.html:18
+#: rezo/templates/rezo/sign_in.html:18
 msgid "login"
 msgstr "connexion"
 
-#: templates/rezo/user/detail.html:21
+#: rezo/templates/rezo/user/detail.html:21
 msgid "Pseudonym"
 msgstr "Pseudonyme"
 
-#: templates/rezo/user/detail.html:23
+#: rezo/templates/rezo/user/detail.html:23
 msgid "First name"
 msgstr "Prénom"
 
-#: templates/rezo/user/detail.html:25
+#: rezo/templates/rezo/user/detail.html:25
 msgid "Last name"
 msgstr "Nom de famille"
 
-#: templates/rezo/user/detail.html:27
+#: rezo/templates/rezo/user/detail.html:27
 msgid "Email"
 msgstr "Courriel"
 
-#: templates/rezo/user/detail.html:29
+#: rezo/templates/rezo/user/detail.html:29
 msgid "Send mail"
 msgstr "Envoyer un courriel"
 
-#: templates/rezo/user/detail.html:35
+#: rezo/templates/rezo/user/detail.html:35
 msgid "School"
 msgstr "École"
 
-#: templates/rezo/user/detail.html:37
+#: rezo/templates/rezo/user/detail.html:37
 msgid "Class"
 msgstr "Classe"
 
-#: templates/rezo/user/detail.html:41
+#: rezo/templates/rezo/user/detail.html:41
 msgid "Room"
 msgstr "Chambre"
 
-#: templates/rezo/user/detail.html:52
+#: rezo/templates/rezo/user/detail.html:52
 msgid "Associations & Groups"
 msgstr "Groupes et Associations"
 
-#: templates/rezo/user/detail.html:57
+#: rezo/templates/rezo/user/detail.html:57
 msgid "bureau"
 msgstr "bureau"
 
-#: templates/rezo/user/detail.html:58
+#: rezo/templates/rezo/user/detail.html:58
 msgid "post"
 msgstr "poste"
 
-#: templates/rezo/user/detail.html:59
+#: rezo/templates/rezo/user/detail.html:59
 msgid "beginning"
 msgstr "début"
 
-#: templates/rezo/user/detail.html:60
+#: rezo/templates/rezo/user/detail.html:60
 msgid "end"
 msgstr "fin"
 
-#: templates/rezo/user/detail.html:79
+#: rezo/templates/rezo/user/detail.html:79
 msgid "see the rezo account"
 msgstr "voir le compte rézo"
 
-#: templates/rezo/user/detail.html:82
+#: rezo/templates/rezo/user/detail.html:82
 msgid "change the password"
 msgstr "changer le mot de passe"
 
-#: templates/rezo/user/password_change.html:6
-#: templates/rezo/user/password_change.html:11
+#: rezo/templates/rezo/user/password_change.html:6
+#: rezo/templates/rezo/user/password_change.html:11
 msgid "password change"
 msgstr "changement de mot de passe"
 
-#: templates/rezo/user/password_change.html:17
+#: rezo/templates/rezo/user/password_change.html:17
 msgid "save"
 msgstr "enregistrer"
 
-#: templates/rezo/user/password_reset.html:6
-#: templates/rezo/user/password_reset_confirm.html:6
+#: rezo/templates/rezo/user/password_reset.html:6
+#: rezo/templates/rezo/user/password_reset_confirm.html:6
 msgid "reset password"
 msgstr "réinitialiser le mot de passe"
 
-#: templates/rezo/user/password_reset.html:10
-#: templates/rezo/user/password_reset_confirm.html:10
+#: rezo/templates/rezo/user/password_reset.html:10
+#: rezo/templates/rezo/user/password_reset_confirm.html:10
 msgid "Reset your password"
 msgstr "Réinitialiser votre mot de passe"
 
-#: templates/rezo/user/password_reset.html:12
+#: rezo/templates/rezo/user/password_reset.html:12
 msgid ""
 "Enter the email address linked to your account in order to reset your "
 "password"
@@ -302,40 +302,40 @@ msgstr ""
 "Entrez l’adresse de courriel associé à votre compte afin de réinitialiser "
 "votre mot de passe"
 
-#: templates/rezo/user/password_reset.html:18
-#: templates/rezo/user/password_reset_confirm.html:15
+#: rezo/templates/rezo/user/password_reset.html:18
+#: rezo/templates/rezo/user/password_reset_confirm.html:15
 msgid "reset"
 msgstr "réinitialiser"
 
-#: templates/rezo/user/password_reset_done.html:6
+#: rezo/templates/rezo/user/password_reset_done.html:6
 msgid "Email sent"
 msgstr "Courriel envoyé"
 
-#: templates/rezo/user/password_reset_done.html:11
+#: rezo/templates/rezo/user/password_reset_done.html:11
 msgid "An email has been sent with further instructions."
 msgstr "Un courriel vous a été envoyé avec plus d’informations."
 
-#: templates/rezo/user/summary.html:4
+#: rezo/templates/rezo/user/summary.html:4
 msgid "My Account"
 msgstr "Compte Rézo"
 
-#: templates/rezo/user/summary.html:33
+#: rezo/templates/rezo/user/summary.html:33
 #, python-format
 msgid "Your due expires on %(date)s !"
 msgstr "Ta cotisation expire le %(date)s !"
 
-#: templates/rezo/user/summary.html:40
+#: rezo/templates/rezo/user/summary.html:40
 msgid "Account"
 msgstr "Mon Compte"
 
-#: views.py:90
+#: rezo/views.py:90
 msgid "Please follow the link :"
 msgstr "Prière de suivre le lien suivant :"
 
-#: views.py:99
+#: rezo/views.py:99
 msgid "Account retrieval"
 msgstr "Récupération de compte"
 
-#: views.py:123
+#: rezo/views.py:123
 msgid "Unvalid confirmation link."
 msgstr "Lien de confirmation invalide"

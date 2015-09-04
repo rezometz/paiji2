@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 19:28+0200\n"
+"POT-Creation-Date: 2015-09-04 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: <luc.absil@supelec.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: templates/backbone_calendar/calendar_view_common.html:18
+#: home/templates/backbone_calendar/calendar_view_common.html:18
 msgid "Add event"
 msgstr "Adde eventum"
 
-#: templates/backbone_calendar/calendar_view_common.html:18
+#: home/templates/backbone_calendar/calendar_view_common.html:18
 msgid "Edit event"
 msgstr "Muta eventum"
 
-#: templates/backbone_calendar/calendar_view_common.html:27
+#: home/templates/backbone_calendar/calendar_view_common.html:27
 msgid "Close"
 msgstr "Claude"
 
-#: templates/backbone_calendar/calendar_view_common.html:28
+#: home/templates/backbone_calendar/calendar_view_common.html:28
 msgid "OK"
 msgstr "Ita"
 
-#: templates/home/base.html:45
+#: home/templates/home/base.html:63 home/templates/navbar.html:14
+msgid "personalize my page"
+msgstr "Facere paginam meam proprior"
+
+#: home/templates/home/base.html:66
+msgid "bugs or suggestions : "
+msgstr "errora aut impulsus :"
+
+#: home/templates/home/irc_li.html:6
+msgid "Chat"
+msgstr ""
+
+#: home/templates/navbar.html:12
 msgid ""
 "Your page is empty, you can add modules (carpooling, shoutbox, weather, "
 "etc.) with the following link :"
@@ -42,95 +54,84 @@ msgstr ""
 "Pagina tua vacua est. Modulos addere potes (co-raedaticus, tempestas, etc.) "
 "cum hoc vinculo :"
 
-#: templates/home/base.html:47 templates/home/base.html.py:245
-msgid "personalize my page"
-msgstr "Facere paginam meam proprior"
-
-#: templates/home/base.html:69
-msgid "logout"
-msgstr "abconectere"
-
-#: templates/home/base.html:74
+#: home/templates/navbar.html:24
 msgid "login"
 msgstr "conectere"
 
-#: templates/home/base.html:75
+#: home/templates/navbar.html:27
 msgid "sign in"
 msgstr "nomen scribere"
 
-#: templates/home/base.html:85
+#: home/templates/navbar.html:38
 msgid "Toggle navigation"
 msgstr "Muta navigationem"
 
-#: templates/home/base.html:103
+#: home/templates/navbar.html:56
 msgid "My groups"
 msgstr "Circuli mei"
 
-#: templates/home/base.html:119
+#: home/templates/navbar.html:72
 msgid "Carpooling"
 msgstr "Co-raedaticus"
 
-#: templates/home/base.html:125
+#: home/templates/navbar.html:78
 msgid "Forum"
 msgstr "Forum"
 
-#: templates/home/base.html:133
-msgid "FTP search"
-msgstr "Conquire in FTP"
+#: home/templates/navbar.html:84
+msgid "Directory"
+msgstr ""
 
-#: templates/home/base.html:159
+#: home/templates/navbar.html:109
 msgid "Shoutbox"
 msgstr "Contentiones"
 
-#: templates/home/base.html:208
+#: home/templates/navbar.html:158
 msgid "Timetable (iCal)"
 msgstr ""
 
-#: templates/home/base.html:217
+#: home/templates/navbar.html:167
 msgid "groups registration"
 msgstr "circuli consignatio"
 
-#: templates/home/base.html:221
+#: home/templates/navbar.html:171
 msgid "Quotas & registered equipment"
 msgstr "Portiones & consignata armora"
 
-#: templates/home/base.html:222
+#: home/templates/navbar.html:172
 msgid "rezo wiki"
 msgstr "rezo wiki"
 
-#: templates/home/base.html:248
-msgid "bugs or suggestions : "
-msgstr "errora aut impulsus :"
-
-#: templates/home/index.html:4
-msgid "Home"
-msgstr "Receptio"
-
-#: templates/home/irc_li.html:6
-msgid "Chat"
+#: home/templates/navbar.html:188
+msgid "Profile"
 msgstr ""
 
-#: templates/home/news-feed.html:9
-msgid "News"
-msgstr "Fama"
-
-#: templates/home/news-feed.html:66
-msgid "public"
-msgstr "communis"
-
-#: templates/home/news-feed.html:68
-msgid "internal"
-msgstr "interior"
-
-#: templates/home/news-feed.html:74
-msgid "for"
+#: home/templates/navbar.html:195
+msgid "Sign out"
 msgstr ""
 
-#: templates/home/news-feed.html:74
-#, fuzzy, python-format
-#| msgid "for %(group)s, %(TimeSince)s ago"
-msgid " %(TimeSince)s ago"
-msgstr "pro %(group)s, abhinc %(TimeSince)s"
+#~ msgid "logout"
+#~ msgstr "abconectere"
+
+#~ msgid "FTP search"
+#~ msgstr "Conquire in FTP"
+
+#~ msgid "Home"
+#~ msgstr "Receptio"
+
+#~ msgid "News"
+#~ msgstr "Fama"
+
+#~ msgid "public"
+#~ msgstr "communis"
+
+#~ msgid "internal"
+#~ msgstr "interior"
+
+#, fuzzy
+#~| msgid "for %(group)s, %(TimeSince)s ago"
+#~ msgid " %(TimeSince)s ago"
+#~ msgstr "pro %(group)s, abhinc %(TimeSince)s"
 
 #~ msgid "About"
 #~ msgstr "De paiji"
