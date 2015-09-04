@@ -1,5 +1,6 @@
 {% load profile %}
 {% load gravatar %}
+{% load i18n %}
 {% load staticfiles %}
 {% load irc_li %}
 {% load get_ftps %}
@@ -77,6 +78,12 @@
                             {{ _('Forum') }}
                         </a>
                     </li>
+										<li>
+												<a href="{% url 'directory' %}">
+														<span class="glyphicon glyphicon-search"></span>
+														{% trans 'Directory' %}
+												</a>
+										</li>
                     {% irc_li %}
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rez <b class="caret"></b></a>
@@ -100,12 +107,6 @@
                                 <a href="{% url 'message-list' %}">
                                     <i class="fa fa-bullhorn"></i>
                                     {{ _('Shoutbox') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'directory' %}">
-                                    <i class="fa fa-search"></i>
-                                    {{ _('Directory') }}
                                 </a>
                             </li>
                         </ul>
