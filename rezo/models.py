@@ -444,7 +444,6 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
 
 def update_user_rooms():
-    print('updating user rooms…')
     users = User.objects.all()
     for user in users:
         got_room = user.get_room
