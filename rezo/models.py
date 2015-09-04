@@ -332,7 +332,10 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
     @cached_property
     def get_room(self):
         try:
-            return self.get_rezo.topology.nom
+            if self.get_rezo.etat == 'STATE_ACTIVE':
+                return self.get_rezo.topology.nom
+            else:
+                return '~'
         except:
             print('unable to contact the database')
             return None
