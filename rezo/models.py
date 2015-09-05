@@ -447,9 +447,11 @@ class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
 
 
 def update_user_rooms():
-    users = User.objects.all()
-    for user in users:
-        got_room = user.get_room
-        if got_room is not None:
-            user.room = got_room
-            user.save()
+    print("update_user_room not implemented")
+    pass
+    # users = User.objects.all()
+    # for user in users:
+    #     got_room = user.get_room
+    #     if got_room is not None:
+    #         user.room = got_room
+    #         user.save()
