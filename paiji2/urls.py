@@ -43,4 +43,5 @@ urlpatterns = [
     url(r'^forum/', include('paiji2_forum.urls', namespace='forum')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'carpooling/', include('paiji2_carpooling.urls')),
+    url('^md/', include('django_markdown.urls')),
 ) + modules.get_i18n_patterns()

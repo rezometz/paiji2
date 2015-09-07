@@ -66,6 +66,7 @@ INSTALLED_APPS = (
         'paiji2_shoutbox',
         'paiji2_forum',
         'mptt',
+        'django_markdown',
         'paiji2_utils',
         'paiji2_social',
 
@@ -239,3 +240,7 @@ TEMPLATE_DIRS = global_settings.TEMPLATE_DIRS + (
 
 # paiji2_social
 MIN_ROOM_UPDATE_DELTA = timedelta(days=3)
+
+# django_markdown
+MARKDOWN_PROTECT_PREVIEW = False
+MARKDOWN_EXTENSIONS = ['extra', 'codehilite']
