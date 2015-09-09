@@ -170,7 +170,7 @@
                             {% endif %}
                             <li><a href="{% url 'account' %}">{{ _('Quotas & registered equipment') }}</a></li>
                             <li><a target="_blank" href="http://wiki.rezometz.org/">{{ _('rezo wiki') }}</a></li>
-                            <li><a target="_blank" href="http://sympa.rezometz.org/">Sympa</a></li>
+                            <li><a target="_blank" href="http://sympa.rezometz.org/">{% trans 'mailing lists' %}</a></li>
                         </ul>
                     </li>
                     {% if user.is_authenticated %}

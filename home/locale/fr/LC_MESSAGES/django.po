@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-04 19:29+0200\n"
+"POT-Creation-Date: 2015-09-09 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,6 +101,10 @@ msgstr "Quotas & équipements rézotés"
 #: templates/navbar.html:172
 msgid "rezo wiki"
 msgstr "wiki Rézo"
+
+#: templates/navbar.html:173
+msgid "mailing lists"
+msgstr "listes courriels"
 
 #: templates/navbar.html:188
 msgid "Profile"
