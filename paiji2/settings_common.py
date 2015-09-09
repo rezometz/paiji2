@@ -65,6 +65,7 @@ INSTALLED_APPS = (
         'paiji2_mettis',
         'paiji2_shoutbox',
         'paiji2_forum',
+        'paiji2_comic',
         'mptt',
         'django_markdown',
         'paiji2_utils',
