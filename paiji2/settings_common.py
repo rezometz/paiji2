@@ -245,3 +245,6 @@ MIN_ROOM_UPDATE_DELTA = timedelta(days=3)
 # django_markdown
 MARKDOWN_PROTECT_PREVIEW = False
 MARKDOWN_EXTENSIONS = ['extra', 'codehilite']
+
+# paiji2_comic
+FORTUNE_PATH = '/usr/games/fortune'
