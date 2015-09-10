@@ -309,7 +309,12 @@ class PaiementsVentilations(models.Model):
         db_table = 'paiements_ventilations'
 
 
-class User(UserAuthGroupMixin, TopModularColumnMixin, TwoModularColumnsMixin, AbstractUser):
+class User(
+    UserAuthGroupMixin,
+    TopModularColumnMixin,
+    TwoModularColumnsMixin,
+    AbstractUser
+):
     id_rezo = models.PositiveIntegerField(null=True, default=0)
 
     @cached_property
