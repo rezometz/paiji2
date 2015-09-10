@@ -29,6 +29,7 @@ class PaijiTests(TestCase):
             'sigefroid',
             password='sigefroid_password',
             sidebar_left=[name for name, _ in modules.blocks.items()],
+            topbar=[u'garfield-comic'],
             sidebar_right=None,
         )
 

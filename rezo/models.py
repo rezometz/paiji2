@@ -23,7 +23,10 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 # from django.utils.translation import ugettext as _
 
-from modular_blocks.models import TwoModularColumnsMixin
+from modular_blocks.models import (
+    TwoModularColumnsMixin,
+    TopModularColumnMixin,
+)
 
 from home.middleware import UserAuthGroupMixin
 
@@ -306,7 +309,7 @@ class PaiementsVentilations(models.Model):
         db_table = 'paiements_ventilations'
 
 
-class User(UserAuthGroupMixin, TwoModularColumnsMixin, AbstractUser):
+class User(UserAuthGroupMixin, TopModularColumnMixin, TwoModularColumnsMixin, AbstractUser):
     id_rezo = models.PositiveIntegerField(null=True, default=0)
 
     @cached_property
