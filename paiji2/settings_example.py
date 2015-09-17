@@ -102,3 +102,5 @@ DEFAULT_FROM_EMAIL = 'me@myserver.net'  # important
 EMAIL_HOST_USER = 'me'
 EMAIL_HOST_PASSWORD = 'alibaba'
 EMAIL_USE_TLS = True
+
+REZO_MAIL = 'test-rezo@mydomain.td'

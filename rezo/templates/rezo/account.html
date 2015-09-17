@@ -86,6 +86,9 @@
             </tbody>
         </table>
         {% trans 'If these informations are false, or if you have unregistered equipment, please contact the Rezo.' %}
+        {% if mail_adress %}
+            <a href="mailto:{{ mail_adress|urlencode }}">{{ mail_adress }}</a>
+        {% endif %}
         </div>
 {% endcache %}
 {% endblock %}

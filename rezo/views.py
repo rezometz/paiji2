@@ -186,3 +186,13 @@ class UserDetailView(generic.DetailView):
 
 class RezoAccountView(generic.TemplateView):
     template_name = 'rezo/account.html'
+
+    def get_context_data(self, *args, **kwargs):
+        cd = super(RezoAccountView, self).get_context_data(*args, **kwargs)
+        try:
+            cd['mail_adress'] = settings.REZO_MAIL
+        except Exception as e:
+            print 'REZO_MAIL setting fetching failed : <' +\
+                e.message + '>'
+            cd['mail_adress'] = None
+        return cd
