@@ -59,10 +59,10 @@ INSTALLED_APPS = (
 
         # paiji2 apps
         'paiji2_weather',
-        'paiji2_infoconcert',
+        # 'paiji2_infoconcert',
         'paiji2_survey',
         'paiji2_carpooling',
-        'paiji2_mettis',
+        # 'paiji2_mettis',
         'paiji2_shoutbox',
         'paiji2_forum',
         'paiji2_comic',
@@ -78,6 +78,8 @@ INSTALLED_APPS = (
  )
 
 MIDDLEWARE_CLASSES = (
+        # uncomment to cache the entire site
+        # 'django.middleware.cache.UpdateCacheMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.locale.LocaleMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -85,6 +87,8 @@ MIDDLEWARE_CLASSES = (
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        # uncomment to cache the entire site
+        # 'django.middleware.cache.FetchFromCacheMiddleware',
         )
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
@@ -158,11 +162,19 @@ KEY_CACHE_FTPS = 'paiji2_ftps_data'
 AUTH_USER_MODEL = 'rezo.User'
 
 # Cache
-# https://docs.djangoproject.com/en/dev/topics/cache/
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/paiji2_cache',
+        'TIMEOUT': 86400,
+    }
+}
 
 CACHE_MIDDLEWARE_ALIAS = 'paiji2_cache'
-CACHE_MIDDLEWARE_SECONDS = 300
+CACHE_MIDDLEWARE_SECONDS = 60
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
 
 SUIT_CONFIG = {
         'MENU_ICONS': {
