@@ -64,7 +64,12 @@ class AccountClaimView(generic.FormView):
         cd['utilisateur'] = self.utilisateur
         cd['email_verifie'] = self.email_verifie
         cd['account_registered'] = self.account_registered
-
+        try:
+            cd['rezo_mail_adress'] = settings.REZO_MAIL
+        except Exception as e:
+            print 'REZO_MAIL setting fetching failed : <' +\
+                e.message + '>'
+            cd['rezo_mail_adress'] = None
         return cd
 
     def form_valid(self, form):

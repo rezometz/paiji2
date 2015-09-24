@@ -25,11 +25,11 @@
         <h3>{% trans "I am the account's proprietary" %}</h3>
         {% if not email_verifie %}
         <p class="alert alert-danger">
-        {% trans 'Your email address (firstname.lastname@supelec.fr by default) is not checked yet by the Rezo ! Ask the Rezo to send you a new confirmation link.' %}
+        {% trans 'Your email address (the one you gave during the "rézotage", when you paid your due) is not checked yet by the Rezo ! Please check your emails (including the spam folder) and follow the confirmation link you received. If you are sure you received nothing, please ask the Rezo to send you a new confirmation link : ' %} <a href="{{ rezo_mail_adress }}">{{ rezo_mail_adress }}</a>
         </p>
         {% elif account_registered %}
         <p class="alert alert-danger">
-            {% trans 'Votre compte a déjà été enregistré.' %}
+            {% trans 'Your account has already been registered' %}
         </p>
         {% else %}
         <p>
