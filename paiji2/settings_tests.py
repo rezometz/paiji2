@@ -12,7 +12,24 @@ except ImportError:
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 
-# INSTALLED_APPS += ('debug_toolbar',)
+INSTALLED_APPS += (
+    # 'debug_toolbar',
+
+    # paiji2 apps
+
+    'paiji2_utils',
+    'paiji2_weather',
+    'paiji2_infoconcert',
+    'paiji2_survey',
+    'paiji2_carpooling',
+    'paiji2_mettis',
+    'paiji2_shoutbox',
+    'mptt',
+    'paiji2_forum',
+    'paiji2_comic',
+    'django_markdown',
+    'paiji2_social',
+)
 
 SECRET_KEY = 'mysecretkey'
 

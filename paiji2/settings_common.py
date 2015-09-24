@@ -56,26 +56,11 @@ INSTALLED_APPS = (
         'home',
         'homepage_alert',
         'backbone_calendar',
-
-        # paiji2 apps
-        'paiji2_weather',
-        # 'paiji2_infoconcert',
-        'paiji2_survey',
-        'paiji2_carpooling',
-        # 'paiji2_mettis',
-        'paiji2_shoutbox',
-        'paiji2_forum',
-        'paiji2_comic',
-        'mptt',
-        'django_markdown',
-        'paiji2_utils',
-        'paiji2_social',
-
-        'modular_blocks',
         'djangobower',
         'bootstrap3',
+        'modular_blocks',
         'rezo',
- )
+)
 
 MIDDLEWARE_CLASSES = (
         # uncomment to cache the entire site
