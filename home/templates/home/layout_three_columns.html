@@ -8,16 +8,16 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3 droppable-modules sidebar-left">
+    <div class="hidden-xs col-sm-3 col-md-3 droppable-modules sidebar-left">
       {% block left-sidebar %}
 				{% include 'home/sidebar_left.html' %}
 			{% endblock %}
     </div>
 
-    <div class="col-md-6">
+    <div class="col-xs-12 col-sm-6 col-md-6">
         {% display_alerts %}
 				<div class="row">
-					<div class="col-md-12 droppable-modules topbar">
+					<div class="hidden-xs col-sm-12 col-md-12 droppable-modules topbar">
 						{% block topbar %}
 							{% include 'home/topbar.html' %}
 						{% endblock %}
@@ -26,7 +26,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    <div class="col-md-3 droppable-modules sidebar-right">
+    <div class="hidden-xs col-sm-3 col-md-3 droppable-modules sidebar-right">
         {% block right-sidebar %}
 					{% include 'home/sidebar_right.html' %}
 				{% endblock %}
