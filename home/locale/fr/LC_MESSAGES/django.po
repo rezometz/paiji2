@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 13:00+0200\n"
+"POT-Creation-Date: 2015-10-04 17:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,31 +86,35 @@ msgstr "Répertoire"
 msgid "Shoutbox"
 msgstr "Gueuloir"
 
-#: templates/navbar.html:158
+#: templates/navbar.html:121 templates/navbar.html.py:123
+msgid "Search on the FTPs"
+msgstr "Rechercher sur les FTPs"
+
+#: templates/navbar.html:169
 msgid "Timetable (iCal)"
 msgstr "Emploi du temps (iCal)"
 
-#: templates/navbar.html:167
+#: templates/navbar.html:178
 msgid "groups registration"
 msgstr "enregistrement des groupes"
 
-#: templates/navbar.html:171
+#: templates/navbar.html:182
 msgid "Quotas & registered equipment"
 msgstr "Quotas & équipements rézotés"
 
-#: templates/navbar.html:172
+#: templates/navbar.html:183
 msgid "rezo wiki"
 msgstr "wiki Rézo"
 
-#: templates/navbar.html:173
+#: templates/navbar.html:184
 msgid "mailing lists"
 msgstr "listes courriels"
 
-#: templates/navbar.html:188
+#: templates/navbar.html:199
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/navbar.html:195
+#: templates/navbar.html:206
 msgid "Sign out"
 msgstr "Déconnexion"
 

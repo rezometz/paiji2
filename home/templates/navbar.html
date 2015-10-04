@@ -115,6 +115,17 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">FTP <b class="caret"></b></a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <form role="search" method="GET" name="FTP_search_form" action="http://porygon.rez/search" class="form-inline">
+                                  <div class="form-group">
+                                    <label class="sr-only" for="FTP_search">{% trans 'Search on the FTPs' %}</label>
+                                    <div class="input-group">
+                                      <input type="text" class="form-control" id="FTP_search" name="query" placeholder="{% trans 'Search on the FTPs' %}">
+                                    </div>
+                                  </div>
+                                    <input type="hidden" name="online" title="online" value="on"/>
+                                </form>
+                            </li>
                             {% get_ftps %}
                         </ul>
                     </li>

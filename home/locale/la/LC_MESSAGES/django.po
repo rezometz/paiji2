@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-04 19:28+0200\n"
+"POT-Creation-Date: 2015-10-04 17:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: <luc.absil@supelec.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:18
+#: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Add event"
 msgstr "Adde eventum"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:18
+#: templates/backbone_calendar/calendar_view_common.html:18
 msgid "Edit event"
 msgstr "Muta eventum"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:27
+#: templates/backbone_calendar/calendar_view_common.html:27
 msgid "Close"
 msgstr "Claude"
 
-#: home/templates/backbone_calendar/calendar_view_common.html:28
+#: templates/backbone_calendar/calendar_view_common.html:28
 msgid "OK"
 msgstr "Ita"
 
-#: home/templates/home/base.html:63 home/templates/navbar.html:14
+#: templates/home/base.html:63 templates/navbar.html:14
 msgid "personalize my page"
 msgstr "Facere paginam meam proprior"
 
-#: home/templates/home/base.html:66
+#: templates/home/base.html:66
 msgid "bugs or suggestions : "
 msgstr "errora aut impulsus :"
 
-#: home/templates/home/irc_li.html:6
+#: templates/home/irc_li.html:6
 msgid "Chat"
 msgstr ""
 
-#: home/templates/navbar.html:12
+#: templates/navbar.html:12
 msgid ""
 "Your page is empty, you can add modules (carpooling, shoutbox, weather, "
 "etc.) with the following link :"
@@ -54,59 +54,67 @@ msgstr ""
 "Pagina tua vacua est. Modulos addere potes (co-raedaticus, tempestas, etc.) "
 "cum hoc vinculo :"
 
-#: home/templates/navbar.html:24
+#: templates/navbar.html:24
 msgid "login"
 msgstr "conectere"
 
-#: home/templates/navbar.html:27
+#: templates/navbar.html:27
 msgid "sign in"
 msgstr "nomen scribere"
 
-#: home/templates/navbar.html:38
+#: templates/navbar.html:38
 msgid "Toggle navigation"
 msgstr "Muta navigationem"
 
-#: home/templates/navbar.html:56
+#: templates/navbar.html:56
 msgid "My groups"
 msgstr "Circuli mei"
 
-#: home/templates/navbar.html:72
+#: templates/navbar.html:72
 msgid "Carpooling"
 msgstr "Co-raedaticus"
 
-#: home/templates/navbar.html:78
+#: templates/navbar.html:78
 msgid "Forum"
 msgstr "Forum"
 
-#: home/templates/navbar.html:84
+#: templates/navbar.html:84
 msgid "Directory"
 msgstr ""
 
-#: home/templates/navbar.html:109
+#: templates/navbar.html:109
 msgid "Shoutbox"
 msgstr "Contentiones"
 
-#: home/templates/navbar.html:158
+#: templates/navbar.html:121 templates/navbar.html.py:123
+msgid "Search on the FTPs"
+msgstr ""
+
+#: templates/navbar.html:169
 msgid "Timetable (iCal)"
 msgstr ""
 
-#: home/templates/navbar.html:167
+#: templates/navbar.html:178
 msgid "groups registration"
 msgstr "circuli consignatio"
 
-#: home/templates/navbar.html:171
+#: templates/navbar.html:182
 msgid "Quotas & registered equipment"
 msgstr "Portiones & consignata armora"
 
-#: home/templates/navbar.html:172
+#: templates/navbar.html:183
 msgid "rezo wiki"
 msgstr "rezo wiki"
 
-#: home/templates/navbar.html:188
+#: templates/navbar.html:184
+msgid "mailing lists"
+msgstr ""
+
+#: templates/navbar.html:199
 msgid "Profile"
 msgstr ""
 
-#: home/templates/navbar.html:195
+#: templates/navbar.html:206
 msgid "Sign out"
 msgstr ""
 
