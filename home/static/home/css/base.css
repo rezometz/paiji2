@@ -51,15 +51,23 @@ a.gravatar:hover img {
     background-color: inherit;
 }
 
-.nav .open>a, .nav> .open>a:hover, .nav .open>a:focus {
+.navbar-nav .open>a, .nav> .open>a:hover, .nav .open>a:focus {
     background-color: #2ecc71;
 }
 
-.nav > li > a:hover {
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #000;
+}
+
+.navbar-nav > li > a:hover {
     background-color: #2ecc71;
 }
 
-.nav > li > a:focus {
+.navbar-nav > li > a:focus {
     background-color: inherit;
 }
 
