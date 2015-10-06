@@ -1,5 +1,3 @@
-
-
 .well h3{
 	word-wrap: break-word;
 	font-size: 22px;
@@ -46,43 +44,10 @@
 	color: #27ae60;
 }
 
-.author-info {
-	height: 40px;
-}
-
-h4.author-name {
-	margin: 0px;
-}
-
 .firstLetter {
 	font-size: 22px;
 }
 
-.author-icon {
-	width: 100%;
-}
-
 #poll-result {
 	text-align: center;
-}
-
-.newsfeed-action {
-    font-size: 14px;
-}
-
-.comments {
-	background-color: #ecf0f1;
-	padding: 15px;
-	margin-top: 20px;
-	margin-right: -19px;
-	margin-left: -19px;
-	margin-bottom: -19px;
-}
-
-.comments li {
-	padding: 3px;
-}
-
-.comments hr {
-	border-color: #bdc3c7;
 }
