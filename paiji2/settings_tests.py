@@ -104,3 +104,5 @@ HTMLVALIDATOR_VNU_URL = 'https://validator.nu/'
 # testing when the test server is running
 if HTMLVALIDATOR_ENABLED:
     MIDDLEWARE_CLASSES += ("htmlvalidator.middleware.HTMLValidator",)
+
+OPENWEATHERMAP_API_KEY = ''
