@@ -121,3 +121,6 @@ EMAIL_HOST_PASSWORD = 'alibaba'
 EMAIL_USE_TLS = True
 
 REZO_MAIL = 'test-rezo@mydomain.td'
+
+# paiji2-weather
+OPENWEATHERMAP_API_KEY = ''
