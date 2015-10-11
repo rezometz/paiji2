@@ -1,12 +1,14 @@
 {% extends "home/base.html" %}
 {% load alerts %}
 {% block layout %}
+{% comment %}
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         {% load bootstrap3 %}
         <!-- {% bootstrap_messages %} Plus besoin de message de confirmation pour les posts-->
     </div>
 </div>
+{% endcomment %}
 <div class="row">
     <div class="hidden-xs col-sm-3 col-md-3 droppable-modules sidebar-left">
       {% block left-sidebar %}

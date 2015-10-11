@@ -3,7 +3,17 @@ body {
 }
 
 #main {
-    width: 95%;
+    width: 100%;
+}
+
+.sidebar-left {
+    padding-left: 3px;
+    padding-right: 0px;
+}
+
+.sidebar-right {
+    padding-left: 0px;
+    padding-right: 3px;
 }
 
 .navbar {

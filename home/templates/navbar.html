@@ -16,7 +16,7 @@
         </div>
         {% endif %}
         <div id="quota-bar">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     {% if not user.is_authenticated %}
                     <div class="col-md-8 pull-right">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-id" aria-expanded="false">
                     <span class="sr-only">{{ _('Toggle navigation') }}</span>
