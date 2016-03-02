@@ -356,13 +356,14 @@ class User(
 
             payments = Paiements.objects.using('rezo').filter(
                     user=self.id_rezo
-                )
+                ).order_by('timestamp')
 
             unit_price = 0
             virt_amount = 0
             for payment in payments:
                 # date at which the payment has been made
                 pay_day = datetime.fromtimestamp(payment.timestamp)
+                virt_amount = 0.0
 
                 if pay_day > end_date:
                     end_date = pay_day
@@ -375,34 +376,26 @@ class User(
                     yearly_paying_months = 10
 
                 for vent in payment.paiements_ventilations.all():
-                    if(not unit_price):
-                        unit_price = vent.prixunitaire
+                    if not unit_price:
+                        # Cast everything to float to avoid pb weird Decimal
+                        unit_price = float(vent.prixunitaire)
 
                     if vent.affectation == "COTISATION":
-                        while vent.montant > 0:
-                            if vent.montant >=\
-                                     yearly_paying_months * unit_price:
-
+                        montant = float(vent.montant)
+                        while montant > 0:
+                            if montant >= yearly_paying_months * unit_price:
                                 virt_amount += 12 * unit_price
-                                vent.montant -= yearly_paying_months *\
-                                    unit_price
+                                montant -= yearly_paying_months * unit_price
                             else:
-                                virt_amount += vent.montant
-                                vent.montant = 0
+                                virt_amount += montant
+                                montant = 0
 
-            unit_price = float(unit_price)
-            virt_amount = float(virt_amount)
+                end_date += timedelta(int(365.25/12 * (virt_amount / unit_price)))
 
-            if virt_amount == 0:
-                days = 0
-            else:
-                days = int(365.25/12 * (virt_amount / unit_price))
+            return end_date
 
-            return end_date + timedelta(days)
-
-        except:
-
-            print('Could not fetch rezo profile')
+        except Exception as ex:
+            print('Could not compute expiration date')
             return None
 
     @cached_property
