@@ -300,7 +300,7 @@ class PaiementsVentilations(models.Model):
     )
     montant = models.DecimalField(max_digits=10, decimal_places=2)
     prixunitaire = models.DecimalField(
-       db_column='prixUnitaire', max_digits=10, decimal_places=2
+        db_column='prixUnitaire', max_digits=10, decimal_places=2
     )
     affectation = models.CharField(max_length=10)
 
@@ -355,8 +355,8 @@ class User(
             end_date = datetime.min
 
             payments = Paiements.objects.using('rezo').filter(
-                    user=self.id_rezo
-                ).order_by('timestamp')
+                user=self.id_rezo
+            ).order_by('timestamp')
 
             unit_price = 0
             virt_amount = 0
@@ -390,7 +390,9 @@ class User(
                                 virt_amount += montant
                                 montant = 0
 
-                end_date += timedelta(int(365.25/12 * (virt_amount / unit_price)))
+                end_date += timedelta(
+                    int(365.25/12 * (virt_amount / unit_price))
+                )
 
             return end_date
 

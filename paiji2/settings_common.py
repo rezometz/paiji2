@@ -43,43 +43,43 @@ def PROFILE_URL(user):
 
 # Application definition
 INSTALLED_APPS = (
-        'suit',
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django_gravatar',
-        'graphos',
-        'tinymce',
-        'home',
-        'homepage_alert',
-        'backbone_calendar',
-        'djangobower',
-        'bootstrap3',
-        'modular_blocks',
-        'rezo',
+    'suit',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django_gravatar',
+    'graphos',
+    'tinymce',
+    'home',
+    'homepage_alert',
+    'backbone_calendar',
+    'djangobower',
+    'bootstrap3',
+    'modular_blocks',
+    'rezo',
 )
 
 MIDDLEWARE_CLASSES = (
-        # uncomment to cache the entire site
-        # 'django.middleware.cache.UpdateCacheMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.locale.LocaleMiddleware',
-        'django.middleware.common.CommonMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        # uncomment to cache the entire site
-        # 'django.middleware.cache.FetchFromCacheMiddleware',
-        )
+    # uncomment to cache the entire site
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # uncomment to cache the entire site
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-        'django.core.context_processors.request',
-        'rezo.context_processors.get_admin_email',
-        )
+    'django.core.context_processors.request',
+    'rezo.context_processors.get_admin_email',
+)
 
 WSGI_APPLICATION = 'paiji2.wsgi.application'
 
@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + (
-        'djangobower.finders.BowerFinder',
+    'djangobower.finders.BowerFinder',
 )
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
@@ -162,40 +162,40 @@ CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 
 SUIT_CONFIG = {
-        'MENU_ICONS': {
-            'sites': 'icon-leaf',
-            'auth': 'icon-lock',
-            'homepage_alert': 'icon-exclamation-sign',
-            'paiji2_carpooling': 'icon-road',
-            'paiji2_social': 'icon-user',
-            'backbone_calendar': 'icon-calendar',
-            'paiji2_survey': 'icon-tasks',
-            }
+    'MENU_ICONS': {
+        'sites': 'icon-leaf',
+        'auth': 'icon-lock',
+        'homepage_alert': 'icon-exclamation-sign',
+        'paiji2_carpooling': 'icon-road',
+        'paiji2_social': 'icon-user',
+        'backbone_calendar': 'icon-calendar',
+        'paiji2_survey': 'icon-tasks',
         }
+}
 
 TINYMCE_DEFAULT_CONFIG = {
-        'plugins': 'advimage,advlink,table,\
-            searchreplace,contextmenu,template,paste,save,autosave,media',
-        'mode': 'exact',
-        'theme': 'advanced',
-        'cleanup_on_startup': True,
-        'custom_undo_redo_levels': 10,
-        # Theme options
-        'theme_advanced_buttons1': "bold,italic,underline,strikethrough,|,\
-            justifyleft,justifycenter,justifyright,justifyfull,|,\
-            styleselect,formatselect,fontsizeselect",
-        'theme_advanced_buttons2': "bullist,numlist,|,\
-            outdent,indent,blockquote,|,\
-            undo,redo,|,\
-            link,unlink,anchor,image,cleanup,help,code,|,\
-            forecolor",
-        'theme_advanced_buttons3': "tablecontrols,|,\
-            removeformat,visualaid,|,\
-            sub,sup,|,charmap,emotions,iespell,media,advhr",
-        'theme_advanced_toolbar_location': "top",
-        'theme_advanced_statusbar_location': "bottom",
-        'gecko_spellcheck': True,
-        }
+    'plugins': 'advimage,advlink,table,\
+        searchreplace,contextmenu,template,paste,save,autosave,media',
+    'mode': 'exact',
+    'theme': 'advanced',
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    # Theme options
+    'theme_advanced_buttons1': "bold,italic,underline,strikethrough,|,\
+        justifyleft,justifycenter,justifyright,justifyfull,|,\
+        styleselect,formatselect,fontsizeselect",
+    'theme_advanced_buttons2': "bullist,numlist,|,\
+        outdent,indent,blockquote,|,\
+        undo,redo,|,\
+        link,unlink,anchor,image,cleanup,help,code,|,\
+        forecolor",
+    'theme_advanced_buttons3': "tablecontrols,|,\
+        removeformat,visualaid,|,\
+        sub,sup,|,charmap,emotions,iespell,media,advhr",
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_statusbar_location': "bottom",
+    'gecko_spellcheck': True,
+}
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
